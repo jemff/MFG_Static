@@ -1,0 +1,120 @@
+
+Consider the problem (P) again. If the function is
+pseudoconvex in an open set containing K, then any solutions of the
+problem
+is a global minimum of the problem (P) and in
+particular every point with zero G-derivative is a global minimum.
+
+THM: 12.5
+Theorem 12.5 Let K be a pointed solid closed convex cone in the real
+Banach space B. Let
+be pseudomonotone and hemicontin-
+uous. Suppose that there exists
+such that
+Then
+the complementarity problem
+has a solution.
+
+pick good probability distribution
+
+Theorem 12.11 [87, Theorem 6.6] Let
+be an open convex subset of
+a real Banach space B and
+be G-differentiable. Then the
+following statements are equivalent :
+(i) The function is pseudoconvex on
+(ii) The operator
+is pseudomonotone.
+
+Gives us that our loss function is pseudovonex, and derivative is pseudomonotone
+
+THM: 12.13
+Theorem 12.13 ([87, Theorems 6.9, 6.10]) Let
+be an open convex
+subset of a real Banach space B and
+be a G-differentiate function
+on
+Then,
+is strictly pseudoconvex if and only if
+is strictly
+pseudomonotone.
+
+Our operator has no stationary poitns apart from minimum, so even strictly.
+
+LEM: 12.4
+Lemma 12.4 Let K be a closed convex cone of a real Banach space B
+and
+If T is strictly pseudomonotone, then the complemen-
+tarity problem CP(T, K) has at most one solution.
+
+Our thingy is strictly pseudomonotone.
+
+And standard Lagrangian formalism
+
+
+We need a small lemma before we proceed:
+\begin{lemma}
+  Given two strictly pseudomonotone operators $T_1, T_2$ each satisfying the conditions of \Cref{thm:existence}, then the operator $[T_1, T_2]$ satisfies the conditions of \Cref{thm:existence} with $u_0 = [u_1,u_2]$ and $R=R_1+R_2$.
+
+  ...
+  This lemma probably is not true, at least not without major modifications. We need a restated version of theorem 3.6 instead, repeating the proof but using the same ingredients as here.
+\end{lemma}
+\begin{proof}
+  Consider $[v_1,v_2] \in C_1 \times C_2$, then clearly
+  \begin{equation}
+    \ip{[T_1,T_2][v_1,v_2]}{u_0 - [v_1,v_2]} = \ip{T_1}{u_1 - v_1} + \ip{T_2 v_2}{u_2 - v_2} < 0
+  \end{equation}
+  Likewise, if
+  \begin{equation}
+    \ip{[T_1,T_2][v_1,v_2]}{u_0 - [v_1,v_2]} = \ip{T_1 v_1}{u_1 - v_1} + \ip{T_2 v_2}{u_2 - v_2} < 0
+  \end{equation}
+  then at least one term is negative. Without loss of generality , assume $v_1 \in C_1$. Necessarily $0 \leq \ip{T_2 v_2}{u_2 - v_2} < \ip{T_1 v_1}{v_1-u_1}$.
+\end{proof}
+
+\begin{proof}
+  Consider:
+  \begin{equation}
+    \ip{[T_1,T_2][v_1,v_2]}{u_0 - [v_1,v_2]} = \ip{T_1}{u_1 - v_1} + \ip{T_2 v_2}{u_2 - v_2}
+  \end{equation}
+  if either
+\end{proof}
+
+
+Thus if we consider
+\begin{equation}
+  S=
+  \begin{pmatrix}
+    d_{\sigma_1} U_1\\
+    \vdots \\
+    d_{\sigma_N} U_N
+  \end{pmatrix}
+\end{equation}
+and each $U_i$ is strictly pseudoconvex, and $S$ satisfies that there exists a $u$ such that $H_2$ is satisfied, then there is a unique Nash equilibrium of the game.
+We can gather these considerations in the following theorem
+\begin{theorem}
+  Given a population game with $N$ players with payoff functions $G_i$ there exists a unique nash equilibrium if all payoff functions $G_i$ and the are strictly pseudoconcave and satisfy $H2$.
+\end{theorem}
+If we need to be at the interior equilibrium point of a dynamical system given by a vector field $\dot{x} = f(x)$, simultaneously, we can consider the vector $[S, f/x]$ where $/$ denotes pointwise division. Then we need to check the property for the vector $[S,f/x]$.
+%We can gather the above results in the following theorem:
+\begin{theorem}
+  Given a population game with $N$ players with payoff functions $G_i$ and dynamics determined by $f$, then there exists a unique fixed point of the dynamics along with a unique nash equilibrium if all payoff functions $G_i$ and the p.r. capita growth rates $f_i(x)/x_i$ are pseudoconcave.
+\end{theorem}
+
+
+The Nash equilibrium can be determined solving the associated complementarity problem:
+%Remark that $U_c$ and $U_p$ both fulfill the conditions of \Cref{thm:unique}, so the Nash equilibrium is unique. We find the Nash equilibrium as outlined in the section "Nash equilibria and variational inequalities", arriving at the conditions:
+\begin{align}
+  F(\sigma_c,\sigma_p,\lambda_c,\lambda_p) = \begin{pmatrix}
+    \ip{\partial_{\sigma_c} U^{mon}_c - \lambda_c}{\sigma_c^{1} - \sigma_c} \\
+    \ip{\partial_{\sigma_p} U^{mon}_p - \lambda_p}{\sigma_p^{1} - \sigma_p} \\
+    \ip{\sigma_c - 1}{\lambda_c^{1} - \lambda_c} \\
+    \ip{\sigma_p - 1}{\lambda_p^{1} - \lambda_p}
+  \end{pmatrix}
+  \sigma_c,\sigma_p \geq 0
+  \lambda_c,\lambda_p \in \R
+\end{align}
+where
+\begin{align}
+  \partial_{\sigma_c} U^{mon}_c &= \beta_c \pa{1-\frac{\beta_c}{K\phi + K_0}\overbar{\sigma}_c C} - \frac{F_p \beta_p \overbar{\sigma}_p P}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} \\
+  \partial_{\sigma_p} U^{mon}_p &= \epsilon \frac{F_p^2 \beta_p \sigma_c C}{\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} C} - c \beta_p \sigma_p}
+\end{align}
