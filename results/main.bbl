@@ -14,6 +14,11 @@ Andersson, J. A.~E., J.~Gillis, G.~Horn, J.~B. Rawlings, and M.~Diehl (2019).
   optimal control.
 \newblock {\em Mathematical Programming Computation\/}~{\em 11\/}(1), 1--36.
 
+\bibitem[\protect\citeauthoryear{Aumann}{Aumann}{1964}]{aumann1964markets}
+Aumann, R.~J. (1964).
+\newblock Markets with a continuum of traders.
+\newblock {\em Econometrica: Journal of the Econometric Society\/}, 39--50.
+
 \bibitem[\protect\citeauthoryear{Barbagallo and Cojocaru}{Barbagallo and
   Cojocaru}{2009}]{barbagallo2009continuity}
 Barbagallo, A. and M.-G. Cojocaru (2009).
@@ -28,6 +33,24 @@ Blanchet, A. and G.~Carlier (2016).
 \newblock Optimal transport and cournot-nash equilibria.
 \newblock {\em Mathematics of Operations Research\/}~{\em 41\/}(1), 125--145.
 
+\bibitem[\protect\citeauthoryear{Broom and Rycht{\'a}r}{Broom and
+  Rycht{\'a}r}{2013}]{broom2013game}
+Broom, M. and J.~Rycht{\'a}r (2013).
+\newblock {\em Game-theoretical models in biology}.
+\newblock CRC Press.
+
+\bibitem[\protect\citeauthoryear{Collet}{Collet}{2019}]{collet2019algorithmic}
+Collet, S. (2019).
+\newblock {\em Algorithmic game theory applied to networks and populations}.
+\newblock Ph.\ D. thesis, Universit{\'e} de Paris.
+
+\bibitem[\protect\citeauthoryear{Cressman and K{\v{r}}ivan}{Cressman and
+  K{\v{r}}ivan}{2010}]{cressman2010ideal}
+Cressman, R. and V.~K{\v{r}}ivan (2010).
+\newblock The ideal free distribution as an evolutionarily stable state in
+  density-dependent population games.
+\newblock {\em Oikos\/}~{\em 119\/}(8), 1231--1242.
+
 \bibitem[\protect\citeauthoryear{Cressman, K{\v{r}}ivan, and Garay}{Cressman
   et~al.}{2004}]{cressman2004ideal}
 Cressman, R., V.~K{\v{r}}ivan, and J.~Garay (2004).
@@ -35,11 +58,23 @@ Cressman, R., V.~K{\v{r}}ivan, and J.~Garay (2004).
   in multiple-species environments.
 \newblock {\em The American Naturalist\/}~{\em 164\/}(4), 473--489.
 
-\bibitem[\protect\citeauthoryear{Genkai-Kato}{Genkai-Kato}{2007}]{genkai2007macrophyte}
-Genkai-Kato, M. (2007).
-\newblock Macrophyte refuges, prey behaviour and trophic interactions:
-  consequences for lake water clarity.
-\newblock {\em Ecology Letters\/}~{\em 10\/}(2), 105--114.
+\bibitem[\protect\citeauthoryear{Deimling}{Deimling}{2010}]{deimling2010nonlinear}
+Deimling, K. (2010).
+\newblock {\em Nonlinear functional analysis}.
+\newblock Courier Corporation.
+
+\bibitem[\protect\citeauthoryear{Gabay}{Gabay}{1980}]{gabay1980uniqueness}
+Gabay, D. (1980).
+\newblock On the uniqueness and stability of nash-equilibria in noncooperative
+  games.
+\newblock {\em Applied Stochastic Control in Economatrics and Management
+  Science\/}.
+
+\bibitem[\protect\citeauthoryear{Gross, Rudolf, Levin, and Dieckmann}{Gross
+  et~al.}{2009}]{gross2009generalized}
+Gross, T., L.~Rudolf, S.~A. Levin, and U.~Dieckmann (2009).
+\newblock Generalized models reveal stabilizing factors in food webs.
+\newblock {\em Science\/}~{\em 325\/}(5941), 747--750.
 
 \bibitem[\protect\citeauthoryear{Hadjisavvas, Koml{\'o}si, and
   Schaible}{Hadjisavvas et~al.}{2006}]{hadjisavvas2006handbook}
@@ -53,11 +88,36 @@ HSL, A. (2007).
 \newblock A collection of fortran codes for large-scale scientific computation.
 \newblock {\em See http://www. hsl. rl. ac. uk\/}.
 
+\bibitem[\protect\citeauthoryear{Karamardian}{Karamardian}{1969}]{karamardian1969nonlinear}
+Karamardian, S. (1969).
+\newblock The nonlinear complementarity problem with applications, part 2.
+\newblock {\em Journal of Optimization Theory and Applications\/}~{\em 4\/}(3),
+  167--181.
+
+\bibitem[\protect\citeauthoryear{Krivan}{Krivan}{1997}]{krivan1997dynamic}
+Krivan, V. (1997).
+\newblock Dynamic ideal free distribution: effects of optimal patch choice on
+  predator-prey dynamics.
+\newblock {\em The American Naturalist\/}~{\em 149\/}(1), 164--178.
+
 \bibitem[\protect\citeauthoryear{K{\v{r}}ivan}{K{\v{r}}ivan}{2007}]{kvrivan2007lotka}
 K{\v{r}}ivan, V. (2007).
 \newblock The lotka-volterra predator-prey model with foraging--predation risk
   trade-offs.
 \newblock {\em The American Naturalist\/}~{\em 170\/}(5), 771--782.
+
+\bibitem[\protect\citeauthoryear{K{\v{r}}ivan, Cressman, and
+  Schneider}{K{\v{r}}ivan et~al.}{2008}]{kvrivan2008ideal}
+K{\v{r}}ivan, V., R.~Cressman, and C.~Schneider (2008).
+\newblock The ideal free distribution: a review and synthesis of the
+  game-theoretic perspective.
+\newblock {\em Theoretical population biology\/}~{\em 73\/}(3), 403--425.
+
+\bibitem[\protect\citeauthoryear{Lasry and Lions}{Lasry and
+  Lions}{2007}]{lasry2007mean}
+Lasry, J.-M. and P.-L. Lions (2007).
+\newblock Mean field games.
+\newblock {\em Japanese journal of mathematics\/}~{\em 2\/}(1), 229--260.
 
 \bibitem[\protect\citeauthoryear{Malone, Halloway, and Brown}{Malone
   et~al.}{2020}]{malone2020ecology}
@@ -72,6 +132,14 @@ Maugeri, A. and F.~Raciti (2009).
   inequalities.
 \newblock {\em J. Convex Anal\/}~{\em 16\/}(3-4), 899--911.
 
+\bibitem[\protect\citeauthoryear{Nabetani, Tseng, and Fukushima}{Nabetani
+  et~al.}{2011}]{nabetani2011parametrized}
+Nabetani, K., P.~Tseng, and M.~Fukushima (2011).
+\newblock Parametrized variational inequality approaches to generalized nash
+  equilibrium problems with shared constraints.
+\newblock {\em Computational Optimization and Applications\/}~{\em 48\/}(3),
+  423--452.
+
 \bibitem[\protect\citeauthoryear{Schmitz, Grabowski, Peckarsky, Preisser,
   Trussell, and Vonesh}{Schmitz et~al.}{2008}]{schmitz2008individuals}
 Schmitz, O.~J., J.~H. Grabowski, B.~L. Peckarsky, E.~L. Preisser, G.~C.
@@ -79,6 +147,11 @@ Schmitz, O.~J., J.~H. Grabowski, B.~L. Peckarsky, E.~L. Preisser, G.~C.
 \newblock From individuals to ecosystem function: toward an integration of
   evolutionary and ecosystem ecology.
 \newblock {\em Ecology\/}~{\em 89\/}(9), 2436--2445.
+
+\bibitem[\protect\citeauthoryear{Smith}{Smith}{1982}]{smith1982evolution}
+Smith, J.~M. (1982).
+\newblock {\em Evolution and the Theory of Games}.
+\newblock Cambridge university press.
 
 \bibitem[\protect\citeauthoryear{Stump and Chesson}{Stump and
   Chesson}{2017}]{stump2017optimally}

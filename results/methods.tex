@@ -7,8 +7,7 @@ The essential assumption in population games is that we have  types of different
 
 Since all agents of each type are indistinguishable, when they all play the optimal strategy simultaneously, by interchangeability the Nash equilibrium must be that they follow the same strategy.
 
-
-An alternative point of view for population games is assuming monomorphic populations from the get-go instead of as an emergent phenonenom \citep{monroe}. There is a stark difference between the Nash equilibria of a game where the monomorphism is imposed and where it emerges, \citep{kvivran,frenchphd}. We quantify this explicitly:
+An alternative point of view for population games is assuming monomorphic populations from the get-go instead of as an emergent phenonenom \citep{vincent2005evolutionary}. There is a stark difference between the Nash equilibria of a game where the monomorphism is imposed and where it emerges, \citep{kvrivan2008ideal,collet2019algorithmic}. We quantify this explicitly:
 \begin{proposition}
   \label{prop:doubleup}
   Consider a population game with a population of size $N$ with payoff $U$ given by a bilinear form $U$ specified by a matrix $A$ such that $U(\sigma_1,\sigma_2) = \ip{\sigma_1}{A \sigma_2}$. The expected payoff for a player with an inherently monomorphic population is twice that of a player in the mean-field game.
@@ -110,7 +109,7 @@ To motivate the approach based on complementarity and variational inequalities, 
   \sigma_i \geq 0
   \int_X \sigma_i - 1 = 0
 \end{align}
-The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to finding a system $\sigma_i^*$ satisfying the KKT conditions simultaneously for every pair $U_i$, \citep{nonlinear_func_an}. Thus the total condition for a Nash equilibrium is:
+The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to finding a system $\sigma_i^*$ satisfying the KKT conditions simultaneously for every pair $U_i$, \citep{deimling2010nonlinear}. Thus the total condition for a Nash equilibrium is:
 \begin{equation}
   \begin{split}
   \begin{pmatrix}
