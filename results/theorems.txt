@@ -118,3 +118,57 @@ where
   \partial_{\sigma_c} U^{mon}_c &= \beta_c \pa{1-\frac{\beta_c}{K\phi + K_0}\overbar{\sigma}_c C} - \frac{F_p \beta_p \overbar{\sigma}_p P}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} \\
   \partial_{\sigma_p} U^{mon}_p &= \epsilon \frac{F_p^2 \beta_p \sigma_c C}{\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} C} - c \beta_p \sigma_p}
 \end{align}
+
+Since we are working over a particularly nice convex set $K$, the complementarity problem and the variational inequality are actually equivalent:
+%\begin{proposition}
+  %The variational inequality $VI(T,K)$ is equivalent to the complementarity problem $CP(T,K)$.
+%\end{proposition}
+%\begin{proof}
+%  Clearly, a solution to $CP$ is also a solution to $VI$. For the other direction, assume that we have a solution $x^*$ to VI. Then define $y_0=(Tx^*)^\perp \in K$ and $y_1 = 2x^* - y_0 \in K$ and consider
+%  \begin{equation}
+%    \ip{y_0 - x^*}{Tx^*} \geq 0
+%    \ip{y_1-x^*}{Tx^*} \geq 0
+%  \end{equation}
+%  Since $y_0 \perp Tx^*$, the first inequality reduces to $-\ip{x^*}{Tx^*} \geq 0$, and the second inequality reduces to $\ip{x^*}{Tx^*}\geq 0$. Thus $\ip{x^*}{Tx^*}=0$, and $x^*$ solves the complementarity problem.
+%\end{proof}
+%Using the equality $\mu_i = - d_{\sigma_i} U_i$,
+
+% allowing the use of the entire toolbox of variational inequalities to study properties such as uniqueness, \citep{}.
+%The three theorems we need are:
+
+%The two theorems that we need to carry us through are :
+%THM: 12.13
+%Theorem 12.13 ([87, Theorems 6.9, 6.10]) Let
+%be an open convex
+%subset of a real Banach space B and
+%be a G-differentiate function
+%on
+%Then,
+%is strictly pseudoconvex if and only if
+%is strictly
+%pseudomonotone.
+%Theorem 3.6. Let K be a closed convex set and A : K → E ∗ a K-pseudomonotone
+%map which is lower hemicontinuous along line segments. Let us assume that condition
+%H2 ) holds, namely, there exists u 0 ∈ K and R > ku 0 k such that
+%hAv, v − u 0 i ≥ 0, ∀v ∈ K ∩ {v ∈ E : kvk = R}
+%Then (VIP) admits solutions.
+
+%Lemma 12.3 Let K be a nonempty subset of the real Banach space B
+%and
+%If T is strictly pseudomonotone, then the problem
+%VI(T, K) has at most one solution.
+
+Thus finding the Nash equilibrium of a game with payoffs $U_i$ and strategies $\sigma$ corresponds to solving the variational inequality:
+\begin{equation}
+  \ip{
+  \begin{pmatrix}
+    \nabla_{\sigma_1} U_1\\
+    \vdots \\
+    \nabla_{\sigma_N} U_N
+\end{pmatrix} \begin{pmatrix}
+    \sigma_1 \\
+    \vdots \\
+    \sigma_N
+\end{pmatrix}}{\begin{pmatrix} \sigma_1 - \sigma'_1 \\ \vdots \\ \sigma_N - \sigma'_N \end{pmatrix}} \geq 0, \quad \forall y\in K
+\end{equation}
+over the closed convex set $K = \int \sigma_i dx= 1$.

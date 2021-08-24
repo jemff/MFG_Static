@@ -7,6 +7,27 @@ Abrams, P.~A., R.~Cressman, and V.~K{\v{r}}ivan (2007).
   distributions of interacting species.
 \newblock {\em The American Naturalist\/}~{\em 169\/}(4), 505--518.
 
+\bibitem[\protect\citeauthoryear{Andersson, Gillis, Horn, Rawlings, and
+  Diehl}{Andersson et~al.}{2019}]{Andersson2019}
+Andersson, J. A.~E., J.~Gillis, G.~Horn, J.~B. Rawlings, and M.~Diehl (2019).
+\newblock {CasADi} -- {A} software framework for nonlinear optimization and
+  optimal control.
+\newblock {\em Mathematical Programming Computation\/}~{\em 11\/}(1), 1--36.
+
+\bibitem[\protect\citeauthoryear{Barbagallo and Cojocaru}{Barbagallo and
+  Cojocaru}{2009}]{barbagallo2009continuity}
+Barbagallo, A. and M.-G. Cojocaru (2009).
+\newblock Continuity of solutions for parametric variational inequalities in
+  banach space.
+\newblock {\em Journal of Mathematical Analysis and Applications\/}~{\em
+  351\/}(2), 707--720.
+
+\bibitem[\protect\citeauthoryear{Blanchet and Carlier}{Blanchet and
+  Carlier}{2016}]{blanchet2016optimal}
+Blanchet, A. and G.~Carlier (2016).
+\newblock Optimal transport and cournot-nash equilibria.
+\newblock {\em Mathematics of Operations Research\/}~{\em 41\/}(1), 125--145.
+
 \bibitem[\protect\citeauthoryear{Cressman, K{\v{r}}ivan, and Garay}{Cressman
   et~al.}{2004}]{cressman2004ideal}
 Cressman, R., V.~K{\v{r}}ivan, and J.~Garay (2004).
@@ -20,6 +41,18 @@ Genkai-Kato, M. (2007).
   consequences for lake water clarity.
 \newblock {\em Ecology Letters\/}~{\em 10\/}(2), 105--114.
 
+\bibitem[\protect\citeauthoryear{Hadjisavvas, Koml{\'o}si, and
+  Schaible}{Hadjisavvas et~al.}{2006}]{hadjisavvas2006handbook}
+Hadjisavvas, N., S.~Koml{\'o}si, and S.~S. Schaible (2006).
+\newblock {\em Handbook of generalized convexity and generalized monotonicity},
+  Volume~76.
+\newblock Springer Science \& Business Media.
+
+\bibitem[\protect\citeauthoryear{HSL}{HSL}{2007}]{hsl2007collection}
+HSL, A. (2007).
+\newblock A collection of fortran codes for large-scale scientific computation.
+\newblock {\em See http://www. hsl. rl. ac. uk\/}.
+
 \bibitem[\protect\citeauthoryear{K{\v{r}}ivan}{K{\v{r}}ivan}{2007}]{kvrivan2007lotka}
 K{\v{r}}ivan, V. (2007).
 \newblock The lotka-volterra predator-prey model with foraging--predation risk
@@ -31,6 +64,13 @@ K{\v{r}}ivan, V. (2007).
 Malone, M.~A., A.~H. Halloway, and J.~S. Brown (2020).
 \newblock The ecology of fear and inverted biomass pyramids.
 \newblock {\em Oikos\/}~{\em 129\/}(6), 787--798.
+
+\bibitem[\protect\citeauthoryear{Maugeri and Raciti}{Maugeri and
+  Raciti}{2009}]{maugeri2009existence}
+Maugeri, A. and F.~Raciti (2009).
+\newblock On existence theorems for monotone and nonmonotone variational
+  inequalities.
+\newblock {\em J. Convex Anal\/}~{\em 16\/}(3-4), 899--911.
 
 \bibitem[\protect\citeauthoryear{Schmitz, Grabowski, Peckarsky, Preisser,
   Trussell, and Vonesh}{Schmitz et~al.}{2008}]{schmitz2008individuals}
@@ -46,5 +86,19 @@ Stump, S.~M. and P.~Chesson (2017).
 \newblock How optimally foraging predators promote prey coexistence in a
   variable environment.
 \newblock {\em Theoretical Population Biology\/}~{\em 114}, 40--58.
+
+\bibitem[\protect\citeauthoryear{Vincent and Brown}{Vincent and
+  Brown}{2005}]{vincent2005evolutionary}
+Vincent, T.~L. and J.~S. Brown (2005).
+\newblock {\em Evolutionary game theory, natural selection, and Darwinian
+  dynamics}.
+\newblock Cambridge University Press.
+
+\bibitem[\protect\citeauthoryear{W{\"a}chter and Biegler}{W{\"a}chter and
+  Biegler}{2006}]{wachter2006implementation}
+W{\"a}chter, A. and L.~T. Biegler (2006).
+\newblock On the implementation of an interior-point filter line-search
+  algorithm for large-scale nonlinear programming.
+\newblock {\em Mathematical programming\/}~{\em 106\/}(1), 25--57.
 
 \end{thebibliography}
