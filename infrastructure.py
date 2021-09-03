@@ -137,6 +137,9 @@ def heat_kernel(Mx, t, k):
 
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import ImageGrid
+plt.rc('text', usetex=True)
+plt.rc('font', family='serif')
+plt.rc('font', size=10)
 
 def heatmap_plotter(data, image_name, ext, xlab, ylab):
 
@@ -147,10 +150,10 @@ def heatmap_plotter(data, image_name, ext, xlab, ylab):
     :param ext: The range of the heatmap
     :return: None, the function saves the heatmaps
     """
-    fig = plt.figure(figsize=(16/2.54, 8/2.54))
+    fig = plt.figure(figsize=(8/2.54, 14/2.54))
 
     grid = ImageGrid(fig, 111,  # as in plt.subplot(111)
-                     nrows_ncols=(1, len(data)),
+                     nrows_ncols=(1,len(data)),
                      axes_pad=0.2,
                      share_all=True,
                      cbar_location="right",
@@ -160,7 +163,7 @@ def heatmap_plotter(data, image_name, ext, xlab, ylab):
                      )
 
     # Add data to image grid
-    type = [" Consumer", " Predator"]
+    type = [" Consumer ", " Predator"]
     i = 0
     lets = ["A", "B"]
 
@@ -169,7 +172,7 @@ def heatmap_plotter(data, image_name, ext, xlab, ylab):
         x0, x1 = ax.get_xlim()
         y0, y1 = ax.get_ylim()
         ax.set_aspect(np.abs((x1 - x0) / (y1 - y0)))
-        ax.set_xlabel(xlab + ", " + type[i % 2])
+        ax.set_xlabel(xlab + " " + type[i % 2])
         ax.set_ylabel(ylab)
         ax.text(1.025, 0.9, lets[i], transform=ax.transAxes)
 

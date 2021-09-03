@@ -78,19 +78,19 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 3, steps = 
     heatmap_plotter([strategies_comp[:,:,0].T, strategies_comp[:,:,1].T], "increasing_competition"+file_append, [competition[0], competition[-1], 1, 0], xlab = "Competition ($c$)", ylab="Refuge")
 
     fig, ax = plt.subplots(1, 3, sharex='col', sharey='row')
-    fig.set_size_inches((15 / 2.54, 5 / 2.54))
-    ax[0].plot(qs, populations_ref[:,0], c=tableau20[0])
-    ax[0].plot(qs, populations_ref[:,1], c=tableau20[6])
+    fig.set_size_inches((12 / 2.54, 6 / 2.54))
+    ax[0].plot(qs, np.log10(populations_ref[:,0]), c=tableau20[0])
+    ax[0].plot(qs, np.log10(populations_ref[:,1]), c=tableau20[6])
     ax[0].set_xlabel('Refuge quality ($q$)')
     ax[0].text(1.05, 0.9, 'A', transform=ax[0].transAxes)
 
-    ax[1].plot(car_caps, populations_car[:,0], c=tableau20[0])
-    ax[1].plot(car_caps, populations_car[:,1], c=tableau20[6])
+    ax[1].plot(car_caps, np.log10(populations_car[:,0]), c=tableau20[0])
+    ax[1].plot(car_caps, np.log10(populations_car[:,1]), c=tableau20[6])
     ax[1].set_xlabel('Carrying capacity ($K$)')
     ax[1].text(1.05, 0.9, 'B', transform=ax[1].transAxes)
 
-    ax[2].plot(competition, populations_comp[:,0], c=tableau20[0])
-    ax[2].plot(competition, populations_comp[:,1], c=tableau20[6])
+    ax[2].plot(competition, np.log10(populations_comp[:,0]), c=tableau20[0])
+    ax[2].plot(competition, np.log10(populations_comp[:,1]), c=tableau20[6])
     ax[2].set_xlabel('Competition ($c$)')
     ax[2].text(1.05, 0.9, 'C', transform=ax[2].transAxes)
 

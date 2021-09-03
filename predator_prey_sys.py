@@ -215,7 +215,26 @@ def threed_predator_prey_dyn(resources = None, beta_f = None, res_conc_f = None,
         ret_dict = {'x0': np.array(sol['x']).flatten(), 'lam_g0': np.array(sol['lam_g']).flatten(), 'lam_x0': np.array(sol['lam_x']).flatten()}
         return ret_dict
 
-def dynamics(t, y, par = None, car_cap = 2, Mx = None, inte = None): #Reimplement this as DAE in CasADi...
+def dynamics(y, par = None, car_cap = None, Mx = None, inte = None, sigma_p = None, sigma=None): #Reimplement this as DAE in CasADi...
+    beta = np.exp(-(par['q'] * Mx.x) ** 2)  # +0.001 2*np.exp(-Mx.x)/(1+np.exp(-Mx.x))#np.exp(-Mx.x**2)#+0.001
+    beta = 0.5 * 1 / (inte @ (Mx.M @ beta)) * beta + 0.0001
+
+    res_conc = np.exp(-par['q'] * Mx.x)  # np.exp(-Mx.x**2)#np.exp(-Mx.x)+0.001
+    res_conc = 1 / (inte @ (Mx.M @ res_conc)) * res_conc + 0.0001
+
+    cons_dyn = inte @ (Mx.M @ (sigma * y[0] / par['c_enc_freq'] * (
+            1 - y[0] * sigma / (par['c_enc_freq'] * res_conc * car_cap)))) - inte @ (
+                       Mx.M @ (y[0] * y[1] * sigma * beta * sigma_p)) / (
+                       par['p_enc_freq'] + par['p_handle'] * inte @ (
+                       Mx.M @ (y[0] * sigma * beta * sigma_p))) - par['c_met_loss'] * y[0]
+    pred_dyn = par['eff'] * inte @ (Mx.M @ (y[0] * y[1] * sigma * beta * sigma_p)) / (
+            par['p_enc_freq'] + par['p_handle'] * inte @ (Mx.M @ (y[0] * sigma * beta * sigma_p))) - par[
+                   'p_met_loss'] * y[1] - par['competition'] * inte @ (Mx.M @ (sigma_p ** 2 * beta)) * \
+               y[1]
+
+    return np.array([cons_dyn[0], pred_dyn[0]])
+
+def dynamics_static(t, y, par = None, car_cap = 2, Mx = None, inte = None): #Reimplement this as DAE in CasADi...
     beta = np.exp(-(par['q'] * Mx.x) ** 2)  # +0.001 2*np.exp(-Mx.x)/(1+np.exp(-Mx.x))#np.exp(-Mx.x**2)#+0.001
     beta = 0.5 * 1 / (inte @ (Mx.M @ beta)) * beta + 0.0001
 
@@ -223,10 +242,9 @@ def dynamics(t, y, par = None, car_cap = 2, Mx = None, inte = None): #Reimplemen
     res_conc = 1 / (inte @ (Mx.M @ res_conc)) * res_conc + 0.0001
 
     tot_points = Mx.x.size
-    out = twod_predator_prey_dyn(pops=y, Mx=Mx, fixed_point=False, warmstart_out=True, car_cap=car_cap,
-                             minimal_pops=0, par=par)
-    sigma = out['x0'][0: tot_points]
-    sigma_p = out['x0'][tot_points: 2 * tot_points]
+
+    sigma = np.ones(tot_points)
+    sigma_p = np.ones(tot_points)
     cons_dyn = inte @ (Mx.M @ (sigma * y[0] / par['c_enc_freq'] * (
             1 - y[0] * sigma / (par['c_enc_freq'] * res_conc * car_cap)))) - inte @ (
                        Mx.M @ (y[0] * y[1] * sigma * beta * sigma_p)) / (

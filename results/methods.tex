@@ -1,6 +1,6 @@
-%\section*{Methods}
+%\section{Methods}
 
-\section*{Population games: Mean-field games and monomorphism}
+\section{Population games: Mean-field games and monomorphism}
 
 
 The essential assumption in population games is that we have  types of different agents playing a game against each other, where the agents of each type are internally indistinguishable. The payoff for a single individual depends on the behavior of the rest of the population, as well as the other populations and its own choice. The populations are assumed to be so large that the choice of a single individual does not change the mean.
@@ -76,7 +76,7 @@ which contrasts the naive monomorphic game,
 As the growth of $c_2\frac{\sigma}{1 + c_3\sigma}$ is smaller than that of $c_2\log(1+c_3 \sigma)$, the maximum of $U(\sigma,\sigma)$ will be attained at a larger value of $\sigma$. This corresponds to an inherently monomorphic population being more risk-seeking, as individuals will sacrifice themselves for the greater good. This example, along with \Cref{prop:doubleup} lets us conjecture that a monomorphic population will generally be more risk-seeking.
 
 
-\section*{Nash equilibria and variational inequalities}
+\section{Nash equilibria and variational inequalities}
 Calculating Nash equilibria is generally a hard problem. A fruitful approach to calculating Nash equilibria is via. the theory of complementarity problems and variational inequalities \citep{karamardian complementarity articles variational}. We unite the approach of variational inequalities and mean-field games, and by using relatively modern theory, we can characterize a rather general setup that guarantees uniqueness and existence of Nash equilibria for population games in both a finite and infinite dimensional setting.
 \begin{definition}
   Define $H$ as the real Hilbert space $L^2(X)$, where $X$ is either a finite set of points or the union of the interval $[0,1]$ and a finite set of points. Define $H_+ \subset H$ as the a.e. positive functions in $H$.
@@ -163,48 +163,8 @@ If we do not include the criterion $\int \sigma_i dx = 1$ explicitly, but instea
 \end{equation}
 which is more tractable for theoretical considerations, while the complementarity formulation is preferable for solving the problem numerically.
 
-In case the payoff-functions $\sigma_i$ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium. Asking for strict convexity is too strong, but we can relax the requirement to the related weaker notion of strict pseudoconvexity. We start by recalling the definition of pseudo-convexity
-The corresponding notion of convexity is
-\begin{definition}
-  Let $\Omega \subset H$ be an open subset of $H$, and let $f:\Omega \to \R$ be Gateaux-differentiable. The function $f$ is strictly pseudoconvex if
-  \begin{equation}
-    \ip{y-x}{(\nabla f)(x)} \geq 0 \Rightarrow f(y) > f(x)
-  \end{equation}
-\end{definition}
-Where a strictly convex function has a strictly monotone derivative, a variant holds for strictly pseudoconvex functions. First, we need to introduce strict pseudomonotonicity.
-\begin{definition}
- The operator $T: K \to H$ is strictly pseudomonotone if for every pair $x\neq y$ we have
- \begin{align}
-   \ip{x-y}{Ty} \geq 0 \Rightarrow \ip{x-y}{Tx} > 0
- \end{align}
-\end{definition}
-Proving strict pseudomonotonicity in itself can be hard, but thankfully the notions of strict pseudomonotonicity and strict pseudoconvexity are related.
-\begin{theorem}[Theorem 12.13, p. 521 \citep{hadjisavvas2006handbook}]
-  Let $\Omega \subset H$ be an open convex subset, and let $f:\Omega \to \R$ be $G$-differentiable. Then $f$ is strictly pseudoconvex if and only if $\nabla f$ is strictly pseudomonotone.
-\end{theorem}
-Minimizing a differentiable strictly pseudoconvex $f$ function over a convex set $K$ is equivalent to solving the variational inequality
-\begin{equation}
-  x \in K, ~ \ip{(\nabla f)(x)}{x-y} \geq 0, \forall y\in K
-\end{equation}
-The problem of existence and uniqueness of a Nash equilibrium has been reduced to a problem of existence and uniqueness of a variational inequality. Whether a variational inequality given by a pseudomonotone operator has a solution can be determined by \citep[Theorem 3.6]{maugeri2009existence}, which we restate.
-\begin{theorem}
-  \label{thm:existence}
-  Let $K\subset H$ be a closed convex set and $T:K\to H$ a pseudomonotone operator which is lower hemicontinuous along line segments, i.e. for all $x,y\in H$ the mapping $\xi \mapsto \ip{T\xi,}{x-y}$ is lower semicontinuous for $\xi \in \{\eta \in H : \eta = tx+(1-t)y, \quad t\in [0,1]\}$. Assume that there exists $u_0 \in K$ and $R> \norm{u_0}$ such that
-  \begin{equation}
-    \ip{Tv}{v-u_0} \geq 0, \forall v \in K \cap \{v \in H : \norm{v} = R \}
-  \end{equation}
-  then the variational inequality $VI(T,K)$ has a solution.
-\end{theorem}
-\begin{remark}
-  \label{rem:weak_compact}
-  Weak compactness of $K$ also ensures that $VI(T,K)$ has a solution \citep[Theorem 12.1, P. 510]{hadjisavvas2006handbook}, giving existence of solutions in the finite-dimensional case.
-\end{remark}
-With a criterion for existence in hand, we proceed to state a criterion for uniqueness, justifying our focus on strict pseudoconvexity and strict pseudomonotonicity.
-\begin{theorem}[Lemma 12.3, p. 516, \citep{hadjisavvas2006handbook}]
-  \label{thm:uniqueness}
-  Let $K\subset H$ be a non-empty subset of $H$. If $T$ is strictly pseudomonotone, then the problem $VI(T,K)$ has at most one solution.
-\end{theorem}
-We can gather these results and their application to game theory in the following theorem:
+In case the payoff-functions $\sigma_i$ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium. Asking for strict convexity is too strong, but we can relax the requirement to the related weaker notion of strict pseudoconvexity. See \Cref{sec:appendix} for further details.
+We can gather the results on pseudoconvex functions and their application to game theory in the following theorem:
 \begin{theorem}
   Cnosider a game with $N$ players with strictly pseudoconvex payoff functions $U_i$ and strategies $\sigma_i$ in $H$. The game has a unique Nash equilibrium if
   \begin{equation}
@@ -247,16 +207,17 @@ With this result, we can show that there exist unique fixed points of population
 Remark that the assumption of uniformly bounded fixed-point space as a function of the strategies is biologically reasonable, since e.g. Type II growth functions are uniformly bounded and a metabolic loss is usually constant.
 
 Having established the general theory for Nash equilibria, and demonstrated how to handle mean-field games as monomorphic games, we are ready to apply the theory to a Rosenzweig-MacArthur system with fast adaptive behavior.
-\section*{Revisiting the Rosenzweig-MacArthur model}
+\section{Revisiting the Rosenzweig-MacArthur model}
+\label{sec:model_rm}
 %Having established the general framework, we can proceed to defining the concrete model of interest.
 We consider a predator-prey system modeled as a Rosenzweig-MacArthur system in a spatially heterogeneous habitat, where the predators are specialized so that their hunting success is maximal in the most productive zone of the habitat.
-We assume that predators $(P)$ and consumers $(C)$ share a heterogeneous habitat \Cref{fig:sys_sketch}, modeled as the interval $[0,1]$. The mean strategy of the consumer population is $\overbar{\sigma}_c$ and the mean strategy of the predator population is $\overbar{\sigma}_p$.
+We assume that predators $(P)$ and consumers $(C)$ share a heterogeneous habitat, modeled as the interval $[0,1]$. The mean strategy of the consumer population is $\overbar{\sigma}_c$ and the mean strategy of the predator population is $\overbar{\sigma}_p$.
 The population dynamics are given by a behaviorally modified Rosenzweig-MacArthur system. The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate. The function $\beta_p$ is normalized to a constant value of 5.
 Consumption events are assumed local, so the expected encounter rate between predators and prey is $\ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. To model intraspecific predator competition, we have added a term $c\ip{\beta \overbar{\sigma}_p}{\overbar{\sigma}_p}$ where $c$ describes the level of competition. In addition there is a constant metabolic loss $\mu_c$ for the consumers. The carrying capacity is given by $K\phi + K_0$,
  where $K$ varies, $\phi$ is a distribution, and $K_0$ is the minimal carrying capacity. Denoting the maximal predator growth rate by $F_p$, the consumer clearance rate by $\beta_c$, the dynamics are given by:
 %Inserting \Cref{eq:r_ss} in \Cref{eq:bas_dyn}, we arrive at the population dynamics:
 \begin{align}
-  \dot{C} &= f_c = C \pa{\ip{\beta_c \overbar{\sigma}_c}{1-\frac{\beta_c}{K\phi + K_0}\overbar{\sigma}_c C} - \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} P}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} - \mu_c} \\
+  \dot{C} &= f_c = C \pa{\ip{\beta_c \overbar{\sigma}_c}{1-\frac{\beta_c}{K\phi + K_0}\overbar{\sigma}_c C} - \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} P}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} } \\
   \dot{P} &= f_p = P \pa{\epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} - c \ip{\overbar{\sigma}_p}{\beta_p \overbar{\sigma}_p}  - \mu_p}
   \label{eq:dynamics}
 \end{align}
@@ -267,13 +228,13 @@ Introducing the quality ($q$) of the habitat as a parameter, the functions $\bet
 \end{align}
 where the normalization is to keep a constant total encounter rate and carrying capacity of $K$ when varying $q$. The choice of functions reflect a predator specialized in hunting the most productive zones, and a heterogeneous productivity.
 
-\subsection*{Existence and uniqueness of the equilibrium}
+\subsection{Existence and uniqueness of the equilibrium}
 We model predator and consumer movement as instantaneous, with each predator and consumer seeking to maximize its fitness at each instant. The fitness of an individual depends on the mean strategy of its own type and that of either the predators, or consumers, respectively. Denoting the individual consumer and predator strategies by $\sigma_c$ and $\sigma_p$ respectively, the instantaneous fitness $U_c$ of a consumer and a predator $U_p$ are:
 \begin{align}
-  U_c(\sigma_c, \overbar{\sigma}_c, \overbar{\sigma}_p) &= \ip{\beta_c \sigma_c}{1-\frac{\beta_c}{K\phi + K_0}\overbar{\sigma}_c C} - \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} P}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} - \mu_c \\
+  U_c(\sigma_c, \overbar{\sigma}_c, \overbar{\sigma}_p) &= \ip{\beta_c \sigma_c}{1-\frac{\beta_c}{K\phi + K_0}\overbar{\sigma}_c C} - \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} P}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} \\
   U_p(\sigma_p, \overbar{\sigma}_c, \overbar{\sigma}_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} C}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} C} - c \ip{\sigma_p}{\beta_p \overbar{\sigma}_p}  - \mu_p
 \end{align}
-Denoting the optimum by $^*$, at the Nash equilibrium $\sigma_c^*=\overbar{\sigma}_c$ and $\sigma_p^* = \overbar{\sigma}_p$. We use the method of \Cref{def:correspondence} to convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:mon_eq_forms}
+Denoting the optimum by $^*$, at the Nash equilibrium $\sigma_c^*=\overbar{\sigma}_c$ and $\sigma_p^* = \overbar{\sigma}_p$. We use the method of \Cref{def:correspondence} to convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:correspondence}
 \begin{align}
   \label{eq:mon_eq_forms}
   U_c^{mon}(\sigma_c, \sigma_p) &= \ip{\beta_c \sigma_c}{1-\frac{1}{2}\frac{\beta_c}{K\phi + K_0 2}\sigma_c C} - P\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} C} - \mu_c \\
@@ -324,7 +285,7 @@ A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}
   Proceeding in the same fashion with the second term, we arrive at a pair of constants $\epsilon_1,\epsilon_2$. We can then pick the minimum of these two, showing the desired.
 \end{proof}
 Since we are also interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we are also interested in showing that the fixed-point of the dynamics exists and is unique. Here we can directly use the theory we have developed.  The functions $f_1/C$ and $f_2/P$ are strictly monotone, and the set of fixed-points is uniformly bounded due to the metabolic terms and logistic terms, respectively. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
-\subsection*{Numerical approach and implementation}
+\subsection{Numerical approach and implementation}
 In order to find Nash equilibria and fix-points of the behaviorally modified Rosenzweig-MacArthur system, we use the formulation of \Cref{eq:complementarity_form}. We discretize space uniformly, using the trapezoidal rule to evaluate the integrals. By using the trapezoidal rule, we keep a banded sparsity pattern in the coupling of the locations. The equations \Cref{eq:dynamics} and the derivatives of the monomorphic payoffs \Cref{eq:mon_eq_forms} are formulated via. the symbolic language CasADi \citep{Andersson2019}, where we then solve the complementarity problem as a feasibility problem using IPOPT \citep{wachter2006implementation} using the HSL subroutines for linear algebra \citep{hsl2007collection}
 
 The numerical approach is extremely fast, and should scale to much larger problems. It allows for determination of fixed-points of the dynamics in less than 1 second.
