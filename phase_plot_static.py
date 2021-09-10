@@ -66,8 +66,10 @@ for i in range(fidelity):
         N = np.linalg.norm(vectors[i, j, :])
         vectors[i, j,:] = vectors[i, j,:]/N
 
-fig, ax = plt.subplots(figsize=(8/2.54, 8/2.54))
+fig, ax = plt.subplots(figsize=(6/2.54, 6/2.54))
 q = ax.quiver(gridx, gridy, vectors[:,:,0].T, vectors[:,:,1].T, scale=50, headwidth=1, color=tableau20[14])
+ax.set_xlabel("Biomass, (C)")
+ax.set_ylabel("Biomass, (P)")
 
 
 t_begin = 0

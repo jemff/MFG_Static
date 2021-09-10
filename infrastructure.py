@@ -150,7 +150,7 @@ def heatmap_plotter(data, image_name, ext, xlab, ylab):
     :param ext: The range of the heatmap
     :return: None, the function saves the heatmaps
     """
-    fig = plt.figure(figsize=(8/2.54, 14/2.54))
+    fig = plt.figure(figsize=(12/2.54, 12/2.54))
 
     grid = ImageGrid(fig, 111,  # as in plt.subplot(111)
                      nrows_ncols=(1,len(data)),
@@ -163,7 +163,7 @@ def heatmap_plotter(data, image_name, ext, xlab, ylab):
                      )
 
     # Add data to image grid
-    type = [" Consumer ", " Predator"]
+    type = [" Consumer distribution", " Predator distribution"]
     i = 0
     lets = ["A", "B"]
 
@@ -172,7 +172,7 @@ def heatmap_plotter(data, image_name, ext, xlab, ylab):
         x0, x1 = ax.get_xlim()
         y0, y1 = ax.get_ylim()
         ax.set_aspect(np.abs((x1 - x0) / (y1 - y0)))
-        ax.set_xlabel(xlab + " " + type[i % 2])
+        ax.set_xlabel(xlab + " \n" + type[i % 2])
         ax.set_ylabel(ylab)
         ax.text(1.025, 0.9, lets[i], transform=ax.transAxes)
 
@@ -203,10 +203,10 @@ def heatmap_plotter_big(data, image_name, ext, xlab, ylab):
     :return: None, the function saves the heatmaps
     """
     data = []
-    fig = plt.figure(figsize=(16 / 2.54, 16 / 2.54))
+    fig = plt.figure(figsize=(12 / 2.54, 12 / 2.54))
 
     grid = ImageGrid(fig, 111,  # as in plt.subplot(111)
-                     nrows_ncols=(3, 2),
+                     nrows_ncols=(2, 2),
                      axes_pad=0.2,
                      share_all=False,
                      cbar_location="right",
@@ -217,21 +217,21 @@ def heatmap_plotter_big(data, image_name, ext, xlab, ylab):
                      )
 
     # Add data to image grid
-    ext = [-12, 12, 90, 0]
+    #ext = [-12, 12, 90, 0]
     i = 0
 
-    lets = ["A", "D", "B", "E", "C", "F"]
+    lets = ["A", "C", "B", "D"]
 
-    predator_prey = ["Consumer", "Predator"]
+    type = [" Consumer ", " Predator"]
     for val, ax in zip(data, grid):
         im = ax.imshow(val, vmin=0, cmap='viridis', extent=ext)
         x0, x1 = ax.get_xlim()
         y0, y1 = ax.get_ylim()
-        ax.set_aspect((24) / (90))
-        ax.set_xlabel("$\sigma$ = 0 m$^2$ " + predator_prey[int(i % 2)])
-        ax.set_ylabel("Depth (m), \\ " + day_names[int(i % 3)])
-        ax.set_xticks([-12, -6, 0, 6, 12])  # xaxis.set_major_locator(plt.MultipleLocator(4))
-        ax.set_xticklabels(times)
+        ax.set_aspect((x1-x0)/(y1-y0))
+        ax.set_aspect(np.abs((x1 - x0) / (y1 - y0)))
+        ax.set_xlabel(xlab + " " + type[i % 2])
+        ax.set_ylabel(ylab)
+        ax.set_ylabel("Refuge")
         ax.text(1.025, 0.9, lets[i], transform=ax.transAxes)
 
         i += 1

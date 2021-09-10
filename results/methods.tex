@@ -77,7 +77,7 @@ As the growth of $c_2\frac{\sigma}{1 + c_3\sigma}$ is smaller than that of $c_2\
 
 
 \section{Nash equilibria and variational inequalities}
-Calculating Nash equilibria is generally a hard problem. A fruitful approach to calculating Nash equilibria is via. the theory of complementarity problems and variational inequalities \citep{karamardian complementarity articles variational}. We unite the approach of variational inequalities and mean-field games, and by using relatively modern theory, we can characterize a rather general setup that guarantees uniqueness and existence of Nash equilibria for population games in both a finite and infinite dimensional setting.
+Calculating Nash equilibria is generally a hard problem. A fruitful approach to calculating Nash equilibria is via. the theory of complementarity problems and variational inequalities \citep{karamardian1969nonlinear,nabetani2011parametrized}. We unite the approach of variational inequalities and mean-field games, and by using relatively modern theory, we can characterize a rather general setup that guarantees uniqueness and existence of Nash equilibria for population games in both a finite and infinite dimensional setting.
 \begin{definition}
   Define $H$ as the real Hilbert space $L^2(X)$, where $X$ is either a finite set of points or the union of the interval $[0,1]$ and a finite set of points. Define $H_+ \subset H$ as the a.e. positive functions in $H$.
 \end{definition}
@@ -213,7 +213,7 @@ Having established the general theory for Nash equilibria, and demonstrated how 
 We consider a predator-prey system modeled as a Rosenzweig-MacArthur system in a spatially heterogeneous habitat, where the predators are specialized so that their hunting success is maximal in the most productive zone of the habitat.
 We assume that predators $(P)$ and consumers $(C)$ share a heterogeneous habitat, modeled as the interval $[0,1]$. The mean strategy of the consumer population is $\overbar{\sigma}_c$ and the mean strategy of the predator population is $\overbar{\sigma}_p$.
 The population dynamics are given by a behaviorally modified Rosenzweig-MacArthur system. The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate. The function $\beta_p$ is normalized to a constant value of 5.
-Consumption events are assumed local, so the expected encounter rate between predators and prey is $\ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. To model intraspecific predator competition, we have added a term $c\ip{\beta \overbar{\sigma}_p}{\overbar{\sigma}_p}$ where $c$ describes the level of competition. In addition there is a constant metabolic loss $\mu_c$ for the consumers. The carrying capacity is given by $K\phi + K_0$,
+Consumption events are assumed local, so the expected encounter rate between predators and prey is $\ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. To model intraspecific predator competition, we have added a term $c\ip{\beta \overbar{\sigma}_p}{\overbar{\sigma}_p}$ where $c$ describes the level of competition. The carrying capacity is given by $K\phi + K_0$,
  where $K$ varies, $\phi$ is a distribution, and $K_0$ is the minimal carrying capacity. Denoting the maximal predator growth rate by $F_p$, the consumer clearance rate by $\beta_c$, the dynamics are given by:
 %Inserting \Cref{eq:r_ss} in \Cref{eq:bas_dyn}, we arrive at the population dynamics:
 \begin{align}
@@ -237,7 +237,7 @@ We model predator and consumer movement as instantaneous, with each predator and
 Denoting the optimum by $^*$, at the Nash equilibrium $\sigma_c^*=\overbar{\sigma}_c$ and $\sigma_p^* = \overbar{\sigma}_p$. We use the method of \Cref{def:correspondence} to convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:correspondence}
 \begin{align}
   \label{eq:mon_eq_forms}
-  U_c^{mon}(\sigma_c, \sigma_p) &= \ip{\beta_c \sigma_c}{1-\frac{1}{2}\frac{\beta_c}{K\phi + K_0 2}\sigma_c C} - P\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} C} - \mu_c \\
+  U_c^{mon}(\sigma_c, \sigma_p) &= \ip{\beta_c \sigma_c}{1-\frac{1}{2}\frac{\beta_c}{K\phi + K_0 2}\sigma_c C} - P\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} C} \\
   U^{mon}_p(\sigma_p, \sigma_c) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} C}{F_p + \ip{\beta_p \sigma_c}{\sigma_p} C} - \frac{1}{2}c \ip{\sigma_p}{\beta_p \sigma_p}  - \mu_p
 \end{align}
 We need to verify that $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex, as well as show existence. To this end, we state a charactirization of strict pseudomonotonicity for differentiable functions.
@@ -285,10 +285,6 @@ A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}
   Proceeding in the same fashion with the second term, we arrive at a pair of constants $\epsilon_1,\epsilon_2$. We can then pick the minimum of these two, showing the desired.
 \end{proof}
 Since we are also interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we are also interested in showing that the fixed-point of the dynamics exists and is unique. Here we can directly use the theory we have developed.  The functions $f_1/C$ and $f_2/P$ are strictly monotone, and the set of fixed-points is uniformly bounded due to the metabolic terms and logistic terms, respectively. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
-\subsection{Numerical approach and implementation}
-In order to find Nash equilibria and fix-points of the behaviorally modified Rosenzweig-MacArthur system, we use the formulation of \Cref{eq:complementarity_form}. We discretize space uniformly, using the trapezoidal rule to evaluate the integrals. By using the trapezoidal rule, we keep a banded sparsity pattern in the coupling of the locations. The equations \Cref{eq:dynamics} and the derivatives of the monomorphic payoffs \Cref{eq:mon_eq_forms} are formulated via. the symbolic language CasADi \citep{Andersson2019}, where we then solve the complementarity problem as a feasibility problem using IPOPT \citep{wachter2006implementation} using the HSL subroutines for linear algebra \citep{hsl2007collection}
-
-The numerical approach is extremely fast, and should scale to much larger problems. It allows for determination of fixed-points of the dynamics in less than 1 second.
 
 
 %By rephrasing the population into a varitaional inequality, we unlock the full arsenal of tools available for the solution of variational inequalities.
