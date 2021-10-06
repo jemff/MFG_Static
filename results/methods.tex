@@ -3,19 +3,21 @@
 \section{Population games: Mean-field games and monomorphism}
 
 
-A population game consists of several distinct populations, where each individual in every population is simultaneously trying to maximize its own gain with respect to some utility function. All individuals of any type are assumed to be indistinguishable. Such a population game is a polymorphic game, since each population is potentially subdivided into different types. An alternative point of view for population games is assuming monomorphic populations, so all animals of every type act in the same manner \citep{vincent2005evolutionary}.
+%A population game consists of several distinct populations, where each individual in every population is simultaneously trying to maximize its own gain with respect to some utility function. A common approach for studying population games is  is assuming monomorphic populations, so all individuals of every type act in the same manner \citep{vincent2005evolutionary}. Such an approach has the weakness of
 
-Consider a polymorphic population game where the payoff for a single individual depends on its own behavior, the mean population behavior, and the other populations mean behavior. If, in addition, the populations are assumed to be so large that the choice of a single individual does not change the mean, the population game becomes a multi-type mean-field game \citep{blanchet2016optimal}.
 
-Since all agents of each type are indistinguishable, when they all play the optimal strategy simultaneously, by interchangeability of the players the Nash equilibrium must be that they follow the same strategy. In conclusion, the populations end up acting the same and so have emergent monomorphism in a polymorphic population game with sufficiently large populations.
+A simple model of a population game is one where there are $n$ interacting large populations $N_i$ and strategies $\sigma_i$, with payoff $U_i((N_i)_{i=1}^n,(\sigma)_{i=1}^{n}$ ). The optimal value of $\sigma_i$ for an individual of type $N$ is then found by maximizing the pr. capita individual payoff, i.e. $U_i/N_i$, \citep{vincent2005evolutionary}. Such a game is a monomorphic game, since it is an inherent feature of the game that all individuals of each type follow the same strategy. A weakness of this model is that it allows an individual of type $i$ to find the optimal behavior $\sigma_i$, taking into account that the rest of the population will follow same strategy. Such an optimization appears unnatural, instead it seems more likely that an individual of type $i$ would take into account the average behavior of the rest of the population and make its decision accordingly.
+If, in addition, the populations are assumed to be so large that the choice of a single individual does not change the mean, the population game becomes a multi-type mean-field game \citep{blanchet2016optimal, aumann1964markets}. In a mean-field game every individual in a population plays against the population simultaneously. As a consequence, at the Nash equilibrium every individual will follow the same strategy due to their interchangeability. In conclusion, the individuals end up acting the same. As such, mean-field games have what we term emergent monomorphism. % in a polymorphic population game with sufficiently large populations.
 
-Since we end up with a monomorphic game, what is the reason for concerning ourselves with polymorphic games with large populations rather than inherently monomorphic games. The reason is that there is a stark difference between the Nash equilibria of a game where the monomorphism is imposed and where it emerges, \citep{kvrivan2008ideal,collet2019algorithmic}. We quantify this explicitly:
+Since we end up with a monomorphic population, a natural question to ask is: Why concern ourselves with mean-field games rather than inherently monomorphic games? It turns out that the solutions to a population game differ quite a lot depending on whether we assume the populations are inherently monomorphic or we view it as an emergent property. The difference has been studied qualitively \citep{kvrivan2008ideal,collet2019algorithmic}, but we provide an explicit quantitative difference.
+
+%The reason is that there is a stark difference between the Nash equilibria of a game where the monomorphism is imposed and where it emerges, \citep{kvrivan2008ideal,collet2019algorithmic}. We quantify this explicitly:
 \begin{proposition}
   \label{prop:doubleup}
-  Consider a population game with a population of size $N$ with payoff $U$ given by a bilinear form $U$ specified by a matrix $A$ such that $U(\sigma_1,\sigma_2) = \ip{\sigma_1}{A \sigma_2}$. The expected payoff for a player with an inherently monomorphic population is twice that of a player in the mean-field game.
+  Consider a population game with a population of size $N$ with payoff $U$ given by a bilinear form $U$ specified by an $m\times m$ matrix $A$ such that $U(\sigma_1,\sigma_2) = \ip{\sigma_1}{A \sigma_2}$. The expected payoff for a player with an inherently monomorphic population is twice that of a player in the mean-field game.
 \end{proposition}
 \begin{proof}
-The payoff for a player with strategy $\sigma$ in a  monomorphic population of size $N$ is
+The payoff for a player with strategy $\sigma$ in a monomorphic population of size $N$ is
 \begin{align}
   U(\sigma,\sigma) = \ip{\sigma}{A N \sigma}
 \end{align}
@@ -23,7 +25,7 @@ Conversely, if we assume that the relevant opposing strategy is the mean $\overb
 \begin{align}
   U(\sigma, \overbar{\sigma}) = \ip{\sigma}{AN \overbar{\sigma}}
 \end{align}
-Since we assumed all agents are identical in the mean-field game, at the Nash equilibrium they must all follow the same strategy. Therefore, at the Nash equilibrium $\sigma = \overbar{\sigma}$, ie.
+Since we assumed all individuals are identical in the mean-field game, at the Nash equilibrium they must all follow the same strategy. Therefore, at the Nash equilibrium $\sigma = \overbar{\sigma}$, ie.
 \begin{equation}
   \overbar{\sigma} = \argmax_{\sigma} U(\sigma,\overbar{\sigma})
 \end{equation}
@@ -32,20 +34,18 @@ Consider the Karush-Kuhn-Tucker (KKT) conditions at the Nash equilibrium for the
 \begin{align}
   \begin{split}
     2AN\sigma + \mu - \lambda_1 \cdot 1 = 0 \\
-    \ip{\sigma}{\mu} = 0 \\
-    \mu \geq 0 \\
-    \sigma \geq 0 \\
-    \int_X \sigma - 1 = 0
+    &\ip{\sigma}{\mu} = 0 \\
+    &\mu \geq 0,~\sigma \geq 0 \\
+    &\sum_{j=1}^m \sigma_j = 1
   \end{split}
 \end{align}
 At every point with a non-zero concentration, the payoff for the monomorphic population is $\lambda_1$. We can likewise find the pointwise payoff for the mean-field game through the KKT-conditions:
 \begin{equation}
   \begin{split}
-    AN\sigma + \mu - \lambda_2 \cdot 1 = 0 \\
-    \ip{\sigma}{\mu} = 0 \\
-    \mu \geq 0 \\
-    \sigma \geq 0 \\
-    \int_X \sigma - 1 = 0
+    &AN\sigma + \mu - \lambda_2 \cdot 1 = 0 \\
+    &\ip{\sigma}{\mu} = 0 \\
+    &\mu \geq 0,~\sigma \geq 0 \\
+    &\sum_{j=1}^m \sigma_j = 1
   \end{split}
 \end{equation}
 the payoff here is $\lambda_2 = 2\lambda_1$. In conclusion, the individual payoff for a player using the optimal strategy in a monomorphic population is twice that of an individual player in the mean-field game where the monomorphic behavior is an emergent property.
@@ -53,7 +53,7 @@ the payoff here is $\lambda_2 = 2\lambda_1$. In conclusion, the individual payof
 As \Cref{prop:doubleup} shows, assuming a monomorphic population has a drastic effect on the expected payoff in a simple game, highlighting the necessity of considering monomorphism as an emergent property. Therefore, the approach advocated in \citep{vincent2005evolutionary} of optimizing the pr. capita growth directly in a population game overestimates the possible growth if there are density-dependent effects.
 
 
-In \Cref{prop:doubleup} we also see the connection between the ideal free distribution and mean field games, where the classical ideal free distribution emerges as the mean-field equilibrium .
+In \Cref{prop:doubleup} the classical ideal free distribution emerges as the mean-field equilibrium showing the connection between the ideal free distribution and mean field games. The emergence of the ideal-free distribution as a result of a pure game-theoretic consideration is a compelling argument for the mean-field model.
 
 The proof of \Cref{prop:doubleup} suggests a connection between mean-field population games and games with monomorphic populations, allowing the study of mean-field games using the tools of monomorphic games.
 \begin{definition}
@@ -75,11 +75,11 @@ which contrasts the naive monomorphic game,
 \begin{align}
   U(\sigma,\sigma) = \frac{\sigma r}{\sigma c_1 + 1} - c_2\frac{\sigma}{1 + N c_3\sigma}
 \end{align}
-As the growth of $c_2\frac{\sigma}{1 + c_3\sigma}$ is smaller than that of $c_2\log(1+c_3 \sigma)$, the maximum of $U(\sigma,\sigma)$ will be attained at a larger value of $\sigma$. This corresponds to an inherently monomorphic population being more risk-seeking, as individuals will sacrifice themselves for the greater good. This example, along with \Cref{prop:doubleup} lets us conjecture that a monomorphic population will generally be more risk-seeking.
+As the growth of $c_2\frac{\sigma}{1 + c_3\sigma}$ is smaller than that of $c_2\log(1+c_3 \sigma)$, the maximum of $U(\sigma,\sigma)$ will be attained at a larger value of $\sigma$. This corresponds to an inherently monomorphic population being more risk-seeking, as individuals will sacrifice themselves for the greater good. This example, along with \Cref{prop:doubleup} lets us conjecture that a monomorphic population will generally be more risk-seeking. \Cref{eq:simple_mfg}  illustrates that maximizing the individual growth leads to a lower growth rate compared to maximizing the raw pr. capita growth rate as advocated in \citep{vincent2005evolutionary}.
 
 
 \section{Nash equilibria and variational inequalities}
-Calculating Nash equilibria is generally a hard problem. A fruitful approach to calculating Nash equilibria is via. the theory of complementarity problems and variational inequalities \citep{karamardian1969nonlinear,nabetani2011parametrized}. We unite the approach of variational inequalities and mean-field games, and by using relatively modern theory, we can characterize a rather general setup that guarantees uniqueness and existence of Nash equilibria for population games in both a finite and infinite dimensional setting. Since the basic object of consideration in our setup is that of habitat selection games, we need to be able to consider the overlap of two habitats. In the setting with a finite number of habitats, this is the inner product of the vectors describing their habitat distributions. Therefore, the natural setting for the continuous habitat selection game is a Hilbert space, to allow the calculation of habitat overlaps. 
+Calculating Nash equilibria is generally a hard problem. A fruitful approach to calculating Nash equilibria is via. the theory of complementarity problems and variational inequalities \citep{karamardian1969nonlinear,nabetani2011parametrized}. We unite the approach of variational inequalities and mean-field games, and by using relatively modern theory, we can characterize a rather general setup that guarantees uniqueness and existence of Nash equilibria for population games in both a finite and infinite dimensional setting. Since the basic object of consideration in our setup is that of habitat selection games, we need to be able to consider the overlap of two habitats. In the setting with a finite number of habitats, this is the inner product of the vectors describing their habitat distributions. Therefore, the natural setting for the continuous habitat selection game is a Hilbert space, to allow the calculation of habitat overlaps.
 \begin{definition}
   Define $H$ as the real Hilbert space $L^2(X)$, where $X$ is either a finite set of points or the union of the interval $[0,1]$ and a finite set of points. Define $H_+ \subset H$ as the a.e. positive functions in $H$.
 \end{definition}

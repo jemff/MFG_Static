@@ -126,7 +126,7 @@ class discrete_patches:
     def __init__(self, depth, total_points):
         self.x = np.linspace(0, depth, total_points)
 
-        self.M = np.identity(total_points)
+        self.M = depth/total_points * np.identity(total_points)
 
 def heat_kernel(Mx, t, k):
     gridx, gridy = np.meshgrid(Mx.x, Mx.x)
