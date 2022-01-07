@@ -114,7 +114,7 @@ As a consequence of \Cref{thm:nash_unique}, we can introduce an equilibrium betw
 \begin{definition}
   \label{def:correspondence}
   Consider a mean-field game with populations $N_1,\dots,N_M$ with individual payoffs $U_i(\sigma_i, (\overbar{\sigma}_j)_{j=1}^M, (N_j)_{j=1}^M)$. Assume $\nabla_{\sigma_i}U_i\mid_{\sigma_i=\overbar{\sigma}_i}$ admits a primitive $U_i^{mon}$ such that $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$.
-   Then we define the monomorphic equivalent game as the game specified by the payoff functions $U_i^{mon}$.
+   We define the monomorphic equivalent game as the monomorpic game specified by the payoff functions $U_i^{mon}$.
 \end{definition}
 If a monomorpic equivalent game exists, it becomes possible to study the monomorphic game instead and e.g. use strict pseudoconvexity to establish strict pseudomonotonicity.
 
@@ -149,13 +149,13 @@ Having established the general theory for Nash equilibria, and demonstrated how 
 \label{sec:model_rm}
 %Having established the general framework, we can proceed to defining the concrete model of interest.
 We consider a predator-prey system modeled as a Rosenzweig-MacArthur system in a spatially heterogeneous habitat, where the predators are specialized so that their hunting success is maximal in the most productive zone of the habitat.
-We assume that predators $(P)$ and consumers $(C)$ share a heterogeneous habitat, modeled as the interval $[0,1]$. The mean strategy of the consumer population is $\overbar{\sigma}_c$ and the mean strategy of the predator population is $\overbar{\sigma}_p$.
+We assume that predators $(N_p)$ and consumers $(N_p)$ share a heterogeneous habitat, modeled as the interval $[0,1]$. The mean strategy of the consumer population is $\overbar{\sigma}_c$ and the mean strategy of the predator population is $\overbar{\sigma}_p$.
 The population dynamics are given by a behaviorally modified Rosenzweig-MacArthur system. The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate. The function $\beta_p$ is normalized to a constant value of 5.
 Consumption events are assumed local, so the expected encounter rate between predators and prey is $\ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. To model intraspecific predator competition, we have added a term $c\ip{\beta \overbar{\sigma}_p}{\overbar{\sigma}_p}$ where $c$ describes the level of competition. The carrying capacity is given by $K\phi + K_0$,
  where $K$ varies, $\phi$ is a distribution, and $K_0$ is the minimal carrying capacity. Denoting the maximal predator growth rate by $F_p$, the consumer clearance rate by $\beta_c$, the dynamics are given by:
 \begin{align}
-  \dot{C} &= f_c = C \pa{\ip{\beta_c \overbar{\sigma}_c}{1-\frac{\beta_c}{K\phi + K_0}\overbar{\sigma}_c C} - \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} P}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} } \\
-  \dot{P} &= f_p = P \pa{\epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} - c \ip{\overbar{\sigma}_p}{\beta_p \overbar{\sigma}_p}  - \mu_p}
+  \dot{N_c} &= f_c = N_c \pa{\ip{\beta_c \overbar{\sigma}_c}{1-N_c \frac{\sigma_c \overbar{\sigma}_c}{K\phi + K_0}} - \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_p}{F_p + \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c} N_c} } \\
+  \dot{N_p} &= f_p = N_p \pa{\epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c} - c \ip{\overbar{\sigma}_p}{\beta_p \overbar{\sigma}_p}  - \mu_p}
   \label{eq:dynamics}
 \end{align}
 Introducing the quality ($q$) of the habitat as a parameter, the functions $\beta_p$ and $\phi$ are given by
@@ -168,27 +168,28 @@ where the normalization is to keep a constant total encounter rate and carrying 
 \subsection{Existence and uniqueness of the equilibrium}
 We model predator and consumer movement as instantaneous, with each predator and consumer seeking to maximize its fitness at each instant. The fitness of an individual depends on the mean-field strategies of both predators and consumers. Denoting the individual consumer and predator strategies by $\sigma_c$ and $\sigma_p$ respectively, the instantaneous payoffs $U_c,U_p$ for a consumer and predator $U_p$ respectively are:
 \begin{align}
-  U_c(\sigma_c, \overbar{\sigma}_c, \overbar{\sigma}_p) &= \ip{\beta_c \sigma_c}{1-\frac{\beta_c}{K\phi + K_0}\sigma \overbar{\sigma}_c C} - \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} P}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} \\
-  U_p(\sigma_p, \overbar{\sigma}_c, \overbar{\sigma}_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} C}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} C} - c \ip{\sigma_p}{\beta_p \overbar{\sigma}_p}  - \mu_p
+  U_c(\sigma_c, N_c \overbar{\sigma}_c, N_p\overbar{\sigma}_p) &= \ip{\beta_c \sigma_c}{1-\frac{\sigma_c \overbar{\sigma}_c N_c}{K\phi + K_0}} - \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} N_p}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c} \\
+  U_p(\sigma_p, N_p \overbar{\sigma}_c, \overbar{\sigma}_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c} - c \ip{\sigma_p}{\beta_p \overbar{\sigma}_p}  - \mu_p
 \end{align}
 Denote the optimum by $^*$. At the Nash equilibrium $\sigma_c^*=\overbar{\sigma}_c$ and $\sigma_p^* = \overbar{\sigma}_p$. We use the method of \Cref{def:correspondence} to convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:correspondence}
 \begin{align}
   \label{eq:mon_eq_forms}
-  U_c^{mon}(\sigma_c, \sigma_p) &= \ip{\beta_c \sigma_c}{1-\frac{3}{2}\frac{\beta_c}{K\phi + K_0 2}\sigma_c^2 C} - P\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} C} \\
-  U_p^{mon}_p(\sigma_p, \sigma_c) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} C}{F_p + \ip{\beta_p \sigma_c}{\sigma_p} C} - \frac{1}{2}c \ip{\sigma_p}{\beta_p \sigma_p}  - \mu_p
+  U_c^{mon}(\sigma_c, \sigma_p, N_c, N_p) &= \ip{\beta_c \sigma_c}{1-\frac{3}{2}\frac{\sigma_c^2 N_c}{K\phi + K_0}} - N_p\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} \\
+  U_p^{mon}(\sigma_p, \sigma_c, N_c, N_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} - \frac{1}{2}c \ip{\sigma_p}{\beta_p \sigma_p}N_p  - \mu_p
 \end{align}
-We need to verify that $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex, as well as show existence. To this end, we state a charactirization of strict pseudomonotonicity for differentiable functions.
+We need to verify that $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex, as well as show existence. To this end, we state a characterization of strict pseudomonotonicity for differentiable functions.
 \begin{lemma}
   Let $K$ be a convex subset of $H$. A function $f: K \to \R$ is strictly pseudomonotone if
   \begin{equation}
     \ip{f(x)}{u} = 0 \Rightarrow \ip{(\nabla_x f(x))h}{h} > 0
   \end{equation}
 \end{lemma}
-A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}
+A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}. This allows us to state our main result on the behavorially modified Rosenzweig-MacArthur game.
 \begin{proposition}
-  The functions $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex, and their derivatives $\begin{pmatrix}-\nabla_{\sigma_c} U_c^{mon} \\ -\nabla_{\sigma_p} U_p^{mon}\end{pmatrix}$ satisfy the criteria of \Cref{thm:existence}.
+  The game defined by $U_c$ and $U_p$ has a unique Nash equilibrium.
 \end{proposition}
 \begin{proof}
+  It suffices to show that the functions $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex for uniqueness. For existence it remains to show that $\begin{pmatrix}-\nabla_{\sigma_c} U_c^{mon} \\ -\nabla_{\sigma_p} U_p^{mon}\end{pmatrix}$ satisfy the criteria of \Cref{thm:existence}.
   We start by showing the strict pseudoconvexity. The function $-U_p^{mon}$ is strictly convex, as it has strictly positive second derivative with respect $\sigma_p$, so the derivative with respect to $\sigma_p$ is strictly monotone, therefore strictly pseudomonotone. Note that on $K$ a function $g$ is strictly pseudomonotone if and only if $g+\lambda$ is strictly pseudomonotone for any $g\in \R$, since $\ip{g(x)+\lambda}{x-y}=\ip{g(x)}{x-y}+\lambda \int x d\mu + \lambda \int y d\mu=\ip{g(x)}{x-y}$. If we consider $f(x)=(-\nabla_{\sigma_c} U_c^{mon}(x))-1$ and assume $\ip{f(x)}{u} = 0$, then
   \begin{equation}
     \ip{x}{u}\frac{C \beta_c }{K\phi + K_0} + \frac{\ip{\sigma_p}{h}}{F_p + \ip{\sigma_p}{x}} = 0
@@ -199,8 +200,8 @@ A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}
   \end{equation}
   then $H(x,u)>0$ since $\ip{\sigma_p}{u}=0$, so $H$ is strictly pseudomonotone. Hence $-U_c^{mon}$ is strictly pseudoconvex.
 
-  To show that there exists a solution, start by noting that for all $w\in H^2$, the mapping $S \mapsto \ip{dU(S)}{w}$ is continuous in $S$, implying lower semi-continuity, hence also lower-semicontinuity on line segments.
-  For the technical criterion of \Cref{thm:existence} pick $u_0 = [1,1]$ and consider $R=1+\epsilon$, $\epsilon>0$. Then we wish to show that there exists $\epsilon$ such that
+  To show that there exists a solution, start by noting that for all $w\in H^2$, the mapping $S \mapsto \ip{dU(S)}{w}$ is continuous in $S$ for all, implying lower semi-continuity, hence also lower-semicontinuity on line segments.
+  For the technical criterion of \Cref{thm:existence} pick $u_0 = [1,1] \in H_+^2$ and consider $R=1+\epsilon$, $\epsilon>0$. Then we wish to show that there exists $\epsilon$ such that
   \begin{equation}
     \begin{split}
     \ip{-dU(\sigma_c,\sigma_p)}{(1-\sigma_c, 1-\sigma_p)} \geq 0 \\
