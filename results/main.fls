@@ -324,10 +324,12 @@ INPUT introduction.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1440.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
-INPUT methods.tex
-INPUT methods.tex
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1000.tfm
+INPUT general_setting.tex
+INPUT general_setting.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1000.tfm
+INPUT methods.tex
+INPUT methods.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm
 INPUT results.tex
 INPUT results.tex
@@ -343,9 +345,6 @@ INPUT ./plots/increasing_car_cap_c.pdf
 INPUT plots/increasing_competition_c.pdf
 INPUT ./plots/increasing_competition_c.pdf
 INPUT ./plots/increasing_competition_c.pdf
-INPUT plots/increasing_refuge_quality_c.pdf
-INPUT ./plots/increasing_refuge_quality_c.pdf
-INPUT ./plots/increasing_refuge_quality_c.pdf
 INPUT discussion.tex
 INPUT discussion.tex
 INPUT main.bbl

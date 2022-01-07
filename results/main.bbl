@@ -1,5 +1,18 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citeauthoryear{Acary, Bonnefon, Br{\'e}mond, Huber,
+  P{\'e}rignon, and Sinclair}{Acary et~al.}{2019}]{acary2019introduction}
+Acary, V., O.~Bonnefon, M.~Br{\'e}mond, O.~Huber, F.~P{\'e}rignon, and
+  S.~Sinclair (2019).
+\newblock {\em An introduction to Siconos}.
+\newblock Ph.\ D. thesis, INRIA.
+
+\bibitem[\protect\citeauthoryear{Adly}{Adly}{2018}]{adly2018variational}
+Adly, S. (2018).
+\newblock {\em A variational approach to nonsmooth dynamics: applications in
+  unilateral mechanics and electronics}.
+\newblock Springer.
+
 \bibitem[\protect\citeauthoryear{Andersson, Gillis, Horn, Rawlings, and
   Diehl}{Andersson et~al.}{2019}]{Andersson2019}
 Andersson, J. A.~E., J.~Gillis, G.~Horn, J.~B. Rawlings, and M.~Diehl (2019).
@@ -25,6 +38,13 @@ Barbagallo, A. and M.-G. Cojocaru (2009).
 Blanchet, A. and G.~Carlier (2016).
 \newblock Optimal transport and cournot-nash equilibria.
 \newblock {\em Mathematics of Operations Research\/}~{\em 41\/}(1), 125--145.
+
+\bibitem[\protect\citeauthoryear{Brogliato and Tanwani}{Brogliato and
+  Tanwani}{2020}]{brogliato2020dynamical}
+Brogliato, B. and A.~Tanwani (2020).
+\newblock Dynamical systems coupled with monotone set-valued operators:
+  Formalisms, applications, well-posedness, and stability.
+\newblock {\em Siam Review\/}~{\em 62\/}(1), 3--129.
 
 \bibitem[\protect\citeauthoryear{Broom and Rycht{\'a}r}{Broom and
   Rycht{\'a}r}{2013}]{broom2013game}
@@ -55,6 +75,13 @@ Cressman, R., V.~K{\v{r}}ivan, and J.~Garay (2004).
 Deimling, K. (2010).
 \newblock {\em Nonlinear functional analysis}.
 \newblock Courier Corporation.
+
+\bibitem[\protect\citeauthoryear{Dirkse and Ferris}{Dirkse and
+  Ferris}{1995}]{dirkse1995path}
+Dirkse, S.~P. and M.~C. Ferris (1995).
+\newblock The path solver: a nommonotone stabilization scheme for mixed
+  complementarity problems.
+\newblock {\em Optimization methods and software\/}~{\em 5\/}(2), 123--156.
 
 \bibitem[\protect\citeauthoryear{Fretwell}{Fretwell}{1969}]{fretwell1969territorial}
 Fretwell, S.~D. (1969).
@@ -105,6 +132,13 @@ K{\v{r}}ivan, V. (2007).
   trade-offs.
 \newblock {\em The American Naturalist\/}~{\em 170\/}(5), 771--782.
 
+\bibitem[\protect\citeauthoryear{Krivan and Cressman}{Krivan and
+  Cressman}{2009}]{kvrivan2009evolutionary}
+Krivan, V. and R.~Cressman (2009).
+\newblock On evolutionary stability in predator--prey models with fast
+  behavioural dynamics.
+\newblock {\em Evolutionary Ecology Research\/}~{\em 11\/}(2), 227--251.
+
 \bibitem[\protect\citeauthoryear{K{\v{r}}ivan, Cressman, and
   Schneider}{K{\v{r}}ivan et~al.}{2008}]{kvrivan2008ideal}
 K{\v{r}}ivan, V., R.~Cressman, and C.~Schneider (2008).
@@ -124,6 +158,12 @@ Malone, M.~A., A.~H. Halloway, and J.~S. Brown (2020).
 \newblock The ecology of fear and inverted biomass pyramids.
 \newblock {\em Oikos\/}~{\em 129\/}(6), 787--798.
 
+\bibitem[\protect\citeauthoryear{Mariani, K{\v{r}}ivan, MacKenzie, and
+  Mullon}{Mariani et~al.}{2016}]{mariani2016migration}
+Mariani, P., V.~K{\v{r}}ivan, B.~R. MacKenzie, and C.~Mullon (2016).
+\newblock The migration game in habitat network: the case of tuna.
+\newblock {\em Theoretical ecology\/}~{\em 9\/}(2), 219--232.
+
 \bibitem[\protect\citeauthoryear{Morris}{Morris}{2003}]{morris2003shadows}
 Morris, D.~W. (2003).
 \newblock Shadows of predation: habitat-selecting consumers eclipse competition
@@ -138,6 +178,36 @@ Nabetani, K., P.~Tseng, and M.~Fukushima (2011).
 \newblock {\em Computational Optimization and Applications\/}~{\em 48\/}(3),
   423--452.
 
+\bibitem[\protect\citeauthoryear{Pang and Stewart}{Pang and
+  Stewart}{2008}]{pang2008differential}
+Pang, J.-S. and D.~E. Stewart (2008).
+\newblock Differential variational inequalities.
+\newblock {\em Mathematical programming\/}~{\em 113\/}(2), 345--424.
+
+\bibitem[\protect\citeauthoryear{Parker}{Parker}{1978}]{parker1978searching}
+Parker, G.~A. (1978).
+\newblock Searching for mates.
+\newblock {\em Behavioural ecology: an evolutionary approach\/}~{\em 1},
+  214--244.
+
+\bibitem[\protect\citeauthoryear{Pinti, Andersen, and Visser}{Pinti
+  et~al.}{2021}]{pinti2021co}
+Pinti, J., K.~H. Andersen, and A.~W. Visser (2021).
+\newblock Co-adaptive behavior of interacting populations in a habitat
+  selection game significantly impacts ecosystem functions.
+\newblock {\em Journal of Theoretical Biology\/}, 110663.
+
+\bibitem[\protect\citeauthoryear{Rosenzweig}{Rosenzweig}{1971}]{rosenzweig1971paradox}
+Rosenzweig, M.~L. (1971).
+\newblock Paradox of enrichment: destabilization of exploitation ecosystems in
+  ecological time.
+\newblock {\em Science\/}, 385--387.
+
+\bibitem[\protect\citeauthoryear{Sandholm}{Sandholm}{2010}]{sandholm2010population}
+Sandholm, W.~H. (2010).
+\newblock {\em Population games and evolutionary dynamics}.
+\newblock MIT press.
+
 \bibitem[\protect\citeauthoryear{Smith}{Smith}{1982}]{smith1982evolution}
 Smith, J.~M. (1982).
 \newblock {\em Evolution and the Theory of Games}.
@@ -149,6 +219,15 @@ Stump, S.~M. and P.~Chesson (2017).
 \newblock How optimally foraging predators promote prey coexistence in a
   variable environment.
 \newblock {\em Theoretical Population Biology\/}~{\em 114}, 40--58.
+
+\bibitem[\protect\citeauthoryear{Valdovinos, Ramos-Jiliberto,
+  Garay-Narv{\'a}ez, Urbani, and Dunne}{Valdovinos
+  et~al.}{2010}]{valdovinos2010consequences}
+Valdovinos, F.~S., R.~Ramos-Jiliberto, L.~Garay-Narv{\'a}ez, P.~Urbani, and
+  J.~A. Dunne (2010).
+\newblock Consequences of adaptive behaviour for the structure and dynamics of
+  food webs.
+\newblock {\em Ecology letters\/}~{\em 13\/}(12), 1546--1559.
 
 \bibitem[\protect\citeauthoryear{Vincent and Brown}{Vincent and
   Brown}{2005}]{vincent2005evolutionary}

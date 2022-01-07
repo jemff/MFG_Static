@@ -19,25 +19,25 @@ for i in range(len(tableau20)):
 
 
 
-def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 3, steps = 20, par = None, method=simple_method, file_append = '_c'):
+def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 6, steps = 20, par = None, method=simple_method, file_append = '_c'):
     tot_points = layers*segments
 
     Mx = method(length, tot_points)
     if par is None:
         par = {'res_renew': 1, 'eff': 0.1, 'c_handle': 1, 'c_enc_freq': 1, 'c_met_loss': 0.001, 'p_handle': 0.01, 'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0.1, 'q': 3}
 
-    car_caps = np.linspace(1, 7, steps)
+    car_caps = np.linspace(3.7, 10, steps)
     populations_car = np.zeros((steps,2))
     min_pop = 0
     out = twod_predator_prey_dyn(Mx = Mx, fixed_point=True, warmstart_out=True, car_cap=car_caps[0], minimal_pops=min_pop, par = par)
     strategies_car = np.zeros((steps, tot_points, 2))
     for i in range(steps):
         out = twod_predator_prey_dyn(Mx = Mx, fixed_point=True, warmstart_out=True, car_cap=car_caps[i],
-                                       minimal_pops=min_pop, warmstart_info=out, par = par)
+                                       minimal_pops=min_pop, warmstart_info=out, par = par) #
         populations_car[i] = out['x0'][-4:-2]-min_pop
         strategies_car[i, :, 0] = out['x0'][0:tot_points][::-1]
         strategies_car[i, :, 1] = out['x0'][tot_points:2*tot_points][::-1]
-
+        print(populations_car[i],car_caps[i])
     qs = np.linspace(1, 6, steps)
     populations_ref = np.zeros((steps,2))
     min_pop = 0
@@ -51,9 +51,8 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 3, steps = 
         strategies_ref[i, :, 0] = out['x0'][0:tot_points][::-1]
         strategies_ref[i, :, 1] = out['x0'][tot_points:2*tot_points][::-1]
     par['q'] = 5
-    print(par)
     populations_comp = np.zeros((steps,2))
-    competition = np.linspace(0, 1, steps)
+    competition = np.linspace(0, 0.16, steps)
 
     out = twod_predator_prey_dyn(Mx = Mx, fixed_point=True, warmstart_out=True, car_cap=car_cap, minimal_pops=min_pop, par = par)
     strategies_comp = np.zeros((steps, tot_points, 2))
@@ -61,11 +60,11 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 3, steps = 
     for i in range(steps):
         par['competition'] = competition[i]
         out = twod_predator_prey_dyn(Mx = Mx, fixed_point=True, warmstart_out=True, car_cap=car_cap,
-                                       minimal_pops=min_pop, warmstart_info=out, par = par)
+                                       minimal_pops=min_pop,warmstart_info=out, par = par) #
         populations_comp[i] = out['x0'][-4:-2]-min_pop
         strategies_comp[i, :, 0] = out['x0'][0:tot_points][::-1]
         strategies_comp[i, :, 1] = out['x0'][tot_points:2*tot_points][::-1]
-
+        print(populations_comp[i], competition[i])
 
     plt.plot(competition, populations_comp[:,0])
     plt.plot(competition, populations_comp[:,1])
@@ -79,10 +78,6 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 3, steps = 
 
     fig, ax = plt.subplots(1, 2, sharex='col', sharey='row')
     fig.set_size_inches((12 / 2.54, 6 / 2.54))
-    #ax[0].plot(qs, np.log10(populations_ref[:,0]), c=tableau20[0])
-    #ax[0].plot(qs, np.log10(populations_ref[:,1]), c=tableau20[6])
-    #ax[0].set_xlabel('Refuge quality ($q$)')
-    #ax[0].text(1.05, 0.9, 'A', transform=ax[0].transAxes)
 
     ax[0].plot(car_caps, np.log10(populations_car[:,0]), c=tableau20[0])
     ax[0].plot(car_caps, np.log10(populations_car[:,1]), c=tableau20[6])
@@ -99,6 +94,6 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 3, steps = 
     fig.tight_layout()
     plt.savefig("./results/plots/pop_levels" + file_append + ".pdf")
 
-giant_simulator(method=simple_method, file_append='_c', steps = 40, layers=3)
+giant_simulator(method=simple_method, file_append='_c', steps = 30, layers=3)
 
 #giant_simulator(method=discrete_patches, file_append='_p')

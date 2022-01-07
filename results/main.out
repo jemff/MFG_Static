@@ -1,10 +1,10 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Population games: Mean-field games and monomorphism}{}% 2
+\BOOKMARK [1][-]{section.2}{General setting}{}% 2
 \BOOKMARK [1][-]{section.3}{Nash equilibria and variational inequalities}{}% 3
 \BOOKMARK [1][-]{section.4}{Revisiting the Rosenzweig-MacArthur model}{}% 4
 \BOOKMARK [2][-]{subsection.4.1}{Existence and uniqueness of the equilibrium}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{Numerical approach and implementation}{section.4}% 6
-\BOOKMARK [1][-]{section.5}{Numerical results}{}% 7
-\BOOKMARK [2][-]{subsubsection.5.0.1}{Population dynamics}{section.5}% 8
-\BOOKMARK [3][-]{subsubsection.5.0.2}{Spatial distribution}{subsubsection.5.0.1}% 9
+\BOOKMARK [1][-]{section.5}{Numerical approach and results}{}% 6
+\BOOKMARK [2][-]{subsection.5.1}{Numerical implementation}{section.5}% 7
+\BOOKMARK [2][-]{subsection.5.2}{Population dynamics and levels}{section.5}% 8
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Spatial distribution}{subsection.5.2}% 9
 \BOOKMARK [1][-]{section.6}{Discussion and conclusion}{}% 10

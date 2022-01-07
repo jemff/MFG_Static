@@ -1,58 +1,62 @@
 This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
-White space in argument---line 43 of file main.aux
- : \citation{karamardian
- :                       complementarity articles variational}
-I'm skipping whatever remains of this command
 The style file: chicago.bst
 Database file #1: bibliography.bib
-Warning--I didn't find a database entry for "patrizio"
-Warning--I didn't find a database entry for "pangstewart2008"
+Repeated entry---line 148 of file bibliography.bib
+ : @book{broom2013game
+ :                    ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "jerome"
+Warning--I didn't find a database entry for "krivan2013"
+Warning--I didn't find a database entry for "cressman2006"
+Warning--I didn't find a database entry for "rychtar2015"
 Warning--no number and no volume in aumann1964markets
 Warning--no number and no volume in gabay1980uniqueness
 Warning--page numbers missing in gabay1980uniqueness
 Warning--no number and no volume in hsl2007collection
 Warning--page numbers missing in hsl2007collection
-You've used 26 entries,
+Warning--no number and no volume in pinti2021co
+Warning--no number and no volume in rosenzweig1971paradox
+You've used 38 entries,
             2861 wiz_defined-function locations,
-            782 strings with 9248 characters,
-and the built_in function-call counts, 17010 in all, are:
-= -- 1426
-> -- 1180
+            850 strings with 11282 characters,
+and the built_in function-call counts, 25498 in all, are:
+= -- 2121
+> -- 1838
 < -- 1
-+ -- 350
-- -- 414
-* -- 1507
-:= -- 3143
-add.period$ -- 78
-call.type$ -- 26
-change.case$ -- 175
-chr.to.int$ -- 26
-cite$ -- 31
-duplicate$ -- 461
-empty$ -- 1062
-format.name$ -- 474
-if$ -- 3093
++ -- 554
+- -- 642
+* -- 2289
+:= -- 4712
+add.period$ -- 114
+call.type$ -- 38
+change.case$ -- 262
+chr.to.int$ -- 38
+cite$ -- 45
+duplicate$ -- 673
+empty$ -- 1558
+format.name$ -- 734
+if$ -- 4639
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 30
-newline$ -- 133
-num.names$ -- 260
-pop$ -- 123
+missing$ -- 43
+newline$ -- 193
+num.names$ -- 380
+pop$ -- 186
 preamble$ -- 1
-purify$ -- 337
+purify$ -- 499
 quote$ -- 0
-skip$ -- 490
+skip$ -- 717
 stack$ -- 0
-substring$ -- 955
-swap$ -- 147
+substring$ -- 1421
+swap$ -- 213
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 470
-warning$ -- 5
-while$ -- 268
+type$ -- 690
+warning$ -- 7
+while$ -- 389
 width$ -- 0
-write$ -- 342
+write$ -- 499
 (There was 1 error message)

@@ -1,0 +1,89 @@
+\section{General setting}
+\label{sec:general_setting}
+We build the general setting piece-by-piece, from the environment to the foraging strategies. First we define the environment, then we introduce the mean-field setting, as it is necessary to handle the strategy of an entire population. Once we have laid the building blocks for our setting, we prove a proposition. This proposition demonstrates that our setting generalizes the ideal free distribution and is preferential to assuming monomorphic populations from the outset. The generalization allows for a birds-eye view of population games.
+
+We envision a setting with $M$ different types of animals co-existing in a heterogeneous environment.  More rigorously, we assume that the environment is a measure space $(X,\mu)$. The state of the environment is dynamic, e.g. the resources available. Modeling the environment as a measure space with a dynamic state allows us to model environments which are continuous, discrete and mixtures thereof in the same context. As an example, bats forage over a continuous area while the caves where they rest are discrete and disconnected \citep{collet2019algorithmic}. The state is driven by an underlying dynamic and the impact of the animals behavior and population dynamics. We model that the populations $N_i$, $i\in \{1,\dots,M\}$  are large compared to a single individual. This allows us to model the population as continuous. % so $N_i$ are continuous%, and so is the model. )% This allows us to model the population as continuous.ny
+
+
+We suppose that the migration dynamics happen on a faster time-scale than the population dynamics, as is seen in e.g. marine ecosystems \citep{iwasa1982vertical}. This slow-fast dynamic allows us to model the migrations as instantaneous, with each individual picking the optimal foraging ground at every instant \citep{kvrivan2013behavioral, cressman2006migration}.
+
+
+We assume that every animal has an area where it forages at every instant. For an animal of type $i$ this is a probability distribution $\sigma_i$ over the environment $X$. We require that the distribution $\sigma_i$ is absolutely continuous with respect to the measure $\mu$.  By requiring absolute continuity we remove degenerate situations e.g. the emergence of Dirac-type distributions in a continuous setting. By working in this generality, we allow generalize both the continuous and continuous approach to habitat selection \citep{fretwell1969territorial, broom2013game, verticalmigration}.
+
+
+\subsection{Foraging strategies and mean-field}(Hvad laver vi her )
+An animal actively chooses where it forages, so the foraging area $\sigma_i$ is a strategic choice for an animal. In order to inform this choice, we need to establish the playing field. An animal of type $i$ faces faces the environmental state and the foraging choices of all other inhabitants. Modeling the influence of the foraging choices necessitates the introduction of the mean-field-strategy, $\overbar{\sigma}_j$ for type $j$. The mean-field strategy $\overbar{\sigma}_j$ is the mean strategy of all individuals of type $j$. As a consequence, we can describe the foraging pressure from type $j$ at a point $x\in X$ by $N_j \overbar{\sigma}_j(x)$.
+
+
+The choice of optimal foraging strategy $\sigma_i^*$ for an animal of type $i$ is a trade-off based on the current state of the environment, the presence of competitors, predators and prey. The mean density of competitors, predators and prey at a point $x$ is described by $N_j \overbar{\sigma}_j(x)$. We capture this trade-off in a payoff function $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$.
+
+
+Phrasing our model in terms of a mean-field game allows determination of the Nash equilibrium. The fundamental assumption is the populations are assumed infinitely large so the choice of a single individual does not change the mean-field strategy \citep{aumann1964markets}. At the Nash equilibrium of a mean-field game every individual of type $i$ follows the same strategy $\sigma_i^*$, \citep{lasry2007mean}. Heuristically, this is due to interchangeability as if any individual of type $i$ gains by deviating from $\sigma_i^*$, any one of them would also gain from making the same deviation, hence doing so. Therefore, if they all follow the optimal strategy, they follow the same strategy.
+
+
+%2) Polymorphic-Monomorphic equivalence
+
+An advantage of studying games of mean-field type is that they have polymorphic-monomorphic equivalence \citep{broom2014asymmetric}. Polymorphic-monomorphic equivalence entails indistinguishability of facing a mixture of populations, weighted with density $\sigma_j(x)$, or a homogeneous population where all individuals are distributed according to $\sigma_j$. In short, modeling population games with polymorphic-monomorphic erases the need to consider the difference between sub-populations with different strategies or a single population with one strategy, which is ecologically advantageous \citep{broom2013game}.
+
+
+%Advantages of general approach:
+%1) Easily generalizes IFD
+\subsection{The ideal free distribution and monomorphic populations}
+We now demonstrate that mean-field games generalize the ideal free distribution. In addition, we show that assuming a monomorphic population from the outset is not a feasible to the mean-field approach. Assuming monomorphic populations is the typical approach to population games with instantaneous migrations  \citep{kvrivan2013behavioral, vincent2005evolutionary}. We explicitly show that the monomorphic approach leads to a twice the payoff at the Nash equilibrium as the ideal free distribution, so the cooperation implicit in assuming a monomorphic population conveys a significant advantage.
+
+
+%e show that the difference between assuming a game is monomorphic and having monomorphism emerge from a mean-field approach is substantial.  The difference has been studied qualitively \citep{kvrivan2008ideal,collet2019algorithmic}. %AndAbrams
+
+%In order to proceed, we recall the  (KKT) conditions:
+%\begin{theorem}
+%KKT CONDITIONS HERE
+%\end{theorem}
+
+\begin{proposition}
+  \label{prop:doubleup}
+  Consider a population of size $N$ in a habitat with $L$ discrete patches. The strategy of an individual is $p$ and the mean-field strategy is $\overbar{p}$.
+
+  The payoff function $U(p,\overbar{p})$ for an individual playing strategy $p$ is a bilinear function. The function $U$ is specified by an $m\times m$ matrix $A$ such that $U(p,N\overbar{p}) = \ip{p}{N A \overbar{p}}$. If we assume that the population is monomorphic $p = \overbar{p}$, the payoff function is $U(p,p)$, i.e. a quadratic form. Denote the Nash equilibria for the mean-field and monomorphic games respectively by $p^*_{MFG}$ and $p^*_{mon}$. Then the Nash equilibrium for the mean-field game $p^*_{MFG}$ is the ideal free distribution, and $U(p^*_{mon}, p^*_{mon}) = 2U(p^*_{MFG},p^*_{MFG})$. That is, assuming a monomorphic population doubles the payoff at the Nash equilibrium.% *(Dette bound kan du sikkert skrive mere tydeligt)
+\end{proposition}
+\begin{proof}
+Consider the payoff in the mean-field situation $U(p,\overbar{p})$.
+\begin{align}
+  U(p, \overbar{p}) = \ip{p}{AN \overbar{p}}
+\end{align}
+Using the KKT conditions, we can write up the requirements for an extremum.
+\begin{equation}
+  \begin{split}
+    AN \overbar{p} + \mu = \lambda_1 \\
+    \ip{p^*_{MFG}}{\mu} = 0 \\
+    \mu \geq 0,~p^*_{MFG} \geq 0 \\
+    \sum_{j=1}^L p^*_{MFG,j} = 1
+  \end{split}
+\end{equation}
+As we are in the mean-field case, at the Nash equilibrium $p^* = \overbar{p}^*$, ie.
+\begin{equation}
+  p^*_{MFG} = \argmax_{p} U(p,N p^*_{MFG})
+\end{equation}
+so we can insert $p=\overbar{p}$ in the KKT conditions, to get:
+\begin{equation}
+  \begin{split}
+    AN p_{MFG}^* + \mu =  \lambda_1 \\
+    \ip{p^*_{MFG}}{\mu} = 0 \\
+    \mu \geq 0,~p^*_{MFG} \geq 0 \\
+    \sum_{j=1}^L p^*_{MFG,j} = 1
+  \end{split}
+\end{equation}
+The first equation ensures that $AN p + \mu$ is constant. At the same time, $p=0$ whenever $\mu \geq 0$ due to the second equation. Hence $AN p$ is constant, and equals $\lambda_1$. For any $j$ where $(ANp)_j$ would be less than $\lambda_1$, the value of $p$ is zero.
+These are exactly the criteria for the ideal free distribution \citep{fretwell1969territorial}, illustrating the ideal free distribution as a special case of a mean-field game.
+Analogously, consider the (KKT) conditions at the Nash equilibrium for the monomorphic game
+\begin{equation}
+  \begin{split}
+    2ANp^*_{mon} + \mu = \lambda_2  \\
+    \ip{p^*_{mon}}{\mu} = 0 \\
+    \mu \geq 0,~p_{mon}^* \geq 0 \\
+    \sum_{j=1}^L p^*_{mon,j} = 1
+  \end{split}
+\end{equation}
+At every point with a non-zero concentration, the payoff for the monomorphic population is $\lambda_2$. The only difference between the two sets of KKT conditions is the factor of $2$ in the first line. Hence the pointwise payoff in the monomorphic case is $\lambda_2 = 2\lambda_1$, as desired.
+\end{proof}
+
+As \Cref{prop:doubleup} shows, assuming a monomorphic population has a drastic effect on the expected payoff. In \Cref{prop:doubleup} the classical ideal free distribution emerges as the mean-field equilibrium. The emergence of the ideal-free distribution is a compelling argument for the mean-field model.

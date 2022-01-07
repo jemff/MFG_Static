@@ -1,89 +1,17 @@
-%\section{Methods}
-
-\section{Population games: Mean-field games and monomorphism}
-
-
-%A population game consists of several distinct populations, where each individual in every population is simultaneously trying to maximize its own gain with respect to some utility function. A common approach for studying population games is  is assuming monomorphic populations, so all individuals of every type act in the same manner \citep{vincent2005evolutionary}. Such an approach has the weakness of
-
-
-A simple model of a population game is one where there are $n$ interacting large populations $N_i$ and strategies $\sigma_i$, with payoff $U_i((N_i)_{i=1}^n,(\sigma)_{i=1}^{n}$ ). The optimal value of $\sigma_i$ for an individual of type $N$ is then found by maximizing the pr. capita individual payoff, i.e. $U_i/N_i$, \citep{vincent2005evolutionary}. Such a game is a monomorphic game, since it is an inherent feature of the game that all individuals of each type follow the same strategy. A weakness of this model is that it allows an individual of type $i$ to find the optimal behavior $\sigma_i$, taking into account that the rest of the population will follow same strategy. Such an optimization appears unnatural, instead it seems more likely that an individual of type $i$ would take into account the average behavior of the rest of the population and make its decision accordingly.
-If, in addition, the populations are assumed to be so large that the choice of a single individual does not change the mean, the population game becomes a multi-type mean-field game \citep{blanchet2016optimal, aumann1964markets}. In a mean-field game every individual in a population plays against the population simultaneously. As a consequence, at the Nash equilibrium every individual will follow the same strategy due to their interchangeability. In conclusion, the individuals end up acting the same. As such, mean-field games have what we term emergent monomorphism. % in a polymorphic population game with sufficiently large populations.
-
-Since we end up with a monomorphic population, a natural question to ask is: Why concern ourselves with mean-field games rather than inherently monomorphic games? It turns out that the solutions to a population game differ quite a lot depending on whether we assume the populations are inherently monomorphic or we view it as an emergent property. The difference has been studied qualitively \citep{kvrivan2008ideal,collet2019algorithmic}, but we provide an explicit quantitative difference.
-
-%The reason is that there is a stark difference between the Nash equilibria of a game where the monomorphism is imposed and where it emerges, \citep{kvrivan2008ideal,collet2019algorithmic}. We quantify this explicitly:
-\begin{proposition}
-  \label{prop:doubleup}
-  Consider a population game with a population of size $N$ with payoff $U$ given by a bilinear form $U$ specified by an $m\times m$ matrix $A$ such that $U(\sigma_1,\sigma_2) = \ip{\sigma_1}{A \sigma_2}$. The expected payoff for a player with an inherently monomorphic population is twice that of a player in the mean-field game.
-\end{proposition}
-\begin{proof}
-The payoff for a player with strategy $\sigma$ in a monomorphic population of size $N$ is
-\begin{align}
-  U(\sigma,\sigma) = \ip{\sigma}{A N \sigma}
-\end{align}
-Conversely, if we assume that the relevant opposing strategy is the mean $\overbar{\sigma}$ of an a-priori polymorphic collection strategies the payoff is
-\begin{align}
-  U(\sigma, \overbar{\sigma}) = \ip{\sigma}{AN \overbar{\sigma}}
-\end{align}
-Since we assumed all individuals are identical in the mean-field game, at the Nash equilibrium they must all follow the same strategy. Therefore, at the Nash equilibrium $\sigma = \overbar{\sigma}$, ie.
-\begin{equation}
-  \overbar{\sigma} = \argmax_{\sigma} U(\sigma,\overbar{\sigma})
-\end{equation}
-so we are interested in extrema where $\sigma=\overbar{\sigma}$.
-Consider the Karush-Kuhn-Tucker (KKT) conditions at the Nash equilibrium for the monomorphic game
-\begin{align}
-  \begin{split}
-    2AN\sigma + \mu - \lambda_1 \cdot 1 = 0 \\
-    &\ip{\sigma}{\mu} = 0 \\
-    &\mu \geq 0,~\sigma \geq 0 \\
-    &\sum_{j=1}^m \sigma_j = 1
-  \end{split}
-\end{align}
-At every point with a non-zero concentration, the payoff for the monomorphic population is $\lambda_1$. We can likewise find the pointwise payoff for the mean-field game through the KKT-conditions:
-\begin{equation}
-  \begin{split}
-    &AN\sigma + \mu - \lambda_2 \cdot 1 = 0 \\
-    &\ip{\sigma}{\mu} = 0 \\
-    &\mu \geq 0,~\sigma \geq 0 \\
-    &\sum_{j=1}^m \sigma_j = 1
-  \end{split}
-\end{equation}
-the payoff here is $\lambda_2 = 2\lambda_1$. In conclusion, the individual payoff for a player using the optimal strategy in a monomorphic population is twice that of an individual player in the mean-field game where the monomorphic behavior is an emergent property.
-\end{proof}
-As \Cref{prop:doubleup} shows, assuming a monomorphic population has a drastic effect on the expected payoff in a simple game, highlighting the necessity of considering monomorphism as an emergent property. Therefore, the approach advocated in \citep{vincent2005evolutionary} of optimizing the pr. capita growth directly in a population game overestimates the possible growth if there are density-dependent effects.
-
-
-In \Cref{prop:doubleup} the classical ideal free distribution emerges as the mean-field equilibrium showing the connection between the ideal free distribution and mean field games. The emergence of the ideal-free distribution as a result of a pure game-theoretic consideration is a compelling argument for the mean-field model.
-
-The proof of \Cref{prop:doubleup} suggests a connection between mean-field population games and games with monomorphic populations, allowing the study of mean-field games using the tools of monomorphic games.
-\begin{definition}
-  \label{def:correspondence}
-  Consider a mean-field game with populations $N_1,\dots,N_M$ with individual payoffs specified by $U_i(\sigma_i, (\overbar{\sigma}_j)_{j=1}^M, (N_j)_{j=1}^M)$. Assume $\nabla_{\sigma_i}U_i\mid_{\sigma_i=\overbar{\sigma}_i}$ admits a primitive $U_{mon}$. We define the monomorphic equivalent game by the payoff functions $U^i_{mon}$.
-\end{definition}
-The game specified by the collection $U^i_{mon}$ is a monomorphic game, and in case the Nash equilibrium is unique, the Nash equilibria of the original game and the one specified by $U_i^{mon}$ are the same. Later on, by utilizing the tool-box of variational inequalities, we will give a sufficient criterion to check when the Nash equilibrium is unique, so \Cref{def:correspondence} may be used. The notion of a monomorphic equivalent game eases the analysis of mean-field games, and allows direct illustration of the difference between the emergent monomorphism in a mean-field game and imposed monomorphism.
-
-As an example consider a habitat-choice game where a consumer in a total population of size $N$ with a growth rate given by a Type II functional response can either stay in a refuge or go into a foraging arena. In the foraging arena there is a population of predators. The predators also have a Type II functional response, but their satiation level depends on the mean time spent in the the arena by the consumers. If we use the instantaneous growth as a fitness proxy and let $\sigma$ modelling the time spent in the arena range from $[0,1]$, this situation is modeled by the payoff function:
-\begin{align}
-  U(\sigma,\overbar{\sigma}) = \frac{\sigma r}{\sigma c_1 + 1} - c_2\frac{\sigma}{1 + c_3 N \overbar{\sigma}}
-  \label{eq:simple_mfg}
-\end{align}
-Using \Cref{def:correspondence}, we can see that \Cref{eq:simple_mfg} is equivalent to the monomorphic game
-\begin{align}
-  U^{mon}(\sigma,\sigma) = \frac{\sigma r}{\sigma c_1 + 1} - c_2\log(1+N c_3\sigma)
-\end{align}
-which contrasts the naive monomorphic game,
-\begin{align}
-  U(\sigma,\sigma) = \frac{\sigma r}{\sigma c_1 + 1} - c_2\frac{\sigma}{1 + N c_3\sigma}
-\end{align}
-As the growth of $c_2\frac{\sigma}{1 + c_3\sigma}$ is smaller than that of $c_2\log(1+c_3 \sigma)$, the maximum of $U(\sigma,\sigma)$ will be attained at a larger value of $\sigma$. This corresponds to an inherently monomorphic population being more risk-seeking, as individuals will sacrifice themselves for the greater good. This example, along with \Cref{prop:doubleup} lets us conjecture that a monomorphic population will generally be more risk-seeking. \Cref{eq:simple_mfg}  illustrates that maximizing the individual growth leads to a lower growth rate compared to maximizing the raw pr. capita growth rate as advocated in \citep{vincent2005evolutionary}.
-
-
 \section{Nash equilibria and variational inequalities}
-Calculating Nash equilibria is generally a hard problem. A fruitful approach to calculating Nash equilibria is via. the theory of complementarity problems and variational inequalities \citep{karamardian1969nonlinear,nabetani2011parametrized}. We unite the approach of variational inequalities and mean-field games, and by using relatively modern theory, we can characterize a rather general setup that guarantees uniqueness and existence of Nash equilibria for population games in both a finite and infinite dimensional setting. Since the basic object of consideration in our setup is that of habitat selection games, we need to be able to consider the overlap of two habitats. In the setting with a finite number of habitats, this is the inner product of the vectors describing their habitat distributions. Therefore, the natural setting for the continuous habitat selection game is a Hilbert space, to allow the calculation of habitat overlaps.
+Calculating Nash equilibria is generally a hard problem. A fruitful approach to calculating Nash equilibria is via. the theory of complementarity problems and variational inequalities \citep{karamardian1969nonlinear,nabetani2011parametrized}. We unite the approach of variational inequalities and mean-field games which allows us to characterize a situation that guarantees uniqueness and existence of Nash equilibria in population games, and the existence of fixed-points of these games.
+
+%We develop the theory for monomorphic games, and finally introduce a method to analyze a mean-field game as a monomorphic game.
+
+As in \Cref{sec:general_setting}, our habitat is a measure space $(X,\mu)$ with $M$ different types inhabiting it with payoff-functions $U_i$. The simplest example our framework needs to handle is that of a single type with population $N$ inhabiting $X$ with foraging distribution $\sigma$. The encounter rate of an individual following the strategy $\sigma$ with the entire population also following the strategy $\sigma$ has the density $N\sigma^2$. The expected encounter rate then becomes
+\begin{equation}
+  \int_X \sigma^2 d\mu
+\end{equation}
+and this quantity must be finite, hence the appropriate setting for our work is the space $L^2(X)$. This motivates our space of feasible strategies.
 \begin{definition}
-  Define $H$ as the real Hilbert space $L^2(X)$, where $X$ is either a finite set of points or the union of the interval $[0,1]$ and a finite set of points. Define $H_+ \subset H$ as the a.e. positive functions in $H$.
+  Define $H$ as the real Hilbert space $L^2(X)$, where $X$ is a measure space. Define $H_+ \subset H$ as the a.e. positive functions in $H$.
 \end{definition}
-Finding Nash equilibria is one of the oldest applications of (linear) complementarity theory. We define a complementarity problem:
+Finding Nash equilibria is one of the oldest applications of complementarity theory \citep{karamardian1969nonlinear}. We define a complementarity problem:
 \begin{definition}
   Let $H$ be a real Hilbert space, and $K \subset H$ be a closed convex cone. Define $K^* = \{ x \in H : \ip{x}{y} = 0, \quad \forall y\in K\} $. Assume $T:K \to H$. The complementarity problem $CP(T,K)$ is the problem of finding an element $x^*$ such that
   \begin{equation}
@@ -93,7 +21,7 @@ Finding Nash equilibria is one of the oldest applications of (linear) complement
   \end{split}
   \end{equation}
 \end{definition}
-However, showing existence and uniqueness for complementarity problems is generally hard, which is where their relationship to variational inequalities comes in handy.
+As a general rule showing existence and uniqueness for complementarity problems is hard, which is where their relationship to variational inequalities comes in handy.
 \begin{definition}
   Let $H$ be a real Hilbert space and $K\subset H$ be a non-empty subset of $H$. Let $T: K \to H$. The variational inequality $VI(T,K)$ is the following system
   \begin{equation}
@@ -101,11 +29,11 @@ However, showing existence and uniqueness for complementarity problems is genera
   \end{equation}
   and a solution is an $x$ satisfying the inequality.
 \end{definition}
-If $K$ is a convex cone, the problems $VI(T,K)$ and $CP(T,K)$ have the same solutions, which can be seen by setting $y=2x$ and $y=0$ respectively.
+%If $K$ is a convex cone, the problems $VI(T,K)$ and $CP(T,K)$ have the same solutions, which can be seen by setting $y=2x$ and $y=0$ respectively.
 
-To motivate the approach based on complementarity and variational inequalities, assume that we have a game with $M$ players and payoff functions $U_i$ and strategies $\sigma_i$. At the Nash equilibrium, each payoff function $U_i$ must satisfy the Karush-Kuhn-Tucker (KKT) conditions with respect to $\sigma_i$.
+To motivate the approach based on complementarity and variational inequalities, assume that we have a mean-field game with $M$ players, payoff functions $U_i$, and strategies $\sigma_i, \overbar{\sigma}_i$. At the Nash equilibrium, each payoff function $U_i$ must satisfy the Karush-Kuhn-Tucker (KKT) conditions with respect to $\sigma_i$, along with $\overbar{\sigma}=\sigma$ as in \Cref{prop:doubleup}.
 \begin{align}
-  \nabla_{\sigma_i}U_i((\sigma_j)_{j=1}^N) + \mu_i - \lambda \cdot 1 = 0
+  \nabla_{\sigma_i}U_i((\sigma_j)_{j=1}^N) \mid_{\sigma_i = \overbar{\sigma}_i}  + \mu_i - \lambda \cdot 1 = 0
   \ip{\sigma_i}{\mu_i} = 0
   \mu_i \geq 0
   \sigma_i \geq 0
@@ -115,9 +43,9 @@ The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to 
 \begin{equation}
   \begin{split}
   \begin{pmatrix}
-    \nabla_{\sigma_1} U_1 \\
+    \nabla_{\sigma_1} U_1 \mid{\sigma_1 = \overbar{\sigma}_1} \\
     \vdots \\
-    \nabla_{\sigma_N} U_N
+    \nabla_{\sigma_N} U_N \mid{\sigma_N = \overbar{\sigma}_N}
 \end{pmatrix} + \begin{pmatrix}
     \mu_1 \\
     \vdots \\
@@ -159,33 +87,41 @@ which is a complementarity problem with $K = (H_+ \osum \R)^n$, $K^* = (H_+ \osu
 \begin{equation}
   T(S,\lambda)=\begin{pmatrix} dU(S) + \lambda \\ (\ip{\sigma_i}{1} - 1)_{i=1}^M \end{pmatrix}
 \end{equation}
-If we do not include the criterion $\int \sigma_i dx = 1$ explicitly, but instead consider the convex set $K=\{f \in H: \int f dx = 1\}$. Then we are looking for a vector $S = (\sigma_i)_{i=1}^M$ that minimizes
+If we do not include the criterion $\int \sigma_i dx = 1$ explicitly, but instead consider the convex set $K=\{f \in H: \int f dx = 1\}$, the problem instead becomes finding a vector $S = (\sigma_i)_{i=1}^M$ that minimizes
 \begin{equation}
   \ip{dU(S)}{S-T} \geq 0 \forall T\in K^n
 \end{equation}
-which is more tractable for theoretical considerations, while the complementarity formulation is preferable for solving the problem numerically.
+i.e. solves a variational inequality. Searching for a solution to a variational inequality is more tractable for theoretical considerations, while the complementarity formulation is preferable for solving the problem numerically.
 
-In case the payoff-functions $\sigma_i$ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium. Asking for strict convexity is too strong, but we can relax the requirement to the related weaker notion of strict pseudoconvexity. See \Cref{sec:appendix} for further details.
+In case the payoff-functions $\sigma_i$ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium. Asking for convexity is too strong, but we can relax the requirement to the related weaker notion of strict pseudoconvexity. See \Cref{sec:appendix} for further details.
 We can gather the results on pseudoconvex functions and their application to game theory in the following theorem:
-\begin{theorem}
-  Cnosider a game with $N$ players with strictly pseudoconvex payoff functions $U_i$ and strategies $\sigma_i$ in $H$. The game has a unique Nash equilibrium if
+\begin{theorem} \label{thm:nash_unique}
+  Consider a game with $N$ players with strictly pseudoconvex payoff functions $U_i$ and strategies $\sigma_i$ in $H$. The game has a unique Nash equilibrium if
   \begin{equation}
     dU=
     \begin{pmatrix}
-      \nabla_{\sigma_1} U_1\\
+      \nabla_{\sigma_1} U_1\mid{\sigma_1 = \overbar{\sigma}_1}\\
       \vdots \\
-      \nabla_{\sigma_N} U_N
+      \nabla_{\sigma_N} U_N \mid{\sigma_N = \overbar{\sigma}_N}
     \end{pmatrix}
   \end{equation}
   satisfies the criterion of \Cref{thm:existence} or $H$ is finite dimensional.
 \end{theorem}
 \begin{proof}
-   If $\nabla_{\sigma_i} U_i$ is strictly pseudomonotone, then so is their direct sum $dU$ by linearity of the inner product. By \Cref{thm:uniqueness} this solution is unique since $dU$ is strictly pseudomonotone. So if the solution exists, it is unique. By assumption \Cref{thm:existence} gives existence of a solution of $VI(dU,K)$ in case $H$ is infinite dimensional. If $H$ is finite-dimensional then $K$ is compact and there exists a solution \Cref{rem:weak_compact}.
+   If $\nabla_{\sigma_i} U_i$ is strictly pseudomonotone, then so is their direct sum $dU$ by bilinearity of the inner product. By \Cref{thm:uniqueness} this solution is unique since $dU$ is strictly pseudomonotone. So if the solution exists, it is unique. By assumption \Cref{thm:existence} gives existence of a solution of $VI(dU,K)$ in case $H$ is infinite dimensional. If $H$ is finite-dimensional then $K$ is compact and there exists a solution \Cref{rem:weak_compact}.
 \end{proof}
-With this result, we can show that there exist unique fixed points of population games with strictly pseudoconvex payoff functions and bounded dynamics.
+As a consequence of \Cref{thm:nash_unique}, we can introduce an equilibrium between the Nash equilibria of a mean-field game and a game with monomorphic populations. If a mean-field game has a family of functions $U_i^{mon}$ satisfying $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$, then the monomorphic game defined $U_i^{mon}$ has the same Nash equilbria, and can be studied equivalently.
+\begin{definition}
+  \label{def:correspondence}
+  Consider a mean-field game with populations $N_1,\dots,N_M$ with individual payoffs $U_i(\sigma_i, (\overbar{\sigma}_j)_{j=1}^M, (N_j)_{j=1}^M)$. Assume $\nabla_{\sigma_i}U_i\mid_{\sigma_i=\overbar{\sigma}_i}$ admits a primitive $U_i^{mon}$ such that $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$.
+   Then we define the monomorphic equivalent game as the game specified by the payoff functions $U_i^{mon}$.
+\end{definition}
+If a monomorpic equivalent game exists, it becomes possible to study the monomorphic game instead and e.g. use strict pseudoconvexity to establish strict pseudomonotonicity.
+
+With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of population games with strictly pseudoconvex monomorpic equivalent payoff functions and bounded dynamics.
 \begin{theorem}
   \label{thm:pop_game_exists_unique}
-  A population game with $N$ populations and dynamics specified by $f_i$, with strictly pseudoconvex functions payoff $U_i$ and strategies $\sigma_i$ has a unique fixed point with a unique Nash equilibrium if $f_i/x_i$ are strictly pseudomonotone and satisfy \Cref{thm:existence}, and the set of fixed points of $f_i$ is uniformly bounded in $\sigma$.
+  A population game with $N$ populations and dynamics specified by $f_i$, with strictly pseudoconvex monomorphic equivalent functions payoff $U^{mon}_i$ and strategies $\sigma_i$ has a unique fixed point with a unique Nash equilibrium if $f_i/x_i$ are strictly pseudomonotone and satisfy \Cref{thm:existence}, and the set of fixed points of $f_i$ is uniformly bounded in $\sigma$.
 \end{theorem}
 \begin{proof}
   The game specified by $\sigma_i$ has a unique Nash equilibrium for each $x\in \R^N$, given by a complementarity problem over $K$ with operator specified by $dU = (\nabla_{\sigma_i} U_i)_{i=1}^N$. The solution specifies a continuous mapping $G: K^N \to \R^N$, \cite[Theorem 4.2]{barbagallo2009continuity}. Likewise, due to the assumptions on $f_i$ the complementarity problem $\ip{(f_i)_{i=1}^N(x)}{x}$ has a unique solution for every $\sigma$. Denote this solution function by $F$.
@@ -217,7 +153,6 @@ We assume that predators $(P)$ and consumers $(C)$ share a heterogeneous habitat
 The population dynamics are given by a behaviorally modified Rosenzweig-MacArthur system. The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate. The function $\beta_p$ is normalized to a constant value of 5.
 Consumption events are assumed local, so the expected encounter rate between predators and prey is $\ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. To model intraspecific predator competition, we have added a term $c\ip{\beta \overbar{\sigma}_p}{\overbar{\sigma}_p}$ where $c$ describes the level of competition. The carrying capacity is given by $K\phi + K_0$,
  where $K$ varies, $\phi$ is a distribution, and $K_0$ is the minimal carrying capacity. Denoting the maximal predator growth rate by $F_p$, the consumer clearance rate by $\beta_c$, the dynamics are given by:
-%Inserting \Cref{eq:r_ss} in \Cref{eq:bas_dyn}, we arrive at the population dynamics:
 \begin{align}
   \dot{C} &= f_c = C \pa{\ip{\beta_c \overbar{\sigma}_c}{1-\frac{\beta_c}{K\phi + K_0}\overbar{\sigma}_c C} - \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} P}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} } \\
   \dot{P} &= f_p = P \pa{\epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} - c \ip{\overbar{\sigma}_p}{\beta_p \overbar{\sigma}_p}  - \mu_p}
@@ -226,35 +161,35 @@ Consumption events are assumed local, so the expected encounter rate between pre
 Introducing the quality ($q$) of the habitat as a parameter, the functions $\beta_p$ and $\phi$ are given by
 \begin{align}
   \beta_p &= 5 \frac{\exp(-(q x)^2) + \beta_0}{\int_0^1 \exp(-(q x)^2) + \beta_0 dx} \\
-  \phi &= \frac{\exp(-q x) + K_0}{\int_0^1 \exp(-q x) + K_0 dx}
+  \phi &= \frac{\exp(-q x) + K_0}{\int_0^1 \exp(-q x) dx + K_0 }
 \end{align}
 where the normalization is to keep a constant total encounter rate and carrying capacity of $K$ when varying $q$. The choice of functions reflect a predator specialized in hunting the most productive zones, and a heterogeneous productivity.
 
 \subsection{Existence and uniqueness of the equilibrium}
-We model predator and consumer movement as instantaneous, with each predator and consumer seeking to maximize its fitness at each instant. The fitness of an individual depends on the mean strategy of its own type and that of either the predators, or consumers, respectively. Denoting the individual consumer and predator strategies by $\sigma_c$ and $\sigma_p$ respectively, the instantaneous fitness $U_c$ of a consumer and a predator $U_p$ are:
+We model predator and consumer movement as instantaneous, with each predator and consumer seeking to maximize its fitness at each instant. The fitness of an individual depends on the mean-field strategies of both predators and consumers. Denoting the individual consumer and predator strategies by $\sigma_c$ and $\sigma_p$ respectively, the instantaneous payoffs $U_c,U_p$ for a consumer and predator $U_p$ respectively are:
 \begin{align}
-  U_c(\sigma_c, \overbar{\sigma}_c, \overbar{\sigma}_p) &= \ip{\beta_c \sigma_c}{1-\frac{\beta_c}{K\phi + K_0}\overbar{\sigma}_c C} - \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} P}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} \\
+  U_c(\sigma_c, \overbar{\sigma}_c, \overbar{\sigma}_p) &= \ip{\beta_c \sigma_c}{1-\frac{\beta_c}{K\phi + K_0}\sigma \overbar{\sigma}_c C} - \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} P}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} C} \\
   U_p(\sigma_p, \overbar{\sigma}_c, \overbar{\sigma}_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} C}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} C} - c \ip{\sigma_p}{\beta_p \overbar{\sigma}_p}  - \mu_p
 \end{align}
-Denoting the optimum by $^*$, at the Nash equilibrium $\sigma_c^*=\overbar{\sigma}_c$ and $\sigma_p^* = \overbar{\sigma}_p$. We use the method of \Cref{def:correspondence} to convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:correspondence}
+Denote the optimum by $^*$. At the Nash equilibrium $\sigma_c^*=\overbar{\sigma}_c$ and $\sigma_p^* = \overbar{\sigma}_p$. We use the method of \Cref{def:correspondence} to convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:correspondence}
 \begin{align}
   \label{eq:mon_eq_forms}
-  U_c^{mon}(\sigma_c, \sigma_p) &= \ip{\beta_c \sigma_c}{1-\frac{1}{2}\frac{\beta_c}{K\phi + K_0 2}\sigma_c C} - P\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} C} \\
-  U^{mon}_p(\sigma_p, \sigma_c) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} C}{F_p + \ip{\beta_p \sigma_c}{\sigma_p} C} - \frac{1}{2}c \ip{\sigma_p}{\beta_p \sigma_p}  - \mu_p
+  U_c^{mon}(\sigma_c, \sigma_p) &= \ip{\beta_c \sigma_c}{1-\frac{3}{2}\frac{\beta_c}{K\phi + K_0 2}\sigma_c^2 C} - P\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} C} \\
+  U_p^{mon}_p(\sigma_p, \sigma_c) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} C}{F_p + \ip{\beta_p \sigma_c}{\sigma_p} C} - \frac{1}{2}c \ip{\sigma_p}{\beta_p \sigma_p}  - \mu_p
 \end{align}
 We need to verify that $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex, as well as show existence. To this end, we state a charactirization of strict pseudomonotonicity for differentiable functions.
 \begin{lemma}
-  A function $f: K \subset H \to \R$ is strictly pseudoconvex if
+  Let $K$ be a convex subset of $H$. A function $f: K \to \R$ is strictly pseudomonotone if
   \begin{equation}
     \ip{f(x)}{u} = 0 \Rightarrow \ip{(\nabla_x f(x))h}{h} > 0
   \end{equation}
 \end{lemma}
 A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}
 \begin{proposition}
-  The functions $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudconvex, and their derivatives $\begin{pmatrix}-\nabla_{\sigma_c} U_c^{mon} \\ -\nabla_{\sigma_p} U_p^{mon}\end{pmatrix}$ satisfy the criteria of \Cref{thm:existence}.
+  The functions $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex, and their derivatives $\begin{pmatrix}-\nabla_{\sigma_c} U_c^{mon} \\ -\nabla_{\sigma_p} U_p^{mon}\end{pmatrix}$ satisfy the criteria of \Cref{thm:existence}.
 \end{proposition}
 \begin{proof}
-  We start by showing the strict pseudoconvexity. The function $-U_p^{mon}$ is strictly convex, as it has strictly positive second derivative, so the derivative with respect to $\sigma_p$ is strictly monotone, therefore strictly pseudomonotone. Note that on $K$ a function $g$ is strictly pseudomonotone if and only if $g+\lambda$ is strictly pseudomonotone for any $g\in \R$, since $\ip{g(x)+\lambda}{x-y}=\ip{g(x)}{x-y}+\lambda \int x d\mu + \lambda \int y d\mu=\ip{g(x)}{x-y}$. If we consider $f(x)=(-\nabla_{\sigma_c} U_c^{mon}(x))-1$ and assume $\ip{f(x)}{u} = 0$, then
+  We start by showing the strict pseudoconvexity. The function $-U_p^{mon}$ is strictly convex, as it has strictly positive second derivative with respect $\sigma_p$, so the derivative with respect to $\sigma_p$ is strictly monotone, therefore strictly pseudomonotone. Note that on $K$ a function $g$ is strictly pseudomonotone if and only if $g+\lambda$ is strictly pseudomonotone for any $g\in \R$, since $\ip{g(x)+\lambda}{x-y}=\ip{g(x)}{x-y}+\lambda \int x d\mu + \lambda \int y d\mu=\ip{g(x)}{x-y}$. If we consider $f(x)=(-\nabla_{\sigma_c} U_c^{mon}(x))-1$ and assume $\ip{f(x)}{u} = 0$, then
   \begin{equation}
     \ip{x}{u}\frac{C \beta_c }{K\phi + K_0} + \frac{\ip{\sigma_p}{h}}{F_p + \ip{\sigma_p}{x}} = 0
   \end{equation}
@@ -262,9 +197,9 @@ A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}
   \begin{equation}
     H(x,u)=\ip{(\nabla_x f)(x)u}{u} = \ip{u}{u}\frac{ C \beta_c }{K\phi + K_0} - \frac{\ip{\sigma_p}{u}\ip{\sigma_p}{h}}{F_p + \ip{\sigma_p}{x}}
   \end{equation}
-  then $H(x,u)>0$ since $\ip{\sigma_p}{u}=0$, so $S$ is strictly pseudomonotone.
+  then $H(x,u)>0$ since $\ip{\sigma_p}{u}=0$, so $H$ is strictly pseudomonotone. Hence $-U_c^{mon}$ is strictly pseudoconvex.
 
-  To show that there exists a solution, start by noting that for all $h\in H^2$, the mapping $S \mapsto \ip{dU(S)}{w}$ is continuous in $S$, hence lower semi-continuous, hence also lower-semicontinuous on line segments.
+  To show that there exists a solution, start by noting that for all $w\in H^2$, the mapping $S \mapsto \ip{dU(S)}{w}$ is continuous in $S$, implying lower semi-continuity, hence also lower-semicontinuity on line segments.
   For the technical criterion of \Cref{thm:existence} pick $u_0 = [1,1]$ and consider $R=1+\epsilon$, $\epsilon>0$. Then we wish to show that there exists $\epsilon$ such that
   \begin{equation}
     \begin{split}
