@@ -1,0 +1,45 @@
+\section{Results on variational inequalities}
+\label{sec:appendix}
+The following section contains the necessary results on variational inequalities, which have been removed from the main text to improve the flow.
+
+We start by recalling the definition of pseudo-convexity
+The corresponding notion of convexity is
+\begin{definition}
+  Let $\Omega \subset H$ be an open subset of $H$, and let $f:\Omega \to \R$ be Gateaux-differentiable. The function $f$ is strictly pseudoconvex if
+  \begin{equation}
+    \ip{y-x}{(\nabla f)(x)} \geq 0 \Rightarrow f(y) > f(x)
+  \end{equation}
+\end{definition}
+Where a strictly convex function has a strictly monotone derivative, a variant holds for strictly pseudoconvex functions. First, we need to introduce strict pseudomonotonicity.
+\begin{definition}
+ The operator $T: K \to H$ is strictly pseudomonotone if for every pair $x\neq y$ we have
+ \begin{align}
+   \ip{x-y}{Ty} \geq 0 \Rightarrow \ip{x-y}{Tx} > 0
+ \end{align}
+\end{definition}
+Proving strict pseudomonotonicity in itself can be hard, but thankfully the notions of strict pseudomonotonicity and strict pseudoconvexity are related.
+\begin{theorem}[Theorem 12.13, p. 521 \citep{hadjisavvas2006handbook}]
+  Let $\Omega \subset H$ be an open convex subset, and let $f:\Omega \to \R$ be Gateaux differentiable. Then $f$ is strictly pseudoconvex if and only if $\nabla f$ is strictly pseudomonotone.
+\end{theorem}
+Minimizing a differentiable strictly pseudoconvex $f$ function over a convex set $K$ is equivalent to solving the variational inequality
+\begin{equation}
+  x \in K, ~ \ip{(\nabla f)(x)}{x-y} \geq 0, \forall y\in K
+\end{equation}
+The problem of existence and uniqueness of a Nash equilibrium has been reduced to a problem of existence and uniqueness of a variational inequality. Whether a variational inequality given by a pseudomonotone operator has a solution can be determined by \citep[Theorem 3.6]{maugeri2009existence}, which we restate.
+\begin{theorem}
+  \label{thm:existence}
+  Let $K\subset H$ be a closed convex set and $T:K\to H$ a pseudomonotone operator which is lower hemicontinuous along line segments, i.e. for all $x,y\in H$ the mapping $\xi \mapsto \ip{T\xi,}{x-y}$ is lower semicontinuous for $\xi \in \{\eta \in H : \eta = tx+(1-t)y, \quad t\in [0,1]\}$. Assume that there exists $u_0 \in K$ and $R> \norm{u_0}$ such that
+  \begin{equation}
+    \ip{Tv}{v-u_0} \geq 0, \forall v \in K \cap \{v \in H : \norm{v} = R \}
+  \end{equation}
+  then the variational inequality $VI(T,K)$ has a solution.
+\end{theorem}
+\begin{remark}
+  \label{rem:weak_compact}
+  Weak compactness of $K$ also ensures that $VI(T,K)$ has a solution \citep[Theorem 12.1, P. 510]{hadjisavvas2006handbook}, giving existence of solutions in the finite-dimensional case.
+\end{remark}
+With a criterion for existence in hand, we proceed to state a criterion for uniqueness, justifying our focus on strict pseudoconvexity and strict pseudomonotonicity.
+\begin{theorem}[Lemma 12.3, p. 516, \citep{hadjisavvas2006handbook}]
+  \label{thm:uniqueness}
+  Let $K\subset H$ be a non-empty subset of $H$. If $T$ is strictly pseudomonotone, then the problem $VI(T,K)$ has at most one solution.
+\end{theorem}
