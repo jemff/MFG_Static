@@ -25,7 +25,25 @@ Minimizing a differentiable strictly pseudoconvex $f$ function over a convex set
 \begin{equation}
   x \in K, ~ \ip{(\nabla f)(x)}{x-y} \geq 0, \forall y\in K
 \end{equation}
-The problem of existence and uniqueness of a Nash equilibrium has been reduced to a problem of existence and uniqueness of a variational inequality. Whether a variational inequality given by a pseudomonotone operator has a solution can be determined by \citep[Theorem 3.6]{maugeri2009existence}, which we restate.
+The problem of existence and uniqueness of a Nash equilibrium has been reduced to a problem of existence and uniqueness of a variational inequality. Whether a variational inequality given by a pseudomonotone operator has a solution can be determined by \citep[Theorem 3.4]{maugeri2009existence}, which we abridge:
+\begin{theorem}
+  \label{thm:existence}
+  Let $K$ be a closed convex set and $A : K \to H$  a pseudo-
+  monotone map which is continuous on finite dimensional subspaces of $H$. Then the fol-
+  lowing statements are equivalent:
+\end{theorem}
+\begin{enumerate}
+  \item The variational inequality $\ip{Ax}{y-x} \geq 0$ admits solutions.
+  \item There exists a point $u_0 \in K$ such that the set
+  \begin{equation}
+    \{v \in K : \ip{A(v)}{v-u_0} < 0\}
+  \end{equation}
+  is bounded.
+\end{enumerate}
+\begin{comment}
+
+
+\citep[Theorem 3.6]{maugeri2009existence}, which we restate.
 \begin{theorem}
   \label{thm:existence}
   Let $K\subset H$ be a closed convex set and $T:K\to H$ a pseudomonotone operator which is lower hemicontinuous along line segments, i.e. for all $x,y\in H$ the mapping $\xi \mapsto \ip{T\xi,}{x-y}$ is lower semicontinuous for $\xi \in \{\eta \in H : \eta = tx+(1-t)y, \quad t\in [0,1]\}$. Assume that there exists $u_0 \in K$ and $R> \norm{u_0}$ such that
@@ -34,6 +52,7 @@ The problem of existence and uniqueness of a Nash equilibrium has been reduced t
   \end{equation}
   then the variational inequality $VI(T,K)$ has a solution.
 \end{theorem}
+\end{comment}
 \begin{remark}
   \label{rem:weak_compact}
   Weak compactness of $K$ also ensures that $VI(T,K)$ has a solution \citep[Theorem 12.1, P. 510]{hadjisavvas2006handbook}, giving existence of solutions in the finite-dimensional case.

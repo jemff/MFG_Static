@@ -148,30 +148,36 @@ Having established the general theory for Nash equilibria, and demonstrated how 
 \section{Revisiting the Rosenzweig-MacArthur model}
 \label{sec:model_rm}
 %Having established the general framework, we can proceed to defining the concrete model of interest.
-We consider a predator-prey system modeled as a Rosenzweig-MacArthur system in a spatially heterogeneous habitat, where the predators are specialized so that their hunting success is maximal in the most productive zone of the habitat.
-We assume that predators $(N_p)$ and consumers $(N_p)$ share a heterogeneous habitat, modeled as the interval $[0,1]$. The mean strategy of the consumer population is $\overbar{\sigma}_c$ and the mean strategy of the predator population is $\overbar{\sigma}_p$.
-The population dynamics are given by a behaviorally modified Rosenzweig-MacArthur system. The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate. The function $\beta_p$ is normalized to a constant value of 5.
-Consumption events are assumed local, so the expected encounter rate between predators and prey is $\ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. To model intraspecific predator competition, we have added a term $c\ip{\beta \overbar{\sigma}_p}{\overbar{\sigma}_p}$ where $c$ describes the level of competition. The carrying capacity is given by $K\phi + K_0$,
- where $K$ varies, $\phi$ is a distribution, and $K_0$ is the minimal carrying capacity. Denoting the maximal predator growth rate by $F_p$, the consumer clearance rate by $\beta_c$, the dynamics are given by:
+We consider a predator-prey system modeled as a Rosenzweig-MacArthur system, where the predators are specialized so that their hunting success is maximal in the most productive zone of the habitat.
+We assume that predators $(N_p)$ and consumers $(N_c)$ inhabit the interval $[0,1]$. The mean strategy of the predator and consumer populations is, respectively $\overbar{\sigma}_c$, and $\overbar{\sigma}_p$.
+The population dynamics are a modified Rosenzweig-MacArthur system. The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate.
+Consumption events are assumed local, so the expected encounter rate between predators and prey is $N_c N_p \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. To model intraspecific predator competition, we have added a term $N_p c\ip{\beta \overbar{\sigma}_p}{\overbar{\sigma}_p}$ where $c$ is a competition parameter. The carrying capacity is $K\phi + K_0$, where $\phi$ is a distribution, and $K_0$ is the minimal carrying capacity. Denote the maximal predator consumption rate by $F_p$, then the dynamics are:
 \begin{align}
-  \dot{N_c} &= f_c = N_c \pa{\ip{\beta_c \overbar{\sigma}_c}{1-N_c \frac{\sigma_c \overbar{\sigma}_c}{K\phi + K_0}} - \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_p}{F_p + \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c} N_c} } \\
+  \dot{N_c} &= f_c = N_c \pa{\ip{\overbar{\sigma}_c}{1-N_c \frac{\sigma_c \overbar{\sigma}_c}{K\phi + K_0}} - \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_p}{F_p + \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c} N_c} } \\
   \dot{N_p} &= f_p = N_p \pa{\epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c} - c \ip{\overbar{\sigma}_p}{\beta_p \overbar{\sigma}_p}  - \mu_p}
   \label{eq:dynamics}
 \end{align}
+the functions $\beta_p$ and $\phi$ are defined as
+\begin{align}
+  \beta_p &= 5 \frac{\exp(-(3 x)^2) + \beta_0}{\int_0^1 \exp(-(3 x)^2) + \beta_0 dx} \\
+  \phi &= \frac{\exp(-3 x) + K_0}{\int_0^1 \exp(-3 x) dx + K_0 }
+\end{align}
+The choice of functions reflect a predator specialized in hunting the most productive zones, and a heterogeneous productivity.
+\begin{comment}
 Introducing the quality ($q$) of the habitat as a parameter, the functions $\beta_p$ and $\phi$ are given by
 \begin{align}
   \beta_p &= 5 \frac{\exp(-(q x)^2) + \beta_0}{\int_0^1 \exp(-(q x)^2) + \beta_0 dx} \\
   \phi &= \frac{\exp(-q x) + K_0}{\int_0^1 \exp(-q x) dx + K_0 }
 \end{align}
-where the normalization is to keep a constant total encounter rate and carrying capacity of $K$ when varying $q$. The choice of functions reflect a predator specialized in hunting the most productive zones, and a heterogeneous productivity.
-
+where the normalization is to keep a constant total encounter rate and carrying capacity of $K$ when varying $q$.
+\end{comment}
 \subsection{Existence and uniqueness of the equilibrium}
-We model predator and consumer movement as instantaneous, with each predator and consumer seeking to maximize its fitness at each instant. The fitness of an individual depends on the mean-field strategies of both predators and consumers. Denoting the individual consumer and predator strategies by $\sigma_c$ and $\sigma_p$ respectively, the instantaneous payoffs $U_c,U_p$ for a consumer and predator $U_p$ respectively are:
+As in \Cref{sec:general_setting} we model predator and consumer movement as instantaneous. Each predator and consumer seeks to maximize its growth at every instant. The growth of an individual depends on the mean-field strategies of both predators and consumers. Denoting the individual consumer and predator strategies by $\sigma_c$ and $\sigma_p$ respectively, the instantaneous growths $U_c,U_p$ for a consumer and predator are:
 \begin{align}
   U_c(\sigma_c, N_c \overbar{\sigma}_c, N_p\overbar{\sigma}_p) &= \ip{\beta_c \sigma_c}{1-\frac{\sigma_c \overbar{\sigma}_c N_c}{K\phi + K_0}} - \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} N_p}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c} \\
   U_p(\sigma_p, N_p \overbar{\sigma}_c, \overbar{\sigma}_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c} - c \ip{\sigma_p}{\beta_p \overbar{\sigma}_p}  - \mu_p
 \end{align}
-Denote the optimum by $^*$. At the Nash equilibrium $\sigma_c^*=\overbar{\sigma}_c$ and $\sigma_p^* = \overbar{\sigma}_p$. We use the method of \Cref{def:correspondence} to convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:correspondence}
+Denote the optimum by $^*$. At the Nash equilibrium $\sigma_c^*=\overbar{\sigma}_c$ and $\sigma_p^* = \overbar{\sigma}_p$. We convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:correspondence}
 \begin{align}
   \label{eq:mon_eq_forms}
   U_c^{mon}(\sigma_c, \sigma_p, N_c, N_p) &= \ip{\beta_c \sigma_c}{1-\frac{3}{2}\frac{\sigma_c^2 N_c}{K\phi + K_0}} - N_p\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} \\
@@ -209,11 +215,30 @@ A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}. 
     \ip{dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)}
   \end{split}
   \end{equation}
-  To avoid clutter, we neglect the calculations and relegate them to the appendix. In the end, the inner product equals
+  To avoid clutter, we neglect the calculations and relegate them to the appendix. In the end, the inner product reduces to
   \begin{equation}
-    \norm{\sigma_c}_2^2 + \norm{\sigma_p}_2^2 - \norm{\sigma_c}_1 - \norm_{\sigma_p}_1 - G_1(\sigma_c,\sigma_p) - G_2(\sigma_c,\sigma_p)
+    \label{eq:fin_exist}
+    \norm{\sigma_c}_2^2 + \norm{\sigma_p}_2^2 - \norm{\sigma_c}_1 - \norm{\sigma_p}_1 - G_1(\sigma_c,\sigma_p) - G_2(\sigma_c,\sigma_p)
   \end{equation}
-  where $G_1,G_2$ are uniformly bounded. This expression clearly tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity, with the constraint that $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:du} is only negative on a bounded subset of $K$, showing existence of a solution to the variational inequality by \Cref{thm:existence}.
+  where $G_1,G_2$ are uniformly bounded. With the constraint that $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$ \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Hence \Cref{eq:du} is only negative on a bounded subset of $K$, showing existence of a solution to the variational inequality by \Cref{thm:existence}.
+
+\end{proof}
+Since we are also interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we are also interested in showing that the fixed-point of the dynamics exists and is unique. Here we can directly use the theory we have developed.  The functions $f_1/C$ and $f_2/P$ are strictly monotone, and the set of fixed-points is uniformly bounded due to the metabolic terms and logistic terms, respectively. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
+
+
+%By rephrasing the population into a varitaional inequality, we unlock the full arsenal of tools available for the solution of variational inequalities.
+
+%We formulate the optimization problem as a feasibility problem via. the optimization framework casadi \citep{}. To solve the problems the solver IPOPT \citep{} is invoked, using the Haswell linear algebra routines \citep{}. This approach to solving variational inequalities is state-of-the-art, and the solver was both robust and fast.
+%Keywords: Casadi, IPOPT, state-of-the-art, simple to expand and scalable.
+
+%\begin{enumerate}
+%  \item
+%    Introduce the theory of Variational inequalities, simple game
+%  \item
+%    Introduce mean field game, modify predator-prey to the mean field case
+%  \item
+%    Introduce continuous setting
+%\end{enumerate}
 
   \begin{comment} the mapping $S \mapsto \ip{dU(S)}{w}$
 
@@ -248,20 +273,3 @@ A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}. 
 
   We can then pick the minimum of these two, showing the desired.
 \end{comment}
-\end{proof}
-Since we are also interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we are also interested in showing that the fixed-point of the dynamics exists and is unique. Here we can directly use the theory we have developed.  The functions $f_1/C$ and $f_2/P$ are strictly monotone, and the set of fixed-points is uniformly bounded due to the metabolic terms and logistic terms, respectively. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
-
-
-%By rephrasing the population into a varitaional inequality, we unlock the full arsenal of tools available for the solution of variational inequalities.
-
-%We formulate the optimization problem as a feasibility problem via. the optimization framework casadi \citep{}. To solve the problems the solver IPOPT \citep{} is invoked, using the Haswell linear algebra routines \citep{}. This approach to solving variational inequalities is state-of-the-art, and the solver was both robust and fast.
-%Keywords: Casadi, IPOPT, state-of-the-art, simple to expand and scalable.
-
-%\begin{enumerate}
-%  \item
-%    Introduce the theory of Variational inequalities, simple game
-%  \item
-%    Introduce mean field game, modify predator-prey to the mean field case
-%  \item
-%    Introduce continuous setting
-%\end{enumerate}
