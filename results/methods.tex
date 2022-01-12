@@ -193,6 +193,7 @@ We need to verify that $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex, 
 \end{lemma}
 A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}. This allows us to state our main result on the behavorially modified Rosenzweig-MacArthur game.
 \begin{proposition}
+  \label{prop:exist_unique_nash}
   The game defined by $U_c$ and $U_p$ has a unique Nash equilibrium.
 \end{proposition}
 \begin{proof}
@@ -223,8 +224,13 @@ A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}. 
   where $G_1,G_2$ are uniformly bounded. With the constraint that $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$ \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Hence \Cref{eq:du} is only negative on a bounded subset of $K$, showing existence of a solution to the variational inequality by \Cref{thm:existence}.
 
 \end{proof}
-Since we are also interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we are also interested in showing that the fixed-point of the dynamics exists and is unique. Here we can directly use the theory we have developed.  The functions $f_1/C$ and $f_2/P$ are strictly monotone, and the set of fixed-points is uniformly bounded due to the metabolic terms and logistic terms, respectively. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
-
+Since we are also interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we are interested in showing that the fixed-point of the dynamics exists and is unique.
+\begin{corollary}
+  The population game \Cref{eq:dynamics} has a unique fixed point.
+\end{corollary}
+\begin{proof}
+Here we can directly use the theory we have developed.  The functions $f_1/N_c$ and $f_2/N_p$ are strictly monotone, and the set of fixed-points is uniformly bounded due to the metabolic terms and logistic terms, respectively. The Nash equilibrium exists and is unique for every $N_c, N_p$ , \Cref{prop:exist_unique_nash}. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
+\end{proof}
 
 %By rephrasing the population into a varitaional inequality, we unlock the full arsenal of tools available for the solution of variational inequalities.
 
