@@ -179,6 +179,7 @@ Denote the optimum by $^*$. At the Nash equilibrium $\sigma_c^*=\overbar{\sigma}
 \end{align}
 We need to verify that $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex, as well as show existence. To this end, we state a characterization of strict pseudomonotonicity for differentiable functions.
 \begin{lemma}
+  \label{lem:strict_pm}
   Let $K$ be a convex subset of $H$. A function $f: K \to \R$ is strictly pseudomonotone if
   \begin{equation}
     \ip{f(x)}{u} = 0 \Rightarrow \ip{(\nabla_x f(x))h}{h} > 0
@@ -198,10 +199,27 @@ A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}. 
   \begin{equation}
     H(x,u)=\ip{(\nabla_x f)(x)u}{u} = \ip{u}{u}\frac{ C \beta_c }{K\phi + K_0} - \frac{\ip{\sigma_p}{u}\ip{\sigma_p}{h}}{F_p + \ip{\sigma_p}{x}}
   \end{equation}
-  then $H(x,u)>0$ since $\ip{\sigma_p}{u}=0$, so $H$ is strictly pseudomonotone. Hence $-U_c^{mon}$ is strictly pseudoconvex.
+  then $H(x,u)>0$ since $\ip{\sigma_p}{u}=0$, so $H$ is strictly pseudomonotone by \Cref{lem:strict_pm}. Hence $-U_c^{mon}$ is strictly pseudoconvex.
 
-  To show that there exists a solution, start by noting that for all $w\in H^2$, the mapping $S \mapsto \ip{dU(S)}{w}$ is continuous in $S$ for all, implying lower semi-continuity, hence also lower-semicontinuity on line segments.
-  For the technical criterion of \Cref{thm:existence} pick $u_0 = [1,1] \in H_+^2$ and consider $R=1+\epsilon$, $\epsilon>0$. Then we wish to show that there exists $\epsilon$ such that
+  To show that there exists a solution, start by noting that for all $w\in H^2$, $w\mapsto dU(w)$ is continuous, hence continuous on finite-dimensional subspaces. Then consider
+  \begin{equation}
+    \label{eq:du}
+    \begin{split}
+    \ip{-dU(\sigma_c,\sigma_p)}{(1-\sigma_c, 1-\sigma_p)} =
+    \ip{dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)}
+  \end{split}
+  \end{equation}
+  To avoid clutter, we neglect the calculations and relegate them to the appendix. In the end, the inner product equals
+  \begin{equation}
+    \norm{\sigma_c}_2^2 + \norm{\sigma_p}_2^2 - \norm{\sigma_c}_1 - \norm_{\sigma_p}_1 - G_1(\sigma_c,\sigma_p) - G_2(\sigma_c,\sigma_p)
+  \end{equation}
+  where $G_1,G_2$ are uniformly bounded. This expression clearly tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity, with the constraint that $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:du} is only negative on a bounded subset of $K$, showing existence of a solution to the variational inequality by \Cref{thm:existence}.
+
+  \begin{comment} the mapping $S \mapsto \ip{dU(S)}{w}$
+
+
+  is continuous in $S$ for all, implying lower semi-continuity, hence also lower-semicontinuity on line segments.
+  For the technical criterion of \Cref{thm:existence} pick $u_0 = [1,1] \in H_+^2$ and consider $R=1+\epsilon$. We wish to show that there exists $\epsilon$ such that
   \begin{equation}
     \begin{split}
     \ip{-dU(\sigma_c,\sigma_p)}{(1-\sigma_c, 1-\sigma_p)} \geq 0 \\
@@ -209,18 +227,27 @@ A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}. 
   \end{split}
   \end{equation}
   for $\norm{(\sigma_c,\sigma_p)} = 1+\epsilon$.
-  It is sufficient to show that there exists $\epsilon$ such that each term in the inner product is positive. We start with the consumer term, where we utilize that $\ip{\sigma_c}{1}=1$
+  It is sufficient to show that there exists $\epsilon > 0$ such that each term in the inner product is positive. We start with the consumer term, using  $\ip{\sigma_c}{1}=1$
   \begin{equation}
     \begin{split}
-    1-\ip{\sigma_c}{\sigma_c-1}\frac{ C \beta_c }{K\phi + K_0} - \frac{\ip{\sigma_p}{\sigma_c-1}}{F_p + \ip{\sigma_p}{\sigma_c}} \\
-     =1-(1-\norm{\sigma_c}^2)\frac{ C \beta_c }{K\phi + K_0}+(1-\ip{\sigma_p}{\sigma_c})\frac{1}{F_p + \ip{\sigma_p}{\sigma_c}}
+    1-\ip{\sigma_c}{\sigma_c-1}\frac{ N_c \beta_c }{K\phi + K_0} - \frac{\ip{\sigma_p}{\sigma_c-1}}{F_p + \ip{\sigma_p}{\sigma_c}} \\
+     =1-(1-\norm{\sigma_c}^2)\frac{ N_c \beta_c }{K\phi + K_0}+(1-\ip{\sigma_p}{\sigma_c})\frac{1}{F_p + \ip{\sigma_p}{\sigma_c}}
   \end{split}
   \end{equation}
-  The terms $1-\norm{\sigma_c}^2$ and $1-\ip{\sigma_p}{\sigma_c}$ are uniformly bounded above by $\epsilon_1^2+2\epsilon_1$. If we define $\xi = \frac{C \beta_c }{K\phi + K_0}$ and $\eta = \frac{1}{F_p + \ip{\sigma_p}{\sigma_c}}$, $\epsilon_1$ can be determined by solving the inequality
+  The terms $1-\norm{\sigma_c}^2$ and $1-\ip{\sigma_p}{\sigma_c}$ are uniformly bounded above by $\epsilon_1^2+2\epsilon_1$. If we define $\xi = \frac{C \beta_c }{K\phi + K_0}$ and $\eta = \frac{1}{F_p + \ip{\sigma_p}{\sigma_c}}$. We can then choose $\epsilon_1$ from the set satisfying:
   \begin{equation}
     (\epsilon_1^2+2\epsilon_1)(\xi+\eta) \leq 1
   \end{equation}
-  Proceeding in the same fashion with the second term, we arrive at a pair of constants $\epsilon_1,\epsilon_2$. We can then pick the minimum of these two, showing the desired.
+  For the predator term, we again use that $\ip{\sigma_p}{1} = 1$.
+  \begin{equation}
+    \begin{split}
+        \ip{\sigma_p}{F_p^2\frac{N_c \beta_p}{(F_p + \ip{\beta_p\sigma_p}{\sigma_c})^2}-\sigma_p N_p}-\ip{1}{F_p^2\frac{N_c \beta_p}{(F_p + \ip{\beta_p\sigma_p}{\sigma_c})^2}-\sigma_p N_p} \\
+        =\int_X (\sigma_p-1) F_p^2\frac{N_c \beta_p}{(F_p + \ip{\beta_p\sigma_p}{\sigma_c})^2 d\mu + N_p (\norm{\sigma_p}^2 + 1)
+    \end{split}
+  \end{equation}
+
+  We can then pick the minimum of these two, showing the desired.
+\end{comment}
 \end{proof}
 Since we are also interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we are also interested in showing that the fixed-point of the dynamics exists and is unique. Here we can directly use the theory we have developed.  The functions $f_1/C$ and $f_2/P$ are strictly monotone, and the set of fixed-points is uniformly bounded due to the metabolic terms and logistic terms, respectively. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
 
