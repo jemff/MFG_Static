@@ -94,9 +94,9 @@ If we do not include the criterion $\int \sigma_i dx = 1$ explicitly, but instea
 i.e. solves a variational inequality. Searching for a solution to a variational inequality is more tractable for theoretical considerations, while the complementarity formulation is preferable for solving the problem numerically.
 
 In case the payoff-functions $U_i $ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium. Asking for convexity is too strong, but it turns out the weaker notion of strict pseudoconvexity is sufficient. See \Cref{sec:appendix} for further details.
-\begin{assumption}
+\begin{remark}
   From here onwards, by $K \subset H$ denotes the closed convex set $\{\phi \in H_+ : \ip{\phi}{1} = 1 \}$.
-\end{assumption}
+\end{remark}
 
 We can gather the results on pseudoconvex functions and their application to game theory in the following theorem:
 \begin{theorem} \label{thm:nash_unique}
@@ -167,14 +167,6 @@ the functions $\beta_p$ and $\phi$ are defined as
   \phi &= \frac{\exp(-3 x) + K_0}{\int_0^1 \exp(-3 x) dx + K_0 }
 \end{align}
 The choice of functions reflect a heterogeneous productivity and a predator specialized in hunting in the most productive zones.
-\begin{comment}
-Introducing the quality ($q$) of the habitat as a parameter, the functions $\beta_p$ and $\phi$ are given by
-\begin{align}
-  \beta_p &= 5 \frac{\exp(-(q x)^2) + \beta_0}{\int_0^1 \exp(-(q x)^2) + \beta_0 dx} \\
-  \phi &= \frac{\exp(-q x) + K_0}{\int_0^1 \exp(-q x) dx + K_0 }
-\end{align}
-where the normalization is to keep a constant total encounter rate and carrying capacity of $K$ when varying $q$.
-\end{comment}
 \subsection{Existence and uniqueness of the equilibrium}
 As in \Cref{sec:general_setting} we model predator and consumer movement as instantaneous. Each predator and consumer seeks to maximize its growth at every instant. The growth of an individual depends on the mean-field strategies of both predators and consumers. Denoting the individual consumer and predator strategies by $\sigma_c$ and $\sigma_p$ respectively, the instantaneous growths $U_c,U_p$ for a consumer and predator are:
 \begin{align}
@@ -209,11 +201,11 @@ Another small lemma we need is a reduction for pseudomonotone functions.
 This allows us to state our main result on the behaviorally modified Rosenzweig-MacArthur game.
 \begin{proposition}
   \label{prop:exist_unique_nash}
-  The game defined by $U_c$ and $U_p$ has a unique Nash equilibrium.
+  The game defined by $U_c$ and $U_p$ has a unique Nash equilibrium for every non-zero pair $N_c,N_p$.
 \end{proposition}
 \begin{proof}
   It suffices to show that the functions $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex for uniqueness. For existence it remains to show that $\begin{pmatrix}-\nabla_{\sigma_c} U_c^{mon} \\ -\nabla_{\sigma_p} U_p^{mon}\end{pmatrix}$ satisfy the criteria of \Cref{thm:existence}.
-  We start by showing the strict pseudoconvexity. The function $-U_p^{mon}$ is strictly convex, as it has strictly positive second derivative with respect $\sigma_p$, so the derivative with respect to $\sigma_p$ is strictly monotone, therefore strictly pseudomonotone. By \Cref{lem:pseudo_reduc} it suffices to show that $f = -\nabla_{\sigma_c} U_c^{mon} - 1$ is strictly pseudomonotone. For \Cref{lem:strict_pm} assume $\ip{f(x)}{u} = 0$, then
+  We start by showing the strict pseudoconvexity. The function $-U_p^{mon}$ is strictly convex, as it has strictly positive second derivative with respect $\sigma_p$. Consider $-U_c^{mon}$. To show strict pseudoconvexity, by \Cref{lem:pseudo_reduc} it suffices to show that $f = -\nabla_{\sigma_c} U_c^{mon} - 1$ is strictly pseudomonotone. For \Cref{lem:strict_pm} assume $\ip{f(x)}{u} = 0$, then
   \begin{equation}
     \ip{x}{u}\frac{N_c \beta_c }{K\phi + K_0} + \frac{\ip{\sigma_p}{h}}{F_p + \ip{\sigma_p}{x}} = 0
   \end{equation}
@@ -244,7 +236,7 @@ Since we are also interested in the fixed-points of the population dynamics \Cre
   The population game \Cref{eq:dynamics} has a unique fixed point.
 \end{corollary}
 \begin{proof}
-Here we can directly use the theory we have developed.  The functions $f_1/N_c$ and $f_2/N_p$ are strictly monotone, and the set of fixed-points is uniformly bounded due to the metabolic terms and logistic terms, respectively. The Nash equilibrium exists and is unique for every $N_c, N_p$ , \Cref{prop:exist_unique_nash}. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
+Here we can directly use the theory we have developed.  Both $f_1/N_c$ and $f_2/N_p$ are strictly monotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
 \end{proof}
 
 %By rephrasing the population into a varitaional inequality, we unlock the full arsenal of tools available for the solution of variational inequalities.
@@ -293,4 +285,14 @@ Here we can directly use the theory we have developed.  The functions $f_1/N_c$ 
   \end{equation}
 
   We can then pick the minimum of these two, showing the desired.
+\end{comment}
+
+
+\begin{comment}
+Introducing the quality ($q$) of the habitat as a parameter, the functions $\beta_p$ and $\phi$ are given by
+\begin{align}
+  \beta_p &= 5 \frac{\exp(-(q x)^2) + \beta_0}{\int_0^1 \exp(-(q x)^2) + \beta_0 dx} \\
+  \phi &= \frac{\exp(-q x) + K_0}{\int_0^1 \exp(-q x) dx + K_0 }
+\end{align}
+where the normalization is to keep a constant total encounter rate and carrying capacity of $K$ when varying $q$.
 \end{comment}

@@ -79,13 +79,13 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 6, steps = 
     fig, ax = plt.subplots(1, 2, sharex='col', sharey='row')
     fig.set_size_inches((12 / 2.54, 6 / 2.54))
 
-    ax[0].plot(car_caps, np.log10(populations_car[:,0]), c=tableau20[0])
-    ax[0].plot(car_caps, np.log10(populations_car[:,1]), c=tableau20[6])
+    ax[0].plot(car_caps, (populations_car[:,0]), c=tableau20[0])
+    ax[0].plot(car_caps, (populations_car[:,1]), c=tableau20[6])
     ax[0].set_xlabel('Carrying capacity ($K$)')
     ax[0].text(1.05, 0.9, 'B', transform=ax[0].transAxes)
 
-    ax[1].plot(competition, np.log10(populations_comp[:,0]), c=tableau20[0])
-    ax[1].plot(competition, np.log10(populations_comp[:,1]), c=tableau20[6])
+    ax[1].plot(competition, (populations_comp[:,0]), c=tableau20[0])
+    ax[1].plot(competition, (populations_comp[:,1]), c=tableau20[6])
     ax[1].set_xlabel('Competition ($c$)')
     ax[1].text(1.05, 0.9, 'C', transform=ax[1].transAxes)
 
