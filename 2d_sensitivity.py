@@ -26,7 +26,7 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 6, steps = 
     if par is None:
         par = {'res_renew': 1, 'eff': 0.1, 'c_handle': 1, 'c_enc_freq': 1, 'c_met_loss': 0.001, 'p_handle': 0.01, 'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0.1, 'q': 3}
 
-    car_caps = np.linspace(3.7, 10, steps)
+    car_caps = np.linspace(1, 10, steps)
     populations_car = np.zeros((steps,2))
     min_pop = 0
     out = twod_predator_prey_dyn(Mx = Mx, fixed_point=True, warmstart_out=True, car_cap=car_caps[0], minimal_pops=min_pop, par = par)
@@ -50,9 +50,9 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 6, steps = 
         populations_ref[i] = out['x0'][-4:-2]-min_pop
         strategies_ref[i, :, 0] = out['x0'][0:tot_points][::-1]
         strategies_ref[i, :, 1] = out['x0'][tot_points:2*tot_points][::-1]
-    par['q'] = 5
+    par['q'] = 3
     populations_comp = np.zeros((steps,2))
-    competition = np.linspace(0, 0.16, steps)
+    competition = np.linspace(0, 3, steps)
 
     out = twod_predator_prey_dyn(Mx = Mx, fixed_point=True, warmstart_out=True, car_cap=car_cap, minimal_pops=min_pop, par = par)
     strategies_comp = np.zeros((steps, tot_points, 2))

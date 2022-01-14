@@ -40,11 +40,11 @@ def twod_predator_prey_dyn(beta_f = None, res_conc_f = None, minimal_pops = 10**
 
 
 
-    cons_dyn = inte @ (Mx.M @ (sigma/par['c_enc_freq']*(1-state_ss[0]*sigma**2/(par['c_enc_freq']*res_conc*car_cap)))) - inte @ (Mx.M @ (state_ss[1]*sigma*beta*sigma_p))/(1+par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p)))
-    pred_dyn = par['eff']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p))/(1+par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p))) - par['p_met_loss'] - par['competition']*inte @ (Mx.M @ (sigma_p**2*beta))
+    cons_dyn = inte @ (Mx.M @ (sigma*(1-state_ss[0]*sigma/(res_conc*car_cap)))) - inte @ (Mx.M @ (state_ss[1]*sigma*beta*sigma_p))/(1+par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p)))
+    pred_dyn = par['eff']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p))/(1+par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p))) - par['p_met_loss'] - (state_ss[1]**2)* par['competition']*inte @ (Mx.M @ ((sigma_p**2)*beta))
 
-    df1 = 1/par['c_enc_freq']*(1-2*state_ss[0]*sigma/(res_conc*par['c_enc_freq']*car_cap)) - state_ss[1]*sigma_p*beta/(1+inte @ (Mx.M @ (par['p_handle']*state_ss[0]*sigma*beta*sigma_p))) - lam[0]*np.ones(tot_points)
-    df2 = par['eff']*state_ss[0]*sigma*beta/(1+inte @ (Mx.M @ (par['p_handle']* state_ss[0]*sigma*beta*sigma_p)))**2 - lam[1]*np.ones(tot_points) - par['competition']*sigma_p*beta
+    df1 =(1-state_ss[0]*sigma/(res_conc*car_cap)) - state_ss[1]*sigma_p*beta/(1+inte @ (Mx.M @ (par['p_handle']*state_ss[0]*sigma*beta*sigma_p))) - lam[0]*np.ones(tot_points)
+    df2 = par['eff']*state_ss[0]*sigma*beta/(1+inte @ (Mx.M @ (par['p_handle']* state_ss[0]*sigma*beta*sigma_p)))**2 - lam[1]*np.ones(tot_points) - state[1]*par['competition']*sigma_p*beta
 
     g0 = ca.vertcat(cons_dyn, pred_dyn)
     g1 = inte @ Mx.M @ (df1*sigma) + inte @ Mx.M @ (df2*sigma_p)  #
