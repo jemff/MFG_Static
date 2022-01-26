@@ -31,7 +31,7 @@ As a general rule showing existence and uniqueness for complementarity problems 
 \end{definition}
 %If $K$ is a convex cone, the problems $VI(T,K)$ and $CP(T,K)$ have the same solutions, which can be seen by setting $y=2x$ and $y=0$ respectively.
 
-To motivate the approach based on complementarity and variational inequalities, assume that we have a mean-field game with $M$ players, payoff functions $U_i$, and strategies $\sigma_i, \overbar{\sigma}_i$. At the Nash equilibrium, each payoff function $U_i$ must satisfy the Karush-Kuhn-Tucker (KKT) conditions with respect to $\sigma_i$, along with $\overbar{\sigma}=\sigma$ as in \Cref{prop:doubleup}.
+To motivate the approach based on complementarity and variational inequalities, assume that we have a mean-field game with $M$ players, payoff functions $U_i$, and strategies $\sigma_i, \overbar{\sigma}_i$. At the Nash equilibrium, each payoff function $U_i$ must satisfy the Karush-Kuhn-Tucker (KKT) conditions with respect to $\sigma_i$, along with $\overbar{\sigma}=\sigma$ as in \Cref{eq:mfg_ne}.
 \begin{align}
   \nabla_{\sigma_i}U_i((\sigma_j)_{j=1}^N) \mid_{\sigma_i = \overbar{\sigma}_i}  + \mu_i - \lambda \cdot 1 = 0
   \ip{\sigma_i}{\mu_i} = 0
@@ -39,7 +39,9 @@ To motivate the approach based on complementarity and variational inequalities, 
   \sigma_i \geq 0
   \int_X \sigma_i - 1 = 0
 \end{align}
-The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to finding a system $\sigma_i^*$ satisfying the KKT conditions simultaneously for every pair $U_i$, \citep{deimling2010nonlinear}. Thus the condition for a Nash equilibrium is:
+Remark that the last two conditions are equivalent to requiring that $\sigma \in P_{\mu}(X)$.
+
+The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to finding a system $\sigma_i^*$ satisfying the KKT conditions simultaneously for every pair $U_i$, \citep{deimling2010nonlinear}. Thus the condition for the Nash equilibrium of the total population as in \Cref{eq:tot_nash_eq} is:
 \begin{equation}
   \begin{split}
   \begin{pmatrix}
@@ -67,7 +69,7 @@ The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to 
 \end{pmatrix}} = 0 \\
 \mu_i \geq 0 \\
   \sigma_i \geq 0 \\
-    \int \sigma_i dx = 1
+    \sigma \in P_{\mu}(X)
     \label{eq:KKT_total}
   \end{split}
 \end{equation}
