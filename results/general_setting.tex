@@ -2,40 +2,40 @@
 \label{sec:general_setting}
 We build the general setting piece-by-piece, from the environment to the foraging strategies. First we define the environment, then we introduce the mean-field setting, as it is necessary to handle the strategy of an entire population. Once we have laid the building blocks for our setting, we prove a proposition. This proposition demonstrates that our setting generalizes the ideal free distribution and is preferential to assuming monomorphic populations from the outset. The generalization allows for a birds-eye view of population games.
 
-We envision a setting with $M$ different types of animals co-existing in a heterogeneous environment.  More rigorously, we assume that the environment is a measure space $(X,\mu)$. The state of the environment is dynamic, e.g. the resources available. Modeling the environment as a measure space with a dynamic state allows us to model environments which are continuous, discrete and mixtures thereof in the same context. As an example, bats forage over a continuous area while the caves where they rest are discrete and disconnected \citep{collet2019algorithmic}. The state is driven by an underlying dynamic and the impact of the animals behavior and population dynamics. We model that the populations $N_i$, $i\in \{1,\dots,M\}$  are large compared to a single individual. This allows us to model the population as continuous. % so $N_i$ are continuous%, and so is the model. )% This allows us to model the population as continuous.ny
+We envision a setting with $M$ different types of animals co-existing in a heterogeneous environment.  More rigorously, we assume that the environment is a measure space $(X,\mu)$. The state $R$ of the environment is dynamic, e.g. the resources available. Modeling the environment as a measure space with a dynamic state allows us to model environments which are continuous, discrete and mixtures thereof in the same context. As an example, bats forage over a continuous area while the caves where they rest are discrete and disconnected \citep{collet2019algorithmic}. The state is driven by an underlying dynamic and the impact of the animals behavior and population dynamics. We model that the populations $N_i$, $i\in \{1,\dots,M\}$  are large compared to a single individual. This allows us to consider the population as continuous. % so $N_i$ are continuous%, and so is the model. )% This allows us to model the population as continuous.ny
 
 
 We suppose that the migration dynamics happen on a faster time-scale than the population dynamics, as is seen in e.g. marine ecosystems \citep{iwasa1982vertical}. This slow-fast dynamic allows us to model the migrations as instantaneous, with each individual picking the optimal foraging ground at every instant \citep{kvrivan2013behavioral, cressman2006migration}.
 
 
-We assume that every animal has an area where it forages at every instant. For an animal of type $i$ this is a probability distribution $\sigma_i$ over the environment $X$. We require that the distribution $\sigma_i$ is absolutely continuous with respect to the measure $\mu$. We denote this space by $P_{\mu}(X)$. By requiring absolute continuity we remove degenerate situations e.g. the emergence of Dirac-type distributions in a continuous setting. By working in this generality, we allow generalize both the continuous and continuous approach to habitat selection \citep{fretwell1969territorial, broom2013game, verticalmigration}.
+We assume that every animal has an area where it forages at every instant. For an animal of type $i$ this is a probability distribution $\sigma_i$ over the environment $X$. We require that the distribution $\sigma_i$ is absolutely continuous with respect to the measure $\mu$. We denote this space by $P_{\mu}(X)$. By requiring absolute continuity we remove degenerate Nash equilibria e.g. Dirac-type distributions in a continuous setting, equivalent to having all animals stacked exactly at a single point in space. By working in this generality, we allow generalize both the continuous and continuous approach to habitat selection \citep{fretwell1969territorial, broom2013game, verticalmigration}.
 
 
 \subsection{Foraging strategies and mean-field}
-An animal actively chooses where it forages, so the foraging area $\sigma_i$ is a strategic choice for an animal. In order to inform this choice, we need to establish the playing field. An animal of type $i$ faces faces the environmental state and the foraging choices of all other inhabitants. Modeling the influence of the foraging choices necessitates the introduction of the mean-field-strategy, $\overbar{\sigma}_j$ for type $j$. The mean-field strategy $\overbar{\sigma}_j$ is the mean strategy of all individuals of type $j$. As a consequence, we can describe the foraging pressure from type $j$ at a point $x\in X$ by $N_j \overbar{\sigma}_j(x)$.
+An animal actively chooses where it forages, so the foraging area $\sigma_i$ is a strategic choice for an animal. In order to inform this choice, we need to establish the playing field. An animal of type $i$ faces the environmental state and the foraging choices of all other inhabitants. Modeling the influence of the foraging choices necessitates the introduction of the mean-field-strategy, $\overbar{\sigma}_j$ for type $j$. The mean-field strategy $\overbar{\sigma}_j$ is the mean strategy of all individuals of type $j$. As a consequence, we can describe the foraging pressure from type $j$ at a point $x\in X$ by $N_j \overbar{\sigma}_j(x)$.
 
 
 The choice of optimal foraging strategy $\sigma_i^*$ for an animal of type $i$ is a trade-off based on the current state of the environment, the presence of competitors, predators and prey. The mean density of competitors, predators and prey at a point $x$ is described by $N_j \overbar{\sigma}_j(x)$. We capture this trade-off in a payoff function $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$. The goal of a single animal of type $j$ is then to find the optimal strategy $\sigma_j^*$ such that
 \begin{equation}
   \label{eq:ind_opt}
-  \sigma^*_j = \argmax_{\sigma_j \in P_{\mu}(X)} U_i(\sigma_j, (N_j \overbar{\sigma}_j)_{j=1}^M)
+  \sigma^*_j = \argmax_{\sigma_j \in P_{\mu}(X)} U_i(\sigma_j, (N_j \overbar{\sigma}_j)_{j=1}^M, R)
 \end{equation}
-The fundamental assumption in a mean-field is the populations are assumed infinitely large so the choice of a single individual does not change the mean-field strategy \citep{aumann1964markets}. At the Nash equilibrium of a mean-field game every individual of type $i$ follows the same strategy $\sigma_i^*$, \citep{lasry2007mean}. Heuristically, this is due to interchangeability as if any individual of type $i$ gains by deviating from $\sigma_i^*$, any one of them would also gain from making the same deviation, hence doing so. Therefore, if they all follow the optimal strategy, they follow the same strategy. This allows us to go from the individual-level optimization to the Nash equilibrium in \Cref{eq:ind_opt}. Considering $\sigma^*_{j}$ as a function of $\overbar{\sigma}_j$ the Nash equilibrium for the intraspecific game for the animals of type $j$ becomes finding $\overbar{\sigma}_j^N$ such that:
+The fundamental assumption in a mean-field is that the populations are assumed to consist of infinitely many individuals so the choice of a single individual does not change the mean-field strategy \citep{aumann1964markets}. At the Nash equilibrium of a mean-field game every individual of type $i$ follows the same strategy $\sigma_i^*$, \citep{lasry2007mean}. Heuristically, this is due to interchangeability as if any individual of type $i$ gains by deviating from $\sigma_i^*$, any one of them would also gain from making the same deviation, hence doing so. Therefore, if they all follow the optimal strategy, they follow the same strategy. This allows us to go from the individual-level optimization to the Nash equilibrium in \Cref{eq:ind_opt}. Considering $\sigma^*_{j}$ as a function of $\overbar{\sigma}_j$ the Nash equilibrium $\overbar{\sigma}_j^N$ for the mean-field game for the animals of type $j$ becomes finding $\overbar{\sigma}_j^N$ such that:
 \begin{equation}
   \sigma^*_{j}(\overbar{\sigma}^N_j) = \overbar{\sigma}^N_j
 \end{equation}
 An equivalent formulation, which turns out to be more useful for our purposes, is:
 \begin{equation}
   \label{eq:mfg_ne}
-  \overbar{\sigma}_j^N = \pa{\argmax_{\sigma_j \in P_{\mu}(X)} U_i(\sigma_j, (N_j \overbar{\sigma}_j)_{j=1}^M) } \mid_{\sigma_j = \overbar{\sigma}_1}
+  \overbar{\sigma}_j^N = \pa{\argmax_{\sigma_j \in P_{\mu}(X)} U_i(\sigma_j, (N_j \overbar{\sigma}_j)_{j=1}^M, R) } \mid_{\sigma_j = \overbar{\sigma}_j}
 \end{equation}
 The problem that we need to solve to find the Nash equilibrium for the population game, where all the individuals of the different types of animals seek to maximize their payoff simultaneously can thus be written as:
 \begin{equation}
   \label{eq:tot_nash_eq}
   \begin{split}
-    \overbar{\sigma}_1^N = \pa{\argmax_{\sigma_1 \in P_{\mu}(X)} U_1(\sigma_1, (N_j \overbar{\sigma}^N_j)_{j=1}^M) } \mid_{\sigma_1 = \overbar{\sigma}_1} \\
+    \overbar{\sigma}_1^N = \pa{\argmax_{\sigma_1 \in P_{\mu}(X)} U_1(\sigma_1, (N_j \overbar{\sigma}^N_j)_{j=1}^M), R } \mid_{\sigma_1 = \overbar{\sigma}_1} \\
     \vdots
-    \overbar{\sigma}_M^N = \pa{\argmax_{\sigma_M \in P_{\mu}(X)} U_M(\sigma_M, (N_j \overbar{\sigma}_j)_{j=1}^M) } \mid_{\sigma_M = \overbar{\sigma}_M}
+    \overbar{\sigma}_M^N = \pa{\argmax_{\sigma_M \in P_{\mu}(X)} U_M(\sigma_M, (N_j \overbar{\sigma}_j)_{j=1}^M, R) } \mid_{\sigma_M = \overbar{\sigma}_M}
     \end{split}
 \end{equation}
 This system of equations looks intractable, but in the next section we will see that in many cases it can actually be solved using the toolbox of variational inequalities.
@@ -59,9 +59,10 @@ We now demonstrate that mean-field games generalize the ideal free distribution.
 
 \begin{proposition}
   \label{prop:doubleup}
-  Consider a population of size $N$ in a habitat with $L$ discrete patches. The strategy of an individual is $p$ and the mean-field strategy is $\overbar{p}$.
 
-  The payoff function $U(p,\overbar{p})$ for an individual playing strategy $p$ is a bilinear function. The function $U$ is specified by an $m\times m$ matrix $A$ such that $U(p,N\overbar{p}) = \ip{p}{N A \overbar{p}}$. If we assume that the population is monomorphic $p = \overbar{p}$, the payoff function is $U(p,p)$, i.e. a quadratic form. Denote the Nash equilibria for the mean-field and monomorphic games respectively by $p^*_{MFG}$ and $p^*_{mon}$. Then the Nash equilibrium for the mean-field game $p^*_{MFG}$ is the ideal free distribution, and $U(p^*_{mon}, p^*_{mon}) = 2U(p^*_{MFG},p^*_{MFG})$. That is, assuming a monomorphic population doubles the payoff at the Nash equilibrium.
+  Consider a population of size $N$ in a habitat with $L$ discrete patches and state $R$. The strategy of an individual is $p$ and the mean-field strategy is $\overbar{p}$.
+
+  The payoff function $U(p,\overbar{p}, R)$ for an individual playing strategy $p$ is a bilinear function. The function $U$ is specified by an $m\times m$ matrix $A$ such that $U(p,N\overbar{p}) = \ip{p}{N A \overbar{p}}$, and $A$ encodes the state $R$ of the environment. If we assume that the population is monomorphic $p = \overbar{p}$, the payoff function is $U(p,p)$, i.e. a quadratic form. Denote the Nash equilibria for the mean-field and monomorphic games respectively by $p^*_{MFG}$ and $p^*_{mon}$. Then the Nash equilibrium for the mean-field game $p^*_{MFG}$ is the ideal free distribution, and $U(p^*_{mon}, p^*_{mon}) = 2U(p^*_{MFG},p^*_{MFG})$. That is, assuming a monomorphic population doubles the payoff at the Nash equilibrium.
 \end{proposition}
 \begin{proof}
 Consider the payoff in the mean-field situation $U(p,\overbar{p})$.
