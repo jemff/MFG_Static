@@ -193,7 +193,7 @@ A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}.
 Another small lemma we need is a reduction for pseudomonotone functions.
 \begin{lemma}
   \label{lem:pseudo_reduc}
-  A function $g: K \to H$ is pseudomonotone if and only if $g+\lambda$ is pseudomonotone for any $\lambda \in \R$.
+  A function $g: P_{2,\mu} \to H$ is pseudomonotone if and only if $g+\lambda$ is pseudomonotone for any $\lambda \in \R$.
 \end{lemma}
 \begin{proof}
   Consider $\ip{g(x)+\lambda}{x-y}=\ip{g(x)}{x-y}+\lambda \int x d\mu + \lambda \int y d\mu$
@@ -206,7 +206,11 @@ This allows us to state our main result on the behaviorally modified Rosenzweig-
   The game defined by $U_c$ and $U_p$ has a unique Nash equilibrium for every non-zero pair $N_c,N_p$.
 \end{proposition}
 \begin{proof}
-  It suffices to show that the functions $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex for uniqueness. For existence it remains to show that $\begin{pmatrix}-\nabla_{\sigma_c} U_c^{mon} \\ -\nabla_{\sigma_p} U_p^{mon}\end{pmatrix}$ satisfy the criteria of \Cref{thm:existence}.
+  It suffices to show that the functions $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex for uniqueness. For existence it remains to show that the varviational inequality defined by the function
+  \begin{equation}
+    \label{eq:var_ineq}
+    dU = \begin{pmatrix}-\nabla_{\sigma_c} U_c^{mon} \\ -\nabla_{\sigma_p} U_p^{mon}\end{pmatrix}
+  \end{equation} satisfy the criteria of \Cref{thm:existence}.
   We start by showing the strict pseudoconvexity. The function $-U_p^{mon}$ is strictly convex, as it has strictly positive second derivative with respect $\sigma_p$. Consider $-U_c^{mon}$. To show strict pseudoconvexity, by \Cref{lem:pseudo_reduc} it suffices to show that $f = -\nabla_{\sigma_c} U_c^{mon} - 1$ is strictly pseudomonotone. For \Cref{lem:strict_pm} assume $\ip{f(x)}{u} = 0$, then
   \begin{equation}
     \ip{x}{u}\frac{N_c \beta_c }{K\phi + K_0} + \frac{\ip{\sigma_p}{h}}{F_p + \ip{\sigma_p}{x}} = 0
@@ -230,13 +234,13 @@ This allows us to state our main result on the behaviorally modified Rosenzweig-
     \label{eq:fin_exist}
     \norm{\sigma_c}_2^2 + \norm{\sigma_p}_2^2 - \norm{\sigma_c}_1 - \norm{\sigma_p}_1 - G_1(\sigma_c,\sigma_p) - G_2(\sigma_c,\sigma_p)
   \end{equation}
-  where $G_1,G_2$ are uniformly bounded. Recall that constraining the problem to $K$ is equivalent to $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Therefore \Cref{eq:du} is only negative on a bounded subset of $K$, showing existence of a solution to the variational inequality by \Cref{thm:existence}.
+  where $G_1,G_2$ are uniformly bounded. Recall that constraining the problem to $P_{2,\mu}$ is equivalent to $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Therefore \Cref{eq:du} is only negative on a bounded subset of $P_{2,\mu}$. By by \Cref{thm:existence} this shows existence of a solution to the variational inequality defined by the function \Cref{eq:var_ineq}.
 
 \end{proof}
-Since we are also interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we are interested in showing that the fixed-point of the dynamics exists and is unique.
+Since we are interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we would like to show that a fixed-point of the dynamics exists and is unique.
 \begin{corollary}
   The population game \Cref{eq:dynamics} has a unique fixed point.
 \end{corollary}
 \begin{proof}
-Here we can directly use the theory we have developed.  Both $f_1/N_c$ and $f_2/N_p$ are strictly monotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
+Here we can directly use the theory we have developed.  Both $f_1/N_c$ and $f_2/N_p$ are strictly monotone, hence strictly pseudomonotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
 \end{proof}
