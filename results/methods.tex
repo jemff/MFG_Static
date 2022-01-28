@@ -160,26 +160,42 @@ Having established the general theory for Nash equilibria, and demonstrated how 
 %Having established the general framework, we can proceed to defining the concrete model of interest.
 We consider a predator-prey system modeled as a Rosenzweig-MacArthur system, where the predators are specialized so that their hunting success is maximal in the most productive zone of the habitat.
 We assume that predators $(N_p)$ and consumers $(N_c)$ inhabit the interval $[0,1]$, and $P_{2,\mu}$ are square-integrable probability densities which are absolutely continuous with respect to the Lebesgue measure. The mean strategy of the predator and consumer populations is, respectively $\overbar{\sigma}_c$, and $\overbar{\sigma}_p$.
-The population dynamics are a modified Rosenzweig-MacArthur system. The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate.
-Consumption events are assumed local, so the expected encounter rate between predators and prey is $N_c N_p \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. To model intraspecific predator competition, we have added a term $N_p c\ip{\beta \overbar{\sigma}_p}{\overbar{\sigma}_p}$ where $c$ is a competition parameter. The carrying capacity is $K\phi + K_0$, where $\phi$ is a distribution, and $K_0$ is the minimal carrying capacity. Denote the maximal predator consumption rate by $F_p$, then the dynamics are:
+The population dynamics are a modified Rosenzweig-MacArthur system, where do not need to model a dynamic environment. We assume a consumer population with a Type I functional response foraging in an environment with a heterogeneous carrying capacity. We model this as a carrying capacity $K_0 + K \phi$ where $K_0$ is the minimal carrying capacity, $K$ is the varying capacity and $\phi$ is a probability density function. In the model, we set  $\phi = \frac{\exp(-3 x)}{\int_0^1 \exp(-3 x) dx}$
+
+We assume that the maximal potential growth for a consumer from a location depends both on the carrying capacity and how many consumers are already occupying the spot. With this in mind, the pr. capita consumer growth term $G_c$ is
+\begin{equation}
+  G_c(N_c, \overbar{\sigma}_c) = \pa{\ip{\overbar{\sigma}_c}{1-N_c \frac{\overbar{\sigma}_c}{K\phi + K_0}}}
+\end{equation}
+The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate. Conceretely, we set $\beta_p(x) = 5 \frac{\exp(-(3 x)^2) + \beta_0}{\int_0^1 \exp(-(3 x)^2) + \beta_0 dx}$
+ defined as
 \begin{align}
-  \dot{N_c} &= f_c = N_c \pa{\ip{\overbar{\sigma}_c}{1-N_c \frac{\sigma_c \overbar{\sigma}_c}{K\phi + K_0}} - \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_p}{F_p + \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c} N_c} } \\
-  \dot{N_p} &= f_p = N_p \pa{\epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c} - c \ip{\overbar{\sigma}_p}{\beta_p \overbar{\sigma}_p}  - \mu_p}
-  \label{eq:dynamics}
-\end{align}
-the functions $\beta_p$ and $\phi$ are defined as
-\begin{align}
-  \beta_p &= 5 \frac{\exp(-(3 x)^2) + \beta_0}{\int_0^1 \exp(-(3 x)^2) + \beta_0 dx} \\
-  \phi &= \frac{\exp(-3 x) + K_0}{\int_0^1 \exp(-3 x) dx + K_0 }
 \end{align}
 The choice of functions reflect a heterogeneous productivity and a predator specialized in hunting in the most productive zones.
+
+
+We assume the maximal predator consumption rate is $F_p$, and the predators have a conversion efficiency of $\epsilon$.
+Consumption events are assumed local, so the expected encounter rate between predators and prey is $N_c N_p \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. We assume that predators have a Type II functional response, and their consumption is limited by prey-capture not digestion, which causes a non-linearity in the functional response as a function of the strategy \citep{Kioerboe2018}. This gives a a pr. capita predator growth rate $G_p$:
+\begin{equation}
+  G_p(N_p\overbar{\sigma}_p, N_c \overbar{\sigma}_c )= \epsilon\frac{F_p \ip{\beta_p \overbar{N_c \sigma}_c}{\overbar{\sigma}_p} }{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}
+\end{equation}
+This allows us to define the consumer mortality $M_c = \frac{\epsilon}G_p$. Predator mortality stems both from a metabolic loss $\mu_p$ and intraspecific predator competition, which we assume leads to a Type I loss for predators as there is no satiation. We assume that predators are more competitive in the area where they are best specialized for hunting. Introducing a competition parameter $c$, the pr. capita predator mortality $M_p$ is:
+\begin{equation}
+  M_p(N_p\overbar{\sigma}_p) =  c \ip{\overbar{\sigma}_p}{N_p\beta_p \overbar{\sigma}_p}  - \mu_p
+\end{equation}
+Defining the pr. capita dynamics $f_c = G_c - M_c$ and $f_p = G_p - M_p$, we can write the dynamical system as:
+\begin{align}
+  \dot{N_c} &= N_c f_c
+  \dot{N_p} &= N_p f_p
+  \label{eq:dynamics}
+\end{align}
+
 \subsection{Existence and uniqueness of the equilibrium}
-As in \Cref{sec:general_setting} we model predator and consumer movement as instantaneous. Each predator and consumer seeks to maximize its growth at every instant. The growth of an individual depends on the mean-field strategies of both predators and consumers. Denoting the individual consumer and predator strategies by $\sigma_c$ and $\sigma_p$ respectively, the instantaneous growths $U_c,U_p$ for a consumer and predator are:
+As in \Cref{sec:general_setting} we model predator and consumer movement as instantaneous. Each predator and consumer seeks to maximize its growth at every instant. The growth of an individual depends on the mean-field strategies of both predators and consumers. Denoting the individual consumer and predator strategies by $\sigma_c$ and $\sigma_p$ respectively, the instantaneous growth rates $U_c,U_p$ for an individual consumer and predator are:
 \begin{align}
   U_c(\sigma_c, N_c \overbar{\sigma}_c, N_p\overbar{\sigma}_p) &= \ip{\beta_c \sigma_c}{1-\frac{\sigma_c \overbar{\sigma}_c N_c}{K\phi + K_0}} - \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} N_p}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c} \\
   U_p(\sigma_p, N_p \overbar{\sigma}_c, \overbar{\sigma}_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c} - c \ip{\sigma_p}{\beta_p \overbar{\sigma}_p}  - \mu_p
 \end{align}
-Denote the optimum by $^*$. At the Nash equilibrium $\sigma_c^*=\overbar{\sigma}_c$ and $\sigma_p^* = \overbar{\sigma}_p$. We convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:correspondence}
+Denote the optimum by $^*$. At the Nash equilibrium of the mean-field game $\sigma_c^*=\overbar{\sigma}_c$ and $\sigma_p^* = \overbar{\sigma}_p$. We convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:correspondence}
 \begin{align}
   \label{eq:mon_eq_forms}
   U_c^{mon}(\sigma_c, \sigma_p, N_c, N_p) &= \ip{\beta_c \sigma_c}{1-\frac{3}{2}\frac{\sigma_c^2 N_c}{K\phi + K_0}} - N_p\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} \\
@@ -241,7 +257,7 @@ This allows us to state our main result on the behaviorally modified Rosenzweig-
   where $G_1,G_2$ are uniformly bounded. Recall that constraining the problem to $P_{2,\mu}$ is equivalent to $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Therefore \Cref{eq:du} is only negative on a bounded subset of $P_{2,\mu}$. By by \Cref{thm:existence} this shows existence of a solution to the variational inequality defined by the function \Cref{eq:var_ineq}.
 
 \end{proof}
-Since we are interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we would like to show that a fixed-point of the dynamics exists and is unique.
+Since we are interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we show that a fixed-point of the population dynamics exists and is unique.
 \begin{corollary}
   The population game \Cref{eq:dynamics} has a unique fixed point.
 \end{corollary}
