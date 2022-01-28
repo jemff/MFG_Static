@@ -78,19 +78,19 @@ The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to 
 \end{equation}
 To simplify \Cref{eq:KKT_total}, we define $dU = \begin{pmatrix} \nabla_{\sigma_1} U_1 \\
     \vdots \\
-    \nabla_{\sigma_N} U_N \end{pmatrix}$, $S=(\sigma_i)_{i=1}^M$, and $\lambda = (\lambda_i)_{i=1}^M$. Then the problem can be restated as
+    \nabla_{\sigma_N} U_N \end{pmatrix}$, $S=(\sigma_i)_{i=1}^M$, and $\Lambda = (\lambda_i)_{i=1}^M$. Then the problem can be restated as
 \begin{equation}
   \label{eq:complementarity_form}
-  \ip{dU(S)+\lambda}{S} = 0 \\
-  \ip{S_i-1}{1}\lambda = 0
-  -dU(S)-\lambda \geq 0 \\
+  \ip{dU(S)+\Lambda}{S} = 0 \\
+  \ip{S_i-1}{1}\Lambda = 0
+  -dU(S)-\Lambda \geq 0 \\
   \ip{S_i-1}{1} \in \{0 \}
   S\geq 0
-  \lambda \in \R
+  \Lambda \in \R^M
 \end{equation}
 which is a complementarity problem with $K = (H_+ \osum \R)^M$, $K^* = (H_+ \osum \{0\})^M$ and
 \begin{equation}
-  T(S,\lambda)=\begin{pmatrix} dU(S) + \lambda \\ (\ip{\sigma_i}{1} - 1)_{i=1}^M \end{pmatrix}
+  T(S,\lambda)=\begin{pmatrix} dU(S) + \Lambda \\ (\ip{\sigma_i}{1} - 1)_{i=1}^M \end{pmatrix}
 \end{equation}
 If we do not include the criterion $\int \sigma_i dx = 1$ as a Lagrange multiplier, but instead optimize over the convex set $P_\mu(X)$, the problem  becomes finding a vector $S = (\sigma_i)_{i=1}^M$ that minimizes
 \begin{equation}
