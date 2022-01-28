@@ -127,26 +127,30 @@ If a monomorphic equivalent game exists, it becomes possible to study the monomo
 With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of population games with strictly pseudoconvex monomorphic equivalent payoff functions and bounded dynamics.
 \begin{theorem}
   \label{thm:pop_game_exists_unique}
-  A population game with $N$ populations and dynamics specified by $f_i$, with strictly pseudoconvex monomorphic equivalent functions payoff $U^{mon}_i$ and strategies $\sigma_i$ has a unique fixed point with a unique Nash equilibrium if $f_i/x_i$ are strictly pseudomonotone and satisfy \Cref{thm:existence}, and the set of fixed points of $f_i$ is uniformly bounded in $\sigma$.
+  We have a population game with $M$ populations of size $N_i$, payoff functions $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M, R)$ and dynamics given by $f_i(N_j \overbar{\sigma}_j)_{j=1}^M, R),r((N_j \overbar{\sigma}_j)_{j=1}^M, R)$:
+  \begin{equation}
+    \dot{R} = r
+    \dot{N_i} = N_i f_i
+  \end{equation}
+  Assume that the functions $f_i$ are strictly pseudomonotone, and that the set of stationary points of the dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$. Let the derivatives of the payoff functions $U_i$ evaluated in $\sigma_i = \overbar{\sigma}_i$ be strictly pseudomonotone, and satisfy \Cref{thm:existence}. Then the population game has a unique fixed point with a unique Nash equilibrium
 \end{theorem}
 \begin{proof}
-  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a complementarity problem over $(H_+ \osum \R)^M$ with operator $dU = (\nabla_{\sigma_i} U_i)_{i=1}^M$. The solution operator is a continuous mapping $G: (H_+ \osum \{0\})^M \to \R^M$, \cite[Theorem 4.2]{barbagallo2009continuity}. Likewise, due to the assumptions on $f_i$ the complementarity problem $\ip{(f_i)_{i=1}^M(x)}{x}$ has a unique solution for every $\sigma$. Denote this solution function by $F$.
+  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $dU = (\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i})_{i=1}^M$. The solution operator is a continuous mapping $G: P_{2,\mu}^M \to \R^M$, \cite[Theorem 4.2]{barbagallo2009continuity}. Likewise, due to the assumptions on $f_i$ the variational inequality on $\R^M$ defined by $(f_i)_{i=1}^M$ has a unique solution for every $\sigma$. Denote this solution function by $F$, which is once again continuous.
 
-  Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ H: \R_+^M \to \R_+^M$. Since the set of fixed bounds is assumed bounded, $F$ has compact range, and $F\circ G$ has compact range. Therefore $F\circ G:\R^M \to \R^M has a fixed point by Schauders fixed point theorem.
-
-  For uniqueness, for each vector $\sigma$, the variational inequality
+  Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ H: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded, $F$ has compact range, and $F\circ G$ has compact range. Therefore $F\circ G:\R^M \to \R^M$ has a fixed point by Schauders fixed point theorem.
+  For uniqueness, note that for each vector $\sigma$, the variational inequality
   \begin{equation}
-    x \in \R_+^M, \ip{(f_i/x_i)_{i=1}^M(x)}{y-x}\geq 0 \quad y\in \R_+^M
+    x \in \R_+^M, \ip{(f_i_{i=1}^M(x)}{y-x}\geq 0 \quad y\in \R_+^M
   \end{equation}
-  has a unique solution, by strict pseudomonotonicity of $f_i/x_i$. If we append the two operators $(f_i)_{i=1}^M$ and $dU$, we get a single strictly pseudomonotone variational inequality, where there exists a unique solution, since all terms are strictly pseudomonotone.
- Therefore the simultaneous problem
-\begin{equation}
-  \begin{split}
-  S\in P_{2,\mu}^M, \ip{dU(S))}{S'-S} \geq 0, \quad S' \in P_{2,\mu}^M \\
-  x \in \R_+^M, \ip{(f_i/x_i)_{i=1}^N(x)}{y-x}\geq 0 \quad y\in \R_+^M
-\end{split}
-\end{equation}
-  has a unique solution, showing the existence and uniqueness of a fixed point for a population game.
+  has a unique solution, by strict pseudomonotonicity of $f_i$. If we append the two operators $(f_i)_{i=1}^M$ and $dU$, we get a single strictly pseudomonotone variational inequality, where the solution is unique if it exists.
+   Therefore the simultaneous problem
+  \begin{equation}
+    \begin{split}
+    S\in P_{2,\mu}^M, \ip{dU(S))}{S'-S} \geq 0, \quad S' \in P_{2,\mu}^M \\
+    x \in \R_+^M, \ip{(f_i)_{i=1}^M(x)}{y-x}\geq 0 \quad y\in \R_+^M
+  \end{split}
+  \end{equation}
+    has a unique solution, showing the existence and uniqueness of a fixed point for a population game.
 \end{proof}
 Remark that the assumption of uniformly bounded fixed-point space as a function of the strategies is biologically reasonable, since e.g. Type II growth functions are uniformly bounded and a metabolic loss is usually constant.
 
