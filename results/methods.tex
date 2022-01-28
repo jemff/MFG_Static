@@ -174,11 +174,11 @@ The choice of functions reflect a heterogeneous productivity and a predator spec
 
 
 We assume the maximal predator consumption rate is $F_p$, and the predators have a conversion efficiency of $\epsilon$.
-Consumption events are assumed local, so the expected encounter rate between predators and prey is $N_c N_p \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. We assume that predators have a Type II functional response, and their consumption is limited by prey-capture not digestion, which causes a non-linearity in the functional response as a function of the strategy \citep{Kioerboe2018}. This gives a a pr. capita predator growth rate $G_p$:
+Consumption events are assumed local, so the expected encounter rate between predators and prey is $N_c N_p \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. We assume that predators have a Type II functional response, and their consumption is limited by prey-capture not digestion, which causes a non-linearity in the functional response as a function of the strategy \citep{Kioerboe2018}. This gives a pr. capita predator growth rate $G_p$:
 \begin{equation}
   G_p(N_p\overbar{\sigma}_p, N_c \overbar{\sigma}_c )= \epsilon\frac{F_p \ip{\beta_p \overbar{N_c \sigma}_c}{\overbar{\sigma}_p} }{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}
 \end{equation}
-This allows us to define the consumer mortality $M_c = \frac{\epsilon}G_p$. Predator mortality stems both from a metabolic loss $\mu_p$ and intraspecific predator competition, which we assume leads to a Type I loss for predators as there is no satiation. We assume that predators are more competitive in the area where they are best specialized for hunting. Introducing a competition parameter $c$, the pr. capita predator mortality $M_p$ is:
+This allows us to define the pr. capita consumer mortality $M_c = \frac{N_p}{\epsilon N_c}G_p$. Predator mortality stems both from a metabolic loss $\mu_p$ and intraspecific predator competition, which we assume leads to a Type I loss for predators as there is no satiation. We assume that predators are more competitive in the area where they are best specialized for hunting. Introducing a competition parameter $c$, the pr. capita predator mortality $M_p$ is:
 \begin{equation}
   M_p(N_p\overbar{\sigma}_p) =  c \ip{\overbar{\sigma}_p}{N_p\beta_p \overbar{\sigma}_p}  - \mu_p
 \end{equation}
@@ -190,18 +190,35 @@ Defining the pr. capita dynamics $f_c = G_c - M_c$ and $f_p = G_p - M_p$, we can
 \end{align}
 
 \subsection{Existence and uniqueness of the equilibrium}
-As in \Cref{sec:general_setting} we model predator and consumer movement as instantaneous. Each predator and consumer seeks to maximize its growth at every instant. The growth of an individual depends on the mean-field strategies of both predators and consumers. Denoting the individual consumer and predator strategies by $\sigma_c$ and $\sigma_p$ respectively, the instantaneous growth rates $U_c,U_p$ for an individual consumer and predator are:
+As in \Cref{sec:general_setting} we model predator and consumer movement as instantaneous. Each predator and consumer seeks to maximize its growth at every instant. Denote the strategies of a focal consumer and predator by $\sigma_c$ and $\sigma_p$ respectively.  The growth of the focal individual depends on the mean-field strategies of both predators and consumers, and can be arrived at by modifying the expressions for $G_c,M_c$ and $G_p, M_p$ carefully.
+The growth $G_c^{ind}$ of an individual consumer is
+\begin{equation}
+  G_c^{ind} = \pa{\ip{\sigma_c}{1-N_c \frac{\overbar{\sigma}_c}{K\phi + K_0}}}
+\end{equation}
+as the initial growth term depends on the choices of the consumer, while the available food depends on the distribution of the population. The loss from predation for an individual is more complex, since the encounter with a predator depends on the strategy of the focal consumer, while the satiation of the predator depends on how many total consumers it encounters, hence the population mean. The individual mortality $M_c^{ind}$ is
+\begin{equation}
+  M_c^{ind} =  \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} N_p}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}
+\end{equation}
+Going to a focal predator, the growth $G_p^{ind}$ of an individual predator has the same expression as the pr. capita growth, since the satiation has no density dependence on the predator population.
+\begin{equation}
+  G_p^{ind} = \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}
+\end{equation}
+where the individual predator mortality $M_p^{ind}$ depends on both the choice of the individual and the distribution of the entire predator population.
+\begin{equation}
+  M_p^{ind} =  c \ip{\sigma_p}{N_p\beta_p \overbar{\sigma}_p}  - \mu_p
+\end{equation}
+The instantaneous growth rates $U_c,U_p$ for an individual consumer and predator are:
 \begin{align}
-  U_c(\sigma_c, N_c \overbar{\sigma}_c, N_p\overbar{\sigma}_p) &= \ip{\beta_c \sigma_c}{1-\frac{\sigma_c \overbar{\sigma}_c N_c}{K\phi + K_0}} - \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} N_p}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c} \\
-  U_p(\sigma_p, N_p \overbar{\sigma}_c, \overbar{\sigma}_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c} - c \ip{\sigma_p}{\beta_p \overbar{\sigma}_p}  - \mu_p
+  U_c(\sigma_c, N_c \overbar{\sigma}_c, N_p\overbar{\sigma}_p) &=  G_c^{ind} - M_c^{ind} \\
+  U_p(\sigma_p, N_p \overbar{\sigma}_c, \overbar{\sigma}_p) &=
 \end{align}
-Denote the optimum by $^*$. At the Nash equilibrium of the mean-field game $\sigma_c^*=\overbar{\sigma}_c$ and $\sigma_p^* = \overbar{\sigma}_p$. We convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:correspondence}
+We convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:correspondence}, writing out the entire expressions
 \begin{align}
   \label{eq:mon_eq_forms}
-  U_c^{mon}(\sigma_c, \sigma_p, N_c, N_p) &= \ip{\beta_c \sigma_c}{1-\frac{3}{2}\frac{\sigma_c^2 N_c}{K\phi + K_0}} - N_p\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} \\
+  U_c^{mon}(\sigma_c, \sigma_p, N_c, N_p) &= \ip{\beta_c \sigma_c}{1-\frac{1}{2}\frac{\sigma_c^2 N_c}{K\phi + K_0}} - N_p\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} \\
   U_p^{mon}(\sigma_p, \sigma_c, N_c, N_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} - \frac{1}{2}c \ip{\sigma_p}{\beta_p \sigma_p}N_p  - \mu_p
 \end{align}
-We need to verify that $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex, as well as show existence. To this end, we state a characterization of strict pseudomonotonicity for differentiable functions.
+We need to verify that $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex for uniqueness of the Nash equilibrium, as well as show existence of the equilibrium. To this end, we state another characterization of strict pseudomonotonicity for differentiable functions.
 \begin{lemma}
   \label{lem:strict_pm}
   Let $K$ be a convex subset of $H$. A function $f: K \to \R$ is strictly pseudomonotone if
@@ -210,7 +227,7 @@ We need to verify that $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex, 
   \end{equation}
 \end{lemma}
 A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}.
-Another small lemma we need is a reduction for pseudomonotone functions.
+Another small lemma we need is a reduction for pseudomonotone functions from $P_{2,\mu}$.
 \begin{lemma}
   \label{lem:pseudo_reduc}
   A function $g: P_{2,\mu} \to H$ is pseudomonotone if and only if $g+\lambda$ is pseudomonotone for any $\lambda \in \R$.
@@ -262,5 +279,5 @@ Since we are interested in the fixed-points of the population dynamics \Cref{eq:
   The population game \Cref{eq:dynamics} has a unique fixed point.
 \end{corollary}
 \begin{proof}
-Here we can directly use the theory we have developed.  Both $f_1/N_c$ and $f_2/N_p$ are strictly monotone, hence strictly pseudomonotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
+Here we can directly use the theory we have developed.  Both $f_c$ and $f_p$ are strictly monotone, hence strictly pseudomonotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
 \end{proof}
