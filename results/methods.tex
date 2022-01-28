@@ -120,7 +120,7 @@ As a consequence of \Cref{thm:nash_unique}, we can introduce an equilibrium betw
 \begin{definition}
   \label{def:correspondence}
   Consider a mean-field game with populations $N_1,\dots,N_M$ with individual payoffs $U_i(\sigma_i, (\overbar{\sigma}_j)_{j=1}^M, (N_j)_{j=1}^M)$. Assume $\nabla_{\sigma_i}U_i\mid_{\sigma_i=\overbar{\sigma}_i}$ admits a primitive $U_i^{mon}$ such that $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$.
-   We define the monomorphic equivalent game as the monomorphic game specified by the payoff functions $U_i^{mon}$.
+   We define the monomorphic equivalent game as the game with monomorphic populations specified by the payoff functions $U_i^{mon}$.
 \end{definition}
 If a monomorphic equivalent game exists, it becomes possible to study the monomorphic game instead and e.g. use strict pseudoconvexity to establish strict pseudomonotonicity.
 
@@ -130,11 +130,11 @@ With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of
   A population game with $N$ populations and dynamics specified by $f_i$, with strictly pseudoconvex monomorphic equivalent functions payoff $U^{mon}_i$ and strategies $\sigma_i$ has a unique fixed point with a unique Nash equilibrium if $f_i/x_i$ are strictly pseudomonotone and satisfy \Cref{thm:existence}, and the set of fixed points of $f_i$ is uniformly bounded in $\sigma$.
 \end{theorem}
 \begin{proof}
-  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a complementarity problem over $(H_+ \osum \R)^M$ with operator $dU = (\nabla_{\sigma_i} U_i)_{i=1}^M$. The solution specifies a continuous mapping $G: (H_+ \osum \{0\})^M \to \R^M$, \cite[Theorem 4.2]{barbagallo2009continuity}. Likewise, due to the assumptions on $f_i$ the complementarity problem $\ip{(f_i)_{i=1}^M(x)}{x}$ has a unique solution for every $\sigma$. Denote this solution function by $F$.
+  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a complementarity problem over $(H_+ \osum \R)^M$ with operator $dU = (\nabla_{\sigma_i} U_i)_{i=1}^M$. The solution operator is a continuous mapping $G: (H_+ \osum \{0\})^M \to \R^M$, \cite[Theorem 4.2]{barbagallo2009continuity}. Likewise, due to the assumptions on $f_i$ the complementarity problem $\ip{(f_i)_{i=1}^M(x)}{x}$ has a unique solution for every $\sigma$. Denote this solution function by $F$.
 
-  Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ H: \R_+^M \to \R_+^M$. Since $F$ is assumed to be uniformly bounded, hence has compact range, $F\circ G$ has compact range. Therefore $F\circ G$ has a fixed point by Schauders fixed point theorem.
+  Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ H: \R_+^M \to \R_+^M$. Since the set of fixed bounds is assumed bounded, $F$ has compact range, and $F\circ G$ has compact range. Therefore $F\circ G:\R^M \to \R^M has a fixed point by Schauders fixed point theorem.
 
-  For uniqueness, note that for each vector $\sigma$, the variational inequality
+  For uniqueness, for each vector $\sigma$, the variational inequality
   \begin{equation}
     x \in \R_+^M, \ip{(f_i/x_i)_{i=1}^M(x)}{y-x}\geq 0 \quad y\in \R_+^M
   \end{equation}
