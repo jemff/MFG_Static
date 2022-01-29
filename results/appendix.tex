@@ -40,8 +40,17 @@ The problem of existence and uniqueness of a Nash equilibrium has been reduced t
   \end{equation}
   is bounded.
 \end{enumerate}
-\begin{comment}
+We also state another characterization of strict pseudomonotonicity for differentiable functions, since this criterion is easier to check in practice than going to the definition.
+\begin{lemma}
+  \label{lem:strict_pm}
+  Let $K$ be a convex subset of $H$. A function $f: K \to \R$ is strictly pseudomonotone if
+  \begin{equation}o
+    \ip{f(x)}{u} = 0 \Rightarrow \ip{(\nabla_x f(x))h}{h} > 0
+  \end{equation}
+\end{lemma}
+A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}
 
+\begin{comment}
 
 \citep[Theorem 3.6]{maugeri2009existence}, which we restate.
 \begin{theorem}

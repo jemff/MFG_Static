@@ -140,9 +140,9 @@ With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of
   Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ H: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded, $F$ has compact range, and $F\circ G$ has compact range. Therefore $F\circ G:\R^M \to \R^M$ has a fixed point by Schauders fixed point theorem.
   For uniqueness, note that for each vector $\sigma$, the variational inequality
   \begin{equation}
-    x \in \R_+^M, \ip{(f_i_{i=1}^M(x)}{y-x}\geq 0 \quad y\in \R_+^M
+    x \in \R_+^M, \ip{(f_i)_{i=1}^M(x)}{y-x}\geq 0 \quad y\in \R_+^M
   \end{equation}
-  has a unique solution, by strict pseudomonotonicity of $f_i$. If we append the two operators $(f_i)_{i=1}^M$ and $dU$, we get a single strictly pseudomonotone variational inequality, where the solution is unique if it exists.
+  has a unique solution, by strict pseudomonotonicity of $f_i$. If we append the two operators $(f_i)_{i=1}^M$ and $dU$ we get a single strictly pseudomonotone variational inequality, where the solution is unique.
    Therefore the simultaneous problem
   \begin{equation}
     \begin{split}
@@ -159,28 +159,27 @@ Having established the general theory for Nash equilibria, and demonstrated how 
 \label{sec:model_rm}
 %Having established the general framework, we can proceed to defining the concrete model of interest.
 We consider a predator-prey system modeled as a Rosenzweig-MacArthur system, where the predators are specialized so that their hunting success is maximal in the most productive zone of the habitat.
-We assume that predators $(N_p)$ and consumers $(N_c)$ inhabit the interval $[0,1]$, and $P_{2,\mu}$ are square-integrable probability densities which are absolutely continuous with respect to the Lebesgue measure. The mean strategy of the predator and consumer populations is, respectively $\overbar{\sigma}_c$, and $\overbar{\sigma}_p$.
-The population dynamics are a modified Rosenzweig-MacArthur system, where do not need to model a dynamic environment. We assume a consumer population with a Type I functional response foraging in an environment with a heterogeneous carrying capacity. We model this as a carrying capacity $K_0 + K \phi$ where $K_0$ is the minimal carrying capacity, $K$ is the varying capacity and $\phi$ is a probability density function. In the model, we set  $\phi = \frac{\exp(-3 x)}{\int_0^1 \exp(-3 x) dx}$
+We assume that predators $(N_p)$ and consumers $(N_c)$ inhabit the interval $[0,1]$, with $P_{2,\mu}$ as square-integrable probability densities on $[0,1]$. The mean strategies of the predator and consumer populations are $\overbar{\sigma}_c$, and $\overbar{\sigma}_p$ respectively.
+The population dynamics are a modified Rosenzweig-MacArthur system, where do not need to model a dynamic environment. We assume a consumer population with a Type I functional response foraging in an environment with a heterogeneous carrying capacity. We model this as a carrying capacity $K_0 + K \phi$ where $K_0$ is the minimal carrying capacity, $K$ is the varying capacity and $\phi$ is a probability density function. In the model, we set  $\phi = \frac{\exp(-3 x)}{\int_0^1 \exp(-3 x) dx}$.
 
 We assume that the maximal potential growth for a consumer from a location depends both on the carrying capacity and how many consumers are already occupying the spot. With this in mind, the pr. capita consumer growth term $G_c$ is
 \begin{equation}
   G_c(N_c, \overbar{\sigma}_c) = \pa{\ip{\overbar{\sigma}_c}{1-N_c \frac{\overbar{\sigma}_c}{K\phi + K_0}}}
 \end{equation}
+
+
+
 The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate. Conceretely, we set $\beta_p(x) = 5 \frac{\exp(-(3 x)^2) + \beta_0}{\int_0^1 \exp(-(3 x)^2) + \beta_0 dx}$
  defined as
 \begin{align}
 \end{align}
-The choice of functions reflect a heterogeneous productivity and a predator specialized in hunting in the most productive zones.
-
-
-We assume the maximal predator consumption rate is $F_p$, and the predators have a conversion efficiency of $\epsilon$.
-Consumption events are assumed local, so the expected encounter rate between predators and prey is $N_c N_p \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. We assume that predators have a Type II functional response, and their consumption is limited by prey-capture not digestion, which causes a non-linearity in the functional response as a function of the strategy \citep{Kioerboe2018}. This gives a pr. capita predator growth rate $G_p$:
+The choice of functions reflect a heterogeneous productivity and a predator specialized in hunting in the most productive zones. We assume the maximal predator consumption rate is $F_p$, and the predators have a conversion efficiency of $\epsilon$. Consumption events are assumed local, so the expected encounter rate between predators and prey is $N_c N_p \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. We assume that predators have a Type II functional response, and their consumption is limited by prey-capture not digestion, which causes a non-linearity in the functional response as a function of the strategy \citep{Kioerboe2018}. This gives a pr. capita predator growth rate $G_p$:
 \begin{equation}
-  G_p(N_p\overbar{\sigma}_p, N_c \overbar{\sigma}_c )= \epsilon\frac{F_p \ip{\beta_p \overbar{N_c \sigma}_c}{\overbar{\sigma}_p} }{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}
+  G_p(N_p, \overbar{\sigma}_p, N_c, \overbar{\sigma}_c )= \epsilon\frac{F_p \ip{\beta_p \overbar{N_c \sigma}_c}{\overbar{\sigma}_p} }{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}
 \end{equation}
 This allows us to define the pr. capita consumer mortality $M_c = \frac{N_p}{\epsilon N_c}G_p$. Predator mortality stems both from a metabolic loss $\mu_p$ and intraspecific predator competition, which we assume leads to a Type I loss for predators as there is no satiation. We assume that predators are more competitive in the area where they are best specialized for hunting. Introducing a competition parameter $c$, the pr. capita predator mortality $M_p$ is:
 \begin{equation}
-  M_p(N_p\overbar{\sigma}_p) =  c \ip{\overbar{\sigma}_p}{N_p\beta_p \overbar{\sigma}_p}  - \mu_p
+  M_p(N_p, \overbar{\sigma}_p) =  c \ip{\overbar{\sigma}_p}{N_p\beta_p \overbar{\sigma}_p}  - \mu_p
 \end{equation}
 Defining the pr. capita dynamics $f_c = G_c - M_c$ and $f_p = G_p - M_p$, we can write the dynamical system as:
 \begin{align}
@@ -189,7 +188,7 @@ Defining the pr. capita dynamics $f_c = G_c - M_c$ and $f_p = G_p - M_p$, we can
   \label{eq:dynamics}
 \end{align}
 
-\subsection{Existence and uniqueness of the equilibrium}
+\subsection{The instantaneous game}
 As in \Cref{sec:general_setting} we model predator and consumer movement as instantaneous. Each predator and consumer seeks to maximize its growth at every instant. Denote the strategies of a focal consumer and predator by $\sigma_c$ and $\sigma_p$ respectively.  The growth of the focal individual depends on the mean-field strategies of both predators and consumers, and can be arrived at by modifying the expressions for $G_c,M_c$ and $G_p, M_p$ carefully.
 The growth $G_c^{ind}$ of an individual consumer is
 \begin{equation}
@@ -218,16 +217,9 @@ We convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:
   U_c^{mon}(\sigma_c, \sigma_p, N_c, N_p) &= \ip{\beta_c \sigma_c}{1-\frac{1}{2}\frac{\sigma_c^2 N_c}{K\phi + K_0}} - N_p\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} \\
   U_p^{mon}(\sigma_p, \sigma_c, N_c, N_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} - \frac{1}{2}c \ip{\sigma_p}{\beta_p \sigma_p}N_p  - \mu_p
 \end{align}
-We need to verify that $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex for uniqueness of the Nash equilibrium, as well as show existence of the equilibrium. To this end, we state another characterization of strict pseudomonotonicity for differentiable functions.
-\begin{lemma}
-  \label{lem:strict_pm}
-  Let $K$ be a convex subset of $H$. A function $f: K \to \R$ is strictly pseudomonotone if
-  \begin{equation}o
-    \ip{f(x)}{u} = 0 \Rightarrow \ip{(\nabla_x f(x))h}{h} > 0
-  \end{equation}
-\end{lemma}
-A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}.
-Another small lemma we need is a reduction for pseudomonotone functions from $P_{2,\mu}$.
+\subsection{Existence and uniquenss of Nash and population equilibria}
+In order to establish existence and uniqueness of the Nash equilibrium we show $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex, and show that the variational inequality defined by their derivatives admits a solution.
+A small lemma we need is a reduction for pseudomonotone functions from $P_{2,\mu}$.
 \begin{lemma}
   \label{lem:pseudo_reduc}
   A function $g: P_{2,\mu} \to H$ is pseudomonotone if and only if $g+\lambda$ is pseudomonotone for any $\lambda \in \R$.
