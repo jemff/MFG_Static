@@ -239,15 +239,15 @@ This allows us to state our main result on the behaviorally modified Rosenzweig-
     \label{eq:var_ineq}
     dU = \begin{pmatrix}-\nabla_{\sigma_c} U_c^{mon} \\ -\nabla_{\sigma_p} U_p^{mon}\end{pmatrix}
   \end{equation} satisfies the criteria of \Cref{thm:existence}.
-  We start by showing the strict pseudoconvexity. The function $-U_p^{mon}$ is strictly convex, as it has strictly positive second derivative with respect $\sigma_p$. Hence it is also strictly pseudoconvex. Consider $-U_c^{mon}$. To show strict pseudoconvexity, by \Cref{lem:pseudo_reduc} it suffices to show that $f = -\nabla_{\sigma_c} U_c^{mon} - 1$ is strictly pseudomonotone. For \Cref{lem:strict_pm} assume $\ip{f(x)}{u} = 0$, then
+  We start by showing the strict pseudoconvexity. The function $-U_p^{mon}$ is strictly convex, as it has strictly positive second derivative with respect $\sigma_p$. Hence it is also strictly pseudoconvex. Consider $-U_c^{mon}$. To show strict pseudoconvexity, by \Cref{lem:pseudo_reduc} it suffices to show that $f = -\nabla_{\sigma_c} U_c^{mon} + 1$ is strictly pseudomonotone. For \Cref{lem:strict_pm} assume $\ip{f(x)}{h} = 0$, then
   \begin{equation}
-    \ip{x}{u}\frac{N_c \beta_c }{K\phi + K_0} + \frac{\ip{\sigma_p}{h}}{F_p + \ip{\sigma_p}{x}} = 0
+    \ip{x \frac{N_c}{K\phi + K_0} }{h} + \frac{F_p^2 \ip{\beta_p \sigma_p}{h}}{F_p + \ip{\beta_p \sigma_p}{x}} = 0
   \end{equation}
-  Since every term is positive, $\ip{x}{u} = 0$ and $\ip{\sigma_p}{h} = 0$. If we consider
+  Since $K\phi + K_0$ and $\beta_p$ are everywhere positive, $\ip{x}{h} = 0$ and $\ip{\sigma_p}{h} = 0$ as otherwise the expression would be strictly positive. Then consider $H(x,u)$, defined below through the derivative of $f$.
   \begin{equation}
-    H(x,u)=\ip{(\nabla_x f)(x)u}{u} = \ip{u}{u}\frac{ C \beta_c }{K\phi + K_0} - \frac{\ip{\sigma_p}{u}\ip{\sigma_p}{h}}{F_p + \ip{\sigma_p}{x}}
+    H(x,u)=\ip{(\nabla_x f)(x)h}{h} = \ip{\frac{N_c}{K\phi + K_0}  h}{h} - \frac{\ip{F_p^3 \beta_p^2 \sigma_p}{h}}\ip{\beta_p \sigma_p}{h}}{(F_p + \ip{\beta_p \sigma_p}{x})^2}
   \end{equation}
-  then $H(x,u)>0$ since $\ip{\sigma_p}{u}=0$, so $H$ is strictly pseudomonotone by \Cref{lem:strict_pm}. Hence $-U_c^{mon}$ is strictly pseudoconvex.
+  Since $\ip{\sigma_p}{h}=0$ and $\frac{N_c}{K\phi + K_0}$ is everywhere positive, we conclude $H(x,u)>0$. Therefore $f$ is strictly pseudomonotone by \Cref{lem:strict_pm}, and $-U_c^{mon}$ is strictly pseudoconvex.
 
   To show that there exists a solution, start by noting that for all $w\in H^2$, $w\mapsto dU(w)$ is continuous, hence continuous on finite-dimensional subspaces, fulfilling the first part of \Cref{thm:existence}. For the second part,  consider
   \begin{equation}
