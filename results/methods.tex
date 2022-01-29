@@ -135,9 +135,9 @@ With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of
   Assume that the functions $f_i$ are strictly pseudomonotone, and that the set of stationary points of the dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$ and convex. Let the derivatives of the payoff functions $U_i$ evaluated in $\sigma_i = \overbar{\sigma}_i$ be strictly pseudomonotone and satisfy \Cref{thm:existence}. Then the population game has a unique fixed point with a unique Nash equilibrium
 \end{theorem}
 \begin{proof}
-  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $dU = (\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i})_{i=1}^M$. The solution operator is a continuous mapping $G: P_{2,\mu}^M \to \R^M$, \cite[Theorem 4.2]{barbagallo2009continuity}. Due to the assumptions on $f_i$ the variational inequality on $\R^M$ defined by $(f_i)_{i=1}^M$ corresponding to fixed points of the dynamics has a unique solution for every family $(\sigma_i)_{i=1}^M$. Denote this solution function which depends on $(\sigma_i)_{i=1}^M$ by $F$. $F$ is once again continuous.
+  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $dU = (\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i})_{i=1}^M$. The solution operator is a continuous mapping $G: \R_+^M \to P_{2,\mu}^M$, \cite[Theorem 4.2]{barbagallo2009continuity}. Due to the assumptions on $f_i$ the variational inequality on $\R^M$ defined by $(f_i)_{i=1}^M$ corresponding to fixed points of the dynamics has a unique solution $F$ for every family $(\sigma_i)_{i=1}^M$, and $F:P_{2,\mu}^M: \to \R^M_+$ is again continuous.
 
-  Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ H: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded and convex, $G$ has compact convex range, and $F\circ G$ has convex compact range. Therefore $F\circ G:\R^M \to \R^M$ has a fixed point $(x_1, \dots, x_m)$ by Schauders fixed point theorem.
+  Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ G: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded, $G$ has compact range, and $F\circ G$ has compact image. Therefore $F\circ G:\R_+^M \to \R_+^M$ has a fixed point $(x_1^*, \dots, x_m^*)$ by Schauder's fixed point theorem \citep[Theorem 3.2, p. 119]{granas2003elementary}. Likewise, the map $G\circ F:P_{2,\mu}^M \to P_{2,\mu}^M$ has a fixed point $(\sigma_1^*,\dots, \sigma_M^*)$, since it factorizes through a compact space.
   For uniqueness, note that for each $(\sigma_i)_{i=1}^M$, the variational inequality
   \begin{equation}
     x \in \R_+^M, \ip{(f_i)_{i=1}^M(x)}{y-x}\geq 0 \quad y\in \R_+^M
@@ -166,8 +166,6 @@ We assume that the maximal potential growth for a consumer from a location depen
 \begin{equation}
   G_c(N_c, \overbar{\sigma}_c) = \pa{\ip{\overbar{\sigma}_c}{1-N_c \frac{\overbar{\sigma}_c}{K\phi + K_0}}}
 \end{equation}
-
-
 
 The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate. Conceretely, we set $\beta_p(x) = 5 \frac{\exp(-(3 x)^2) + \beta_0}{\int_0^1 \exp(-(3 x)^2) + \beta_0 dx}$
  defined as
@@ -239,7 +237,7 @@ This allows us to state our main result on the behaviorally modified Rosenzweig-
     \label{eq:var_ineq}
     dU = \begin{pmatrix}-\nabla_{\sigma_c} U_c^{mon} \\ -\nabla_{\sigma_p} U_p^{mon}\end{pmatrix}
   \end{equation} satisfies the criteria of \Cref{thm:existence}.
-  We start by showing the strict pseudoconvexity. The function $-U_p^{mon}$ is strictly convex, as it has strictly positive second derivative with respect $\sigma_p$. Hence it is also strictly pseudoconvex. Consider $-U_c^{mon}$. To show strict pseudoconvexity, by \Cref{lem:pseudo_reduc} it suffices to show that $f = -\nabla_{\sigma_c} U_c^{mon} + 1$ is strictly pseudomonotone. For \Cref{lem:strict_pm} assume $\ip{f(x)}{h} = 0$, then
+  We start by showing the strict pseudoconvexity. The function $-U_p^{mon}$ is strictly convex, as it has strictly positive second derivative with respect $\sigma_p$ since $\beta_p$ is everywhere non-vanishing. Hence it is also strictly pseudoconvex. Consider $-U_c^{mon}$. To show strict pseudoconvexity, by \Cref{lem:pseudo_reduc} it suffices to show that $f = -\nabla_{\sigma_c} U_c^{mon} + 1$ is strictly pseudomonotone. For \Cref{lem:strict_pm} assume $\ip{f(x)}{h} = 0$, then
   \begin{equation}
     \ip{x \frac{N_c}{K\phi + K_0} }{h} + \frac{F_p^2 \ip{\beta_p \sigma_p}{h}}{F_p + \ip{\beta_p \sigma_p}{x}} = 0
   \end{equation}
