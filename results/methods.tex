@@ -132,13 +132,13 @@ With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of
     \dot{R} = r
     \dot{N_i} = N_i f_i
   \end{equation}
-  Assume that the functions $f_i$ are strictly pseudomonotone, and that the set of stationary points of the dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$. Let the derivatives of the payoff functions $U_i$ evaluated in $\sigma_i = \overbar{\sigma}_i$ be strictly pseudomonotone, and satisfy \Cref{thm:existence}. Then the population game has a unique fixed point with a unique Nash equilibrium
+  Assume that the functions $f_i$ are strictly pseudomonotone, and that the set of stationary points of the dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$ and convex. Let the derivatives of the payoff functions $U_i$ evaluated in $\sigma_i = \overbar{\sigma}_i$ be strictly pseudomonotone and satisfy \Cref{thm:existence}. Then the population game has a unique fixed point with a unique Nash equilibrium
 \end{theorem}
 \begin{proof}
-  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $dU = (\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i})_{i=1}^M$. The solution operator is a continuous mapping $G: P_{2,\mu}^M \to \R^M$, \cite[Theorem 4.2]{barbagallo2009continuity}. Likewise, due to the assumptions on $f_i$ the variational inequality on $\R^M$ defined by $(f_i)_{i=1}^M$ has a unique solution for every $\sigma$. Denote this solution function by $F$, which is once again continuous.
+  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $dU = (\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i})_{i=1}^M$. The solution operator is a continuous mapping $G: P_{2,\mu}^M \to \R^M$, \cite[Theorem 4.2]{barbagallo2009continuity}. Due to the assumptions on $f_i$ the variational inequality on $\R^M$ defined by $(f_i)_{i=1}^M$ corresponding to fixed points of the dynamics has a unique solution for every family $(\sigma_i)_{i=1}^M$. Denote this solution function which depends on $(\sigma_i)_{i=1}^M$ by $F$. $F$ is once again continuous.
 
-  Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ H: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded, $F$ has compact range, and $F\circ G$ has compact range. Therefore $F\circ G:\R^M \to \R^M$ has a fixed point by Schauders fixed point theorem.
-  For uniqueness, note that for each vector $\sigma$, the variational inequality
+  Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ H: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded and convex, $G$ has compact convex range, and $F\circ G$ has convex compact range. Therefore $F\circ G:\R^M \to \R^M$ has a fixed point $(x_1, \dots, x_m)$ by Schauders fixed point theorem.
+  For uniqueness, note that for each $(\sigma_i)_{i=1}^M$, the variational inequality
   \begin{equation}
     x \in \R_+^M, \ip{(f_i)_{i=1}^M(x)}{y-x}\geq 0 \quad y\in \R_+^M
   \end{equation}
@@ -245,7 +245,7 @@ This allows us to state our main result on the behaviorally modified Rosenzweig-
   \end{equation}
   Since $K\phi + K_0$ and $\beta_p$ are everywhere positive, $\ip{x}{h} = 0$ and $\ip{\sigma_p}{h} = 0$ as otherwise the expression would be strictly positive. Then consider $H(x,u)$, defined below through the derivative of $f$.
   \begin{equation}
-    H(x,u)=\ip{(\nabla_x f)(x)h}{h} = \ip{\frac{N_c}{K\phi + K_0}  h}{h} - \frac{\ip{F_p^3 \beta_p^2 \sigma_p}{h}}\ip{\beta_p \sigma_p}{h}}{(F_p + \ip{\beta_p \sigma_p}{x})^2}
+    H(x,u)=\ip{(\nabla_x f)(x)h}{h} = \ip{\frac{N_c}{K\phi + K_0}  h}{h} - \frac{\ip{F_p^3 \beta_p \sigma_p}{h}\ip{\beta_p \sigma_p}{h}}{(F_p + \ip{\beta_p \sigma_p}{x})^2}
   \end{equation}
   Since $\ip{\sigma_p}{h}=0$ and $\frac{N_c}{K\phi + K_0}$ is everywhere positive, we conclude $H(x,u)>0$. Therefore $f$ is strictly pseudomonotone by \Cref{lem:strict_pm}, and $-U_c^{mon}$ is strictly pseudoconvex.
 
@@ -270,5 +270,5 @@ Since we are interested in the fixed-points of the population dynamics \Cref{eq:
   The population game \Cref{eq:dynamics} has a unique fixed point.
 \end{corollary}
 \begin{proof}
-Here we can directly use the theory we have developed.  Both $f_c$ and $f_p$ are strictly monotone, hence strictly pseudomonotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.
+Here we can directly use the theory we have developed.  Both $f_c$ and $f_p$ are strictly monotone, hence strictly pseudomonotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game for parameters when coexistence is possible.
 \end{proof}
