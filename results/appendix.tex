@@ -71,9 +71,20 @@ With a criterion for existence in hand, we proceed to state a criterion for uniq
   \label{thm:uniqueness}
   Let $K\subset H$ be a non-empty subset of $H$. If $T$ is strictly pseudomonotone, then the problem $VI(T,K)$ has at most one solution.
 \end{theorem}
-\subsection{Calculations}
+\section{Calculations}
 \label{appendix:calculations}
-We complete the omitted calculations from the main text. Computing
+We complete the omitted calculations from the main text. Initially,
 \begin{equation}
-  \ip{dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)} =
+  \label{eq:calc_app}
+  \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)} &= \ip{\frac{\sigma_c}{K_0 + K\phi} - 1}{\sigma_c
+  - 1} + \ip{\frac{F_p\beta_p\sigma_p}{F_p + \ip{\sigma_p}{\sigma_c}}}{\sigma_c-1}
+  - \ip{\frac{F_p^2\beta_p\sigma_c}{(F_p + \ip{\sigma_p}{\sigma_c})^2}}{\sigma_p - 1} + \ip{c \beta_p \sigma_p}{\sigma_p -1}
+\end{equation}
+Using that $\ip{1}{\sigma} = 1$, we can simplify \Cref{eq:calc_app}
+\begin{equation}
+  \ip{\frac{\sigma_c}{K_0 + K\phi}}{\sigma_c} + \ip{c \beta_p \sigma_p}{\sigma_p} + \ip{\frac{F_p\beta_p\sigma_p}{F_p + \ip{\sigma_p}{\sigma_c}}}{\sigma_c} - \norm{c\beta_p \sigma_p}_1 - \norm{\frac{\sigma_c}{K_0 + K\phi}}_1 - \norm{\frac{F_p\beta_p\sigma_p}{F_p + \ip{\sigma_p}{\sigma_c}}}_1 - \ip{\frac{F_p^2\beta_p\sigma_c}{(F_p + \ip{\sigma_p}{\sigma_c})^2}}{\sigma_p} - \norm{\frac{F_p^2\beta_p\sigma_c}{(F_p + \ip{\sigma_p}{\sigma_c})^2}}_1
+\end{equation}
+Remark that all the terms with a $1$-norm are uniformly bounded, and
+\begin{equation}
+  \ip{\frac{F_p\beta_p\sigma_p}{F_p + \ip{\sigma_p}{\sigma_c}}}{\sigma_c} \geq \ip{\frac{F_p^2\beta_p\sigma_c}{(F_p + \ip{\sigma_p}{\sigma_c})^2}}{\sigma_p}
 \end{equation}
