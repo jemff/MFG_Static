@@ -12,13 +12,13 @@ We assume that every animal has an area where it forages at every instant. For a
 
 
 \subsection{Foraging strategies and mean-field}
-An animal actively chooses where it forages, so the foraging area $\sigma_i$ is a strategic choice for an animal. In order to inform this choice, we need to establish the playing field. An animal of type $i$ faces the environmental state and the foraging choices of all other inhabitants. Modeling the influence of the foraging choices necessitates the introduction of the mean-field-strategy, $\overbar{\sigma}_j$ for type $j$. The mean-field strategy $\overbar{\sigma}_j$ is the mean strategy of all individuals of type $j$. As a consequence, we can describe the foraging pressure from type $j$ at a point $x\in X$ by $N_j \overbar{\sigma}_j(x)$.
+An animal actively chooses where it forages, so the foraging area $\sigma_i$ is a strategic choice for an animal. In order to inform this choice, we need to establish the playing field. An animal of type $i$ faces the environmental state and the foraging choices of all other inhabitants. Modeling the influence of the foraging choices necessitates the introduction of the mean-field-strategy, $\overbar{\sigma}_j$ for type $j$. The mean-field strategy $\overbar{\sigma}_j$ is the mean strategy of all individuals of type $j$. As a consequence, we can describe the foraging pressure from type $j$ at a point $x\in X$ by $N_j \overbar{\sigma}_j(x)$. 
 
 
 The choice of optimal foraging strategy $\sigma_i^*$ for an animal of type $i$ is a trade-off based on the current state of the environment, the presence of competitors, predators and prey. The mean density of competitors, predators and prey at a point $x$ is described by $N_j \overbar{\sigma}_j(x)$. We capture this trade-off in a payoff function $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M, R)$. The goal of a single animal of type $j$ is then to find the optimal strategy $\sigma_j^*$ such that
 \begin{equation}
   \label{eq:ind_opt}
-  \sigma^*_j = \argmax_{\sigma_j \in P_{\mu}(X)} U_i(\sigma_j, (N_j \overbar{\sigma}_j)_{j=1}^M, R)
+  \sigma^*_j = \argmax_{\sigma_j \in P_{\mu}(X)} U_i(\sigma_j, (N_j, \overbar{\sigma}_j)_{j=1}^M, R)
 \end{equation}
 The fundamental assumption in a mean-field is that the populations are assumed to consist of infinitely many individuals so the choice of a single individual does not change the mean-field strategy \citep{aumann1964markets}. At the Nash equilibrium of a mean-field game every individual of type $i$ follows the same strategy $\sigma_i^*$, \citep{lasry2007mean}. Heuristically, this is due to interchangeability as if any individual of type $i$ gains by deviating from $\sigma_i^*$, any one of them would also gain from making the same deviation, hence doing so. Therefore, if they all follow the optimal strategy, they follow the same strategy. This allows us to go from the individual-level optimization to the Nash equilibrium in \Cref{eq:ind_opt}. Considering $\sigma^*_{j}$ as a function of $\overbar{\sigma}_j$ the Nash equilibrium $\overbar{\sigma}_j^N$ for the mean-field game for the animals of type $j$ becomes finding $\overbar{\sigma}_j^N$ such that:
 \begin{equation}
@@ -34,14 +34,13 @@ The problem that we need to solve to find the Nash equilibrium for the populatio
   \label{eq:tot_nash_eq}
   \begin{split}
     \overbar{\sigma}_1^N = \pa{\argmax_{\sigma_1 \in P_{\mu}(X)} U_1(\sigma_1, (N_j \overbar{\sigma}^N_j)_{j=1}^M), R } \mid_{\sigma_1 = \overbar{\sigma}_1} \\
-    \vdots
+    \vdots \\
     \overbar{\sigma}_M^N = \pa{\argmax_{\sigma_M \in P_{\mu}(X)} U_M(\sigma_M, (N_j \overbar{\sigma}_j)_{j=1}^M, R) } \mid_{\sigma_M = \overbar{\sigma}_M}
     \end{split}
 \end{equation}
 This system of equations looks intractable, but in the next section we will see that in many cases it can actually be solved using the toolbox of variational inequalities.
 %2) Polymorphic-Monomorphic equivalence
 
-An advantage of studying games of mean-field type is that they have polymorphic-monomorphic equivalence \citep{broom2014asymmetric}. Polymorphic-monomorphic equivalence entails indistinguishability of facing a mixture of populations, weighted with density $\sigma_j(x)$, or a homogeneous population where all individuals are distributed according to $\sigma_j$. In short, modeling population games with polymorphic-monomorphic erases the need to consider the difference between sub-populations with different strategies or a single population with one strategy, which is ecologically advantageous \citep{broom2013game}.
 
 
 %Advantages of general approach:

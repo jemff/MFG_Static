@@ -222,7 +222,7 @@ In order to establish existence and uniqueness of the Nash equilibrium we show $
   A function $g: P_{2,\mu} \to H$ is pseudomonotone if and only if $g+\lambda$ is pseudomonotone for any $\lambda \in \R$.
 \end{lemma}
 \begin{proof}
-  Consider $\ip{g(x)+\lambda}{x-y}=\ip{g(x)}{x-y}+\lambda \int x d\mu + \lambda \int y d\mu$
+  Consider $\ip{g(x)+\lambda}{x-y}=\ip{g(x)}{x-y}+\lambda \int x d\mu - \lambda \int y d\mu$
   Using that $\int y d\mu = \int x d\mu = 1$, we arrive at  $\ip{g(x)}{x-y}$.
   Hence the pseudomonotonicity of $g$ and $g+\lambda$ are equivalent.
 \end{proof}
@@ -237,27 +237,27 @@ This allows us to state our main result on the behaviorally modified Rosenzweig-
     \label{eq:var_ineq}
     dU = \begin{pmatrix}-\nabla_{\sigma_c} U_c^{mon} \\ -\nabla_{\sigma_p} U_p^{mon}\end{pmatrix}
   \end{equation} satisfies the criteria of \Cref{thm:existence}.
-  We start by showing the strict pseudoconvexity. The function $-U_p^{mon}$ is strictly convex, as it has strictly positive second derivative with respect $\sigma_p$ since $\beta_p$ is everywhere non-vanishing. Hence it is also strictly pseudoconvex. Consider $-U_c^{mon}$. To show strict pseudoconvexity, by \Cref{lem:pseudo_reduc} it suffices to show that $f = -\nabla_{\sigma_c} U_c^{mon} + 1$ is strictly pseudomonotone. For \Cref{lem:strict_pm} assume $\ip{f(x)}{h} = 0$, then
+  We start by showing the strict pseudoconvexity. The second derivative of $-U_p^{mon}$ with respect to $\sigma_p$ induces a strictly positive quadratic form since $\beta_p$ is everywhere non-vanishing. Hence the function $-U_p^{mon}$ is strictly convex, therefore also strictly pseudoconvex. Consider $-U_c^{mon}$. To show strict pseudoconvexity, by \Cref{lem:pseudo_reduc} it suffices to show that $f = -\nabla_{\sigma_c} U_c^{mon} + 1$ is strictly pseudomonotone. For \Cref{lem:strict_pm} assume $\ip{f(x)}{h} = 0$, then
   \begin{equation}
-    \ip{x \frac{N_c}{K\phi + K_0} }{h} + \frac{F_p^2 \ip{\beta_p \sigma_p}{h}}{F_p + \ip{\beta_p \sigma_p}{x}} = 0
+    \ip{x \frac{N_c}{K\phi + K_0} }{h} + \frac{F_p \ip{\beta_p \sigma_p}{h}}{F_p + \ip{\beta_p \sigma_p}{x}} = 0
   \end{equation}
   Since $K\phi + K_0$ and $\beta_p$ are everywhere positive, $\ip{x}{h} = 0$ and $\ip{\sigma_p}{h} = 0$ as otherwise the expression would be strictly positive. Then consider $H(x,u)$, defined below through the derivative of $f$.
   \begin{equation}
-    H(x,u)=\ip{(\nabla_x f)(x)h}{h} = \ip{\frac{N_c}{K\phi + K_0}  h}{h} - \frac{\ip{F_p^3 \beta_p \sigma_p}{h}\ip{\beta_p \sigma_p}{h}}{(F_p + \ip{\beta_p \sigma_p}{x})^2}
+    H(x,u)=\ip{(\nabla_x f)(x)h}{h} = \ip{\frac{N_c}{K\phi + K_0}  h}{h} - \frac{\ip{F_p^2 \beta_p \sigma_p}{h}\ip{\beta_p \sigma_p}{h}}{(F_p + \ip{\beta_p \sigma_p}{x})^2}
   \end{equation}
   Since $\ip{\sigma_p}{h}=0$ and $\frac{N_c}{K\phi + K_0}$ is everywhere positive, we conclude $H(x,u)>0$. Therefore $f$ is strictly pseudomonotone by \Cref{lem:strict_pm}, and $-U_c^{mon}$ is strictly pseudoconvex.
 
-  To show that there exists a solution, start by noting that for all $w\in H^2$, $w\mapsto dU(w)$ is continuous, hence continuous on finite-dimensional subspaces, fulfilling the first part of \Cref{thm:existence}. For the second part,  consider
+  To show that there exists a solution, start by noting that for all $w\in H^2$, $w\mapsto dU(w)$ is continuous, hence continuous on finite-dimensional subspaces, fulfilling the first part of \Cref{thm:existence}. For the second part, consider
   \begin{equation}
     \label{eq:du}
     \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)}
   \end{equation}
-  To avoid clutter, we neglect the calculations and relegate them to the appendix \Cref{appendix:calculations}. With $C_1, C_2$ positive constants we conclude
+  We relegate the calculations to the appendix \Cref{appendix:calculations}, but we conclude
   \begin{equation}
     \label{eq:fin_exist}
     \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)} \geq C_1\norm{\sigma_c}_2^2 + C_2\norm{\sigma_p}_2^2 - W(\sigma_c,\sigma_p)
   \end{equation}
-  where $W$ is uniformly bounded on $P_{2,\mu}^2$. Recall that constraining the problem to $P_{2,\mu}$ is equivalent to $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Therefore \Cref{eq:du} is only negative on a bounded subset of $P_{2,\mu}$. By \Cref{thm:existence} this shows existence of a solution to the variational inequality defined by the function \Cref{eq:var_ineq}.
+  where $W$ is uniformly bounded on $P_{2,\mu}^2$, and $C_1,C_2$ strictly positive. Recall that constraining the problem to $P_{2,\mu}$ is equivalent to $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Therefore \Cref{eq:du} is only negative on a bounded subset of $P^2_{2,\mu}$. By \Cref{thm:existence} this shows existence of a solution to the variational inequality defined by the function \Cref{eq:var_ineq}.
 
 \end{proof}
 Since we are interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we show that a fixed-point of the population dynamics exists and is unique.
