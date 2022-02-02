@@ -1,22 +1,24 @@
 \section{Nash equilibria and variational inequalities}
-Calculating Nash equilibria is generally a hard problem. A fruitful approach to calculating Nash equilibria is via. the theory of complementarity problems and variational inequalities \citep{karamardian1969nonlinear,nabetani2011parametrized}. We unite the approach of variational inequalities and mean-field games which allows us to characterize a situation that guarantees uniqueness and existence of Nash equilibria in population games, and the existence of fixed-points of these games.
+Calculating Nash equilibria, \Cref{eq:tot_nash_eq} is generally a hard problem. A fruitful approach to calculating Nash equilibria is via. the theory of complementarity problems and variational inequalities \citep{karamardian1969nonlinear,nabetani2011parametrized}. We unite the approach of variational inequalities and mean-field games which allows us to characterize a situation that guarantees uniqueness and existence of Nash equilibria in population games, and the existence of fixed-points of these games.
 
 %We develop the theory for monomorphic games, and finally introduce a method to analyze a mean-field game as a monomorphic game.
 
-As in \Cref{sec:general_setting}, our habitat is a measure space $(X,\mu)$ with $M$ different types inhabiting it with payoff-functions $U_i$, where the environment has state $R$. The simplest example our framework needs to handle is that of a single type with population $N$ inhabiting $X$ with foraging distribution $\sigma$. The encounter rate of an individual following the strategy $\sigma$ with the entire population also following the strategy $\sigma$ has the density $N\sigma^2$. The expected encounter rate then becomes
+As in \Cref{sec:general_setting}, our habitat is a measure space $(X,\mu)$ with $M$ different animal types inhabiting it with payoff-functions $U_i$. The simplest example our framework needs to handle is that of a single type with population $N$ inhabiting $X$ with foraging distribution $\sigma$. The encounter rate of an individual following the strategy $\sigma$ with the entire population also following the strategy $\sigma$ is $N\sigma^2$. The expected total encounter rate then becomes
 \begin{equation}
   \int_X \sigma^2 d\mu
 \end{equation}
-and this quantity must be finite, hence the appropriate setting for our work is the space $L^2(X)$.
+and this quantity must be finite. This forces us to be careful with the space of strategies we work in, and shows that the appropriate setting for our work is the space $L^2(X)$.
 \begin{definition}
   Define $H$ as the real Hilbert space $L^2(X)$, where $X$ is a measure space. Define $H_+ \subset H$ as the a.e. positive functions in $H$.
 \end{definition}
-Finding Nash equilibria is one of the oldest applications of complementarity theory \citep{karamardian1969nonlinear}. We define a complementarity problem:
+
+\subsection{The complementarity approach}
+One of the original solutions to the hardness of finding Nash equilibria is applying the theory of complementarity problems \citep{karamardian1969nonlinear}. We define a complementarity problem:
 \begin{definition}
-  Let $H$ be a real Hilbert space, and $K \subset H$ be a closed convex cone. Define $K^* = \{ x \in H : \ip{x}{y} = 0, \quad \forall y\in K\} $. Assume $T:K \to H$. The complementarity problem $CP(T,K)$ is the problem of finding an element $x^*$ such that
+  Let $H$ be a real Hilbert space, and $K \subset H$ be a closed convex cone. Define $K^* = \{ x \in H : \ip{x}{y} = 0, \quad \forall y\in K\} $. Assume $T:K \to H$. The complementarity problem $CP(T,K)$ is the problem of finding an element $x$ such that
   \begin{equation}
     \begin{split}
-    \ip{x^*}{Tx^*} = 0 \\
+    \ip{x}{Tx} = 0 \\
     Tx \in K^*, \quad  x\in K
   \end{split}
   \end{equation}
@@ -31,20 +33,11 @@ As a general rule showing existence and uniqueness for complementarity problems 
 \end{definition}
 %If $K$ is a convex cone, the problems $VI(T,K)$ and $CP(T,K)$ have the same solutions, which can be seen by setting $y=2x$ and $y=0$ respectively.
 
-To motivate the approach based on complementarity and variational inequalities, assume that we have a mean-field game with $M$ players, payoff functions $U_i$, and strategies $\sigma_i, \overbar{\sigma}_i$. At the Nash equilibrium, each payoff function $U_i$ must satisfy the Karush-Kuhn-Tucker (KKT) conditions with respect to $\sigma_i$, along with $\overbar{\sigma}=\sigma$ as in \Cref{eq:mfg_ne}.
-\begin{align}
-  \nabla_{\sigma_i}U_i((\sigma_j)_{j=1}^M) \mid_{\sigma_i = \overbar{\sigma}_i}  + \mu_i - \lambda \cdot 1 = 0
-  \ip{\sigma_i}{\mu_i} = 0
-  \mu_i \geq 0
-  \sigma_i \geq 0
-  \int_X \sigma_i - 1 = 0
-\end{align}
-Remark that the last two conditions are equivalent to requiring that $\sigma \in P_{\mu}(X) \cap H$. This motivates the definition:
-\begin{definition}
-  Given a measure space $(X,\mu)$ with a corresponding space of square-integrable functions $H=L^2(X,\mu)$ and space of probability measures which are absolutely continuous with respect to $\mu$, $P_{\mu}$. Define the space $P_{2,\mu}=H \cap P_{\mu}$ consisting of absolutely continuous square-integrable probability densities.
-\end{definition}
+%To motivate the approach based on complementarity and variational inequalities,
+We recall the setup of the $M$-player mean field game, now restricted to $H$. Assume we have $M$ different types of animals, with payoff functions $U_i$, and strategies $\sigma_i$, with corresponding mean-field strategies $\overbar{\sigma}_i$.
 
-The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to finding a system $\sigma_i^*$ satisfying the KKT conditions simultaneously for every pair $U_i$, \citep{deimling2010nonlinear}. Thus the condition for the Nash equilibrium of the total population as in \Cref{eq:tot_nash_eq} is:
+To put the problem of finding the Nash equilibrium into the terms of a complementarity problem, we generalize the strategy of \Cref{prop:doubleup}.
+The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to finding a system $\sigma_i^*$ satisfying the KKT conditions simultaneously for every $U_i$, \citep{deimling2010nonlinear}, with $\overbar{\sigma}=\sigma$ as in \Cref{eq:mfg_ne}. Denoting the identity on $H$ by $1_H$, the total criterion for a Nash equilibrium of a mean-field game \Cref{eq:tot_nash_eq} is:
 \begin{equation}
   \begin{split}
   \begin{pmatrix}
@@ -70,15 +63,32 @@ The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to 
   \vdots \\
   \sigma_N
 \end{pmatrix}} = 0 \\
-\mu_i \geq 0 \\
-  \sigma_i \geq 0 \\
-    \sigma \in P_{2,\mu}(X)
+\mu_i \in H_+ \\
+  \sigma_i \in H_+ \\
+  \int \sigma_i d\mu = 1
+    %\sigma \in P_{2,\mu}(X)
     \label{eq:KKT_total}
   \end{split}
 \end{equation}
-To simplify \Cref{eq:KKT_total}, we define $dU = \begin{pmatrix} \nabla_{\sigma_1} U_1 \\
+\begin{comment}
+\begin{equation}
+  \begin{split}
+  \nabla_{\sigma_i}U_i((\sigma_j)_{j=1}^M) \mid_{\sigma_i = \overbar{\sigma}_i}  + \mu_i - \lambda  \cdot 1_H = 0 \\
+  \ip{\sigma_i}{\mu_i} = 0 \\
+  \mu_i \in H_+ \\
+  \sigma_i \in H_+ \\
+  \int_X \sigma_i d\mu(x)- 1 = 0
+\end{split}
+\end{equation}
+\end{comment}
+Remark that the last two conditions are equivalent to $\sigma \in P_{\mu}(X) \cap H$. This motivates the definition:
+\begin{definition}
+  Assume we have a measure space $(X,\mu)$. Consider the space of square-integrable functions $H=L^2(X,\mu)$ and space of probability densities $P_{\mu}$. Define the space $P_{2,\mu}=H \cap P_{\mu}$ consisting of square-integrable probability densities.
+\end{definition}
+%Thus the condition for the Nash equilibrium of the total population as in \Cref{eq:tot_nash_eq} is:
+To simplify \Cref{eq:KKT_total}, we define $dU = \begin{pmatrix} \nabla_{\sigma_1} U_1 \mid_{\sigma_1 = \overbar{\sigma}_1}\\
     \vdots \\
-    \nabla_{\sigma_N} U_N \end{pmatrix}$, $S=(\sigma_i)_{i=1}^M$, and $\Lambda = (\lambda_i)_{i=1}^M$. Then the problem can be restated as
+    \nabla_{\sigma_N} U_N \mid_{\sigma_N = \overbar{\sigma}_N} \end{pmatrix}$, $S=(\sigma_i)_{i=1}^M$, and $\Lambda = (\lambda_i)_{i=1}^M$. Then \Cref{eq:KKT_total} can be restated as
 \begin{equation}
   \label{eq:complementarity_form}
   \ip{dU(S)+\Lambda}{S} = 0 \\
@@ -92,7 +102,10 @@ which is a complementarity problem with $K = (H_+ \osum \R)^M$, $K^* = (H_+ \osu
 \begin{equation}
   T(S,\lambda)=\begin{pmatrix} dU(S) + \Lambda \\ (\ip{\sigma_i}{1} - 1)_{i=1}^M \end{pmatrix}
 \end{equation}
-If we do not include the criterion $\int \sigma_i dx = 1$ as a Lagrange multiplier, but instead optimize over the convex set $P_\mu(X)$, the problem  becomes finding a vector $S = (\sigma_i)_{i=1}^M$ that minimizes
+
+
+\subsection{Restatement as a variational inequality}
+If we do not include the criterion $\int \sigma_i dx = 1$ in \Cref{eq:tot_nash_eq} as a Lagrange multiplier as in \Cref{eq:complementarity_form}, but instead optimize over the convex set $P_\mu(X)$, the problem  becomes finding a vector $S = (\sigma_i)_{i=1}^M$ that minimizes
 \begin{equation}
   \ip{dU(S)}{S-T} \geq 0 \forall T\in P_{2,\mu}^M
 \end{equation}
