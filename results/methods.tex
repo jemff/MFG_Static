@@ -223,7 +223,7 @@ With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of
   \end{equation}
     has a unique solution, showing the existence and uniqueness of a fixed point for a population game.
 \end{proof}
-Remark that the assumption of uniformly bounded fixed-point space as a function of the strategies is biologically reasonable, since e.g. Type II growth functions are uniformly bounded and a metabolic loss is usually constant.
+%Remark that the assumption of uniformly bounded fixed-point space as a function of the strategies is biologically reasonable. As an example, if we consider a Type II functional response with clearance rate depending on the strategy and a constant metabolic loss.
 
 Having established the general theory for Nash equilibria, and demonstrated how to handle mean-field games as monomorphic games, we are ready to apply the theory to a Rosenzweig-MacArthur system with fast adaptive behavior.
 \section{Revisiting the Rosenzweig-MacArthur model}
@@ -267,11 +267,11 @@ as the initial growth term depends on the choices of the consumer, while the ava
 \begin{equation}
   M_c^{ind} =  \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} N_p}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}
 \end{equation}
-Going to a focal predator, the growth $G_p^{ind}$ of an individual predator has the same expression as the pr. capita growth, since the satiation has no density dependence on the predator population.
+Going to a focal predator, the growth $G_p^{ind}$ of an individual predator has the same expression as the pr. capita growth, since the satiation has no dependence on the overall predator population.
 \begin{equation}
   G_p^{ind} = \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}
 \end{equation}
-where the individual predator mortality $M_p^{ind}$ depends on both the choice of the individual and the distribution of the entire predator population.
+The individual predator mortality $M_p^{ind}$ depends on both the choice of the individual and the distribution of the entire predator population.
 \begin{equation}
   M_p^{ind} =  c \ip{\sigma_p}{N_p\beta_p \overbar{\sigma}_p}  - \mu_p
 \end{equation}
@@ -331,10 +331,10 @@ This allows us to state our main result on the behaviorally modified Rosenzweig-
   where $W$ is uniformly bounded on $P_{2,\mu}^2$, and $C_1,C_2$ strictly positive. Recall that constraining the problem to $P_{2,\mu}$ is equivalent to $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Therefore \Cref{eq:du} is only negative on a bounded subset of $P^2_{2,\mu}$. By \Cref{thm:existence} this shows existence of a solution to the variational inequality defined by the function \Cref{eq:var_ineq}.
 
 \end{proof}
-Since we are interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we show that a fixed-point of the population dynamics exists and is unique.
+As we are interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we show that a fixed-point of the population dynamics exists and is unique.
 \begin{corollary}
   The population game \Cref{eq:dynamics} has a unique fixed point.
 \end{corollary}
 \begin{proof}
-Here we can directly use the theory we have developed.  Both $f_c$ and $f_p$ are strictly monotone, hence strictly pseudomonotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game for parameters when coexistence is possible.
+Both $f_c$ and $f_p$ are strictly monotone, hence strictly pseudomonotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.% for parameters when coexistence is possible.
 \end{proof}
