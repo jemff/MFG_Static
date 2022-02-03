@@ -182,7 +182,8 @@ We gather the results on pseudomonotone functions and their application to game 
 \begin{proof}
    If each $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone, then so is their direct sum $dU$ by bilinearity of the inner product. By \Cref{thm:uniqueness} any Nash equilibrium will be unqiue since $dU$ is strictly pseudomonotone. So if the solution exists, it is unique. By assumption \Cref{thm:existence} gives existence of a solution of $VI(dU,P_{2,\mu}^M)$ in case $H$ is infinite dimensional. If $H$ is finite-dimensional then $P_{2,\mu}^M$ is compact and there exists a solution \Cref{rem:weak_compact}.
 \end{proof}
-As a consequence of \Cref{thm:nash_unique}, we can introduce an equilibrium between the Nash equilibria of a mean-field game and a game with monomorphic populations. If a mean-field game has a family of functions $U_i^{mon}$ satisfying $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$, then the monomorphic game defined $U_i^{mon}$ has the same Nash equilbria as the original game.
+As a consequence of \Cref{thm:nash_unique}, we can introduce an equilibrium between the Nash equilibria of a mean-field game and a game with monomorphic populations.
+%If the payoff functions ¤U_ mean-field game has a family of functions $U_i^{mon}$ satisfying $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$, then the monomorphic game defined $U_i^{mon}$ has the same Nash equilbria as the original game.
 \begin{definition}
   \label{def:correspondence}
   Consider a mean-field game with populations $N_1,\dots,N_M$ with individual payoffs $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$. Assume $\nabla_{\sigma_i}U_i\mid_{\sigma_i=\overbar{\sigma}_i}$ admits a primitive $U_i^{mon}$ such that $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$.
@@ -192,7 +193,7 @@ The reason this result is interesting is
 \begin{theorem}[Theorem 12.13, p. 521 \citep{hadjisavvas2006handbook}]
   Let $\Omega \subset H$ be an open convex subset, and let $f:\Omega \to \R$ be Gateaux differentiable. Then $f$ is strictly pseudoconvex if and only if $\nabla f$ is strictly pseudomonotone.
 \end{theorem}
-so for uniqueness instead of considering $\nabla U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ we can consider $U_i$ directly. That is, if a monomorphic equivalent game exists, it becomes possible to study the monomorphic game instead and e.g. use strict pseudoconvexity to establish strict pseudomonotonicity.
+so for uniqueness instead of considering $\nabla U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ we can consider $U_i$ directly. That is, if a monomorphic equivalent game exists, it becomes possible to study the monomorphic game instead and use strict pseudoconvexity to establish strict pseudomonotonicity.
  %showing strict pseudoconvexity can be simpler than showing strict pseudomonotonicity.
 
 With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of population games where $dU$ is strictly pseudomonotone, e.g. if all monomorphic equivalent payoff functions are strictly pseudoconvex and bounded dynamics.
@@ -205,7 +206,7 @@ With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of
   Assume that the functions $f_i$ are strictly pseudomonotone, and that the set of stationary points of the dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$ and convex. Let $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ be strictly pseudomonotone and satisfy \Cref{thm:existence}. Then the population game has a unique fixed point with a unique Nash equilibrium
 \end{theorem}
 \begin{proof}
-  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $dU = (\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i})_{i=1}^M$. The solution operator is a continuous mapping $G: \R_+^M \to P_{2,\mu}^M$, due to the existence and uniqueness of the solution \Cref{thm:nash_unique} \cite[Theorem 4.2]{barbagallo2009continuity}. Due to the assumptions on $f_i$ the variational inequality on $\R^M$ defined by $(f_i)_{i=1}^M$ corresponding to fixed points of the dynamics has a unique solution $F$ for every family $(\sigma_i)_{i=1}^M$, and $F:P_{2,\mu}^M: \to \R^M_+$ is again continuous.
+  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $dU$. The solution operator is a continuous mapping $G: \R_+^M \to P_{2,\mu}^M$, due to the existence and uniqueness of the solution \Cref{thm:nash_unique} \cite[Theorem 4.2]{barbagallo2009continuity}. The variational inequality defined by $(f_i)_{i=1}^M$ corresponds to determining fixed points. Due to the assumptions on $f_i$, this inequality has a solution $F$ for every family $(\sigma_i)_{i=1}^M$. The solution function $F:P_{2,\mu}^M: \to \R^M_+$ is again continuous.
 
   Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ G: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded, $G$ has compact range, and $F\circ G$ has compact image. Therefore $F\circ G:\R_+^M \to \R_+^M$ has a fixed point $(x_1^*, \dots, x_m^*)$ by Schauder's fixed point theorem \citep[Theorem 3.2, p. 119]{granas2003elementary}. Likewise, the map $G\circ F:P_{2,\mu}^M \to P_{2,\mu}^M$ has a fixed point $(\sigma_1^*,\dots, \sigma_M^*)$, since it factorizes through a compact space.
   For uniqueness, note that for each $(\sigma_i)_{i=1}^M$, the variational inequality
@@ -317,7 +318,7 @@ This allows us to state our main result on the behaviorally modified Rosenzweig-
   \end{equation}
   Since $\ip{\sigma_p}{h}=0$ and $\frac{N_c}{K\phi + K_0}$ is everywhere positive, we conclude $H(x,u)>0$. Therefore $f$ is strictly pseudomonotone by \Cref{lem:strict_pm}, and $-U_c^{mon}$ is strictly pseudoconvex.
 
-  To show that there exists a solution, start by noting that for all $w\in H^2$, $w\mapsto dU(w)$ is continuous, hence continuous on finite-dimensional subspaces, fulfilling the first part of \Cref{thm:existence}. For the second part, consider
+  To show that there exists a solution, start by noting that for all $S\in H^2$, $w\mapsto dU(S)$ is continuous, hence continuous on finite-dimensional subspaces, fulfilling the first part of \Cref{thm:existence}. For the second part, consider
   \begin{equation}
     \label{eq:du}
     \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)}
