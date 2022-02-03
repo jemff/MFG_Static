@@ -12,31 +12,8 @@ and this quantity must be finite. This forces us to be careful with the space of
   Define $H$ as the real Hilbert space $L^2(X)$, where $X$ is a measure space. Define $H_+ \subset H$ as the a.e. positive functions in $H$.
 \end{definition}
 
-\subsection{The complementarity approach}
-One of the original solutions to the hardness of finding Nash equilibria is applying the theory of complementarity problems \citep{karamardian1969nonlinear}. We define a complementarity problem:
-\begin{definition}
-  Let $H$ be a real Hilbert space, and $K \subset H$ be a closed convex cone. Define $K^* = \{ x \in H : \ip{x}{y} = 0, \quad \forall y\in K\} $. Assume $T:K \to H$. The complementarity problem $CP(T,K)$ is the problem of finding an element $x$ such that
-  \begin{equation}
-    \begin{split}
-    \ip{x}{Tx} = 0 \\
-    Tx \in K^*, \quad  x\in K
-  \end{split}
-  \end{equation}
-\end{definition}
-As a general rule showing existence and uniqueness for complementarity problems is hard, which is where their relationship to variational inequalities comes in handy.
-\begin{definition}
-  Let $H$ be a real Hilbert space and $K\subset H$ be a non-empty subset of $H$. Let $T: K \to H$. The variational inequality $VI(T,K)$ is the following system
-  \begin{equation}
-    x \in K, \ip{y-x}{Tx} \geq 0, \quad \forall y \in K
-  \end{equation}
-  and a solution is an $x$ satisfying the inequality.
-\end{definition}
-%If $K$ is a convex cone, the problems $VI(T,K)$ and $CP(T,K)$ have the same solutions, which can be seen by setting $y=2x$ and $y=0$ respectively.
-
-%To motivate the approach based on complementarity and variational inequalities,
-We recall the setup of the $M$-player mean field game, now restricted to $H$. Assume we have $M$ different types of animals, with payoff functions $U_i$, and strategies $\sigma_i$, with corresponding mean-field strategies $\overbar{\sigma}_i$.
-
-To put the problem of finding the Nash equilibrium into the terms of a complementarity problem, we generalize the strategy of \Cref{prop:doubleup}.
+\subsection{From Karush-Kuhn-Tucker to complementarity}
+The problem of finding the Nash equilibrium is that of finding solutions to \Cref{eq:tot_nash_eq}. We recall the setup of the $M$-player mean field game, now restricted to $H$. Assume we have $M$ different types of animals, with payoff functions $U_i$, and strategies $\sigma_i$, with corresponding mean-field strategies $\overbar{\sigma}_i$.
 The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to finding a system $\sigma_i^*$ satisfying the KKT conditions simultaneously for every $U_i$, \citep{deimling2010nonlinear}, with $\overbar{\sigma}=\sigma$ as in \Cref{eq:mfg_ne}. Denoting the identity on $H$ by $1_H$, the total criterion for a Nash equilibrium of a mean-field game \Cref{eq:tot_nash_eq} is:
 \begin{equation}
   \begin{split}
@@ -70,6 +47,45 @@ The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to 
     \label{eq:KKT_total}
   \end{split}
 \end{equation}
+Remark that the last two conditions are equivalent to $\sigma \in P_{\mu}(X) \cap H$. This motivates the definition:
+\begin{definition}
+  Assume we have a measure space $(X,\mu)$. Consider the space of square-integrable functions $H=L^2(X,\mu)$ and space of probability densities $P_{\mu}$. Define the space $P_{2,\mu}=H \cap P_{\mu}$ consisting of square-integrable probability densities.
+\end{definition}
+Solving the system in \Cref{eq:KKT_Total} is highly non-trivial, but it turns out that reinterpreting the problem is helpful.
+Finding Nash equilibria by interpreting the problem as a complementarity problem is one of the the original solutions to the hardness of finding Nash equilibria  \citep{karamardian1969nonlinear}. It turns out that the set of equations in \Cref{eq:KKT_Total} is very close to being a complementarity problem, but first we need to introduce the notion.
+ This formulation is an example of a complementarity problem,
+\begin{definition}
+  \label{def:comp_prob}
+  Let $H$ be a real Hilbert space, and $K \subset H$ be a closed convex cone. Define $K^* = \{ x \in H : \ip{x}{y} = 0, \quad \forall y\in K\} $. Assume $T:K \to H$. The complementarity problem $CP(T,K)$ is the problem of finding an element $x$ such that
+  \begin{equation}
+    \begin{split}
+    \ip{x}{Tx} = 0 \\
+    Tx \in K^*, \quad  x\in K
+  \end{split}
+  \end{equation}
+\end{definition}
+With \Cref{def:comp_prob} we can write \ref{eq:KKT_Total} as an equivalent family of complementarity problems. Introduce $K = H_+ \osum \R$, with $K^* = H_+ \osum \{0\}$ and define
+\begin{equation}
+  T(\sigma_i, \lambda) = (\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H, 0)
+\end{equation}
+Then the equations in \Cref{eq:KKT_total} can be recast as finding $(\sigma_i,\lambda_i) \in K$ such that:
+\begin{equation}
+  \label{eq:comp_form}
+  \begin{split}
+    \ip{T}{(\sigma_i,\lambda_i)} = 0 \\
+    T((\sigma_i,\lambda_i) \in K^* \\
+    \ip{\sigma_i}{\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H} + \ip{\lambda_i}{0}= 0 \\
+    \pa{-\pa{\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H}, 0} \in K
+  \end{split}
+\end{equation}
+There are dedicated tools available allowing for fast numerical resolution of complementarity problems \citep{acary2019introduction, dirkse1995path}. There is still the problem of establishing existence and uniqueness of the Nash equilibrium. Existence and uniqueness of complementarity problems is generally hard, \citep{hadjisavvas2006handbook}.
+
+
+%If $K$ is a convex cone, the problems $VI(T,K)$ and $CP(T,K)$ have the same solutions, which can be seen by setting $y=2x$ and $y=0$ respectively.
+
+%To motivate the approach based on complementarity and variational inequalities,
+
+%To put the problem of finding the Nash equilibrium into the terms of a complementarity problem, we generalize the strategy of \Cref{prop:doubleup}.
 \begin{comment}
 \begin{equation}
   \begin{split}
@@ -81,12 +97,9 @@ The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to 
 \end{split}
 \end{equation}
 \end{comment}
-Remark that the last two conditions are equivalent to $\sigma \in P_{\mu}(X) \cap H$. This motivates the definition:
-\begin{definition}
-  Assume we have a measure space $(X,\mu)$. Consider the space of square-integrable functions $H=L^2(X,\mu)$ and space of probability densities $P_{\mu}$. Define the space $P_{2,\mu}=H \cap P_{\mu}$ consisting of square-integrable probability densities.
-\end{definition}
 %Thus the condition for the Nash equilibrium of the total population as in \Cref{eq:tot_nash_eq} is:
-To simplify \Cref{eq:KKT_total}, we define $dU = \begin{pmatrix} \nabla_{\sigma_1} U_1 \mid_{\sigma_1 = \overbar{\sigma}_1}\\
+\begin{comment}
+The family of complementarity problems in \Cref{eq:comp_form} can be gathered into a single complementarity problem. We define $dU = \begin{pmatrix} \nabla_{\sigma_1} U_1 \mid_{\sigma_1 = \overbar{\sigma}_1}\\
     \vdots \\
     \nabla_{\sigma_N} U_N \mid_{\sigma_N = \overbar{\sigma}_N} \end{pmatrix}$, $S=(\sigma_i)_{i=1}^M$, and $\Lambda = (\lambda_i)_{i=1}^M$. Then \Cref{eq:KKT_total} can be restated as
 \begin{equation}
@@ -102,50 +115,72 @@ which is a complementarity problem with $K = (H_+ \osum \R)^M$, $K^* = (H_+ \osu
 \begin{equation}
   T(S,\lambda)=\begin{pmatrix} dU(S) + \Lambda \\ (\ip{\sigma_i}{1} - 1)_{i=1}^M \end{pmatrix}
 \end{equation}
-
-
+\end{comment}
 \subsection{Restatement as a variational inequality}
-If we do not include the criterion $\int \sigma_i dx = 1$ in \Cref{eq:tot_nash_eq} as a Lagrange multiplier as in \Cref{eq:complementarity_form}, but instead optimize over the convex set $P_\mu(X)$, the problem  becomes finding a vector $S = (\sigma_i)_{i=1}^M$ that minimizes
+We have recast the problem of finding a Nash equilibrium to a complementarity problem, which allows for numerical resolution. To establish existence and uniqueness, we need to use their relationship to variational inequalities. In case the payoff-functions $U_i $ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium.
+
+%Asking for convexity is too strong, but it turns out the weaker notion of strict pseudoconvexity is sufficient. See \Cref{sec:appendix} for further details.
+We define a variational inequality:
+\begin{definition}
+  Let $H$ be a real Hilbert space and $K\subset H$ be a non-empty convex subset of $H$. Let $T: K \to H$. The variational inequality $VI(T,K)$ is the following system
+  \begin{equation}
+    x \in K, \ip{y-x}{Tx} \geq 0, \quad \forall y \in K
+  \end{equation}
+  and a solution is an $x$ satisfying the inequality.
+\end{definition}
+The relationship between variational inequalities and complementarity problems is captured in \citep[Proposition 12.1]{hadjisavvas2006handbook}:
+\begin{proposition}
+  Let $K\subset H$ be a convex cone, and $T: K \to H$. Then the variational inequality $VI(T,K)$ is equivalent to the complementarity problem $CP(T,K)$.
+\end{proposition}
+\begin{proof}
+  Clearly, a solution $x^*$ to $CP(T,K)$ is also a solution to $VI(T,K)$. For the other direction, assume that we have a solution $x^*$ to VI(T,K). Then
+  \begin{equation}
+    \ip{y - x^*}{Tx^*} \geq 0 \forall y \in K
+  \end{equation}
+  Setting $y = 2x^*$, we arrive at $\ip{x^*}{Tx^*} \geq 0$, and setting $y=0$ we arrive at $\ip{x^*}{Tx^*} \leq 0$. This shows the desired equivalence.
+\end{proof}
+We can now turn the problem finding a Nash equilibrium into a variational inequality. Consider the problem as stated in \Cref{eq:comp_prob}. This is a complementarity problem over the convex cone $H_+ \osum \R$. Hence it is equivalent to a variational inequality over the same convex cone.
+
+In our theoretical considerations, we want to rid ourselves of considering the term $\lambda_i$, which stems from the constraint $\int \sigma_i dx = 1$. Hence solving the variational inequality for $T$ over $K$ is equivalent to setting $\lambda_i = 0$ and solving the variational inequality over $P_{2,\mu}$.
+
+Defining
+\begin{equation}
+  dU = \begin{pmatrix} \nabla_{\sigma_1} U_1 \mid_{\sigma_1 = \overbar{\sigma}_1}\\
+      \vdots \\
+      \nabla_{\sigma_N} U_N \mid_{\sigma_N = \overbar{\sigma}_N} \end{pmatrix}
+\end{equation}
+the problem of determining the Nash equilibrium \Cref{eq:tot_nash_eq} is finding a vector $S = (\sigma_i)_{i=1}^M$ that minimizes:
 \begin{equation}
   \ip{dU(S)}{S-T} \geq 0 \forall T\in P_{2,\mu}^M
 \end{equation}
-i.e. solves a variational inequality. Searching for a solution to a variational inequality is more tractable for theoretical considerations, while the complementarity formulation is preferable for solving the problem numerically.
 
-In case the payoff-functions $U_i $ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium. Asking for convexity is too strong, but it turns out the weaker notion of strict pseudoconvexity is sufficient. See \Cref{sec:appendix} for further details.
+%i.e. solves a variational inequality. %Searching for a solution to a variational inequality is more tractable for theoretical considerations, while the complementarity formulation is preferable for solving the problem numerically.
+
+%In case the payoff-functions $U_i $ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium. Asking for convexity is too strong, but it turns out the weaker notion of strict pseudoconvexity is sufficient. See \Cref{sec:appendix} for further details.
 
 We can gather the results on pseudoconvex functions and their application to game theory in the following theorem:
 \begin{theorem} \label{thm:nash_unique}
-  Consider a game with $M$ players with strictly pseudoconvex payoff functions $U_i$ and strategies $\sigma_i$ in $P_{2,\mu}$. The game has a unique Nash equilibrium if
-  \begin{equation}
-    dU=
-    \begin{pmatrix}
-      \nabla_{\sigma_1} U_1\mid{\sigma_1 = \overbar{\sigma}_1}\\
-      \vdots \\
-      \nabla_{\sigma_N} U_N \mid{\sigma_N = \overbar{\sigma}_N}
-    \end{pmatrix}
-  \end{equation}
-  satisfies the criterion of \Cref{thm:existence} or $H$ is finite dimensional.
+  Consider a game with $M$ players with payoff functions $U_i$ where $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone. Assume the strategies $\sigma_i$ are in $P_{2,\mu}$. The game has a unique Nash equilibrium if $dU$ satisfies the criterion of \Cref{thm:existence} or $H$ is finite dimensional.
 \end{theorem}
 \begin{proof}
-   If each $\nabla_{\sigma_i} U_i$ is strictly pseudomonotone, then so is their direct sum $dU$ by bilinearity of the inner product. By \Cref{thm:uniqueness} this solution is unique since $dU$ is strictly pseudomonotone. So if the solution exists, it is unique. By assumption \Cref{thm:existence} gives existence of a solution of $VI(dU,P_{2,\mu}^M)$ in case $H$ is infinite dimensional. If $H$ is finite-dimensional then $P_{2,\mu}$ is compact and there exists a solution \Cref{rem:weak_compact}.
+   If each $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone, then so is their direct sum $dU$ by bilinearity of the inner product. By \Cref{thm:uniqueness} any Nash equilibrium will be unqiue since $dU$ is strictly pseudomonotone. So if the solution exists, it is unique. By assumption \Cref{thm:existence} gives existence of a solution of $VI(dU,P_{2,\mu}^M)$ in case $H$ is infinite dimensional. If $H$ is finite-dimensional then $P_{2,\mu}^M$ is compact and there exists a solution \Cref{rem:weak_compact}.
 \end{proof}
 As a consequence of \Cref{thm:nash_unique}, we can introduce an equilibrium between the Nash equilibria of a mean-field game and a game with monomorphic populations. If a mean-field game has a family of functions $U_i^{mon}$ satisfying $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$, then the monomorphic game defined $U_i^{mon}$ has the same Nash equilbria, and can be studied equivalently.
 \begin{definition}
   \label{def:correspondence}
-  Consider a mean-field game with populations $N_1,\dots,N_M$ with individual payoffs $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M, R)$. Assume $\nabla_{\sigma_i}U_i\mid_{\sigma_i=\overbar{\sigma}_i}$ admits a primitive $U_i^{mon}$ such that $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$.
+  Consider a mean-field game with populations $N_1,\dots,N_M$ with individual payoffs $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$. Assume $\nabla_{\sigma_i}U_i\mid_{\sigma_i=\overbar{\sigma}_i}$ admits a primitive $U_i^{mon}$ such that $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$.
    We define the monomorphic equivalent game as the game with monomorphic populations specified by the payoff functions $U_i^{mon}$.
 \end{definition}
+With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of population games where $dU$ is strictly pseudomonotone, e.g. if all monomorphic equivalent payoff functions are strictly pseudoconvex and bounded dynamics.
 If a monomorphic equivalent game exists, it becomes possible to study the monomorphic game instead and e.g. use strict pseudoconvexity to establish strict pseudomonotonicity.
 
-With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of population games with strictly pseudoconvex monomorphic equivalent payoff functions and bounded dynamics.
 \begin{theorem}
   \label{thm:pop_game_exists_unique}
-  We have a population game with $M$ populations of size $N_i$, payoff functions $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M, R)$ and dynamics given by $f_i(N_j \overbar{\sigma}_j)_{j=1}^M, R),r((N_j \overbar{\sigma}_j)_{j=1}^M, R)$:
+  We have a population game with $M$ populations of size $N_i$, payoff functions $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$ and dynamics given by $f_i(N_j \overbar{\sigma}_j)_{j=1}^M))$:
   \begin{equation}
-    \dot{R} = r
     \dot{N_i} = N_i f_i
   \end{equation}
-  Assume that the functions $f_i$ are strictly pseudomonotone, and that the set of stationary points of the dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$ and convex. Let the derivatives of the payoff functions $U_i$ evaluated in $\sigma_i = \overbar{\sigma}_i$ be strictly pseudomonotone and satisfy \Cref{thm:existence}. Then the population game has a unique fixed point with a unique Nash equilibrium
+  Assume that the functions $f_i$ are strictly pseudomonotone, and that the set of stationary points of the dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$ and convex. Let $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ be strictly pseudomonotone and satisfy \Cref{thm:existence}. Then the population game has a unique fixed point with a unique Nash equilibrium
 \end{theorem}
 \begin{proof}
   The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $dU = (\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i})_{i=1}^M$. The solution operator is a continuous mapping $G: \R_+^M \to P_{2,\mu}^M$, due to the existence and uniqueness of the solution \Cref{thm:nash_unique} \cite[Theorem 4.2]{barbagallo2009continuity}. Due to the assumptions on $f_i$ the variational inequality on $\R^M$ defined by $(f_i)_{i=1}^M$ corresponding to fixed points of the dynamics has a unique solution $F$ for every family $(\sigma_i)_{i=1}^M$, and $F:P_{2,\mu}^M: \to \R^M_+$ is again continuous.

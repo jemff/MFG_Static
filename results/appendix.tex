@@ -21,11 +21,12 @@ Proving strict pseudomonotonicity in itself can be hard, but thankfully the noti
 \begin{theorem}[Theorem 12.13, p. 521 \citep{hadjisavvas2006handbook}]
   Let $\Omega \subset H$ be an open convex subset, and let $f:\Omega \to \R$ be Gateaux differentiable. Then $f$ is strictly pseudoconvex if and only if $\nabla f$ is strictly pseudomonotone.
 \end{theorem}
-Minimizing a differentiable strictly pseudoconvex $f$ function over a convex set $K$ is equivalent to solving the variational inequality
+Minimizing a differentiable strictly pseudoconvex $f$ function over a convex set $K$ is equivalent to solving the variational inequality \citep[P. 521]{hadjisavvas2006handbook}
 \begin{equation}
+  \label{eq:min_func}
   x \in K, ~ \ip{(\nabla f)(x)}{x-y} \geq 0, \forall y\in K
 \end{equation}
-The problem of existence and uniqueness of a Nash equilibrium has been reduced to a problem of existence and uniqueness of a variational inequality. Whether a variational inequality given by a pseudomonotone operator has a solution can be determined by \citep[Theorem 3.4]{maugeri2009existence}, which we abridge:
+Whether a variational inequality given by a pseudomonotone operator has a solution can be determined by \citep[Theorem 3.4]{maugeri2009existence}, which we abridge:
 \begin{theorem}
   \label{thm:existence}
   Let $K$ be a closed convex set and $A : K \to H$  a pseudo-
