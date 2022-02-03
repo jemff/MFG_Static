@@ -143,7 +143,8 @@ We can now turn the problem finding a Nash equilibrium into a variational inequa
 
 In our theoretical considerations, we want to rid ourselves of considering the term $\lambda_i$, which stems from the constraint $\int \sigma_i dx = 1$. Hence solving the variational inequality for $T$ over $K$ is equivalent to setting $\lambda_i = 0$ and solving the variational inequality over $P_{2,\mu}$.
 
-Defining
+\begin{definition}[Nash equilibrium as variational inequality]
+  We can state the problem of finding the Nash equilibrium \Cref{eq:tot_nash_eq} as finding the solution of a variational inequality. Defining
 \begin{equation}
   dU = \begin{pmatrix} \nabla_{\sigma_1} U_1 \mid_{\sigma_1 = \overbar{\sigma}_1}\\
       \vdots \\
@@ -153,7 +154,7 @@ the problem of determining the Nash equilibrium \Cref{eq:tot_nash_eq} is finding
 \begin{equation}
   \ip{dU(S)}{S-T} \geq 0 \forall T\in P_{2,\mu}^M
 \end{equation}
-
+\end{definition}
 %i.e. solves a variational inequality. %Searching for a solution to a variational inequality is more tractable for theoretical considerations, while the complementarity formulation is preferable for solving the problem numerically.
 
 %In case the payoff-functions $U_i $ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium. Asking for convexity is too strong, but it turns out the weaker notion of strict pseudoconvexity is sufficient. See \Cref{sec:appendix} for further details.
