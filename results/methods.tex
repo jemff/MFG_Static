@@ -3,7 +3,7 @@ Calculating Nash equilibria, \Cref{eq:tot_nash_eq} is generally a hard problem. 
 
 %We develop the theory for monomorphic games, and finally introduce a method to analyze a mean-field game as a monomorphic game.
 
-As in \Cref{sec:general_setting}, our habitat is a measure space $(X,\mu)$ with $M$ different animal types inhabiting it with payoff-functions $U_i$. The simplest example our framework needs to handle is that of a single type with population $N$ inhabiting $X$ with foraging distribution $\sigma$. The encounter rate of an individual following the strategy $\sigma$ with the entire population also following the strategy $\sigma$ is $N\sigma^2$. The expected total encounter for an individual with its conspecifics is
+As in \Cref{sec:general_setting}, our habitat is a measure space $(X,\mu)$ with $M$ different animal types inhabiting it with payoff-functions $U_i$. The simplest example our framework needs to handle is that of a single type with population $N$ inhabiting $X$ with following a distribution with density $\sigma$. The encounter rate of an individual following the strategy $\sigma$ with the entire population also following the strategy $\sigma$ is $N\sigma^2$. The expected total encounter for an individual with its conspecifics is
 \begin{equation}
   N\int_X \sigma^2 d\mu
 \end{equation}
@@ -47,9 +47,9 @@ The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to 
     %\sigma \in P_{2,\mu}(X)
   \end{split}
 \end{equation}
-Remark that the last two conditions are equivalent to $\sigma \in P_{\mu}(X) \cap H$. This motivates the definition:
+Remark that the last two conditions are equivalent to $\sigma \in P_{\mu} \cap H$. This motivates the definition:
 \begin{definition}
-  Assume we have a measure space $(X,\mu)$. Consider the space of square-integrable functions $H=L^2(X,\mu)$ and space of probability densities $P_{\mu}$. Define the space $P_{2,\mu}=H \cap P_{\mu}$ consisting of square-integrable probability densities.
+  Assume we have a measure space $(X,\mu)$. Consider the space of square-integrable functions $H=L^2(X,\mu)$ and space $P_{\mu}$ of probability densities over $X$. Define the space $P_{2,\mu}=H \cap P_{\mu}$ consisting of square-integrable probability densities.
 \end{definition}
 Solving the system in \Cref{eq:KKT_total} is highly non-trivial, but it turns out that reinterpreting the problem is helpful.
 Finding Nash equilibria by interpreting the problem as a complementarity problem is one of the the original solutions to the hardness of finding Nash equilibria  \citep{karamardian1969nonlinear}. It turns out that the set of equations in \Cref{eq:KKT_total} is very close to being a complementarity problem, but first we need to introduce the notion.
@@ -231,7 +231,7 @@ Having established the general theory for Nash equilibria, and demonstrated how 
 %Having established the general framework, we can proceed to defining the concrete model of interest.
 We consider a predator-prey system modeled as a Rosenzweig-MacArthur system, where the predators are specialized so that their hunting success is maximal in the most productive zone of the habitat.
 We assume that predators $(N_p)$ and consumers $(N_c)$ inhabit the interval $[0,1]$, with $P_{2,\mu}$ as square-integrable probability densities on $[0,1]$. The mean strategies of the predator and consumer populations are $\overbar{\sigma}_c$, and $\overbar{\sigma}_p$ respectively.
-The population dynamics are a modified Rosenzweig-MacArthur system, where do not need to model a dynamic environment. We assume a consumer population with a Type I functional response foraging in an environment with a heterogeneous carrying capacity. We model this as a carrying capacity $K_0 + K \phi$ where $K_0$ is the minimal carrying capacity, $K$ is the varying capacity and $\phi$ is a probability density function. In the model, we set  $\phi = \frac{\exp(-3 x)}{\int_0^1 \exp(-3 x) dx}$.
+The population dynamics are a modified Rosenzweig-MacArthur system. We assume a consumer population with a Type I functional response foraging in an environment with a heterogeneous carrying capacity. We model this as a carrying capacity $K_0 + K \phi$ where $K_0$ is the minimal carrying capacity, $K$ is the varying capacity and $\phi$ is a probability density function. In the model, we set  $\phi = \frac{\exp(-3 x)}{\int_0^1 \exp(-3 x) dx}$.
 
 We assume that the maximal potential growth for a consumer from a location depends both on the carrying capacity and how many consumers are already occupying the spot. With this in mind, the pr. capita consumer growth term $G_c$ is
 \begin{equation}
@@ -328,7 +328,7 @@ This allows us to state our main result on the behaviorally modified Rosenzweig-
     \label{eq:fin_exist}
     \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)} \geq C_1\norm{\sigma_c}_2^2 + C_2\norm{\sigma_p}_2^2 - W(\sigma_c,\sigma_p)
   \end{equation}
-  where $W$ is uniformly bounded on $P_{2,\mu}^2$, and $C_1,C_2$ strictly positive. Recall that constraining the problem to $P_{2,\mu}$ is equivalent to $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Therefore \Cref{eq:du} is only negative on a bounded subset of $P^2_{2,\mu}$, showing existence of a solution to the variational inequality defined by the function \Cref{eq:var_ineq}, \Cref{thm:existence} .
+  where $W$ is uniformly bounded on $P_{2,\mu}^2$, and $C_1,C_2$ strictly positive. Recall that constraining the problem to $P_{2,\mu}$ is equivalent to $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Therefore \Cref{eq:du} is only negative on a bounded subset of $P^2_{2,\mu}$, showing existence of a solution to the variational inequality defined by the function \Cref{eq:var_ineq}, \Cref{thm:existence}.
 
 \end{proof}
 As we are interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we show that a fixed-point of the population dynamics exists and is unique.
