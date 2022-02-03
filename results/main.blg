@@ -3,10 +3,6 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: chicago.bst
 Database file #1: bibliography.bib
-Repeated entry---line 148 of file bibliography.bib
- : @book{broom2013game
- :                    ,
-I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "jerome"
 Warning--I didn't find a database entry for "krivan2013"
 Warning--I didn't find a database entry for "cressman2006"
@@ -59,4 +55,4 @@ warning$ -- 7
 while$ -- 389
 width$ -- 0
 write$ -- 499
-(There was 1 error message)
+(There were 11 warnings)

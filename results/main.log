@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.4.3)  5 JAN 2022 14:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.4.3)  3 FEB 2022 14:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -866,18 +866,6 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
-Package: amsthm 2017/10/31 v2.20.4
-\thm@style=\toks39
-\thm@bodyfont=\toks40
-\thm@headfont=\toks41
-\thm@notefont=\toks42
-\thm@headpunct=\toks43
-\thm@preskip=\skip52
-\thm@postskip=\skip53
-\thm@headsep=\skip54
-\dth@everypar=\toks44
-)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
@@ -891,15 +879,15 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footer
 s
-\f@nch@headwidth=\skip55
-\f@nch@O@elh=\skip56
-\f@nch@O@erh=\skip57
-\f@nch@O@olh=\skip58
-\f@nch@O@orh=\skip59
-\f@nch@O@elf=\skip60
-\f@nch@O@erf=\skip61
-\f@nch@O@olf=\skip62
-\f@nch@O@orf=\skip63
+\f@nch@headwidth=\skip52
+\f@nch@O@elh=\skip53
+\f@nch@O@erh=\skip54
+\f@nch@O@olh=\skip55
+\f@nch@O@orh=\skip56
+\f@nch@O@elf=\skip57
+\f@nch@O@erf=\skip58
+\f@nch@O@olf=\skip59
+\f@nch@O@orf=\skip60
 )
 (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
@@ -920,19 +908,18 @@ LaTeX Info: Redefining \cpagerefrange on input line 2301.
 LaTeX Info: Redefining \Cpagerefrange on input line 2301.
 LaTeX Info: Redefining \labelcref on input line 2301.
 LaTeX Info: Redefining \labelcpageref on input line 2301.
-Package cleveref Info: `amsthm' support loaded on input line 2957.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip64
-\bibsep=\skip65
+\bibhang=\skip61
+\bibsep=\skip62
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count131
 )
 (/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \linenopenalty=\count132
-\output=\toks45
+\output=\toks39
 \linenoprevgraf=\count133
 \linenumbersep=\dimen162
 \linenumberwidth=\dimen163
@@ -982,8 +969,8 @@ Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
 \pgffor@iter=\dimen167
 \pgffor@skip=\dimen168
-\pgffor@stack=\toks46
-\pgffor@toks=\toks47
+\pgffor@stack=\toks40
+\pgffor@toks=\toks41
 )
 :<-
 )
@@ -1052,14 +1039,14 @@ Loading kernel: messages; fonts; allocations: state,
 \D@c=\dimen179
 \L@c=\dimen180
 \R@c=\dimen181
-\Edge@c=\toks48
+\Edge@c=\toks42
 \X@p=\dimen182
 \Y@p=\dimen183
 \U@p=\dimen184
 \D@p=\dimen185
 \L@p=\dimen186
 \R@p=\dimen187
-\Edge@p=\toks49
+\Edge@p=\toks43
 \X@origin=\dimen188
 \Y@origin=\dimen189
 \X@xbase=\dimen190
@@ -1087,10 +1074,10 @@ Loading kernel: messages; fonts; allocations: state,
 \quotPTK@=\dimen259
 
 utility macros; pictures: \xy, positions,
-\swaptoks@@=\toks50
+\swaptoks@@=\toks44
 \connectobjectbox@@=\box47
  objects,
-\styletoks@=\toks51
+\styletoks@=\toks45
  decorations;
 kernel objects: directionals, circles, text; options; algorithms: directions,
 edges, connections;  Xy-pic loaded)
@@ -1101,7 +1088,7 @@ Package: xy 2013/10/06 Xy-pic version 3.8.9
 (/usr/share/texlive/texmf-dist/tex/generic/xypic/xycurve.tex
  Xy-pic option: Curve and Spline extension v.3.12 curve,
 \crv@cnt@=\count153
-\crvpts@=\toks52
+\crvpts@=\toks46
 \splinebox@=\box48
 \splineval@=\dimen260
 \splinedepth@=\dimen261
@@ -1128,8 +1115,8 @@ Package: xy 2013/10/06 Xy-pic version 3.8.9
  Xy-pic option: Matrix feature v.3.14
 \Row=\count154
 \Col=\count155
-\queue@=\toks53
-\queue@@=\toks54
+\queue@=\toks47
+\queue@@=\toks48
 \qcount@=\count156
 \qcount@@=\count157
 \matrixsize@=\count158
@@ -1180,12 +1167,12 @@ LaTeX Font Info:    ... okay on input line 57.
 \scratchbox=\box49
 \nofMPsegments=\count166
 \nofMParguments=\count167
-\everyMPshowfont=\toks55
+\everyMPshowfont=\toks49
 \MPscratchCnt=\count168
 \MPscratchDim=\dimen267
 \MPnumerator=\count169
 \makeMPintoPDFobject=\count170
-\everyMPtoPDFconversion=\toks56
+\everyMPtoPDFconversion=\toks50
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1246,7 +1233,112 @@ Package srcltx Info: Expanded filename `introduction.tex' to `introduction.tex'
  on input line 60.
 
 :<+ introduction.tex
-(./introduction.tex [1
+(./introduction.tex
+
+Package natbib Warning: Citation `cressman2004ideal' on page 1 undefined on inp
+ut line 4.
+
+
+Package natbib Warning: Citation `fretwell1969territorial' on page 1 undefined 
+on input line 4.
+
+
+Package natbib Warning: Citation `morris2003shadows' on page 1 undefined on inp
+ut line 4.
+
+
+Package natbib Warning: Citation `krivan1997dynamic' on page 1 undefined on inp
+ut line 6.
+
+
+Package natbib Warning: Citation `kvrivan2007lotka' on page 1 undefined on inpu
+t line 6.
+
+
+Package natbib Warning: Citation `gross2009generalized' on page 1 undefined on 
+input line 6.
+
+
+Package natbib Warning: Citation `vincent2005evolutionary' on page 1 undefined 
+on input line 6.
+
+
+Package natbib Warning: Citation `malone2020ecology' on page 1 undefined on inp
+ut line 6.
+
+
+Package natbib Warning: Citation `stump2017optimally' on page 1 undefined on in
+put line 6.
+
+
+Package natbib Warning: Citation `vincent2005evolutionary' on page 1 undefined 
+on input line 6.
+
+
+Package natbib Warning: Citation `cressman2010ideal' on page 1 undefined on inp
+ut line 6.
+
+
+Package natbib Warning: Citation `smith1982evolution' on page 1 undefined on in
+put line 6.
+
+
+Package natbib Warning: Citation `cressman2010ideal' on page 1 undefined on inp
+ut line 6.
+
+
+Package natbib Warning: Citation `fretwell1969territorial' on page 1 undefined 
+on input line 9.
+
+
+Package natbib Warning: Citation `cressman2004ideal' on page 1 undefined on inp
+ut line 9.
+
+
+Package natbib Warning: Citation `kvrivan2008ideal' on page 1 undefined on inpu
+t line 9.
+
+
+Package natbib Warning: Citation `cressman2010ideal' on page 1 undefined on inp
+ut line 9.
+
+
+Package natbib Warning: Citation `broom2013game' on page 1 undefined on input l
+ine 9.
+
+
+Package natbib Warning: Citation `parker1978searching' on page 1 undefined on i
+nput line 9.
+
+
+Package natbib Warning: Citation `lasry2007mean' on page 1 undefined on input l
+ine 9.
+
+
+Package natbib Warning: Citation `aumann1964markets' on page 1 undefined on inp
+ut line 9.
+
+
+Package natbib Warning: Citation `blanchet2016optimal' on page 1 undefined on i
+nput line 9.
+
+
+Package natbib Warning: Citation `broom2013game' on page 1 undefined on input l
+ine 9.
+
+
+Package natbib Warning: Citation `karamardian1969nonlinear' on page 1 undefined
+ on input line 9.
+
+
+Package natbib Warning: Citation `gabay1980uniqueness' on page 1 undefined on i
+nput line 9.
+
+
+Package natbib Warning: Citation `nabetani2011parametrized' on page 1 undefined
+ on input line 9.
+
+[1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
 :<-
@@ -1255,180 +1347,95 @@ g.tex' on input line 61.
 :<+ general_setting.tex
 (./general_setting.tex
 
-Package natbib Warning: Citation `jerome' on page 2 undefined on input line 5.
-
-
-Package natbib Warning: Citation `krivan2013' on page 2 undefined on input line
- 5.
-
-
-Package natbib Warning: Citation `cressman2006' on page 2 undefined on input li
-ne 5.
+Package natbib Warning: Citation `collet2019algorithmic' on page 2 undefined on
+ input line 5.
 
 [2]
 
-Package natbib Warning: Citation `rychtar2015' on page 3 undefined on input lin
-e 20.
+Package natbib Warning: Citation `iwasa1982vertical' on page 3 undefined on inp
+ut line 8.
 
 
-Package natbib Warning: Citation `jerome' on page 3 undefined on input line 20.
+Package natbib Warning: Citation `kvrivan2013behavioral' on page 3 undefined on
+ input line 8.
 
 
+Package natbib Warning: Citation `cressman2006migration' on page 3 undefined on
+ input line 8.
 
-Overfull \hbox (19.83124pt too wide) in paragraph at lines 20--21
-[][]\T1/cmr/m/n/10 An ad-van-tage of study-ing games of mean-field type is that
- they have polymorphic-
+
+Package natbib Warning: Citation `fretwell1969territorial' on page 3 undefined 
+on input line 11.
+
+
+Package natbib Warning: Citation `broom2013game' on page 3 undefined on input l
+ine 11.
+
+
+Package natbib Warning: Citation `verticalmigration' on page 3 undefined on inp
+ut line 11.
+
+
+Package natbib Warning: Citation `aumann1964markets' on page 3 undefined on inp
+ut line 23.
+
+
+Package natbib Warning: Citation `lasry2007mean' on page 3 undefined on input l
+ine 23.
+
+[3]
+
+Package natbib Warning: Citation `kvrivan2013behavioral' on page 4 undefined on
+ input line 49.
+
+
+Package natbib Warning: Citation `vincent2005evolutionary' on page 4 undefined 
+on input line 49.
+
+
+Overfull \hbox (0.24902pt too wide) in paragraph at lines 49--50
+[]\T1/cmr/m/n/10 Assuming monomor-phic pop-u-la-tions is the typ-i-cal ap-proac
+h to pop-u-la-tion games
  []
 
 
-Package natbib Warning: Citation `krivan2013' on page 3 undefined on input line
- 26.
+! LaTeX Error: Environment proof undefined.
 
-[3] [4])
-:<-
-Package srcltx Info: Expanded filename `methods.tex' to `methods.tex' on input 
-line 62.
-:<+ methods.tex
-(./methods.tex [5] [6]
-
-LaTeX Warning: Reference `sec:appendix' on page 1 undefined on input line 91.
-
-
-LaTeX Warning: Reference `thm:existence' on page 1 undefined on input line 103.
-
-
-
-LaTeX Warning: Reference `thm:uniqueness' on page 1 undefined on input line 106
-.
-
-
-LaTeX Warning: Reference `thm:existence' on page 1 undefined on input line 106.
-
-
-
-LaTeX Warning: Reference `rem:weak_compact' on page 1 undefined on input line 1
-06.
-
-
-LaTeX Warning: Reference `thm:existence' on page 1 undefined on input line 111.
-
-
-[7] [8] [9]
-
-LaTeX Warning: Reference `thm:existence' on page 1 undefined on input line 188.
-
-
-
-LaTeX Warning: Reference `thm:existence' on page 1 undefined on input line 202.
-
-
-[10])
-:<-
-Package srcltx Info: Expanded filename `results.tex' to `results.tex' on input 
-line 63.
-:<+ results.tex
-(./results.tex
-Overfull \hbox (6.83075pt too wide) in paragraph at lines 3--4
-\T1/cmr/m/n/10 Rosenzweig-MacArthur sys-tem Sec-tion []4[], we use the for-mu-l
-a-tion of Equa-tion ([]10[]).
- []
-
-<plots/dynamics.pdf, id=260, 170.71654pt x 170.71654pt>
-File: plots/dynamics.pdf Graphic file (type pdf)
-<use plots/dynamics.pdf>
-Package pdftex.def Info: plots/dynamics.pdf  used on input line 27.
-(pdftex.def)             Requested size: 170.71611pt x 170.71611pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--28
-
- []
-
-[11]
-<plots/pop_levels_c.pdf, id=273, 341.43306pt x 170.71654pt>
-File: plots/pop_levels_c.pdf Graphic file (type pdf)
-<use plots/pop_levels_c.pdf>
-Package pdftex.def Info: plots/pop_levels_c.pdf  used on input line 33.
-(pdftex.def)             Requested size: 341.4322pt x 170.71611pt.
-
-Overfull \hbox (10.8612pt too wide) in paragraph at lines 29--34
-[][]\T1/cmr/m/n/10 Figure []1[] il-lus-trates the phase por-trait for the be-ha
-v-iorally mod-i-fied Rosenzweig-
- []
-
-[12 <./plots/dynamics.pdf>]
-<plots/increasing_car_cap_c.pdf, id=298, 334.20609pt x 172.3121pt>
-File: plots/increasing_car_cap_c.pdf Graphic file (type pdf)
-<use plots/increasing_car_cap_c.pdf>
-Package pdftex.def Info: plots/increasing_car_cap_c.pdf  used on input line 46.
-
-(pdftex.def)             Requested size: 334.20526pt x 172.31168pt.
- [13 <./plots/pop_levels_c.pdf>]
-<plots/increasing_competition_c.pdf, id=323, 334.20609pt x 172.3121pt>
-File: plots/increasing_competition_c.pdf Graphic file (type pdf)
-<use plots/increasing_competition_c.pdf>
-Package pdftex.def Info: plots/increasing_competition_c.pdf  used on input line
- 55.
-(pdftex.def)             Requested size: 334.20526pt x 172.31168pt.
- [14 <./plots/increasing_car_cap_c.pdf>] Excluding 'comment' comment.)
-:<-
-Package srcltx Info: Expanded filename `discussion.tex' to `discussion.tex' on 
-input line 64.
-:<+ discussion.tex
-(./discussion.tex [15 <./plots/increasing_competition_c.pdf>] [16])
-:<-
-:<+ main.bbl
-(./main.bbl [17] [18])
-:<-
-\Changes@OutFile=\write7
-\openout7 = `main.soc'.
-
-
-AED: lastpage setting LastPage
-[19]
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 75.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 75.
-(./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 75.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 75.
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E1785DE466DF1816D54155C80E8D5A06;701.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 75.
- ) 
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.66 \begin{proof}
+                  
+? exit
+ 
 Here is how much of TeX's memory you used:
- 22711 strings out of 492982
- 406195 string characters out of 6134897
- 512879 words of memory out of 5000000
- 25692 multiletter control sequences out of 15000+600000
+ 22389 strings out of 492982
+ 399949 string characters out of 6134897
+ 502338 words of memory out of 5000000
+ 25495 multiletter control sequences out of 15000+600000
  18604 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 48i,23n,58p,3215b,482s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></
-usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/font
-s/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-su
-per/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></u
-sr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts
-/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-sup
-er/sfti1000.pfb>
-Output written on main.pdf (19 pages, 403680 bytes).
+ 48i,17n,58p,3215b,381s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{subsection.2.2} has been referenced but does not ex
+ist, replaced by a fixed one
+
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/sha
+re/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfr
+m1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfrm1728.pfb>
+Output written on main.pdf (3 pages, 153725 bytes).
 PDF statistics:
- 508 PDF objects out of 1000 (max. 8388607)
- 455 compressed objects within 5 object streams
- 111 named destinations out of 1000 (max. 500000)
- 113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 98 PDF objects out of 1000 (max. 8388607)
+ 75 compressed objects within 1 object stream
+ 9 named destinations out of 1000 (max. 500000)
+ 33 words of extra memory for PDF output out of 10000 (max. 10000000)
 

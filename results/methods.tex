@@ -3,19 +3,20 @@ Calculating Nash equilibria, \Cref{eq:tot_nash_eq} is generally a hard problem. 
 
 %We develop the theory for monomorphic games, and finally introduce a method to analyze a mean-field game as a monomorphic game.
 
-As in \Cref{sec:general_setting}, our habitat is a measure space $(X,\mu)$ with $M$ different animal types inhabiting it with payoff-functions $U_i$. The simplest example our framework needs to handle is that of a single type with population $N$ inhabiting $X$ with foraging distribution $\sigma$. The encounter rate of an individual following the strategy $\sigma$ with the entire population also following the strategy $\sigma$ is $N\sigma^2$. The expected total encounter rate then becomes
+As in \Cref{sec:general_setting}, our habitat is a measure space $(X,\mu)$ with $M$ different animal types inhabiting it with payoff-functions $U_i$. The simplest example our framework needs to handle is that of a single type with population $N$ inhabiting $X$ with foraging distribution $\sigma$. The encounter rate of an individual following the strategy $\sigma$ with the entire population also following the strategy $\sigma$ is $N\sigma^2$. The expected total encounter for an individual with its conspecifics is
 \begin{equation}
-  \int_X \sigma^2 d\mu
+  N\int_X \sigma^2 d\mu
 \end{equation}
-and this quantity must be finite. This forces us to be careful with the space of strategies we work in, and shows that the appropriate setting for our work is the space $L^2(X)$.
+and this quantity must be finite. This shows that the appropriate setting for our work is the space $L^2(X)$.
 \begin{definition}
-  Define $H$ as the real Hilbert space $L^2(X)$, where $X$ is a measure space. Define $H_+ \subset H$ as the a.e. positive functions in $H$.
+  Define the real Hilbert space $H=L^2(X)$, where $X$ is a measure space. Define $H_+ \subset H$ as the a.e. positive functions in $H$.
 \end{definition}
 
 \subsection{From Karush-Kuhn-Tucker to complementarity}
 The problem of finding the Nash equilibrium is that of finding solutions to \Cref{eq:tot_nash_eq}. We recall the setup of the $M$-player mean field game, now restricted to $H$. Assume we have $M$ different types of animals, with payoff functions $U_i$, and strategies $\sigma_i$, with corresponding mean-field strategies $\overbar{\sigma}_i$.
 The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to finding a system $\sigma_i^*$ satisfying the KKT conditions simultaneously for every $U_i$, \citep{deimling2010nonlinear}, with $\overbar{\sigma}=\sigma$ as in \Cref{eq:mfg_ne}. Denoting the identity on $H$ by $1_H$, the total criterion for a Nash equilibrium of a mean-field game \Cref{eq:tot_nash_eq} is:
 \begin{equation}
+      \label{eq:KKT_total}
   \begin{split}
   \begin{pmatrix}
     \nabla_{\sigma_1} U_1 \mid{\sigma_1 = \overbar{\sigma}_1} \\
@@ -44,15 +45,14 @@ The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to 
   \sigma_i \in H_+ \\
   \int \sigma_i d\mu = 1
     %\sigma \in P_{2,\mu}(X)
-    \label{eq:KKT_total}
   \end{split}
 \end{equation}
 Remark that the last two conditions are equivalent to $\sigma \in P_{\mu}(X) \cap H$. This motivates the definition:
 \begin{definition}
   Assume we have a measure space $(X,\mu)$. Consider the space of square-integrable functions $H=L^2(X,\mu)$ and space of probability densities $P_{\mu}$. Define the space $P_{2,\mu}=H \cap P_{\mu}$ consisting of square-integrable probability densities.
 \end{definition}
-Solving the system in \Cref{eq:KKT_Total} is highly non-trivial, but it turns out that reinterpreting the problem is helpful.
-Finding Nash equilibria by interpreting the problem as a complementarity problem is one of the the original solutions to the hardness of finding Nash equilibria  \citep{karamardian1969nonlinear}. It turns out that the set of equations in \Cref{eq:KKT_Total} is very close to being a complementarity problem, but first we need to introduce the notion.
+Solving the system in \Cref{eq:KKT_total} is highly non-trivial, but it turns out that reinterpreting the problem is helpful.
+Finding Nash equilibria by interpreting the problem as a complementarity problem is one of the the original solutions to the hardness of finding Nash equilibria  \citep{karamardian1969nonlinear}. It turns out that the set of equations in \Cref{eq:KKT_total} is very close to being a complementarity problem, but first we need to introduce the notion.
  This formulation is an example of a complementarity problem,
 \begin{definition}
   \label{def:comp_prob}
@@ -64,7 +64,7 @@ Finding Nash equilibria by interpreting the problem as a complementarity problem
   \end{split}
   \end{equation}
 \end{definition}
-With \Cref{def:comp_prob} we can write \ref{eq:KKT_Total} as an equivalent family of complementarity problems. Introduce $K = H_+ \osum \R$, with $K^* = H_+ \osum \{0\}$ and define
+With \Cref{def:comp_prob} we can write \Cref{eq:KKT_total} as an equivalent family of complementarity problems. Introduce $K = H_+ \osum \R$, with $K^* = H_+ \osum \{0\}$ and define
 \begin{equation}
   T(\sigma_i, \lambda) = (\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H, 0)
 \end{equation}
@@ -73,7 +73,12 @@ Then the equations in \Cref{eq:KKT_total} can be recast as finding $(\sigma_i,\l
   \label{eq:comp_form}
   \begin{split}
     \ip{T}{(\sigma_i,\lambda_i)} = 0 \\
-    T((\sigma_i,\lambda_i) \in K^* \\
+    T((\sigma_i,\lambda_i) \in K^*
+  \end{split}
+\end{equation}
+Or, equivalently:
+\begin{equation}
+  \begin{split}
     \ip{\sigma_i}{\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H} + \ip{\lambda_i}{0}= 0 \\
     \pa{-\pa{\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H}, 0} \in K
   \end{split}
@@ -139,42 +144,58 @@ The relationship between variational inequalities and complementarity problems i
   \end{equation}
   Setting $y = 2x^*$, we arrive at $\ip{x^*}{Tx^*} \geq 0$, and setting $y=0$ we arrive at $\ip{x^*}{Tx^*} \leq 0$. This shows the desired equivalence.
 \end{proof}
-We can now turn the problem finding a Nash equilibrium into a variational inequality. Consider the problem as stated in \Cref{eq:comp_prob}. This is a complementarity problem over the convex cone $H_+ \osum \R$. Hence it is equivalent to a variational inequality over the same convex cone.
-
-In our theoretical considerations, we want to rid ourselves of considering the term $\lambda_i$, which stems from the constraint $\int \sigma_i dx = 1$. Hence solving the variational inequality for $T$ over $K$ is equivalent to setting $\lambda_i = 0$ and solving the variational inequality over $P_{2,\mu}$.
-
+We can now turn the problem finding a Nash equilibrium into a variational inequality. Consider the problem as stated in \Cref{eq:comp_form}. This is a complementarity problem over the convex cone $H_+ \osum \R$. Hence it is equivalent to a variational inequality over the same convex cone
+\begin{equation}
+  \ip{T}{(\sigma_i' -\sigma_i,\lambda_i'-\lambda_i)} \geq 0, \quad \forall (\sigma_i', \lambda_i') \in K
+\end{equation}
+Since the second coordinate of $T$ is identically zero, this is the same as finding $(\sigma,\lambda)$ such that
+\begin{equation}
+  \label{eq:simp_var_eq}
+  \ip{\nabla_i U_i \mid_{\sigma_i = \overbar{\sigma}_i} - \lambda_i}{\sigma_i' -\sigma_i} \geq 0 \quad \forall \sigma_i' \in K
+\end{equation}
+In our theoretical considerations, we want to rid ourselves of considering the term $\lambda_i$, which stems from the constraint $\int \sigma_i dx = 1$. Hence solving \Cref{eq:simp_var_eq} over $K$ is equivalent to solving
+\begin{equation}
+  \ip{\nabla_i U_i \mid_{\sigma_i = \overbar{\sigma}_i}}{\sigma_i' -\sigma_i} \geq 0, \quad \sigma_i' \in P_{2,\mu}
+\end{equation}
+We can now state the problem of finding the Nash equilibrium \Cref{eq:tot_nash_eq} as finding the solution of a variational inequality.
 \begin{definition}[Nash equilibrium as variational inequality]
-  We can state the problem of finding the Nash equilibrium \Cref{eq:tot_nash_eq} as finding the solution of a variational inequality. Defining
+  \label{def:var_eq_nash}
+  Defining
 \begin{equation}
   dU = \begin{pmatrix} \nabla_{\sigma_1} U_1 \mid_{\sigma_1 = \overbar{\sigma}_1}\\
       \vdots \\
       \nabla_{\sigma_N} U_N \mid_{\sigma_N = \overbar{\sigma}_N} \end{pmatrix}
 \end{equation}
-the problem of determining the Nash equilibrium \Cref{eq:tot_nash_eq} is finding a vector $S = (\sigma_i)_{i=1}^M$ that minimizes:
+the problem of determining the Nash equilibrium \Cref{eq:tot_nash_eq} is finding a vector $S = (\sigma_i)_{i=1}^M$ such that:
 \begin{equation}
-  \ip{dU(S)}{S-T} \geq 0 \forall T\in P_{2,\mu}^M
+  \ip{dU(S)}{W-S} \geq 0 \quad \forall W\in P_{2,\mu}^M
 \end{equation}
 \end{definition}
 %i.e. solves a variational inequality. %Searching for a solution to a variational inequality is more tractable for theoretical considerations, while the complementarity formulation is preferable for solving the problem numerically.
 
 %In case the payoff-functions $U_i $ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium. Asking for convexity is too strong, but it turns out the weaker notion of strict pseudoconvexity is sufficient. See \Cref{sec:appendix} for further details.
 
-We can gather the results on pseudoconvex functions and their application to game theory in the following theorem:
+We gather the results on pseudomonotone functions and their application to game theory in the following theorem:
 \begin{theorem} \label{thm:nash_unique}
-  Consider a game with $M$ players with payoff functions $U_i$ where $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone. Assume the strategies $\sigma_i$ are in $P_{2,\mu}$. The game has a unique Nash equilibrium if $dU$ satisfies the criterion of \Cref{thm:existence} or $H$ is finite dimensional.
+  Consider a game with $M$ players with payoff functions $U_i$ where $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone. Assume the strategies $\sigma_i$ are in $P_{2,\mu}$. The game has a unique Nash equilibrium if $dU$ as in \Cref{def:var_eq_nash} satisfies the criterion of \Cref{thm:existence} or $H$ is finite dimensional.
 \end{theorem}
 \begin{proof}
    If each $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone, then so is their direct sum $dU$ by bilinearity of the inner product. By \Cref{thm:uniqueness} any Nash equilibrium will be unqiue since $dU$ is strictly pseudomonotone. So if the solution exists, it is unique. By assumption \Cref{thm:existence} gives existence of a solution of $VI(dU,P_{2,\mu}^M)$ in case $H$ is infinite dimensional. If $H$ is finite-dimensional then $P_{2,\mu}^M$ is compact and there exists a solution \Cref{rem:weak_compact}.
 \end{proof}
-As a consequence of \Cref{thm:nash_unique}, we can introduce an equilibrium between the Nash equilibria of a mean-field game and a game with monomorphic populations. If a mean-field game has a family of functions $U_i^{mon}$ satisfying $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$, then the monomorphic game defined $U_i^{mon}$ has the same Nash equilbria, and can be studied equivalently.
+As a consequence of \Cref{thm:nash_unique}, we can introduce an equilibrium between the Nash equilibria of a mean-field game and a game with monomorphic populations. If a mean-field game has a family of functions $U_i^{mon}$ satisfying $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$, then the monomorphic game defined $U_i^{mon}$ has the same Nash equilbria as the original game.
 \begin{definition}
   \label{def:correspondence}
   Consider a mean-field game with populations $N_1,\dots,N_M$ with individual payoffs $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$. Assume $\nabla_{\sigma_i}U_i\mid_{\sigma_i=\overbar{\sigma}_i}$ admits a primitive $U_i^{mon}$ such that $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$.
    We define the monomorphic equivalent game as the game with monomorphic populations specified by the payoff functions $U_i^{mon}$.
 \end{definition}
-With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of population games where $dU$ is strictly pseudomonotone, e.g. if all monomorphic equivalent payoff functions are strictly pseudoconvex and bounded dynamics.
-If a monomorphic equivalent game exists, it becomes possible to study the monomorphic game instead and e.g. use strict pseudoconvexity to establish strict pseudomonotonicity.
+The reason this result is interesting is
+\begin{theorem}[Theorem 12.13, p. 521 \citep{hadjisavvas2006handbook}]
+  Let $\Omega \subset H$ be an open convex subset, and let $f:\Omega \to \R$ be Gateaux differentiable. Then $f$ is strictly pseudoconvex if and only if $\nabla f$ is strictly pseudomonotone.
+\end{theorem}
+so for uniqueness instead of considering $\nabla U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ we can consider $U_i$ directly. That is, if a monomorphic equivalent game exists, it becomes possible to study the monomorphic game instead and e.g. use strict pseudoconvexity to establish strict pseudomonotonicity.
+ %showing strict pseudoconvexity can be simpler than showing strict pseudomonotonicity.
 
+With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of population games where $dU$ is strictly pseudomonotone, e.g. if all monomorphic equivalent payoff functions are strictly pseudoconvex and bounded dynamics.
 \begin{theorem}
   \label{thm:pop_game_exists_unique}
   We have a population game with $M$ populations of size $N_i$, payoff functions $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$ and dynamics given by $f_i(N_j \overbar{\sigma}_j)_{j=1}^M))$:
@@ -222,7 +243,7 @@ The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ v
 \end{align}
 The choice of functions reflect a heterogeneous productivity and a predator specialized in hunting in the most productive zones. We assume the maximal predator consumption rate is $F_p$, and the predators have a conversion efficiency of $\epsilon$. Consumption events are assumed local, so the expected encounter rate between predators and prey is $N_c N_p \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. We assume that predators have a Type II functional response, and their consumption is limited by prey-capture not digestion, which causes a non-linearity in the functional response as a function of the strategy \citep{Kioerboe2018}. This gives a pr. capita predator growth rate $G_p$:
 \begin{equation}
-  G_p(N_p, \overbar{\sigma}_p, N_c, \overbar{\sigma}_c )= \epsilon\frac{F_p \ip{\beta_p \overbar{N_c \sigma}_c}{\overbar{\sigma}_p} }{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}
+  G_p(N_p, \overbar{\sigma}_p, N_c, \overbar{\sigma}_c )= \epsilon\frac{F_p \ip{\beta_p N_c\overbar{\sigma}_c}{\overbar{\sigma}_p} }{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}
 \end{equation}
 This allows us to define the pr. capita consumer mortality $M_c = \frac{N_p}{\epsilon N_c}G_p$. Predator mortality stems both from a metabolic loss $\mu_p$ and intraspecific predator competition, which we assume leads to a Type I loss for predators as there is no satiation. We assume that predators are more competitive in the area where they are best specialized for hunting. Introducing a competition parameter $c$, the pr. capita predator mortality $M_p$ is:
 \begin{equation}
