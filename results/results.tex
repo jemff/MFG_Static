@@ -4,7 +4,7 @@ In order to find Nash equilibria and fix-points of the behaviorally modified Ros
 
 The numerical approach for finding Nash equilibria and fixed points is extremely fast, and should scale to much larger problems. It allows for determination of fixed-points of the dynamics in less than 1 second with several hundred grid points. Simulating the population dynamics is, in contrast, a comparatively slow affair since we simulate the population dynamics using a forward Euler method.
 
-\subsection{Population dynamics and levels}
+\subsection{Population dynamics}
 % on model introduced in \Cref{sec:model_rm}.
 With a numerical approach in place, we can study the population dynamics and the sensitivity of \Cref{sec:model_rm} to parameters. We vary the carrying capacity $(K)$ and the intraspecific predator competition $(c)$. We are interested in both  the population levels at equilibrium, and the associated spatial distributions.
 The parameters for the model are: \\
@@ -24,36 +24,47 @@ The parameters for the model are: \\
   \label{fig:dynamics}
   \includegraphics{plots/dynamics.pdf}
 \end{figure}
-\Cref{fig:dynamics} illustrates the phase portrait for the behaviorally modified Rosenzweig-MacArthur model, along with a sample trajectory. The direction of the flow is consistent with the usual Rosenzweig-MacArthur model. The phase portrait reveals that the system dynamics have been stabilized. Looking at the sample trajectory, this stabilization is quite substantial with not even a full oscillation. The stable dynamics stand in contrast to the Rosenzweig-MacArthur model with constant behavior $(\sigma_p=\sigma_c=1)$ where the point of the Hopf bifurcation has been passed, leading to limit cycles. Adding optimal individual behavior appears to eliminate the paradox of enrichment \citep{rosenzweig1971paradox}, which is a common consequence of optimal behavior \citep{abrams2010implications}.
+\Cref{fig:dynamics} illustrates the phase portrait for the behaviorally modified Rosenzweig-MacArthur model, along with a sample trajectory. The direction of the flow is consistent with the usual Rosenzweig-MacArthur model. The phase portrait reveals that the system dynamics have been stabilized. Looking at the sample trajectory, this stabilization is quite substantial with not even a full oscillation. The stable dynamics stand in contrast to the Rosenzweig-MacArthur model with constant behavior $(\sigma_p=\sigma_c=1)$ where the point of the Hopf bifurcation has been passed, leading to limit cycles. Adding optimal individual behavior appears to eliminate the paradox of enrichment \citep{rosenzweig1971paradox}, which is a common consequence of optimal behavior in ecosystem models \citep{abrams2010implications}.
+
+\susbection{Population at equilibrium}
 \begin{figure}[H]
   \caption{Panel $(A)$ shows population levels of consumers (blue) and predators (red) at equilibrium with changing carrying capacity $(K)$. Panel $(B)$ again shows the population levels, but with varying intraspecific predator competition $(C)$.}
   \label{fig:pop_levels}
   \includegraphics{plots/pop_levels_c.pdf}
 \end{figure}
-\Cref{fig:pop_levels} reveals how the population levels of consumers and predators change at equilibrium with varying refuge quality (\Cref{fig:pop_levels}(A)), carrying capacity (\Cref{fig:pop_levels}(B)) and intraspecific predator competition (\Cref{fig:pop_levels}(C)).
-Increasing the quality of the refuge (\Cref{fig:pop_levels})(A) initially causes an increase in consumer populations (\Cref{fig:pop_levels}(A, blue)) and a decrease in predator populations.
+\Cref{fig:pop_levels} reveals how the population levels of consumers and predators change at equilibrium with varying carrying capacity (\Cref{fig:pop_levels}(A)) and intraspecific predator competition (\Cref{fig:pop_levels}(B)).
+
 
 A higher carrying capacity causes higher populations of both consumers and predators populations at equilibrium (\Cref{fig:pop_levels}). The increase in both populations is probably because the behavioral choice allows the consumers to avoid the risk of predation, while achieving the same fitness.
 
 Varying the intraspecific predator competition causes an increase in the population of predators (\Cref{fig:pop_levels}(C, red)) until a point where the population stabilizes (\Cref{fig:pop_levels}($c\approx 1/3$)), a modified hydra phenomenon \citep{abrams2009does}. The population of consumers continues to increase (\Cref{fig:pop_levels}(C, blue)), corresponding to expectations \citep{abrams1992predators}.
 
 
-\subsubsection{Spatial distribution}
+\subsection{Spatial distributions}
 \begin{figure}[H]
   \caption{Spatial distribution of consumers $(A)$ and predators $(B)$ at the equilibrium with increasing carrying capacity $(K)$.}
   \label{fig:strat_car}
   \includegraphics{plots/increasing_car_cap_c.pdf}
 \end{figure}
-The plots in (\Cref{fig:strat_car}) illustrate the strategies of the consumers (\Cref{fig:strat_car}(A)) and predators (\Cref{fig:strat_car}) at equilibrium when carrying capacity varies. At low carrying capacities, both consumers and predators are relatively spread out, with the peak concentration about halfway to the refuge. As the carrying capacity increases, the distribution becomes more concentrated and clusters closer to the refuge. The increase in concentration is most marked for the predators. Predators are almost uniformly distributed in the space 0.5-1 at low carrying capacity, while the majority forms a cluster just above the consumer layer at a carrying capacity of 7. Thus the gain from clustering gradually outweighs the loss from the intraspecific predator competition. That both predator and consumer population increase must be the driving factor behind the peak population concentration moving to less productive areas.
+%\Cref{fig:strat_car}) illustrate the strategies of the consumers (\Cref{fig:strat_car}(A)) and predators (\Cref{fig:strat_car}) at equilibrium when carrying capacity varies.
 
-A higher carrying capacity leads to more concentrated populations, but the increase in populations leads to greater risk-aversion from the consumers so they concentrate in less desirable zones.
+At low carrying capacity consumers are relatively spread out in the most optimal part of the habitat (0-0.3), while predators are concentrated near the most optimal part (0). As the carrying capacity increases, the distribution of consumers becomes more concentrated, distributed around a peak of $0.4$. The peak slowly moves downward with increasing carrying capacity. The consumers can be found throughout the habitat, even at the points of lowest productivity.
+
+
+Predators go from being concentrated to very spread out, but surprisingly the peak of the predator distribution is just above the peak of the consumer distribution. There are no predators below the band of highly concentrated consumers. This is quite surprising since they have a non-zero encounter rate everywhere. The predator and consumer distributions follow each other as the carrying capacity increases, and appear to approach a stable asymptote.
+
+ %Thus the gain from clustering gradually outweighs the loss from the intraspecific predator competition. That both predator and consumer population increase must be the driving factor behind the peak population concentration moving to less productive areas.
+
+%A higher carrying capacity leads to more concentrated populations, but the increase in populations leads to greater risk-aversion from the consumers so they concentrate in less desirable zones.
 
 \begin{figure}[H]
   \caption{Distribution of consumers $(A)$ and predators $(B)$ at equilibrium under changing predator competition $(c)$.}
   \label{fig:strat_comp}
     \includegraphics{plots/increasing_competition_c.pdf}
 \end{figure}
-In \Cref{fig:strat_comp} the intraspecific predator competition is varied and we see the emergent  equilibrium strategy of the consumers (\Cref{fig:strat_comp}(A)) and predators (\Cref{fig:strat_comp}(B)). When there is no intraspecific predator competition, both consumers and predators are highly concentrated at about 0.4. The equilibrium distribution of predators spreads out as we increase the intraspecific predator competition. The previous equilibrium becomes unstable, since the gain from clustering on the consumers is outweighed by the risk of encountering other predators. As the predators gradually spread and go the safest zone (1), it is echoed by the consumers spreading out and going to the most productive area (0) as well, further incentivicizing predator-spread. The spreading out of the consumer population can be interpreted in terms of the ideal free distribution. An increase in consumer population \Cref{fig:pop_levels} causes an increase in concentration on the less productive spots. When the consumer population spreads out, the distribution trends towards the more productive layers.
+%In \Cref{fig:strat_comp} the intraspecific predator competition is varied and we see the emergent  equilibrium strategy of the consumers (\Cref{fig:strat_comp}(A)) and predators (\Cref{fig:strat_comp}(B)).
+
+When there is no intraspecific predator competition consumers are highly concentrated at about 0.4, while the predator distributions spreads from 0.4 to 0. The distribution of predators spreads out as we increase competition, before concentrating in the safest zone (1) again. The foraging benefits from clustering on the consumers is outweighed by the risk of encountering other predators. The movement of predators is echoed by the consumers. The consumers spread out and gradually migrate to the most productive area (0). The spreading out of the consumer population though the predator population is concentrated far away is caused by the interspecific competition between consumers, akin to the ideal free distribution. It appears that both consumer and predator densities are converging to asymptotic densities. %An increase in consumer population \Cref{fig:pop_levels} causes an increase in concentration on the less productive spots. When the consumer population spreads out, the distribution trends towards the more productive layers.
 
 \begin{comment}
 \begin{figure}[H]
