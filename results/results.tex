@@ -11,8 +11,6 @@ The parameters for the model are: \\
 \begin{tabular}{l l l}
   Name & Value & Meaning \\
   $q$ & 3 & Refuge quality \\
-%  $K$ & Varies & Carrying capacity \\
-%  $c$ & Varies & Predator competition \\
   $K_0$ & $10^{-4}$ & Minimal carrying capacity \\
   $\beta_{p,0}$ & $10^{-4}$ & Minimal predator clearance rate \\
   $\beta_c$ & 1 & Consumer clearance rate \\
@@ -55,7 +53,8 @@ A higher carrying capacity leads to more concentrated populations, but the incre
   \label{fig:strat_comp}
     \includegraphics{plots/increasing_competition_c.pdf}
 \end{figure}
-In \Cref{fig:strat_comp} the intraspecific predator competition is varied and we see the emergent  equilibrium strategy of the consumers (\Cref{fig:strat_comp}(A)) and predators (\Cref{fig:strat_comp}(B)). When there is no intraspecific predator competition, both consumers and predators are highly concentrated at about 0.4. The equilibrium distribution of predators spreads out as we increase the intraspecific predator competition. The previous equilibrium becomes unstable, since the gain from clustering on the consumers is outweighed by the risk of encountering other predators. As the predators gradually spread, it is echoed by the consumers spreading out as well, further incentivicizing predator-spread. The spreading out of the consumer population can be interpreted in terms of the ideal free distribution. An increase in consumer population \Cref{fig:pop_levels} causes an increase in concentration on the less productive spots. When the consumer population spreads out,  the distribution trends towards the more productive layers. Summarizing, highly competitive predators leads to dispersed populations.
+In \Cref{fig:strat_comp} the intraspecific predator competition is varied and we see the emergent  equilibrium strategy of the consumers (\Cref{fig:strat_comp}(A)) and predators (\Cref{fig:strat_comp}(B)). When there is no intraspecific predator competition, both consumers and predators are highly concentrated at about 0.4. The equilibrium distribution of predators spreads out as we increase the intraspecific predator competition. The previous equilibrium becomes unstable, since the gain from clustering on the consumers is outweighed by the risk of encountering other predators. As the predators gradually spread and go the safest zone (1), it is echoed by the consumers spreading out and going to the most productive area (0) as well, further incentivicizing predator-spread. The spreading out of the consumer population can be interpreted in terms of the ideal free distribution. An increase in consumer population \Cref{fig:pop_levels} causes an increase in concentration on the less productive spots. When the consumer population spreads out, the distribution trends towards the more productive layers.
+
 \begin{comment}
 \begin{figure}[H]
   \caption{Consumer (A) and predator (B) concentration at equilibrium as a function of changing refuge quality}
