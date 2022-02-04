@@ -82,12 +82,12 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 6, steps = 
     ax[0].plot(car_caps, (populations_car[:,0]), c=tableau20[0])
     ax[0].plot(car_caps, (populations_car[:,1]), c=tableau20[6])
     ax[0].set_xlabel('Carrying capacity ($K$)')
-    ax[0].text(1.05, 0.9, 'B', transform=ax[0].transAxes)
+    ax[0].text(1.05, 0.9, 'A', transform=ax[0].transAxes)
 
     ax[1].plot(competition, (populations_comp[:,0]), c=tableau20[0])
     ax[1].plot(competition, (populations_comp[:,1]), c=tableau20[6])
     ax[1].set_xlabel('Competition ($c$)')
-    ax[1].text(1.05, 0.9, 'C', transform=ax[1].transAxes)
+    ax[1].text(1.05, 0.9, 'B', transform=ax[1].transAxes)
 
     ax[0].set_ylabel('Biomass')
 
