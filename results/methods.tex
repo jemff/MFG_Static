@@ -65,7 +65,7 @@ Finding Nash equilibria by interpreting the problem as a complementarity problem
 \end{definition}
 With \Cref{def:comp_prob} we can write \Cref{eq:KKT_total} as an equivalent family of complementarity problems. Introduce $K = H_+ \osum \R$, with $K^* = H_+ \osum \{0\}$ and define
 \begin{equation}
-  T(\sigma_i, \lambda) = (\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H, 0)
+  T(\sigma_i, \lambda) = (-\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H, 0)
 \end{equation}
 Then the equations in \Cref{eq:KKT_total} can be recast as finding $(\sigma_i,\lambda_i) \in K$ such that:
 \begin{equation}
@@ -78,7 +78,7 @@ Then the equations in \Cref{eq:KKT_total} can be recast as finding $(\sigma_i,\l
 Or, equivalently:
 \begin{equation}
   \begin{split}
-    \ip{\sigma_i}{\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H} + \ip{\lambda_i}{0}= 0 \\
+    \ip{\sigma_i}{-\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H} + \ip{\lambda_i}{0}= 0 \\
     \pa{-\pa{\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H}, 0} \in K
   \end{split}
 \end{equation}
@@ -130,31 +130,31 @@ We define a variational inequality:
   \begin{equation}
     x \in K, \ip{y-x}{Tx} \geq 0, \quad \forall y \in K
   \end{equation}
-  and a solution is an $x$ satisfying the inequality.
 \end{definition}
 The relationship between variational inequalities and complementarity problems is captured in \citep[Proposition 12.1]{hadjisavvas2006handbook}:
 \begin{proposition}
   Let $K\subset H$ be a convex cone, and $T: K \to H$. Then the variational inequality $VI(T,K)$ is equivalent to the complementarity problem $CP(T,K)$.
 \end{proposition}
 \begin{proof}
+  and a solution is an $x$ satisfying the inequality.
   Clearly, a solution $x^*$ to $CP(T,K)$ is also a solution to $VI(T,K)$. For the other direction, assume that we have a solution $x^*$ to VI(T,K). Then
   \begin{equation}
     \ip{y - x^*}{Tx^*} \geq 0 \forall y \in K
   \end{equation}
   Setting $y = 2x^*$, we arrive at $\ip{x^*}{Tx^*} \geq 0$, and setting $y=0$ we arrive at $\ip{x^*}{Tx^*} \leq 0$. This shows the desired equivalence.
 \end{proof}
-We can now turn the problem finding a Nash equilibrium into a variational inequality. Consider the problem as stated in \Cref{eq:comp_form}. This is a complementarity problem over the convex cone $H_+ \osum \R$. Hence it is equivalent to a variational inequality over the same convex cone
+We can now turn the problem finding a Nash equilibrium into a variational inequality. Consider the problem as stated in \Cref{eq:comp_form}. This is a complementarity problem over the convex cone $H_+ \osum \R$. Hence it is equivalent to a variational inequality over the same convex cone with $T$ as in \Cref{eq:comp_form}
 \begin{equation}
   \ip{T}{(\sigma_i' -\sigma_i,\lambda_i'-\lambda_i)} \geq 0, \quad \forall (\sigma_i', \lambda_i') \in K
 \end{equation}
 Since the second coordinate of $T$ is identically zero, this is the same as finding $(\sigma,\lambda)$ such that
 \begin{equation}
   \label{eq:simp_var_eq}
-  \ip{\nabla_i U_i \mid_{\sigma_i = \overbar{\sigma}_i} - \lambda_i}{\sigma_i' -\sigma_i} \geq 0 \quad \forall \sigma_i' \in K
+  \ip{-\nabla_i U_i \mid_{\sigma_i = \overbar{\sigma}_i} - \lambda_i}{\sigma_i' -\sigma_i} \geq 0 \quad \forall \sigma_i' \in K
 \end{equation}
 In our theoretical considerations, we want to rid ourselves of the term $\lambda_i$, which stems from the constraint $\int_X \sigma_i d\mu = 1$. Hence solving \Cref{eq:simp_var_eq} over $K$ is equivalent to solving the constrained problem:
 \begin{equation}
-  \ip{\nabla_i U_i \mid_{\sigma_i = \overbar{\sigma}_i}}{\sigma_i' -\sigma_i} \geq 0, \quad \sigma_i' \in P_{2,\mu}
+  \ip{-\nabla_i U_i \mid_{\sigma_i = \overbar{\sigma}_i}}{\sigma_i' -\sigma_i} \geq 0, \quad \sigma_i' \in P_{2,\mu}
 \end{equation}
 We can now state the problem of finding the Nash equilibrium \Cref{eq:tot_nash_eq} as finding the solution of a variational inequality.
 \begin{definition}[Nash equilibrium as variational inequality]
@@ -165,9 +165,9 @@ We can now state the problem of finding the Nash equilibrium \Cref{eq:tot_nash_e
       \vdots \\
       \nabla_{\sigma_N} U_N \mid_{\sigma_N = \overbar{\sigma}_N} \end{pmatrix}
 \end{equation}
-the problem of determining the Nash equilibrium \Cref{eq:tot_nash_eq} is finding a vector $S = (\sigma_i)_{i=1}^M$ such that:
+the problem of determining the Nash equilibrium \Cref{eq:tot_nash_eq} is the variational inequality of finding a vector $S = (\sigma_i)_{i=1}^M$ such that:
 \begin{equation}
-  \ip{dU(S)}{W-S} \geq 0 \quad \forall W\in P_{2,\mu}^M
+  \ip{-dU(S)}{W-S} \geq 0 \quad \forall W\in P_{2,\mu}^M
 \end{equation}
 \end{definition}
 %i.e. solves a variational inequality. %Searching for a solution to a variational inequality is more tractable for theoretical considerations, while the complementarity formulation is preferable for solving the problem numerically.
@@ -183,10 +183,10 @@ We need to introduce a specific type of variational inequality, which generalize
 \end{definition}
 With \Cref{def:strict_pm} in hand, we can finally give sufficient criteria for existence and uniqueness of the Nash equilibrium of the game specified in \Cref{eq:tot_nash_eq}.
 \begin{theorem} \label{thm:nash_unique}
-  Consider a game with $M$ players with payoff functions $U_i$ where each $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone. Assume the strategies $\sigma_i$ are in $P_{2,\mu}$. The game has a unique Nash equilibrium if $dU$ as in \Cref{def:var_eq_nash} satisfies the criterion of \Cref{thm:existence} or $H$ is finite dimensional.
+  Consider a game with $M$ players with payoff functions $U_i$ where each $-\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone. Assume the strategies $\sigma_i$ are in $P_{2,\mu}$. The game has a unique Nash equilibrium if $dU$ as in \Cref{def:var_eq_nash} satisfies the criterion of \Cref{thm:existence} or $H$ is finite dimensional.
 \end{theorem}
 \begin{proof}
-   If each $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone, then so is their direct sum $dU$ by bilinearity of the inner product. By \Cref{thm:uniqueness} any Nash equilibrium will be unqiue since $dU$ is strictly pseudomonotone. So if the solution exists, it is unique. By assumption \Cref{thm:existence} gives existence of a solution of $VI(dU,P_{2,\mu}^M)$ in case $H$ is infinite dimensional. If $H$ is finite-dimensional then $P_{2,\mu}^M$ is compact and there exists a solution \Cref{rem:weak_compact}.
+   If each $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone, then so is $dU$ by bilinearity of the inner product. By \Cref{thm:uniqueness} any Nash equilibrium will be unqiue since $dU$ is strictly pseudomonotone. So if the solution exists, it is unique. By assumption \Cref{thm:existence} gives existence of a solution of $VI(dU,P_{2,\mu}^M)$ in case $H$ is infinite dimensional. If $H$ is finite-dimensional then $P_{2,\mu}^M$ is compact and there exists a solution \Cref{rem:weak_compact}. \qed
 \end{proof}
 As a consequence of \Cref{thm:nash_unique}, we can introduce an equilibrium between the Nash equilibria of a mean-field game and a game with monomorphic populations.
 %If the payoff functions ¤U_ mean-field game has a family of functions $U_i^{mon}$ satisfying $\nabla_{\sigma_i} U_i\mid{\sigma_i = \overbar{\sigma}_i} = \nabla_{\sigma_i} U_i^{mon}$, then the monomorphic game defined $U_i^{mon}$ has the same Nash equilbria as the original game.
@@ -199,7 +199,7 @@ The reason this result is interesting is
 \begin{theorem}[Theorem 12.13, p. 521 \citep{hadjisavvas2006handbook}]
   Let $\Omega \subset H$ be an open convex subset, and let $f:\Omega \to \R$ be Gateaux differentiable. Then $f$ is strictly pseudoconvex if and only if $\nabla f$ is strictly pseudomonotone.
 \end{theorem}
-so for uniqueness instead of considering $\nabla U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ we can consider $U_i$ directly. That is, if a monomorphic equivalent game exists, it becomes possible to study the monomorphic game instead and use strict pseudoconvexity to establish strict pseudomonotonicity.
+so for uniqueness instead of considering $-\nabla U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ we can consider $-U_i$ directly. That is, if a monomorphic equivalent game exists, it becomes possible to study the monomorphic game instead and use strict pseudoconvexity to establish strict pseudomonotonicity.
  %showing strict pseudoconvexity can be simpler than showing strict pseudomonotonicity.
 
 With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of population games where $dU$ is strictly pseudomonotone, e.g. if all monomorphic equivalent payoff functions are strictly pseudoconvex and bounded dynamics.
@@ -212,22 +212,23 @@ With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of
   Assume that the functions $f_i$ are strictly pseudomonotone, and that the set of stationary points of the dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$ and convex. Let $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ be strictly pseudomonotone and satisfy \Cref{thm:existence}. Then the population game has a unique fixed point with a unique Nash equilibrium
 \end{theorem}
 \begin{proof}
-  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $dU$. The solution operator is a continuous mapping $G: \R_+^M \to P_{2,\mu}^M$, due to the existence and uniqueness of the solution \Cref{thm:nash_unique} \cite[Theorem 4.2]{barbagallo2009continuity}. The variational inequality defined by $(f_i)_{i=1}^M$ corresponds to determining fixed points. Due to the assumptions on $f_i$, this inequality has a solution $F$ for every family $(\sigma_i)_{i=1}^M$. The solution function $F:P_{2,\mu}^M: \to \R^M_+$ is again continuous.
+  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $-dU$. The solution operator is a continuous mapping $G: \R_+^M \to P_{2,\mu}^M$, due to the existence and uniqueness of the solution \Cref{thm:nash_unique} \cite[Theorem 4.2]{barbagallo2009continuity}. The variational inequality defined by $(f_i)_{i=1}^M$ corresponds to determining fixed points. Due to the assumptions on $f_i$, this inequality has a solution $F$ for every family $(\sigma_i)_{i=1}^M$. The solution function $F:P_{2,\mu}^M: \to \R^M_+$ is again continuous.
 
   Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ G: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded, $G$ has compact range, and $F\circ G$ has compact image. Therefore $F\circ G:\R_+^M \to \R_+^M$ has a fixed point $(x_1^*, \dots, x_m^*)$ by Schauder's fixed point theorem \citep[Theorem 3.2, p. 119]{granas2003elementary}. Likewise, the map $G\circ F:P_{2,\mu}^M \to P_{2,\mu}^M$ has a fixed point $(\sigma_1^*,\dots, \sigma_M^*)$, since it factorizes through a compact space.
   For uniqueness, note that for each $(\sigma_i)_{i=1}^M$, the variational inequality
   \begin{equation}
-    x \in \R_+^M, \ip{(f_i)_{i=1}^M(x)}{y-x}\geq 0 \quad y\in \R_+^M
+    x \in \R_+^M, \ip{(f_i(x))_{i=1}^M}{y-x}\geq 0 \quad y\in \R_+^M
   \end{equation}
   has a unique solution, by strict pseudomonotonicity of $f_i$. If we append the two operators $(f_i)_{i=1}^M$ and $dU$ we get a single strictly pseudomonotone variational inequality, where the solution is unique.
    Therefore the simultaneous problem
   \begin{equation}
     \begin{split}
-    S\in P_{2,\mu}^M, \ip{dU(S))}{S'-S} \geq 0, \quad S' \in P_{2,\mu}^M \\
-    x \in \R_+^M, \ip{(f_i)_{i=1}^M(x)}{y-x}\geq 0 \quad y\in \R_+^M
+    S\in P_{2,\mu}^M, \ip{-dU(S))}{S'-S} \geq 0, \quad S' \in P_{2,\mu}^M \\
+    x \in \R_+^M, \ip{(f_i(x))_{i=1}^M}{y-x}\geq 0 \quad y\in \R_+^M
   \end{split}
   \end{equation}
     has a unique solution, showing the existence and uniqueness of a fixed point for a population game.
+    \qed
 \end{proof}
 %Remark that the assumption of uniformly bounded fixed-point space as a function of the strategies is biologically reasonable. As an example, if we consider a Type II functional response with clearance rate depending on the strategy and a constant metabolic loss.
 
@@ -243,7 +244,7 @@ We assume that the maximal potential growth for a consumer from a location depen
   G_c(N_c, \overbar{\sigma}_c) = \pa{\ip{\overbar{\sigma}_c}{1-N_c \frac{\overbar{\sigma}_c}{K\phi + K_0}}}
 \end{equation}
 
-The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate. Concretely, we set $\beta_p(x) = 5 \frac{\exp(-(3 x)^2) + \beta_0}{\int_0^1 \exp(-(3 x)^2) + \beta_0 dx}$. The chosen function models a predator specialized in hunting in the most productive zones, but with non-zero hunting success everywhere. We assume the maximal predator consumption rate is $F_p$, and the predators have a conversion efficiency of $\epsilon$. Consumption events are assumed local, so the expected encounter rate between predators and prey is $N_c N_p \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. We assume that predators have a Type II functional response, and their consumption is limited by prey-capture and digestion rather than handling, which causes a non-linearity in the functional response as a function of the strategy \citep{Kioerboe2018}. This gives a pr. capita predator growth rate $G_p$:
+The predator clearance rate is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate. Concretely, we set $\beta_p(x) = \frac{1}{2}5 \frac{\exp(-(3 x)^2)}{\int_0^1 \exp(-(3 x)^2) dx} + \beta_0$. The chosen function models a predator specialized in hunting in the most productive zones, but with non-zero hunting success everywhere. We assume the maximal predator consumption rate is $F_p$, and the predators have a conversion efficiency of $\epsilon$. Consumption events are assumed local, so the expected encounter rate between predators and prey is $N_c N_p \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. We assume that predators have a Type II functional response, and their consumption is limited by prey-capture and digestion rather than handling, which causes a non-linearity in the functional response as a function of the strategy \citep{Kioerboe2018}. This gives a pr. capita predator growth rate $G_p$:
 \begin{equation}
   G_p(N_p, \overbar{\sigma}_p, N_c, \overbar{\sigma}_c )= \epsilon\frac{F_p \ip{\beta_p N_c\overbar{\sigma}_c}{\overbar{\sigma}_p} }{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}
 \end{equation}
@@ -252,12 +253,14 @@ This allows us to define the pr. capita consumer mortality $M_c = \frac{N_p}{\ep
   M_p(N_p, \overbar{\sigma}_p) =  c \ip{\overbar{\sigma}_p}{N_p\beta_p \overbar{\sigma}_p}  - \mu_p
 \end{equation}
 Defining the pr. capita dynamics $f_c = G_c - M_c$ and $f_p = G_p - M_p$, we can write the dynamical system as:
-\begin{align}
-  \dot{N_c} &= N_c f_c
-  \dot{N_p} &= N_p f_p
+\begin{equation}
   \label{eq:dynamics}
-\end{align}
-The population dynamics \ref{eq:dynamics} end up as a modified Rosenzweig-MacArthur system, where behavior of both consumer and predator populations has been incorporated.
+  \begin{split}
+    \dot{N_c} &= N_c f_c \\
+    \dot{N_p} &= N_p f_p
+  \end{split}
+\end{equation}
+The population dynamics in \cref{eq:dynamics} are a modified Rosenzweig-MacArthur system, where behavior of both consumer and predator populations has been incorporated.
 \subsection{The instantaneous game}
 As in \Cref{sec:general_setting} we model predator and consumer movement as instantaneous. Each predator and consumer seeks to maximize its growth at every instant. Denote the strategies of a focal consumer and predator by $\sigma_c$ and $\sigma_p$ respectively.  The growth of the focal individual depends on the mean-field strategies of both predators and consumers, and can be arrived at by modifying the expressions for $G_c,M_c$ and $G_p, M_p$ carefully.
 The growth $G_c^{ind}$ of an individual consumer is
@@ -281,10 +284,10 @@ The instantaneous growth rates $U_c,U_p$ for an individual consumer and predator
   U_c(\sigma_c, N_c \overbar{\sigma}_c, N_p\overbar{\sigma}_p) &=  G_c^{ind} - M_c^{ind} \\
   U_p(\sigma_p, N_p \overbar{\sigma}_c, \overbar{\sigma}_p) &= G_p^{ind} - M_p^{ind}
 \end{align}
-We convert both mean-field payoffs into a monomorphic equivalent form \Cref{def:correspondence}, writing out the entire expressions
+We convert both mean-field payoffs into a monomorphic equivalent form as in \cref{def:correspondence}
 \begin{align}
   \label{eq:mon_eq_forms}
-  U_c^{mon}(\sigma_c, \sigma_p, N_c, N_p) &= \ip{\beta_c \sigma_c}{1-\frac{1}{2}\frac{\sigma_c N_c}{K\phi + K_0}} - N_p\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} \\
+  U_c^{mon}(\sigma_c, \sigma_p, N_c, N_p) &= \ip{\sigma_c}{1-\frac{1}{2}\frac{\sigma_c N_c}{K\phi + K_0}}\\ &- N_p\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} \\
   U_p^{mon}(\sigma_p, \sigma_c, N_c, N_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} - \frac{1}{2}c \ip{\sigma_p}{\beta_p \sigma_p}N_p  - \mu_p
 \end{align}
 \subsection{Existence and uniquenss of Nash and population equilibria}
@@ -298,7 +301,7 @@ In order to establish existence and uniqueness of the Nash equilibrium we show $
   Using that $\int y d\mu = \int x d\mu = 1$, we arrive at  $\ip{g(x)}{x-y}$.
   Hence the pseudomonotonicity of $g$ and $g+\lambda$ are equivalent.
 \end{proof}
-This allows us to state our main result on the behaviorally modified Rosenzweig-MacArthur game.
+This allows us to show existence and uniqueness of the Nash equilibrium in the behaviorally modified Rosenzweig-MacArthur game.
 \begin{proposition}
   \label{prop:exist_unique_nash}
   The game defined by $U_c$ and $U_p$ has a unique Nash equilibrium for every non-zero pair $N_c,N_p$.
@@ -319,7 +322,7 @@ This allows us to state our main result on the behaviorally modified Rosenzweig-
   \end{equation}
   Since $\ip{\sigma_p}{h}=0$ and $\frac{N_c}{K\phi + K_0}$ is everywhere positive, we conclude $H(x,u)>0$. Therefore $f$ is strictly pseudomonotone by \Cref{lem:strict_pm}, and $-U_c^{mon}$ is strictly pseudoconvex.
 
-  To show that there exists a solution, start by noting that for all $S\in H^2$, $S\mapsto dU(S)$ is continuous, hence continuous on finite-dimensional subspaces, fulfilling the first part of \Cref{thm:existence}. For the second part, consider
+  To show that there exists a solution, start by noting that for all $S\in H^2$, $S\mapsto -dU(S)$ is continuous, hence continuous on finite-dimensional subspaces, fulfilling the first part of \Cref{thm:existence}. For the second part, consider
   \begin{equation}
     \label{eq:du}
     \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)}
@@ -329,8 +332,8 @@ This allows us to state our main result on the behaviorally modified Rosenzweig-
     \label{eq:fin_exist}
     \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)} \geq C_1\norm{\sigma_c}_2^2 + C_2\norm{\sigma_p}_2^2 - W(\sigma_c,\sigma_p)
   \end{equation}
-  where $W$ is uniformly bounded on $P_{2,\mu}^2$, and $C_1,C_2$ strictly positive. Recall that constraining the problem to $P_{2,\mu}$ is equivalent to $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Therefore \Cref{eq:du} is only negative on a bounded subset of $P^2_{2,\mu}$, showing existence of a solution to the variational inequality defined by the function \Cref{eq:var_ineq}, \Cref{thm:existence}.
-
+  where $W$ is uniformly bounded on $P_{2,\mu}^2$, and $C_1,C_2$ strictly positive. Recall that constraining the problem to $P_{2,\mu}$ is equivalent to $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Therefore \Cref{eq:du} is only negative on a bounded subset of $P^2_{2,\mu}$, showing existence of a solution to the variational inequality defined by the function \Cref{eq:var_ineq}, \Cref{thm:existence}. Therefore, the Nash equilibrium exists and is unique.
+  \qed
 \end{proof}
 As we are interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we show that a fixed-point of the population dynamics exists and is unique.
 \begin{corollary}
@@ -338,4 +341,5 @@ As we are interested in the fixed-points of the population dynamics \Cref{eq:dyn
 \end{corollary}
 \begin{proof}
 Both $f_c$ and $f_p$ are strictly monotone, hence strictly pseudomonotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.% for parameters when coexistence is possible.
+\qed
 \end{proof}

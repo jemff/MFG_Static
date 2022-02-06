@@ -37,7 +37,7 @@ min_pop = 0
 out = twod_predator_prey_dyn(Mx = Mx, fixed_point=False, warmstart_out=True, car_cap=car_cap)
 inte = np.ones(tot_points).reshape(1,tot_points)
 par = {'res_renew': 1, 'eff': 0.1, 'c_handle': 1, 'c_enc_freq': 1, 'c_met_loss': 0.001, 'p_handle': 0.01,
-       'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0.1, 'q': 3}
+       'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0, 'q': 3}
 
 beta = np.exp(-(par['q'] * Mx.x) ** 2)  # +0.001 2*np.exp(-Mx.x)/(1+np.exp(-Mx.x))#np.exp(-Mx.x**2)#+0.001
 beta = 0.5 * 1 / (inte @ (Mx.M @ beta)) * beta + 0.0001
@@ -55,15 +55,15 @@ for i in range(fidelity):
                                      minimal_pops=0, par=par, warmstart_info=out)
         sigma = out['x0'][0: tot_points]
         sigma_p = out['x0'][tot_points: 2*tot_points]
-        cons_dyn = inte @ (Mx.M @ (sigma * pop_ij[0] / par['c_enc_freq'] * (
-                    1 - pop_ij[0] * sigma / (par['c_enc_freq'] * res_conc * car_cap)))) - inte @ (
+        cons_dyn = inte @ (Mx.M @ (sigma * pop_ij[0] * (
+                    1 - pop_ij[0] * sigma / (res_conc * car_cap)))) - inte @ (
                                Mx.M @ (pop_ij[0] * pop_ij[1] * sigma * beta * sigma_p)) / (
                                par['p_enc_freq'] + par['p_handle'] * inte @ (
-                                   Mx.M @ (pop_ij[0] * sigma * beta * sigma_p))) - par['c_met_loss'] * pop_ij[0]
+                                   Mx.M @ (pop_ij[0] * sigma * beta * sigma_p)))
         pred_dyn = par['eff'] * inte @ (Mx.M @ (pop_ij[0] * pop_ij[1] * sigma * beta * sigma_p)) / (
                     par['p_enc_freq'] + par['p_handle'] * inte @ (Mx.M @ (pop_ij[0] * sigma * beta * sigma_p))) - par[
                        'p_met_loss'] * pop_ij[1] - par['competition'] * inte @ (Mx.M @ (sigma_p ** 2 * beta)) * \
-                   pop_ij[1]
+                   pop_ij[1]**2
 
         vectors[i,j,0] = cons_dyn
         vectors[i,j,1] = pred_dyn
@@ -90,13 +90,8 @@ for i in range(1,num_points):
     dyns = dynamics(dyn_data[i-1], par = par,Mx = Mx, inte = inte, car_cap=car_cap, sigma = sigma, sigma_p = sigma_p)
     dyn_data[i] = dyn_data[i-1] + step_size*dyns
 
-#dyn_data = solve_ivp(lambda t, y: dynamics(t, y, par = par,Mx = Mx, inte = inte, car_cap=car_cap), t_span=[t_begin, t_end], t_eval=t_ev, y0 = np.array([2*pop_max/3, 2*ppop_max/3]), method='RK23')
-#dyn_data_1 = solve_ivp(lambda t, y: dynamics(t, y, par = par,Mx = Mx, inte = inte, car_cap=car_cap), t_span=[t_begin, t_end],t_eval=t_ev, y0 = np.array([pop_max/2, ppop_max/3]), method='RK23')
-#dyn_data_2 = solve_ivp(lambda t, y: dynamics(t, y, par = par,Mx = Mx, inte = inte, car_cap=car_cap), t_span=[t_begin, t_end], t_eval=t_ev, y0 = np.array([pop_max*1/3, ppop_max/4]), method='RK23')
 
 ax.plot(dyn_data[:,0], dyn_data[:,1], color=tableau20[0])
-#ax.plot(dyn_data_1.y[0,:], dyn_data_1.y[1,:], color=tableau20[8])
-#ax.plot(dyn_data_2.y[0,:], dyn_data_2.y[1,:], color=tableau20[6])
 plt.savefig('results/plots/dynamics.pdf')
 
 plt.show()

@@ -35,7 +35,7 @@ min_pop = 0
 out = twod_predator_prey_dyn(Mx = Mx, fixed_point=False, warmstart_out=True, car_cap=car_cap)
 inte = np.ones(tot_points).reshape(1,tot_points)
 par = {'res_renew': 1, 'eff': 0.1, 'c_handle': 1, 'c_enc_freq': 1, 'c_met_loss': 0.001, 'p_handle': 0.01,
-       'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0.1, 'q': 3}
+       'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0, 'q': 3}
 
 beta = np.exp(-(par['q'] * Mx.x) ** 2)  # +0.001 2*np.exp(-Mx.x)/(1+np.exp(-Mx.x))#np.exp(-Mx.x**2)#+0.001
 beta = 0.5 * 1 / (inte @ (Mx.M @ beta)) * beta + 0.0001
@@ -51,15 +51,15 @@ for i in range(fidelity):
         pop_ij = np.array([pop_varc[i], pop_varp[j]])
         sigma = np.ones(segments*layers)
         sigma_p = np.ones(segments*layers)
-        cons_dyn = inte @ (Mx.M @ (sigma * pop_ij[0] / par['c_enc_freq'] * (
-                    1 - pop_ij[0] * sigma / (par['c_enc_freq'] * res_conc * car_cap)))) - inte @ (
+        cons_dyn = inte @ (Mx.M @ (sigma * pop_ij[0] * (
+                    1 - pop_ij[0] * sigma / (res_conc * car_cap)))) - inte @ (
                                Mx.M @ (pop_ij[0] * pop_ij[1] * sigma * beta * sigma_p)) / (
                                par['p_enc_freq'] + par['p_handle'] * inte @ (
-                                   Mx.M @ (pop_ij[0] * sigma * beta * sigma_p))) - par['c_met_loss'] * pop_ij[0]
+                                   Mx.M @ (pop_ij[0] * sigma * beta * sigma_p)))
         pred_dyn = par['eff'] * inte @ (Mx.M @ (pop_ij[0] * pop_ij[1] * sigma * beta * sigma_p)) / (
                     par['p_enc_freq'] + par['p_handle'] * inte @ (Mx.M @ (pop_ij[0] * sigma * beta * sigma_p))) - par[
                        'p_met_loss'] * pop_ij[1] - par['competition'] * inte @ (Mx.M @ (sigma_p ** 2 * beta)) * \
-                   pop_ij[1]
+                   pop_ij[1]**2
 
         vectors[i,j,0] = cons_dyn
         vectors[i,j,1] = pred_dyn
@@ -75,13 +75,9 @@ ax.set_ylabel("Biomass, (P)")
 t_begin = 0
 t_end = 20
 t_eval = np.linspace(t_begin, t_end, 50)
-#dyn_data = solve_ivp(lambda t, y: dynamics_static(t, y, par = par,Mx = Mx, inte = inte, car_cap=car_cap), t_span=[t_begin, t_end], y0 = np.array([2*pop_max/3, 2*ppop_max/3]))
 dyn_data_1 = solve_ivp(lambda t, y: dynamics_static(t, y, par = par,Mx = Mx, inte = inte, car_cap=car_cap), t_span=[t_begin, t_end], y0 = np.array([1.5/2, 1/3]), dense_output=True, t_eval = t_eval)
-#dyn_data_2 = solve_ivp(lambda t, y: dynamics_static(t, y, par = par,Mx = Mx, inte = inte, car_cap=car_cap), t_span=[t_begin, t_end],  y0 = np.array([pop_max*1/3, ppop_max/4]))
 
-#ax.plot(dyn_data.y[0,:], dyn_data.y[1,:], color=tableau20[0])
 ax.plot(dyn_data_1.y[0,:], dyn_data_1.y[1,:], color=tableau20[8])
-#ax.plot(dyn_data_2.y[0,:], dyn_data_2.y[1,:], color=tableau20[6])
 
 plt.savefig('results/plots/dynamics_static.pdf')
 

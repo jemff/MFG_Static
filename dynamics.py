@@ -30,7 +30,6 @@ def dynamics(t, y, par = None, car_cap = 2, Mx = None, inte = None):
     pred_dyn = par['eff'] * inte @ (Mx.M @ (y[0] * y[1] * sigma * beta * sigma_p)) / (
             par['p_enc_freq'] + par['p_handle'] * inte @ (Mx.M @ (y[0] * sigma * beta * sigma_p))) - par[
                    'p_met_loss'] * y[1]
-#    print(cons_dyn, pred_dyn)
     return np.array([cons_dyn[0], pred_dyn[0]])
 
 
@@ -39,7 +38,6 @@ t_end = 30
 
 dyn_data = solve_ivp(lambda t, y: dynamics(t, y, par = par,Mx = Mx, inte = inte), t_span = [t_begin, t_end], y0 = np.array([0.5, 0.5]), method='RK23')
 
-print(dyn_data.t)
 #plt.plot(dyn_data.t, )
 plt.plot(dyn_data.y[0,:], dyn_data.y[1,:])
 

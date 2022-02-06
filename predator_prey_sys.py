@@ -36,6 +36,7 @@ def twod_predator_prey_dyn(beta_f = None, res_conc_f = None, minimal_pops = 10**
         vars = 5
     else:
         state_ss = pops
+        state = state_ss
         vars = 3
 
 
@@ -249,5 +250,5 @@ def dynamics_static(t, y, par = None, car_cap = 2, Mx = None, inte = None): #Rei
     pred_dyn = par['eff'] * inte @ (Mx.M @ (y[0] * y[1] * sigma * beta * sigma_p)) / (
             par['p_enc_freq'] + par['p_handle'] * inte @ (Mx.M @ (y[0] * sigma * beta * sigma_p))) - par[
                    'p_met_loss'] * y[1] - par['competition'] * inte @ (Mx.M @ (sigma_p ** 2 * beta)) * \
-               y[1]
+               y[1]**2
     return np.array([cons_dyn[0], pred_dyn[0]])
