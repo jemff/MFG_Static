@@ -1,0 +1,178 @@
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is a general template file for the LaTeX package SVJour3
+% for Springer journals.          Springer Heidelberg 2010/09/16
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article. Delete % signs as needed.
+%
+% This template includes a few options for different layouts and
+% content for various journals. Please consult a previous issue of
+% your journal as needed.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% First comes an example EPS file -- just ignore it and
+% proceed on the \documentclass line
+% your LaTeX will extract the file if required
+\RequirePackage{fix-cm}
+%
+%\documentclass{svjour3}                     % onecolumn (standard format)
+\documentclass[referee,natbib,smallcondensed]{svjour3}     % onecolumn (ditto)
+%\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+%\documentclass[twocolumn]{svjour3}          % twocolumn
+%
+\smartqed  % flush right qed marks, e.g. at end of proof
+%
+
+%
+% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
+%
+% insert here the call for the packages your document requires
+%\usepackage{latexsym}
+% etc.
+\usepackage{float,comment} %Personal
+\usepackage{amsmath,amssymb,amsfonts,changes,todo} %Personal
+%\usepackage[authoryear,sectionbib,sort]{natbib}
+\usepackage{lineno,url}
+\usepackage{graphics,epsfig} %Personal
+
+
+
+\makeatletter
+\let\cl@chapter\undefined
+\makeatletter
+\usepackage{cleveref} %Personal
+%\usepackage{anyfontsize} %Personal
+%\usepackage{changes}
+
+
+
+% please place your own definitions here and don't use \def but
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\ess}{ess}
+
+\newcommand{\pa}[1]{\left ( #1 \right )}
+\newcommand{\abs}[1]{\left | #1 \right |}
+\newcommand{\for}[0]{\text{ for }}
+\newcommand{\osum}{\oplus}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\newcommand{\ip}[2]{\left \langle #1,#2 \right \rangle}
+\newcommand{\brak}[1]{\langle #1 \rangle}
+\newcommand{\N}[0]{\mathbb{N}}
+\newcommand{\C}[0]{\mathbb{C}}
+\newcommand{\Z}[0]{\mathbb{Z}}
+\newcommand{\T}[0]{\mathcal{T}}
+\newcommand{\R}[0]{\mathbb{R}}
+\newcommand{\Q}[0]{\mathbb{Q}}
+\newcommand{\B}[0]{\mathcal{B}}
+
+\newcommand{\norm}[1]{\left \Vert #1 \right \Vert }
+
+
+
+\let\oldphi\phi \let\phi\varphi \let\varphi\oldphi
+\let\oldphi\phi \let\epsilon\varepsilon
+
+%
+% Insert the name of "your journal" with
+\journalname{Journal of Mathematical Biology}
+%
+\begin{document}
+
+
+\title{Revisiting Rosenzweig-MacArthur: Towards a general approach to population dynamics based on individual behavior
+%\thanks{This work was supported by the Centre for Ocean Life,
+%a Villum Kann Rasmussen Centre of Excellence supported
+%by the Villum Foundation.}
+}
+%\subtitle{Do you have a subtitle?\\ If so, write it here}
+
+\titlerunning{Towards a general approach to population dynamics based on individual behavior}        % if too long for running head
+
+\author{Emil F. Fr{\o}lich
+}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+\institute{Emil F. Fr{\o}lich \at
+              Technical University of Denmark \\
+              Department of Applied Mathematics and Computer Science - DTU Compute \\
+              Building 303B, Matematiktorvet, Kgs. Lyngby \\
+              Tel.: +45-26142497\\
+              \email{jaem@dtu.dk}           %  \\
+%             \emph{Present address:} of F. Author  %  if needed
+}
+
+\date{Received: date / Accepted: date}
+% The correct dates will be entered by the editor
+
+
+\maketitle
+\newpage
+\begin{abstract}
+\keywords{game theory}
+% \PACS{PACS code1 \and PACS code2 \and more}
+% \subclass{MSC code1 \and MSC code2 \and more}
+\end{abstract}
+
+\input{introduction.tex}
+\input{general_setting.tex}
+\input{methods.tex}
+\input{results.tex}
+\input{discussion.tex}
+
+
+\begin{acknowledgements}
+I would like to thank my supervisor Uffe H. Thygesen for fruitful discussions during the development of the model and the initial studies on static mean-field games.
+\end{acknowledgements}
+
+
+% Authors must disclose all relationships or interests that
+% could have direct or potential influence or impart bias on
+% the work:
+%
+% \section*{Conflict of interest}
+%
+% The authors declare that they have no conflict of interest.
+\subsection*{Declarations}
+
+\subsubsection*{Funding}
+This work was supported by the Centre for Ocean Life,
+a Villum Kann Rasmussen Centre of Excellence supported
+by the Villum Foundation.
+\subsubsection*{Code availability}
+All code for reproducing the results of this project is available on github \url{https://github.com/jemff/predator_prey_system_NE}.
+\subsubsection*{Conflict of interest}
+The authors declare that they have no conflict of interest.
+\subsubsection*{Authors' contributions}
+E.F.F. designed the study. E.F.F. realized the model design E.F.F. coded the model and chose the numerical approaches. E.F.F. analyzed the results. E.F.F. wrote the paper. All authors read and approved the final version.
+\subsubsection*{Data availability}
+All data can be generated using the file plots.py from the git repository \url{https://github.com/jemff/predator_prey_system_NE}.
+% BibTeX users please use one of
+\bibliographystyle{spbasic}      % basic style, author-year citations
+%\bibliographystyle{spmpsci}      % mathematics and physical sciences
+%\bibliographystyle{spphys}       % APS-like style for physics
+\bibliography{bibliography}   % name your BibTeX data base
+
+\appendix
+\include{appendix}
+%\appendix
+%\include{appendix}
+% Non-BibTeX users please use
+%\begin{thebibliography}{}
+%
+% and use \bibitem to create references. Consult the Instructions
+% for authors for reference list style.
+%
+%\bibitem{RefJ}
+% Format for Journal Reference
+%Author, Article title, Journal, Volume, page numbers (year)
+% Format for books
+%\bibitem{RefB}
+%Author, Book title, page numbers. Publisher, place (year)
+% etc
+%\end{thebibliography}
+
+\end{document}
+% end of file template.tex
