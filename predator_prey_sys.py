@@ -1,7 +1,10 @@
 import numpy as np
 import casadi as ca
 
-def twod_predator_prey_dyn(beta_f = None, res_conc_f = None, minimal_pops = 10**(-5), fixed_point = False, pops = np.array([1,1]), Mx = None, warmstart_info = None, warmstart_out = False, par = None, car_cap = 1):
+def twod_predator_prey_dyn(beta_f = None,
+                           res_conc_f = None, minimal_pops = 10**(-5), fixed_point = False,
+                           pops = np.array([1,1]), Mx = None, warmstart_info = None,
+                           warmstart_out = False, par = None, car_cap = 1, calc_funcs = False, x_in = None):
 
     tot_points = Mx.x.size
     inte = np.ones(tot_points).reshape(1,tot_points)
@@ -47,6 +50,7 @@ def twod_predator_prey_dyn(beta_f = None, res_conc_f = None, minimal_pops = 10**
     df1 =(1-state_ss[0]*sigma/(res_conc*car_cap)) - state_ss[1]*sigma_p*beta/(1+inte @ (Mx.M @ (par['p_handle']*state_ss[0]*sigma*beta*sigma_p))) - lam[0]*np.ones(tot_points)
     df2 = par['eff']*state_ss[0]*sigma*beta/(1+inte @ (Mx.M @ (par['p_handle']* state_ss[0]*sigma*beta*sigma_p)))**2 - lam[1]*np.ones(tot_points) - state[1]*par['competition']*sigma_p*beta
 
+
     g0 = ca.vertcat(cons_dyn, pred_dyn)
     g1 = inte @ Mx.M @ (df1*sigma) + inte @ Mx.M @ (df2*sigma_p)  #
     g2 = inte @ Mx.M @ sigma_p - 1
@@ -67,6 +71,10 @@ def twod_predator_prey_dyn(beta_f = None, res_conc_f = None, minimal_pops = 10**
         x = ca.vertcat(*[sigmas, state, lam])
     else:
         x = ca.vertcat(*[sigmas, lam])
+
+    mcp_function_ca = ca.Function('fun', [x], [ca.vertcat(df1, df2)])
+    if calc_funcs is True:
+        return mcp_function_ca(x_in)
 
     lbg = np.zeros(vars + 2*tot_points)
     ubg = ca.vertcat(*[np.zeros(vars), [ca.inf]*2*tot_points])

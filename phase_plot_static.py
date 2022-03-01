@@ -4,7 +4,7 @@ from infrastructure import *
 from scipy.integrate import solve_ivp
 
 def stat_pp():
-    layers = 2
+    layers = 1
     segments = 60
     length = 1
     tot_points = layers*segments

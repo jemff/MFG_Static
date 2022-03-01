@@ -3,7 +3,7 @@ Calculating Nash equilibria, \Cref{eq:tot_nash_eq} is generally a hard problem. 
 
 %We develop the theory for monomorphic games, and finally introduce a method to analyze a mean-field game as a monomorphic game.
 
-As in \Cref{sec:general_setting}, our habitat is a measure space $(X,\mu)$. We have $M$ different animal types coexisting with payoff-functions $U_i$. The simplest example our framework needs to handle is that of a single type with population $N$ inhabiting $X$ with following a distribution with density $\sigma$. The encounter rate of an individual following the strategy $\sigma$ with the entire population also following the strategy $\sigma$ is $N\sigma^2$. The expected total encounter for an individual with its conspecifics is
+As in \Cref{sec:general_setting}, our habitat is a measure space $(X,\mu)$. We have $M$ different animal types coexisting with payoff-functions $U_i$. The simplest example our framework needs to handle is that of a single type with population $N$ inhabiting $X$ with following a distribution with density $\sigma$. The pointwise encounter rate of an individual following the strategy $\sigma$ with the entire population also following the strategy $\sigma$ is $N\sigma(x)^2$. The expected total encounter for an individual with its conspecifics is then
 \begin{equation}
   N\int_X \sigma^2 d\mu
 \end{equation}
@@ -14,7 +14,18 @@ and this quantity must be finite. This shows that the appropriate setting for ou
 
 \subsection{From Karush-Kuhn-Tucker to complementarity}
 In order to find the Nash equilibrium of a population game, we need to solve \Cref{eq:tot_nash_eq}. We recall the setup of the $M$-player mean field game, now restricted to $H$. Assume we have $M$ different types of animals, with payoff functions $U_i$, and strategies $\sigma_i$, with corresponding mean-field strategies $\overbar{\sigma}_i$.
-The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to finding a system $\sigma_i^*$ satisfying the KKT conditions simultaneously for every $U_i$, \citep{deimling2010nonlinear}, with $\overbar{\sigma}=\sigma$ as in \Cref{eq:mfg_ne}. Denoting the identity on $H$ by $1_H$, the total criterion for a Nash equilibrium of a mean-field game \Cref{eq:tot_nash_eq} is:
+The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to finding a system $\sigma_i^*$ satisfying the KKT conditions simultaneously for every $U_i$, \citep{deimling2010nonlinear}, with $\overbar{\sigma}=\sigma$ as in \Cref{eq:mfg_ne}. Denoting the identity operator on $H$ by $1_H$, the total criterion for a Nash equilibrium of a mean-field game \Cref{eq:tot_nash_eq} is:
+\begin{equation}
+  \label{eq:KKT_total}
+  \begin{split}
+  \nabla_{\sigma_i}U_i((\sigma_j)_{j=1}^M) \mid_{\sigma_i = \overbar{\sigma}_i}  + \mu_i - \lambda  \cdot 1_H = 0 \\
+  \ip{\sigma_i}{\mu_i} = 0 \\
+  \mu_i \in H_+ \\
+  \sigma_i \in H_+ \\
+  \int_X \sigma_i d\mu(x)- 1 = 0
+\end{split}
+\end{equation}
+\begin{comment}
 \begin{equation}
       \label{eq:KKT_total}
   \begin{split}
@@ -47,6 +58,7 @@ The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to 
     %\sigma \in P_{2,\mu}(X)
   \end{split}
 \end{equation}
+\end{comment}
 Remark that the last two conditions are equivalent to $\sigma \in P_{\mu} \cap H$. This motivates the definition:
 \begin{definition}
   Assume we have a measure space $(X,\mu)$. Consider the space of square-integrable functions $H=L^2(X,\mu)$ and space $P_{\mu}$ of probability densities over $X$. Define the space $P_{2,\mu}=H \cap P_{\mu}$ consisting of square-integrable probability densities.
@@ -55,7 +67,7 @@ Solving the system in \Cref{eq:KKT_total} is highly non-trivial, but it turns ou
 Finding Nash equilibria by interpreting the problem as a complementarity problem is one of the the original solutions to the hardness of finding Nash equilibria  \citep{karamardian1969nonlinear}. It turns out that the set of equations in \Cref{eq:KKT_total} is very close to being a complementarity problem, but first we need to introduce the notion.
 \begin{definition}
   \label{def:comp_prob}
-  Let $H$ be a real Hilbert space, and $K \subset H$ be a closed convex cone. Define $K^* = \{ x \in H : \ip{x}{y} = 0, \quad \forall y\in K\} $. Assume $T:K \to H$. The complementarity problem $CP(T,K)$ is the problem of finding an element $x$ such that
+  Let $H$ be a real Hilbert space, and $K \subset H$ be a closed convex cone. Define $K^* = \{ x \in H : \ip{x}{y} \geq 0, \quad \forall y\in K\} $. Assume $T:K \to H$. The complementarity problem $CP(T,K)$ is the problem of finding an element $x$ such that
   \begin{equation}
     \begin{split}
     \ip{x}{Tx} = 0 \\
@@ -133,10 +145,10 @@ We define a variational inequality:
 \end{definition}
 The relationship between variational inequalities and complementarity problems is captured in \citep[Proposition 12.1]{hadjisavvas2006handbook}:
 \begin{proposition}
+  \label{prop:VI_CP_eq}
   Let $K\subset H$ be a convex cone, and $T: K \to H$. Then the variational inequality $VI(T,K)$ is equivalent to the complementarity problem $CP(T,K)$.
 \end{proposition}
 \begin{proof}
-  and a solution is an $x$ satisfying the inequality.
   Clearly, a solution $x^*$ to $CP(T,K)$ is also a solution to $VI(T,K)$. For the other direction, assume that we have a solution $x^*$ to VI(T,K). Then
   \begin{equation}
     \ip{y - x^*}{Tx^*} \geq 0 \forall y \in K
@@ -183,7 +195,7 @@ We need to introduce a specific type of variational inequality, which generalize
 \end{definition}
 With \Cref{def:strict_pm} in hand, we can finally give sufficient criteria for existence and uniqueness of the Nash equilibrium of the game specified in \Cref{eq:tot_nash_eq}.
 \begin{theorem} \label{thm:nash_unique}
-  Consider a game with $M$ players with payoff functions $U_i$ where each $-\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone. Assume the strategies $\sigma_i$ are in $P_{2,\mu}$. The game has a unique Nash equilibrium if $dU$ as in \Cref{def:var_eq_nash} satisfies the criterion of \Cref{thm:existence} or $H$ is finite dimensional.
+  Consider a game with $M$ players with payoff functions $U_i$ the total operator $dU$ is strictly pseudomonotone. Assume the strategies $\sigma_i$ are in $P_{2,\mu}$. The game has a unique Nash equilibrium if $dU$ as in \Cref{def:var_eq_nash} satisfies the criterion of \Cref{thm:existence} or $H$ is finite dimensional.
 \end{theorem}
 \begin{proof}
    If each $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone, then so is $dU$ by bilinearity of the inner product. By \Cref{thm:uniqueness} any Nash equilibrium will be unqiue since $dU$ is strictly pseudomonotone. So if the solution exists, it is unique. By assumption \Cref{thm:existence} gives existence of a solution of $VI(dU,P_{2,\mu}^M)$ in case $H$ is infinite dimensional. If $H$ is finite-dimensional then $P_{2,\mu}^M$ is compact and there exists a solution \Cref{rem:weak_compact}. \qed
@@ -197,41 +209,51 @@ As a consequence of \Cref{thm:nash_unique}, we can introduce an equilibrium betw
 \end{definition}
 The reason this result is interesting is
 \begin{theorem}[Theorem 12.13, p. 521 \citep{hadjisavvas2006handbook}]
+  \label{thm:strictly_pseudoconvex}
   Let $\Omega \subset H$ be an open convex subset, and let $f:\Omega \to \R$ be Gateaux differentiable. Then $f$ is strictly pseudoconvex if and only if $\nabla f$ is strictly pseudomonotone.
 \end{theorem}
 so for uniqueness instead of considering $-\nabla U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ we can consider $-U_i$ directly. That is, if a monomorphic equivalent game exists, it becomes possible to study the monomorphic game instead and use strict pseudoconvexity to establish strict pseudomonotonicity.
- %showing strict pseudoconvexity can be simpler than showing strict pseudomonotonicity.
 
-With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of population games where $dU$ is strictly pseudomonotone, e.g. if all monomorphic equivalent payoff functions are strictly pseudoconvex and bounded dynamics.
+With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of population games where $dU$ is strictly pseudomonotone, e.g. in a population game with strictly pseudoconvex monomorphic equivalent payoff function and bounded dynamics.
 \begin{theorem}
   \label{thm:pop_game_exists_unique}
   We have a population game with $M$ populations of size $N_i$, payoff functions $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$ and dynamics given by $f_i(N_j \overbar{\sigma}_j)_{j=1}^M))$:
   \begin{equation}
     \dot{N_i} = N_i f_i
   \end{equation}
-  Assume that the functions $f_i$ are strictly pseudomonotone, and that the set of stationary points of the dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$ and convex. Let $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ be strictly pseudomonotone and satisfy \Cref{thm:existence}. Then the population game has a unique fixed point with a unique Nash equilibrium
+  Assume that the that the set of stationary points of the population dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$ and convex, and that the stationary points are continuous in $(\sigma_i)_{i=1}^M$. Let $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ be strictly pseudomonotone and satisfy \Cref{thm:existence}. Then the population game has a fixed point.
+
+  A sufficient conditions for uniqueness and stability of the fixed-point is that there exists an $M>0$ the total operator $-(N_if_i)_{i=1}^M \osum -MdU$ is strictly pseudomonotone for all $N \geq M$.
 \end{theorem}
 \begin{proof}
-  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $-dU$. The solution operator is a continuous mapping $G: \R_+^M \to P_{2,\mu}^M$, due to the existence and uniqueness of the solution \Cref{thm:nash_unique} \cite[Theorem 4.2]{barbagallo2009continuity}. The variational inequality defined by $(f_i)_{i=1}^M$ corresponds to determining fixed points. Due to the assumptions on $f_i$, this inequality has a solution $F$ for every family $(\sigma_i)_{i=1}^M$. The solution function $F:P_{2,\mu}^M: \to \R^M_+$ is again continuous.
+  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $-dU$. The solution operator is a continuous mapping $G: \R_+^M \to P_{2,\mu}^M$, due to the existence and uniqueness of the solution \Cref{thm:nash_unique} \cite[Theorem 4.2]{barbagallo2009continuity}. By assumption, the fixed-point mapping $F_i$ for the population dynamics is continuous in $(\sigma_i)_{i=1}^M$.
 
-  Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ G: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded, $G$ has compact range, and $F\circ G$ has compact image. Therefore $F\circ G:\R_+^M \to \R_+^M$ has a fixed point $(x_1^*, \dots, x_m^*)$ by Schauder's fixed point theorem \citep[Theorem 3.2, p. 119]{granas2003elementary}. Likewise, the map $G\circ F:P_{2,\mu}^M \to P_{2,\mu}^M$ has a fixed point $(\sigma_1^*,\dots, \sigma_M^*)$, since it factorizes through a compact space.
-  For uniqueness, note that for each $(\sigma_i)_{i=1}^M$, the variational inequality
+  Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ G: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded, $G$ has compact range, and $F\circ G$ has compact image. Therefore $F\circ G:\R_+^M \to \R_+^M$ has a fixed point $(x_1^*, \dots, x_m^*)$ by Schauder's fixed point theorem \citep[Theorem 3.2, p. 119]{granas2003elementary}. Likewise, the map $G\circ F:P_{2,\mu}^M \to P_{2,\mu}^M$ has a fixed point $(\sigma_1^*,\dots, \sigma_M^*)$, since it factorizes through a compact space. We can conclude that a fixed-point exists, hence a combined Nash and population equilibrium.
+
+  To show uniqueness and stability, we need to shift perspectives. Since $-dU$ is strictly pseudomonotone, so is $-MdU$ for any $M$. Define the projection $\Pi$ from $H$ to $P_{2,\mu}$. Then the dynamical system
   \begin{equation}
-    x \in \R_+^M, \ip{(f_i(x))_{i=1}^M}{y-x}\geq 0 \quad y\in \R_+^M
+    \dot{\sigma}_i = \Pi(-dU_i((\sigma)_{i=1}^M)))
   \end{equation}
-  has a unique solution, by strict pseudomonotonicity of $f_i$. If we append the two operators $(f_i)_{i=1}^M$ and $dU$ we get a single strictly pseudomonotone variational inequality, where the solution is unique.
-   Therefore the simultaneous problem
+  converges asymptotically to the Nash equilibrium \citep{}. The population dynamical system with instantanous Nash equilibrium is then equivalent to the system:
   \begin{equation}
-    \begin{split}
-    S\in P_{2,\mu}^M, \ip{-dU(S))}{S'-S} \geq 0, \quad S' \in P_{2,\mu}^M \\
-    x \in \R_+^M, \ip{(f_i(x))_{i=1}^M}{y-x}\geq 0 \quad y\in \R_+^M
-  \end{split}
+    \label{eq:instant_nash_DE}
+    \dot{N_i} = N_i f_i
+    \lim_{\epsilon \to 0}\epsilon\dot{\sigma}_i = \Pi(-dU_i((\sigma)_{i=1}^M)))
   \end{equation}
-    has a unique solution, showing the existence and uniqueness of a fixed point for a population game.
+  Since the first set of equations stays in the positive orthant where can introduce the projection operator $\Pi_R$, the system can be rewritten as
+  \begin{equation}
+    \dot{N_i} = \Pi_R(-(-N_i f_i))
+    \eps\dot{\sigma}_i = \Pi(-dU_i((\sigma)_{i=1}^M)))
+  \end{equation}
+  This system converges asymptotically if the operator
+  \begin{equation}
+    \label{eq:de_sys}
+    (-N_i f_i)_{i=1}^M \osum (\frac{1}{\epsilon}-dU)
+  \end{equation}
+  is strictly pseudomonotone. If there exists an $N$ such that \Cref{eq:de_sys} is strictly pseudomonotone, hence asymptotically stable, for all $\frac{1}{\epsilon}>N$, then \Cref{eq:instant_nash_DE} is also asymptotically stable.
     \qed
-\end{proof}
-%Remark that the assumption of uniformly bounded fixed-point space as a function of the strategies is biologically reasonable. As an example, if we consider a Type II functional response with clearance rate depending on the strategy and a constant metabolic loss.
 
+\end{proof}
 Having established the general theory for Nash equilibria, and demonstrated how to handle mean-field games as monomorphic games, we are ready to apply the theory to a Rosenzweig-MacArthur system with fast adaptive behavior.
 \section{Revisiting the Rosenzweig-MacArthur model}
 \label{sec:model_rm}
@@ -265,7 +287,7 @@ The population dynamics in \cref{eq:dynamics} are a modified Rosenzweig-MacArthu
 As in \Cref{sec:general_setting} we model predator and consumer movement as instantaneous. Each predator and consumer seeks to maximize its growth at every instant. Denote the strategies of a focal consumer and predator by $\sigma_c$ and $\sigma_p$ respectively.  The growth of the focal individual depends on the mean-field strategies of both predators and consumers, and can be arrived at by modifying the expressions for $G_c,M_c$ and $G_p, M_p$ carefully.
 The growth $G_c^{ind}$ of an individual consumer is
 \begin{equation}
-  G_c^{ind} = \pa{\ip{\sigma_c}{1-N_c \frac{\overbar{\sigma}_c}{K\phi + K_0}}}
+  G_c^{ind} = \ip{\sigma_c}{1-N_c \frac{\overbar{\sigma}_c}{K\phi + K_0}}
 \end{equation}
 as the initial growth term depends on the choices of the consumer, while the available food depends on the distribution of the population. The loss from predation for an individual is more complex, since the encounter with a predator depends on the strategy of the focal consumer, while the satiation of the predator depends on how many total consumers it encounters, hence the population mean. The individual mortality $M_c^{ind}$ is
 \begin{equation}
@@ -287,11 +309,11 @@ The instantaneous growth rates $U_c,U_p$ for an individual consumer and predator
 We convert both mean-field payoffs into a monomorphic equivalent form as in \cref{def:correspondence}
 \begin{align}
   \label{eq:mon_eq_forms}
-  U_c^{mon}(\sigma_c, \sigma_p, N_c, N_p) &= \ip{\sigma_c}{1-\frac{1}{2}\frac{\sigma_c N_c}{K\phi + K_0}}\\ &- N_p\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} \\
+  U_c^{mon}(\sigma_c, \sigma_p, N_c, N_p) &= \ip{\sigma_c}{1-\frac{1}{2}\frac{\sigma_c N_c}{K\phi + K_0}}\\ &- \frac{N_p}{N_c}\log\pa{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} \\
   U_p^{mon}(\sigma_p, \sigma_c, N_c, N_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} - \frac{1}{2}c \ip{\sigma_p}{\beta_p \sigma_p}N_p  - \mu_p
 \end{align}
-\subsection{Existence and uniquenss of Nash and population equilibria}
-In order to establish existence and uniqueness of the Nash equilibrium we show $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex, and show that the variational inequality defined by their derivatives admits a solution. Before we can show this, we need small lemma to reduce the complexity of the problem.
+\subsection{Existence and uniqueness of Nash and population equilibria}
+In order to establish existence and uniqueness of the Nash equilibrium we show that the variational inequality defined by $dU$ is strictly pseudomonotone and admits a solution. Before we can show this, we need small lemma to reduce the complexity of the problem.
 \begin{lemma}
   \label{lem:pseudo_reduc}
   A function $g: P_{2,\mu} \to H$ is pseudomonotone if and only if $g+\lambda$ is pseudomonotone for any $\lambda \in \R$.
@@ -301,28 +323,42 @@ In order to establish existence and uniqueness of the Nash equilibrium we show $
   Using that $\int y d\mu = \int x d\mu = 1$, we arrive at  $\ip{g(x)}{x-y}$.
   Hence the pseudomonotonicity of $g$ and $g+\lambda$ are equivalent.
 \end{proof}
-This allows us to show existence and uniqueness of the Nash equilibrium in the behaviorally modified Rosenzweig-MacArthur game.
+We start by showing that there is a unique Nash equilibrium for the cases where the predator and consumer respectively have constant behavior, i.e. $\sigma_i = 1,~i\in \{c,p\}$.
+\begin{proposition}
+  There is a unique mean-field Nash equilibrium in the Rosenzweig-MacArthur system where the consumers have adaptive behavior and predators have constant behavior $\sigma_p = 1$.
+  Likewise, there is a unique Nash equilibrium in the Rosenzweig-MacArthur system where the predators have optimal behavior and the consumers have constant behavior $\sigma_c = 1$.
+\end{proposition}
+\begin{proof}
+  To show the uniqueness of the Nash equilibrium when the consumers have optimal behavior, consider $dU_c = \nabla_{\sigma_c} U_c^{mon}$.  By \Cref{lem:pseudo_reduc} it suffices to show that $f = -dU_c + 1$ is strictly pseudomonotone.
+  For \Cref{lem:strict_pm} assume $\ip{f((\sigma_c))}{h} = 0$, then
+  \begin{equation}
+    \begin{split}
+      \ip{f(x)}{h} &= \\
+      \ip{\sigma_c \frac{N_c}{K\phi + K_0} }{h} + \frac{N_p F_p \ip{\beta_p }{h}}{F_p + \ip{\beta_p}{\sigma_c}} - \ip{1}{h} + \ip{1}{h}
+    \end{split}
+  \end{equation}
+  Since $K\phi + K_0$ and $\beta_p$ are everywhere positive, $\ip{\beta_p}{h} = 0$ and $\ip{\sigma_c \frac{N_c}{K\phi + K_0}}{h} = 0$. Then consider $H((\sigma_c,h)= \ip{(\nabla f)((\sigma_c,\sigma_p))h}{h}$, where $\ip{f(x)}{h} = 0$. We calculate $\nabla f$:
+    \begin{equation}
+      \nabla f = \begin{pmatrix} \frac{N_c}{K \phi + K_0} - \frac{F_p^2\beta_p}{(F_p + \ip{\beta_p \sigma_p}{\sigma_c})^2} \\
+    \end{pmatrix}
+    \end{equation}
+    Since $\ip{\sigma_p}{h}=0$ and $\frac{N_c}{K\phi + K_0}$ is everywhere positive, we conclude $H(x,u)>0$. Therefore $f$ is strictly pseudomonotone by \Cref{lem:strict_pm}, and $-U_c^{mon}$ is strictly pseudoconvex.
+
+    The situation for the predators is even simpler, since $-U_p^{mon}$ is strictly convex, hence strictly pseudoconvex. By \Cref{thm:strictly_pseudoconvex} this entails that $-dU_p$ is strictly pseudomonotone, so the Nash equilibrium is unique.
+    The existence of the Nash equilibria follows from the proof of existence in \Cref{prop:exist_unique_nash}.
+\end{proof}
+Having shown that each of the underlying mean-field games has a unique Nash equilibrium, we can consider the total game.
 \begin{proposition}
   \label{prop:exist_unique_nash}
   The game defined by $U_c$ and $U_p$ has a unique Nash equilibrium for every non-zero pair $N_c,N_p$.
 \end{proposition}
 \begin{proof}
-  It suffices to show that the functions $-U_c^{mon}$ and $-U_p^{mon}$ are strictly pseudoconvex for uniqueness. For existence we need to show that the variational inequality defined by the function
+  We need to show that the variational inequality defined by the function
   \begin{equation}
     \label{eq:var_ineq}
     dU = \begin{pmatrix}-\nabla_{\sigma_c} U_c^{mon} \\ -\nabla_{\sigma_p} U_p^{mon}\end{pmatrix}
-  \end{equation} satisfies the criteria of \Cref{thm:existence}.
-  We start by showing the strict pseudoconvexity. The second derivative of $-U_p^{mon}$ with respect to $\sigma_p$ induces a strictly positive quadratic form since $\beta_p$ is everywhere non-vanishing. Hence the function $-U_p^{mon}$ is strictly convex, therefore also strictly pseudoconvex. Consider $-U_c^{mon}$. To show strict pseudoconvexity, by \Cref{lem:pseudo_reduc} it suffices to show that $f = -\nabla_{\sigma_c} U_c^{mon} + 1$ is strictly pseudomonotone. For \Cref{lem:strict_pm} assume $\ip{f(x)}{h} = 0$, then
-  \begin{equation}
-    \ip{x \frac{N_c}{K\phi + K_0} }{h} + \frac{F_p \ip{\beta_p \sigma_p}{h}}{F_p + \ip{\beta_p \sigma_p}{x}} = 0
-  \end{equation}
-  Since $K\phi + K_0$ and $\beta_p$ are everywhere positive, $\ip{x}{h} = 0$ and $\ip{\sigma_p}{h} = 0$ as otherwise the expression would be strictly positive. Then consider $H(x,u)$, defined below through the derivative of $f$.
-  \begin{equation}
-    H(x,u)=\ip{(\nabla_x f)(x)h}{h} = \ip{\frac{N_c}{K\phi + K_0}  h}{h} - \frac{\ip{F_p \beta_p \sigma_p}{h}\ip{\beta_p \sigma_p}{h}}{(F_p + \ip{\beta_p \sigma_p}{x})^2}
-  \end{equation}
-  Since $\ip{\sigma_p}{h}=0$ and $\frac{N_c}{K\phi + K_0}$ is everywhere positive, we conclude $H(x,u)>0$. Therefore $f$ is strictly pseudomonotone by \Cref{lem:strict_pm}, and $-U_c^{mon}$ is strictly pseudoconvex.
-
-  To show that there exists a solution, start by noting that for all $S\in H^2$, $S\mapsto -dU(S)$ is continuous, hence continuous on finite-dimensional subspaces, fulfilling the first criterion of \Cref{thm:existence}. For the second criterion, consider
+  \end{equation} satisfies the criteria of \Cref{thm:existence} and is strictly pseudomonotone.
+  To show that there exists a solution, start by noting that for all $S\in H^2$, $S\mapsto -dU(S)$ is Lipschitz continuous, hence continuous on finite-dimensional subspaces, fulfilling the first criterion of \Cref{thm:existence}. For the second criterion, consider
   \begin{equation}
     \label{eq:du}
     \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)}
@@ -332,7 +368,23 @@ This allows us to show existence and uniqueness of the Nash equilibrium in the b
     \label{eq:fin_exist}
     \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)} \geq C_1\norm{\sigma_c}_2^2 + C_2\norm{\sigma_p}_2^2 - W(\sigma_c,\sigma_p)
   \end{equation}
-  where $W$ is uniformly bounded on $P_{2,\mu}^2$, and $C_1,C_2$ strictly positive. Recall that constraining the problem to $P_{2,\mu}$ is equivalent to $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Therefore \Cref{eq:du} is only negative on a bounded subset of $P^2_{2,\mu}$, showing existence of a solution to the variational inequality defined by the function \Cref{eq:var_ineq}, \Cref{thm:existence}. Therefore, the Nash equilibrium exists and is unique.
+  where $W$ is uniformly bounded on $P_{2,\mu}^2$, and $C_1,C_2$ strictly positive. Recall that constraining the problem to $P_{2,\mu}$ is equivalent to $\norm{\sigma_c}_1 = 1, \norm{\sigma_p} = 1$. Hence \Cref{eq:fin_exist} tends to infinity as $\norm{(\sigma_c,\sigma_p)}_2$ tends to infinity. Therefore \Cref{eq:du} is only negative on a bounded subset of $P^2_{2,\mu}$, showing existence of a solution to the variational inequality defined by the function \Cref{eq:var_ineq}, \Cref{thm:existence}.
+
+  To show strict pseudomonotonicity, we again apply \Cref{lem:strict_pm}. Assume that
+  \begin{equation}
+    \ip{-dU((\sigma_c,\sigma_p))}{(h_1, h_2)} = 0
+  \end{equation}
+  Re-arranging gives:
+  \begin{equation}
+    \label{eq:h1_h2_rel}
+    \frac{\epsilon \ip{\beta_p \sigma_c}{h_2} N_c}{(F_p + \ip{\sigma_c}{\sigma_p}N_c)^2} = c\ip{\beta \sigma_p}{h_2}N_p + \ip{\frac{\sigma_c}{K}}{h_1} + \frac{\ip{\beta_p \sigma_p}{h_1} N_p}{(F_p + \ip{\sigma_c}{\sigma_p}N_c)}
+  \end{equation}
+  Then consider
+  \begin{equation}
+    \label{eq:hess_mat}
+    H(x) = (\nabla -dU)(x) = \begin{bmatrix}  \end{bmatrix}
+  \end{equation}
+  We then need to show that $\ip{H(x)h}{h}>0$. This is done by inserting \Cref{eq:h1_h2_rel} in $\ip{H(x)h}{h}$ as this allows cancellation of the negative terms in $\ip{H(x)h}{h}$, but we relegate the explicit calculations to \Cref{appendix:calculations}. This shows the desired.
   \qed
 \end{proof}
 As we are interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we show that a fixed-point of the population dynamics exists and is unique.
@@ -340,6 +392,6 @@ As we are interested in the fixed-points of the population dynamics \Cref{eq:dyn
   The population game \Cref{eq:dynamics} has a unique fixed point.
 \end{corollary}
 \begin{proof}
-Both $f_c$ and $f_p$ are strictly monotone, hence strictly pseudomonotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique equilibrium for the population game.% for parameters when coexistence is possible.
+Both $f_c$ and $f_p$ are strictly monotone, hence strictly pseudomonotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. The operator $(M-dU_c, -MdU_p, -N_c f_c, -N_p f_p)$ can be shown to be strictly pseudomonotone in an entirely anaoglous fashion as $(-dU_c, -dU_p)$, and we omit the calculations. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique stable equilibrium for the population game.% for parameters when coexistence is possible.
 \qed
 \end{proof}

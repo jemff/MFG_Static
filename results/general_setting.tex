@@ -15,19 +15,19 @@ We assume that every animal has an area where it forages at every instant. For a
 An animal actively chooses where it forages, and we model that an animal is always foraging. Hence the density $\sigma_i$ describing where it forages is a strategic choice for an animal. In order to inform this choice, we need to establish the playing field. An animal of type $i$ faces the foraging choices of all other inhabitants. Modeling the influence of the foraging choices necessitates the introduction of the mean-field-strategy, $\overbar{\sigma}_j$ for type $j$. The mean-field strategy $\overbar{\sigma}_j$ is the average strategy of all individuals of type $j$. As a consequence, we can describe the foraging presence from type $j$ at a point $x\in X$ by $N_j \overbar{\sigma}_j(x)$.
 
 
-The choice of optimal foraging strategy $\sigma_i^*$ for an animal of type $i$ is a trade-off based on the presence of competitors, predators and prey. The mean density of competitors, predators and prey at a point $x$ is described by $N_j \overbar{\sigma}_j(x)$. We capture this trade-off in a payoff function $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$. The goal of a single animal of type $j$ is then to find the optimal strategy $\sigma_j^*$ such that
+The choice of optimal foraging strategy $\sigma_i^*$ for an animal of type $i$ is a trade-off based on the presence of competitors, predators and prey. The mean density of competitors, predators and prey at a point $x$ is described by $N_j \overbar{\sigma}_j(x)$. We capture this trade-off in a payoff function $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$. The goal of a single animal of type $i$ is then to find the optimal strategy $\sigma_i^*$ such that
 \begin{equation}
   \label{eq:ind_opt}
-  \sigma^*_j = \argmax_{\sigma_j \in P_{\mu}} U_i(\sigma_j, (N_j, \overbar{\sigma}_j)_{j=1}^M)
+  \sigma^*_i = \argmax_{\sigma_i \in P_{\mu}} U_i(\sigma_i, (N_j, \overbar{\sigma}_j)_{j=1}^M)
 \end{equation}
-The fundamental assumption in a mean-field is that the populations are assumed to consist of infinitely many individuals so the choice of a single individual does not change the mean-field strategy \citep{aumann1964markets}. At the Nash equilibrium of a mean-field game every individual of type $i$ follows the same strategy $\sigma_i^*$, \citep{lasry2007mean}. Heuristically, this is due to interchangeability as if any individual of type $i$ gains by deviating from $\sigma_i^*$, any one of them would also gain from making the same deviation, hence doing so. Therefore, if they all follow the optimal strategy, they follow the same strategy. This allows us to go from the individual-level optimization to the Nash equilibrium in \Cref{eq:ind_opt}. Considering $\sigma^*_{j}$ as a function of $\overbar{\sigma}_j$ the Nash equilibrium $\overbar{\sigma}_j^N$ for the mean-field game is the solution to the equation:
-\begin{equation}
-  \sigma^*_{j}(\overbar{\sigma}^N_j) = \overbar{\sigma}^N_j
-\end{equation}
-An equivalent formulation, which turns out to be more useful for our purposes, is:
+The fundamental assumption in a mean-field is that the populations are assumed to consist of infinitely many individuals so the choice of a single individual does not change the mean-field strategy \citep{aumann1964markets}. At the Nash equilibrium of a mean-field game every individual of type $i$ follows the same strategy $\sigma_i^*$, \citep{lasry2007mean}. Heuristically, this is due to interchangeability as if any individual of type $i$ gains by deviating from $\sigma_i^*$, any one of them would also gain from making the same deviation, hence doing so. Therefore, if they all follow the optimal strategy, they follow the same strategy. This allows us to go from the individual-level optimization to the Nash equilibrium in \Cref{eq:ind_opt}. %Considering $\sigma^*_{j}$ as a function of $\overbar{\sigma}_j$ the Nash equilibrium $\overbar{\sigma}_j^N$ for the mean-field game is the solution to the equation:
+%\begin{equation}
+%  \sigma^*_{j}(\overbar{\sigma}^N_j) = \overbar{\sigma}^N_j
+%\end{equation}
+The mean-field equilibrium $\overbar{\sigma}_i$ is then the solution to:
 \begin{equation}
   \label{eq:mfg_ne}
-  \overbar{\sigma}_j^N = \pa{\argmax_{\sigma_j \in P_{\mu}} U_i(\sigma_j, (N_j \overbar{\sigma}_j)_{j=1}^M) } \mid_{\sigma_j = \overbar{\sigma}_j}
+  \overbar{\sigma}_i^N = \pa{\argmax_{\sigma_i \in P_{\mu}} U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M) } \mid_{\overbar{\sigma}_i = \sigma_i}
 \end{equation}
 The problem that we need to solve to find the Nash equilibrium for the population game, where all the individuals of the different types of animals seek to maximize their payoff simultaneously can thus be written as:
 \begin{equation}
@@ -46,7 +46,7 @@ This system of equations looks intractable, but in the next section we will see 
 %Advantages of general approach:
 %1) Easily generalizes IFD
 \subsection{The ideal free distribution and monomorphic populations}
-Assuming monomorphic populations is the typical approach to population games with instantaneous migrations  \citep{kvrivan2013behavioral, vincent2005evolutionary}. We show that assuming a monomorphic population from the outset is not a feasible alternative to the mean-field approach. Explicitly, we show that the monomorphic approach leads to a twice the payoff at the Nash equilibrium as the ideal free distribution, so the cooperation implicit in assuming a monomorphic population conveys a significant advantage.
+Assuming monomorphic populations is the typical approach to population games with instantaneous migrations  \citep{kvrivan2013behavioral, vincent2005evolutionary}. We show that assuming a monomorphic population from the outset is not a feasible alternative to the mean-field approach. Explicitly, we show that the monomorphic approach leads to twice the payoff at the Nash equilibrium as the ideal free distribution due to the bilinear structure, so the cooperation implicit in assuming a monomorphic population conveys a significant advantage.
 
 
 %e show that the difference between assuming a game is monomorphic and having monomorphism emerge from a mean-field approach is substantial.  The difference has been studied qualitively \citep{kvrivan2008ideal,collet2019algorithmic}. %AndAbrams
@@ -55,23 +55,26 @@ Assuming monomorphic populations is the typical approach to population games wit
 %\begin{theorem}
 %KKT CONDITIONS HERE
 %\end{theorem}
-
+\begin{definition}
+  In a monomorphic population, all individuals follow the same behavioral strategy prior to any optimization. That is, for any individual of type $j$, we have $\sigma_j = \overbar{\sigma}_j$. A game where all populations are monomorphic is a monomorphic game.
+\end{definition}
+With the precise definition of a monomorphic game nailed down, we can show the claimed result:
 \begin{proposition}
   \label{prop:doubleup}
 
-  Consider a population of size $N$ in where $X$ is a discrete space with $L$ discrete equipped with the counting measure. To emphasize the discrete nature, the strategy of an individual is $p$ rather than $\sigma$ and the mean-field strategy then becomes $\overbar{p}$.
+  Consider a population of size $N$ a discrete space $X$ with $L$ points. To emphasize the discrete nature, the strategy of an individual is denoted $p$ rather than $\sigma$ and the mean-field strategy then becomes $\overbar{p}$.
 
-  The payoff function $U(p,N\overbar{p})$ for an individual playing strategy $p$ is a bilinear function. The function $U$ is specified by an $m\times m$ matrix $A$ such that $U(p,N\overbar{p}) = N\ip{p}{A \overbar{p}}$. If we assume that the population is monomorphic, $p = \overbar{p}$, the payoff function is the quadratic form $U(p,N p)$. Denote the Nash equilibria for the mean-field and monomorphic games respectively by $p^*_{MFG}$ and $p^*_{mon}$. Then the Nash equilibrium for the mean-field game $p^*_{MFG}$ is the ideal free distribution, and $U(p^*_{mon}, N p^*_{mon}) = 2U(p^*_{MFG},N p^*_{MFG})$.
+  The payoff function $U(p,N\overbar{p})$ for an individual playing strategy $p$ is an affine function. The function $U$ is specified by an $m\times m$ matrix $A$ encapsulating the density dependence and a vector $b$ giving the spot-wise payoff. Then $U(p,N\overbar{p}) = N\ip{p}{A \overbar{p}} + \ip{p}{b}$. If we assume that the population is monomorphic, $p = \overbar{p}$, the payoff function is the quadratic form $U(p,N p)$. Denote the Nash equilibria for the mean-field and monomorphic games respectively by $p^*_{MFG}$ and $p^*_{mon}$. Then the Nash equilibrium for the mean-field game $p^*_{MFG}$ is the ideal free distribution, and $U(p^*_{mon}, N p^*_{mon}) = 2U(p^*_{MFG},N p^*_{MFG})$.
 \end{proposition}
 \begin{proof}
 Consider the payoff in the mean-field situation $U(p,\overbar{p})$.
 \begin{align}
   U(p, \overbar{p}) = N \ip{p}{A\overbar{p}}
 \end{align}
-Using the KKT conditions and defining $e$ as the vector with $L$ ones, we can write up the requirements for an extremum.
+Using the KKT conditions and defining $e$ as the vector with $L$ ones, we can write up the requirements for an extremum $p^*_{MFG}$. The Lagrange multiplier $\lambda$ comes from the constraint that $p^*_{MFG}$ is a probability vector, and the complementarity slackness $\mu$ comes from the non-negativity of $p$. 
 \begin{equation}
   \begin{split}
-    N \cdot A\overbar{p} + \mu = \lambda_1 e \\
+    N \cdot A\overbar{p} + b \mu = \lambda_1 e \\
     \ip{p^*_{MFG}}{\mu} = 0 \\
     \mu \geq 0,~p^*_{MFG} \geq 0 \\
     \sum_{j=1}^L p^*_{MFG,j} = 1
@@ -81,24 +84,24 @@ As we are in the mean-field case, at the Nash equilibrium $p^* = \overbar{p}$ \C
 so we can insert $p^*=\overbar{p}$ in the KKT conditions, to get:
 \begin{equation}
   \begin{split}
-    N \cdot Ap_{MFG}^* + \mu =  \lambda_1 e \\
+    N \cdot Ap_{MFG}^* + b + \mu =  \lambda_1 e \\
     \ip{p^*_{MFG}}{\mu} = 0 \\
     \mu \geq 0,~p^*_{MFG} \geq 0 \\
     \sum_{j=1}^L p^*_{MFG,j} = 1
   \end{split}
 \end{equation}
-The first equation ensures that $N\cdot Ap + \mu$ is constant. At the same time, $p=0$ whenever $\mu > 0$ due to the second equation. Hence $N\cdot Ap^*_{MFG}$ is constant, and equals $\lambda_1$. For any $j$ where $(N\cdot Ap)_j$ would be less than $\lambda_1$, the value of $p_j$ is zero.
+The first equation ensures that $N\cdot Ap + b + \mu$ is constant. At the same time, $p=0$ whenever $\mu > 0$ due to the second equation. Hence $N\cdot Ap^*_{MFG} + b$ is constant, and equals $\lambda_1$. For any $j$ where $(N\cdot Ap)_j$ would be less than $\lambda_1$, the value of $p_j$ is zero.
 These are exactly the criteria for the ideal free distribution \citep{fretwell1969territorial}, illustrating the ideal free distribution as a special case of a mean-field game.
 Analogously, consider the (KKT) conditions at the Nash equilibrium for the monomorphic game
 \begin{equation}
   \begin{split}
-    2ANp^*_{mon} + \mu = \lambda_2  \\
+    2ANp^*_{mon} + b + \mu = \lambda_2  \\
     \ip{p^*_{mon}}{\mu} = 0 \\
     \mu \geq 0,~p_{mon}^* \geq 0 \\
     \sum_{j=1}^L p^*_{mon,j} = 1
   \end{split}
 \end{equation}
-At every point with a non-zero concentration, the payoff for the monomorphic population is $\lambda_2$. The only difference between the two sets of KKT conditions is the factor of $2$ in the first line. Hence the pointwise payoff in the monomorphic case is $\lambda_2 = 2\lambda_1$, as desired.
+The only difference between the two sets of KKT conditions is a factor of $2$ in the density dependent term, but not in the individual payoff $b$. Hence the pointwise payoff in the monomorphic case is up to twice that of the polymorphic case, as desired.
 \qed
 \end{proof}
 %That is, assuming a monomorphic population doubles the payoff at the Nash equilibrium.

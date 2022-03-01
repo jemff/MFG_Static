@@ -4,14 +4,14 @@ from scipy.integrate import RK45
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 
-layers = 2
-segments = 15
-length = 5
+layers = 1
+segments = 30
+length = 1
 tot_points = layers*segments
 Mx = simple_method(length, tot_points)
 inte = np.ones(tot_points).reshape(1,tot_points)
 par = {'res_renew': 1, 'eff': 0.1, 'c_handle': 1, 'c_enc_freq': 1, 'c_met_loss': 0.001, 'p_handle': 0.01,
-       'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0.1, 'q': 3}
+       'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0, 'q': 3}
 
 
 def dynamics(t, y, par = None, car_cap = 2, Mx = None, inte = None):

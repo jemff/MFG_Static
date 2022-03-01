@@ -81,9 +81,6 @@ class spectral_method:
             gamma = lambda alpha, beta, m: 2 ** (3) * (m + 1) / (m + 2) * 1 / ((2 * m + alpha + beta + 1))
         elif alpha == 0 and beta == 0:
             gamma = lambda alpha, beta, m: 2 / ((2 * m + alpha + beta + 1))
-        elif alpha == -1 / 2 and beta == - 1 / 2:
-            gamma = lambda alpha, beta, m: 2 * scp.math.factorial(m) / (
-                        (2 * m + alpha + beta + 1) * scp.gamma(m + 1 / 2))
 
         for i in range(n):
             d = np.sqrt(gamma(alpha, beta, i))

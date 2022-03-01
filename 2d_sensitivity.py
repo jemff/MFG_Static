@@ -24,7 +24,7 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 6, steps = 
 
     Mx = method(length, tot_points)
     if par is None:
-        par = {'res_renew': 1, 'eff': 0.1, 'c_handle': 1, 'c_enc_freq': 1, 'c_met_loss': 0.001, 'p_handle': 0.01, 'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0.1, 'q': 3}
+        par = {'res_renew': 1, 'eff': 0.1, 'c_handle': 1, 'c_enc_freq': 1, 'c_met_loss': 0.001, 'p_handle': 0.01, 'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0, 'q': 3}
 
     car_caps = np.linspace(1, 10, steps)
     populations_car = np.zeros((steps,2))
@@ -37,6 +37,8 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 6, steps = 
         populations_car[i] = out['x0'][-4:-2]-min_pop
         strategies_car[i, :, 0] = out['x0'][0:tot_points][::-1]
         strategies_car[i, :, 1] = out['x0'][tot_points:2*tot_points][::-1]
+        if i == int(steps/2):
+            x_in = np.copy(np.array(out['x0']).flatten())
         print(populations_car[i],car_caps[i])
     qs = np.linspace(1, 6, steps)
     populations_ref = np.zeros((steps,2))
@@ -76,6 +78,7 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 6, steps = 
     heatmap_plotter([strategies_car[:,:,0].T, strategies_car[:,:,1].T], "increasing_car_cap"+file_append, [car_caps[0], car_caps[-1], 1, 0], xlab = "Carrying capacity ($K$)", ylab="Refuge")
     heatmap_plotter([strategies_comp[:,:,0].T, strategies_comp[:,:,1].T], "increasing_competition"+file_append, [competition[0], competition[-1], 1, 0], xlab = "Competition ($c$)", ylab="Refuge")
 
+
     fig, ax = plt.subplots(1, 2, sharex='col', sharey='row')
     fig.set_size_inches((12 / 2.54, 6 / 2.54))
 
@@ -93,6 +96,20 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 6, steps = 
 
     fig.tight_layout()
     plt.savefig("./results/plots/pop_levels" + file_append + ".pdf")
+
+    fig1, ax1 = plt.subplots(1, 2, sharex='col', sharey='row')
+    fig1.set_size_inches((12 / 2.54, 6 / 2.54))
+    fitnesses = twod_predator_prey_dyn(Mx = Mx, x_in = x_in, calc_funcs = True, fixed_point=True)
+    ax1[0].plot(Mx.x, x_in[0:tot_points], c=tableau20[0])
+    ax1[0].plot(Mx.x, fitnesses[0:tot_points], c=tableau20[1])
+    ax1[0].set_xlabel('Location (x)')
+
+    ax1[1].plot(Mx.x, x_in[tot_points:2*tot_points], c=tableau20[6])
+    ax1[1].plot(Mx.x, fitnesses[tot_points:2*tot_points], c=tableau20[7])
+    ax1[1].set_xlabel('Location (x)')
+    fig1.tight_layout()
+    plt.savefig("./results/plots/snapshot" + file_append + ".pdf")
+
 
 giant_simulator(method=simple_method, file_append='_c', steps = 30, layers=3)
 

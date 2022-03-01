@@ -2,6 +2,7 @@ import phase_plots as pp_dyn
 import phase_plot_static as pp_stat
 import matplotlib.pyplot as plt
 import numpy as np
+from infrastructure import heatmap_plotter
 
 plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
@@ -26,7 +27,7 @@ gridx, gridy, vectors[:,:,0], vectors[:,:,1], dyn_data_1 = pp_stat.stat_pp()
 fig, ax = plt.subplots(1, 2, figsize=(12/2.54, 6/2.54))
 q = ax[0].quiver(gridx, gridy, vectors[:,:,0], vectors[:,:,1], scale=50, headwidth=1, color=tableau20[14])
 ax[0].plot(dyn_data_1.y[0,:], dyn_data_1.y[1,:], color=tableau20[4])
-gridx, gridy, vectors[:,:,0], vectors[:,:,1], dyn_data = pp_dyn.dyn_pp()
+gridx, gridy, vectors[:,:,0], vectors[:,:,1], dyn_data, hist_c, hist_p = pp_dyn.dyn_pp()
 q2 = ax[1].quiver(gridx, gridy, vectors[:,:,0], vectors[:,:,1], scale=50, headwidth=1, color=tableau20[14])
 ax[1].plot(dyn_data[:,0], dyn_data[:,1], color=tableau20[4])
 ax[0].set_xlabel("Consumer biomass ($N_c$)")
@@ -36,4 +37,8 @@ ax[0].text(1.05, 0.8, 'A', transform=ax[0].transAxes)
 ax[1].text(1.05, 0.8, 'B', transform=ax[1].transAxes)
 
 plt.savefig('results/plots/dynamics.pdf')
+plt.show()
+
+heatmap_plotter([hist_c.T, hist_p.T], "dynamic_strats",
+                [0, 20, 1, 0], xlab="Time (t)", ylab="Refuge")
 plt.show()

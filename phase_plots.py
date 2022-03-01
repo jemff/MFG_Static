@@ -4,7 +4,7 @@ from infrastructure import *
 from scipy.integrate import solve_ivp
 def dyn_pp():
     layers = 1
-    segments = 30
+    segments = 60
     length = 1
     tot_points = layers*segments
     Mx = simple_method(length, tot_points)
@@ -54,10 +54,6 @@ def dyn_pp():
             N = np.linalg.norm(vectors[i, j, :])
             vectors[i, j,:] = vectors[i, j,:]/N
 
-    #fig, ax = plt.subplots(figsize=(6/2.54, 6/2.54))
-    #q = ax.quiver(gridx, gridy, vectors[:,:,0].T, vectors[:,:,1].T, scale=50, headwidth=1, color=tableau20[14])
-    #ax.set_xlabel("Biomass, (C)")
-    #ax.set_ylabel("Biomass, (P)")
 
     step_size = 0.1
     num_points = 300
@@ -66,18 +62,24 @@ def dyn_pp():
     dyn_data[0] = y0
     out = twod_predator_prey_dyn(Mx = Mx, pops=dyn_data[i], fixed_point=False, warmstart_out=True, car_cap=car_cap)
 
+    sigma_c_hist = np.zeros((num_points, segments))
+    sigma_p_hist = np.zeros((num_points, segments))
+    sigma_c_hist[0] = np.array(out['x0'][0: tot_points]).flatten()
+    sigma_p_hist[0] = np.array(out['x0'][tot_points: 2*tot_points]).flatten()
+
     for i in range(1,num_points):
         out = twod_predator_prey_dyn(pops=dyn_data[i-1], Mx=Mx, fixed_point=False, warmstart_out=True, car_cap=car_cap,
                                      minimal_pops=0, par=par, warmstart_info=out)
         sigma = out['x0'][0: tot_points]
         sigma_p = out['x0'][tot_points: 2 * tot_points]
+
+        sigma_c_hist[i] = np.copy(sigma)
+        sigma_p_hist[i] = np.copy(sigma_p)
+
         dyns = dynamics(dyn_data[i-1], par = par,Mx = Mx, inte = inte, car_cap=car_cap, sigma = sigma, sigma_p = sigma_p)
         dyn_data[i] = dyn_data[i-1] + step_size*dyns
 
 
-    return gridx, gridy, vectors[:,:,0].T, vectors[:,:,1].T, dyn_data
-#ax.plot(dyn_data[:,0], dyn_data[:,1], color=tableau20[0])
-#plt.savefig('results/plots/dynamics.pdf')
+    return gridx, gridy, vectors[:,:,0].T, vectors[:,:,1].T, dyn_data, sigma_c_hist, sigma_p_hist
 
-#plt.show()
 

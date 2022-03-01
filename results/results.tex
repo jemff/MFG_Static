@@ -19,11 +19,20 @@ The parameters for the model are: \\
 \\
 \begin{figure}[H]
   \label{fig:pp}
-  \caption{Phase portrait of the Rosenzweig-MacArthur system without optimal behavior $(A)$ and with $(B)$ modified at carrying capacity of $K=40$ and a competition of $c=0$. The green lines show a system trajectory.}
+  \caption{Phase portrait of the Rosenzweig-MacArthur system without optimal behavior $(\sigma_c = 1, \sigma_p = 1)$, $(A)$ and with optimal behavior $(B)$ at carrying capacity of $K=40$ and a competition of $c=0$. The green lines show a system trajectory.}
   \label{fig:dynamics}
   \includegraphics{plots/dynamics.pdf}
 \end{figure}
-The direction of the flow with optimal behavior (\Cref{fig:pp}(B)) is consistent with the usual Rosenzweig-MacArthur system (\Cref{fig:pp}(A)). The phase portrait reveals that the system dynamics have been stabilized. Looking at the sample trajectory, this stabilization is quite substantial with not even a full oscillation. The stable dynamics stand in contrast to the Rosenzweig-MacArthur model with constant behavior $(\sigma_p=\sigma_c=1)$ where the point of the Hopf bifurcation has been passed, leading to limit cycles.
+The direction of the flow with optimal behavior (\Cref{fig:pp}(B)) is consistent with the usual Rosenzweig-MacArthur system (\Cref{fig:pp}(A)). The phase portrait reveals that the system dynamics have been stabilized. Looking at the sample trajectory, the system has been overdamped. The stable dynamics stand in contrast to the Rosenzweig-MacArthur model with constant behavior $(\sigma_p=\sigma_c=1)$ where the point of the Hopf bifurcation has been passed, leading to limit cycles.
+
+
+\begin{figure}[H]
+  \label{fig:pp}
+  \caption{Transient strategies of consumers $(A)$ and predators $(B)$ at carrying capacity of $K=40$ and a competition of $c=0$ corresponding to the phase portrait \Cref{fig:dynamics}.
+  \label{fig:dynamic_strategies}
+  \includegraphics{plots/dynamic_strats.pdf}
+\end{figure}
+
 
 \subsection{Population at equilibrium}
 \begin{figure}[H]
@@ -40,6 +49,15 @@ Varying the intraspecific predator competition causes an increase in the populat
 
 
 \subsection{Spatial distributions}
+We start by investigating the spatial distribution of consumers and predators compared to their spatially varying fitness.
+\begin{figure}[H]
+  \caption{Spatial distribution and fitness of consumers $(A)$ and predators $(B)$ at the equilibrium with carrying capacity $K = 3$.}
+  \label{fig:strat_car}
+  \includegraphics{plots/snapshot_c.pdf}
+\end{figure}
+%\Cref{fig:strat_car}) 
+
+
 \begin{figure}[H]
   \caption{Spatial distribution of consumers $(A)$ and predators $(B)$ at the equilibrium with increasing carrying capacity $(K)$.}
   \label{fig:strat_car}
@@ -51,6 +69,8 @@ At low carrying capacity consumers are relatively spread out in the most optimal
 
 
 Predators go from being concentrated to very spread out, but surprisingly the peak of the predator distribution is just above the peak of the consumer distribution. There are no predators below the band of highly concentrated consumers. This is quite surprising since they have a non-zero encounter rate everywhere. The predator and consumer distributions follow each other as the carrying capacity increases, and appear to approach a stable asymptote.
+
+
 
  %Thus the gain from clustering gradually outweighs the loss from the intraspecific predator competition. That both predator and consumer population increase must be the driving factor behind the peak population concentration moving to less productive areas.
 
