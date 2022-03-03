@@ -1,16 +1,11 @@
-\section{Results on variational inequalities}
-\label{sec:appendix}
-The following section contains the necessary results on variational inequalities, which have been removed from the main text to improve the flow.
 
-We start by recalling the definition of pseudo-convexity
-The corresponding notion of convexity is
-\begin{definition}
-  Let $\Omega \subset H$ be an open subset of $H$, and let $f:\Omega \to \R$ be Gateaux-differentiable. The function $f$ is strictly pseudoconvex if
-  \begin{equation}
-    \ip{y-x}{(\nabla f)(x)} \geq 0 \Rightarrow f(y) > f(x)
-  \end{equation}
-\end{definition}
-Where a strictly convex function has a strictly monotone derivative, a variant holds for strictly pseudoconvex functions which have strictly pseudomonotone derivatives. %First, we need to introduce strict pseudomonotonicity.
+%\section{Results on variational inequalities}
+%\label{sec:appendix}
+%The following section contains the necessary results on variational inequalities,
+
+%We start by recalling the definition of pseudo-convexity
+%The corresponding notion of convexity is
+ %First, we need to introduce strict pseudomonotonicity.
 %\begin{definition}
 % The operator $T: K \to H$ is strictly pseudomonotone if for every pair $x\neq y$ we have
 % \begin{align}
@@ -23,35 +18,6 @@ Proving strict pseudomonotonicity in itself can be hard, but thankfully the noti
   Let $\Omega \subset H$ be an open convex subset, and let $f:\Omega \to \R$ be Gateaux differentiable. Then $f$ is strictly pseudoconvex if and only if $\nabla f$ is strictly pseudomonotone.
 \end{theorem}
 \end{comment}
-Minimizing a differentiable strictly pseudoconvex $f$ function over a convex set $K$ is equivalent to solving the variational inequality \citep[P. 521]{hadjisavvas2006handbook}
-\begin{equation}
-  \label{eq:min_func}
-  x \in K, ~ \ip{(\nabla f)(x)}{x-y} \geq 0, \forall y\in K
-\end{equation}
-Whether a variational inequality given by a pseudomonotone operator has a solution can be determined by \citep[Theorem 3.4]{maugeri2009existence}, which we abridge:
-\begin{theorem}
-  \label{thm:existence}
-  Let $K$ be a closed convex set and $A : K \to H$  a pseudo-
-  monotone map which is continuous on finite dimensional subspaces of $H$. Then the fol-
-  lowing statements are equivalent:
-\end{theorem}
-\begin{enumerate}
-  \item The variational inequality $\ip{Ax}{y-x} \geq 0$ admits solutions.
-  \item There exists a point $u_0 \in K$ such that the set
-  \begin{equation}
-    \{v \in K : \ip{A(v)}{v-u_0} < 0\}
-  \end{equation}
-  is bounded.
-\end{enumerate}
-We also state another characterization of strict pseudomonotonicity for differentiable functions, since this criterion is easier to check in practice than going to the definition.
-  \begin{lemma}
-  \label{lem:strict_pm}
-  Let $K$ be a convex subset of $H$. A function $f: K \to \R$ is strictly pseudomonotone if
-  \begin{equation}o
-    \ip{f(x)}{u} = 0 \Rightarrow \ip{(\nabla_x f(x))h}{h} > 0
-  \end{equation}
-\end{lemma}
-A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}
 
 \begin{comment}
 
@@ -65,16 +31,17 @@ A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}
   then the variational inequality $VI(T,K)$ has a solution.
 \end{theorem}
 \end{comment}
-\begin{remark}
-  \label{rem:weak_compact}
-  Weak compactness of $K$ also ensures that $VI(T,K)$ has a solution \citep[Theorem 12.1, P. 510]{hadjisavvas2006handbook}, giving existence of solutions in the finite-dimensional case.
-\end{remark}
-With a criterion for existence in hand, we proceed to state a criterion for uniqueness, justifying our focus on strict pseudoconvexity and strict pseudomonotonicity.
-\begin{theorem}[Lemma 12.3, p. 516, \citep{hadjisavvas2006handbook}]
-  \label{thm:uniqueness}
-  Let $K\subset H$ be a non-empty subset of $H$. If $T$ is strictly pseudomonotone, then the problem $VI(T,K)$ has at most one solution.
-\end{theorem}
+%\begin{remark}
+%  \label{rem:weak_compact}
+%  Weak compactness of $K$ also ensures that $VI(T,K)$ has a solution \citep[Theorem 12.1, P. 510]{hadjisavvas2006handbook}, giving existence of solutions in the finite-dimensional case.
+%\end{remark}
+%With a criterion for existence in hand, we proceed to state a criterion for uniqueness, justifying our focus on strict pseudoconvexity and strict pseudomonotonicity.
+%\begin{theorem}[Lemma 12.3, p. 516, \citep{hadjisavvas2006handbook}]
+%  \label{thm:uniqueness}
+%  Let $K\subset H$ be a non-empty subset of $H$. If $T$ is strictly pseudomonotone, then the problem $VI(T,K)$ has at most one solution.
+%\end{theorem}
 \section{Calculations}
+\subsection{Existence}
 \label{appendix:calculations}
 We complete the omitted calculations from the main text. Initially,
 \begin{equation}
@@ -108,3 +75,4 @@ Since $\norm{\sigma_i}_1=1, i \in \{c,p\}$, all terms involving $\norm{\cdot}_1$
 \begin{equation}
     \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)} \geq C_1 \norm{\sigma_c}_2^2 + C_2 \norm{\sigma_p}_2^2 - W(\sigma_c,\sigma_p)
 \end{equation}
+%\subsection{Strict pseudomonotonicity}

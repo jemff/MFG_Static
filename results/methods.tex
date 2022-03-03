@@ -132,10 +132,8 @@ which is a complementarity problem with $K = (H_+ \osum \R)^M$, $K^* = (H_+ \osu
   T(S,\lambda)=\begin{pmatrix} dU(S) + \Lambda \\ (\ip{\sigma_i}{1} - 1)_{i=1}^M \end{pmatrix}
 \end{equation}
 \end{comment}
-\subsection{Restatement as a variational inequality}
-We have recast the problem of finding a Nash equilibrium to a complementarity problem, which allows for numerical resolution. To establish existence and uniqueness, we need to use the relationship between complementarity problems and variational inequalities. We will show that in case the payoff-functions $U_i $ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium.
-
-%Asking for convexity is too strong, but it turns out the weaker notion of strict pseudoconvexity is sufficient. See \Cref{sec:appendix} for further details.
+\subsection{Results on variational inequalities}
+Before we can proceed with the main theme of the article, we recount some results on existence and uniqueness of variatinoal inequalities, which also show their general utility in optimization.
 We define a variational inequality:
 \begin{definition}
   Let $H$ be a real Hilbert space and $K\subset H$ be a non-empty convex subset of $H$. Let $T: K \to H$. The variational inequality $VI(T,K)$ is the following system
@@ -153,8 +151,67 @@ The relationship between variational inequalities and complementarity problems i
   \begin{equation}
     \ip{y - x^*}{Tx^*} \geq 0 \forall y \in K
   \end{equation}
-  Setting $y = 2x^*$, we arrive at $\ip{x^*}{Tx^*} \geq 0$, and setting $y=0$ we arrive at $\ip{x^*}{Tx^*} \leq 0$. This shows the desired equivalence.
+  Setting $y = 2x^*$, we arrive at $\ip{x^*}{T(x^*)} \geq 0$, and setting $y=0$ we arrive at $\ip{x^*}{Tx^*} \leq 0$. This shows the desired equivalence.
 \end{proof}
+The solutions of variational inequalities are not generally unique, but if we restrict ourselves to a sub-class of functions the solutions become unique.
+\begin{definition}
+  \label{def:strict_pm}
+ The function $T: K \to H$ is strictly pseudomonotone if for every pair $x\neq y$ we have
+ \begin{align}
+   \ip{x-y}{T(y)} \geq 0 \Rightarrow \ip{x-y}{T(x)} > 0
+ \end{align}
+\end{definition}
+Which enables the uniqueness result:
+\begin{theorem}[Lemma 12.3, p. 516, \citep{hadjisavvas2006handbook}]
+  \label{thm:uniqueness}
+  Let $K\subset H$ be a non-empty subset of $H$. If $T$ is strictly pseudomonotone, then the problem $VI(T,K)$ has at most one solution.
+\end{theorem}
+Stict pseudomonotonicity is related to strict monotonicity, in that every strictly monotone function is also strictly pseudomonotone. A natural question is how strictly pseudomonotone arise, and they arise from a corresponding generalization of strict convexity.
+\begin{definition}
+  Let $\Omega \subset H$ be an open subset of $H$, and let $f:\Omega \to \R$ be Gateaux-differentiable. The function $f$ is strictly pseudoconvex if
+  \begin{equation}
+    \ip{y-x}{(\nabla f)(x)} \geq 0 \Rightarrow f(y) > f(x)
+  \end{equation}
+\end{definition}
+Where a strictly convex function has a strictly monotone derivative, a variant holds for strictly pseudoconvex functions which have strictly pseudomonotone derivatives.
+Hence minimizing a differentiable strictly pseudoconvex $f$ function over a convex set $K$ is equivalent to solving the variational inequality \citep[P. 521]{hadjisavvas2006handbook}
+\begin{equation}
+  \label{eq:min_func}
+  x \in K, ~ \ip{(\nabla f)(x)}{x-y} \geq 0, \forall y\in K
+\end{equation}
+Having given a criterion for uniqueness, the next question is whether a solution exists at all. The existence of solutions to a variational inequality given by a pseudomonotone function can be determined by \citep[Theorem 3.4]{maugeri2009existence}, which we abridge:
+\begin{theorem}
+  \label{thm:existence}
+  Let $K$ be a closed convex set and $A : K \to H$  a pseudo-
+  monotone map which is continuous on finite dimensional subspaces of $H$. Then the following statements are equivalent:
+\end{theorem}
+\begin{enumerate}
+  \item The variational inequality $\ip{Ax}{y-x} \geq 0$ admits solutions.
+  \item There exists a point $u_0 \in K$ such that the set
+  \begin{equation}
+    \{v \in K : \ip{A(v)}{v-u_0} < 0\}
+  \end{equation}
+  is bounded.
+\end{enumerate}
+\begin{remark}
+  \label{rem:weak_compact}
+  Weak compactness of $K$ also ensures that $VI(T,K)$ has a solution \citep[Theorem 12.1, P. 510]{hadjisavvas2006handbook}, giving existence of solutions in the finite-dimensional case.
+\end{remark}
+Though strictly pseudomonotone functions initially arise as gradients of strictly pseudoconvex functions, they can be much more general. Checking whether a function is strictly pseudomonotone from the definitions can also be hard in practice, hence we state another characterization of strict pseudomonotonicity for differentiable functions.
+  \begin{lemma}
+  \label{lem:strict_pm}
+  Let $K$ be a convex subset of $H$. A function $f: K \to \R$ is strictly pseudomonotone if
+  \begin{equation}o
+    \ip{f(x)}{u} = 0 \Rightarrow \ip{(\nabla_x f(x))h}{h} > 0
+  \end{equation}
+\end{lemma}
+A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}
+
+
+\subsection{Restatement as a variational inequality}
+We have recast the problem of finding a Nash equilibrium to a complementarity problem, which allows for numerical resolution. To establish existence and uniqueness, we need to use the relationship between complementarity problems and variational inequalities. We will show that in case the payoff-functions $U_i $ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium.
+
+%Asking for convexity is too strong, but it turns out the weaker notion of strict pseudoconvexity is sufficient. See \Cref{sec:appendix} for further details.
 We can now turn the problem finding a Nash equilibrium into a variational inequality. Consider the problem as stated in \Cref{eq:comp_form}. This is a complementarity problem over the convex cone $H_+ \osum \R$. Hence it is equivalent to a variational inequality over the same convex cone with $T$ as in \Cref{eq:comp_form}
 \begin{equation}
   \ip{T}{(\sigma_i' -\sigma_i,\lambda_i'-\lambda_i)} \geq 0, \quad \forall (\sigma_i', \lambda_i') \in K
@@ -185,14 +242,6 @@ the problem of determining the Nash equilibrium \Cref{eq:tot_nash_eq} is the var
 %i.e. solves a variational inequality. %Searching for a solution to a variational inequality is more tractable for theoretical considerations, while the complementarity formulation is preferable for solving the problem numerically.
 
 %In case the payoff-functions $U_i $ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium. Asking for convexity is too strong, but it turns out the weaker notion of strict pseudoconvexity is sufficient. See \Cref{sec:appendix} for further details.
-We need to introduce a specific type of variational inequality, which generalizes strict monotonicity of an operator, before we can state and prove a general theorem for uniqueness of the Nash equilibrium.
-\begin{definition}
-  \label{def:strict_pm}
- The operator $T: K \to H$ is strictly pseudomonotone if for every pair $x\neq y$ we have
- \begin{align}
-   \ip{x-y}{Ty} \geq 0 \Rightarrow \ip{x-y}{Tx} > 0
- \end{align}
-\end{definition}
 With \Cref{def:strict_pm} in hand, we can finally give sufficient criteria for existence and uniqueness of the Nash equilibrium of the game specified in \Cref{eq:tot_nash_eq}.
 \begin{theorem} \label{thm:nash_unique}
   Consider a game with $M$ players with payoff functions $U_i$ the total operator $dU$ is strictly pseudomonotone. Assume the strategies $\sigma_i$ are in $P_{2,\mu}$. The game has a unique Nash equilibrium if $dU$ as in \Cref{def:var_eq_nash} satisfies the criterion of \Cref{thm:existence} or $H$ is finite dimensional.
@@ -222,15 +271,17 @@ With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of
     \dot{N_i} = N_i f_i
   \end{equation}
   Assume that the that the set of stationary points of the population dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$ and convex, and that the stationary points are continuous in $(\sigma_i)_{i=1}^M$. Let $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ be strictly pseudomonotone and satisfy \Cref{thm:existence}. Then the population game has a fixed point.
-
-  A sufficient conditions for uniqueness and stability of the fixed-point is that there exists an $M>0$ the total operator $-(N_if_i)_{i=1}^M \osum -MdU$ is strictly pseudomonotone for all $N \geq M$.
+  If further the system $f_i$ defines a pseudomonotone operator, the fixed-point is unique.
+  %A sufficient conditions for uniqueness and stability of the fixed-point is that there exists an $M>0$ the total operator $-(N_if_i)_{i=1}^M \osum -MdU$ is strictly pseudomonotone for all $N \geq M$.
 \end{theorem}
 \begin{proof}
   The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $-dU$. The solution operator is a continuous mapping $G: \R_+^M \to P_{2,\mu}^M$, due to the existence and uniqueness of the solution \Cref{thm:nash_unique} \cite[Theorem 4.2]{barbagallo2009continuity}. By assumption, the fixed-point mapping $F_i$ for the population dynamics is continuous in $(\sigma_i)_{i=1}^M$.
 
   Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ G: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded, $G$ has compact range, and $F\circ G$ has compact image. Therefore $F\circ G:\R_+^M \to \R_+^M$ has a fixed point $(x_1^*, \dots, x_m^*)$ by Schauder's fixed point theorem \citep[Theorem 3.2, p. 119]{granas2003elementary}. Likewise, the map $G\circ F:P_{2,\mu}^M \to P_{2,\mu}^M$ has a fixed point $(\sigma_1^*,\dots, \sigma_M^*)$, since it factorizes through a compact space. We can conclude that a fixed-point exists, hence a combined Nash and population equilibrium.
 
-  To show uniqueness and stability, we need to shift perspectives. Since $-dU$ is strictly pseudomonotone, so is $-MdU$ for any $M$. Define the projection $\Pi$ from $H$ to $P_{2,\mu}$. Then the dynamical system
+  To show uniqueness, we need to shift perspectives. We are searching for zeros of the system $f_i$, ie. solutions of the variational inequality $VI((f_i)_{i=1}^M, \R_+^M)$ constrained by the fact that the system of $\sigma_i$ constitute a Nash equilibrium, ie. they need to solve the variational inequality $VI(-dU,P_{2,\mu}^M)$. This is an example of a so-called bi-level variational inequality, and due to the pseudomonotonicity and strict pseudomonotonicity the solution is unique \citep{chen2014bilevel}.
+
+  \begin{comment}so is $-MdU$ for any $M$. Define the projection $\Pi$ from $H$ to $P_{2,\mu}$. Then the dynamical system
   \begin{equation}
     \dot{\sigma}_i = \Pi(-dU_i((\sigma)_{i=1}^M)))
   \end{equation}
@@ -243,7 +294,7 @@ With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of
   Since the first set of equations stays in the positive orthant where can introduce the projection operator $\Pi_R$, the system can be rewritten as
   \begin{equation}
     \dot{N_i} = \Pi_R(-(-N_i f_i))
-    \eps\dot{\sigma}_i = \Pi(-dU_i((\sigma)_{i=1}^M)))
+    \epsilon\dot{\sigma}_i = \Pi(-dU_i((\sigma)_{i=1}^M)))
   \end{equation}
   This system converges asymptotically if the operator
   \begin{equation}
@@ -251,6 +302,8 @@ With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of
     (-N_i f_i)_{i=1}^M \osum (\frac{1}{\epsilon}-dU)
   \end{equation}
   is strictly pseudomonotone. If there exists an $N$ such that \Cref{eq:de_sys} is strictly pseudomonotone, hence asymptotically stable, for all $\frac{1}{\epsilon}>N$, then \Cref{eq:instant_nash_DE} is also asymptotically stable.
+
+\end{comment}
     \qed
 
 \end{proof}
@@ -379,19 +432,30 @@ Having shown that each of the underlying mean-field games has a unique Nash equi
     \label{eq:h1_h2_rel}
     \frac{\epsilon \ip{\beta_p \sigma_c}{h_2} N_c}{(F_p + \ip{\sigma_c}{\sigma_p}N_c)^2} = c\ip{\beta \sigma_p}{h_2}N_p + \ip{\frac{\sigma_c}{K}}{h_1} + \frac{\ip{\beta_p \sigma_p}{h_1} N_p}{(F_p + \ip{\sigma_c}{\sigma_p}N_c)}
   \end{equation}
-  Then consider
+  Introducing $\ket{x}$ as the functional defined from $x$, we calculate:
   \begin{equation}
     \label{eq:hess_mat}
-    H(x) = (\nabla -dU)(x) = \begin{bmatrix}  \end{bmatrix}
+    H(x) = (\nabla -dU)(x) =
+    \begin{bmatrix}
+      \frac{N_c}{K} - \frac{F_p N_c N_p \ket{\beta_p \sigma_p} \ket{\beta_p \sigma_p}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^2} & \frac{F_p^2 N_p \ket{\beta_p \sigma_p}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^2} \\
+      \frac{\epsilon N_cF_p^2 (N_c \beta_p \ket{\beta_p \sigma_p} - \beta_p F_p)}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^3} & \frac{\epsilon N_c^2 F_p^2 \ket{\beta_p \sigma_c} \ket{\beta_p \sigma_c}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^3}+c N_p \beta
+    \end{bmatrix}
   \end{equation}
-  We then need to show that $\ip{H(x)h}{h}>0$. This is done by inserting \Cref{eq:h1_h2_rel} in $\ip{H(x)h}{h}$ as this allows cancellation of the negative terms in $\ip{H(x)h}{h}$, but we relegate the explicit calculations to \Cref{appendix:calculations}. This shows the desired.
+  We need to show that $\ip{H(x)h}{h}>0$. We immediately see that the negative contribution from the lower-left corner is cancelled by the upper-right corner. Inserting the relationship \Cref{eq:h1_h2_rel} in the term from the lower right right corner in $\ip{H(x)h}{h}$ allows cancellation of the negative terms from the upper left corner in $\ip{H(x)h}{h}$. This shows the desired. %but we relegate the explicit calculations to \Cref{appendix:calculations_2
   \qed
 \end{proof}
 As we are interested in the fixed-points of the population dynamics \Cref{eq:dynamics}, we show that a fixed-point of the population dynamics exists and is unique.
-\begin{corollary}
-  The population game \Cref{eq:dynamics} has a unique fixed point.
-\end{corollary}
+\begin{theorem}
+  The population game \Cref{eq:dynamics} has a unique co-existence fixed point. Further, this fixed point is stable.
+\end{theorem}
 \begin{proof}
-Both $f_c$ and $f_p$ are strictly monotone, hence strictly pseudomonotone. Due to the metabolic terms and logistic terms set of fixed-points of these are uniformly bounded in $\sigma_c, \sigma_p$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. The operator $(M-dU_c, -MdU_p, -N_c f_c, -N_p f_p)$ can be shown to be strictly pseudomonotone in an entirely anaoglous fashion as $(-dU_c, -dU_p)$, and we omit the calculations. Therefore, by \Cref{thm:pop_game_exists_unique} there is a unique stable equilibrium for the population game.% for parameters when coexistence is possible.
+The stationary-point mapping of the behaviorally modified Rosenzweig-MacArthur system is clearly continuous as a function of $\sigma_c,\sigma_p$. Due to the metabolic terms and logistic terms the set of fixed-points of is uniformly bounded in $\sigma_c, \sigma_p$, and non-empty for sufficiently large $K$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. The operator $(-f_c, -f_p)$ can be shown to be pseudomonotone in an entirely analogous fashion as $(-dU_c, -dU_p)$, and we omit the calculations. Therefore, by \Cref{thm:pop_game_exists_unique} any coexistence equilibrium for the population game is unique and this will exist for $K$ sufficiently large.
+For the stability, remark that the fixed point is the only place where the Nash equilibrium leads to zero pr. capita growth rates $(f_c, f_p)$, and that the pr. capita growth rates are dominated by the monomorphic equivalent payoff-functions $U_c^{mon}, U_p^{mon}$. As we maximize the payoff-functions at every point $(N_c,N_p)$, a decrease in the maximal value of the payoff-function will also lead to a decrease in the growth rate.
+Increasing $N_c$ and keeping $N_p^*$ fixed will lead to the maximal value of $U_c$ strictly decreasing, while the maximal value of $U_p$ will strictly increase, hence the value at the Nash equilibrium will weakly increase. Correspondingly, an increase in $N_p$ and keeping $N_c^*$ fixed will decrease the maximal value of $U_c^{mon}$ and $U_p^{mon}$, forcing $f_c$ and $f_p$ to become negative. Increasing both will also cause both to become negative. If we only increase $N_c$ and decrease $N_p$, then the situation is more complicated. At very low values of $N_p$ and $N_c$ less than the maximum for logistic growth, both $f_c$ and $f_p$ will become positive as we are nearly in the situation with logistic growth. As we we either pass the threshold for the stable point in the logistic growth, or $N_p$ becomes sufficiently large, the signs of both reverse.
+Therefore any flow will eventually end up above $(N_c^*,N_p^*)$, where it will be attracted to the fixed point.
+
+Hence the system is stable, and the equilibirum is unique as desired.
+
+% for parameters when coexistence is possible.
 \qed
 \end{proof}

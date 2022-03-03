@@ -19,7 +19,7 @@ for i in range(len(tableau20)):
 
 
 
-def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 6, steps = 20, par = None, method=simple_method, file_append = '_c'):
+def giant_simulator(layers = 1, segments = 60, length = 1, car_cap = 6, steps = 20, par = None, method=simple_method, file_append = '_c'):
     tot_points = layers*segments
 
     Mx = method(length, tot_points)
@@ -101,6 +101,8 @@ def giant_simulator(layers = 2, segments = 30, length = 1, car_cap = 6, steps = 
     fig1.set_size_inches((12 / 2.54, 6 / 2.54))
     fitnesses = twod_predator_prey_dyn(Mx = Mx, x_in = x_in, calc_funcs = True, fixed_point=True)
     ax1[0].plot(Mx.x, x_in[0:tot_points], c=tableau20[0])
+    inte = np.ones(tot_points).reshape(1,tot_points)
+
     ax1[0].plot(Mx.x, fitnesses[0:tot_points], c=tableau20[1])
     ax1[0].set_xlabel('Location (x)')
 
