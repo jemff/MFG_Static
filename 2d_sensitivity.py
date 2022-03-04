@@ -103,12 +103,16 @@ def giant_simulator(layers = 1, segments = 60, length = 1, car_cap = 6, steps = 
     ax1[0].plot(Mx.x, x_in[0:tot_points], c=tableau20[0])
     inte = np.ones(tot_points).reshape(1,tot_points)
 
-    ax1[0].plot(Mx.x, fitnesses[0:tot_points], c=tableau20[1])
+    ax1[0].plot(Mx.x, fitnesses[0:tot_points], c=tableau20[0], linestyle = '.-')
     ax1[0].set_xlabel('Location (x)')
+    ax1[0].set_ylabel('Concentration and pointwise value of $-dU_i,~i=c,p$')
+    ax1[0].text(1.05, 0.9, 'A', transform=ax[0].transAxes)
 
     ax1[1].plot(Mx.x, x_in[tot_points:2*tot_points], c=tableau20[6])
-    ax1[1].plot(Mx.x, fitnesses[tot_points:2*tot_points], c=tableau20[7])
+    ax1[1].plot(Mx.x, fitnesses[tot_points:2*tot_points], c=tableau20[6], linestyle = '.-')
     ax1[1].set_xlabel('Location (x)')
+    ax1[1].text(1.05, 0.9, 'B', transform=ax[1].transAxes)
+
     fig1.tight_layout()
     plt.savefig("./results/plots/snapshot" + file_append + ".pdf")
 

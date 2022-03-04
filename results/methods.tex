@@ -366,7 +366,7 @@ We convert both mean-field payoffs into a monomorphic equivalent form as in \cre
   U_p^{mon}(\sigma_p, \sigma_c, N_c, N_p) &= \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \sigma_c}{\sigma_p} N_c} - \frac{1}{2}c \ip{\sigma_p}{\beta_p \sigma_p}N_p  - \mu_p
 \end{align}
 \subsection{Existence and uniqueness of Nash and population equilibria}
-In order to establish existence and uniqueness of the Nash equilibrium we show that the variational inequality defined by $dU$ is strictly pseudomonotone and admits a solution. Before we can show this, we need small lemma to reduce the complexity of the problem.
+In order to establish existence and uniqueness of the Nash equilibrium we show that the variational inequality defined by $-dU$ is strictly pseudomonotone and admits a solution. We start by showing that there is a unique Nash equilibrium for the cases where the predator and consumer respectively have constant behavior, i.e. $\sigma_i = 1,~i\in \{c,p\}$. First we need a small lemma to simplify the calculations.
 \begin{lemma}
   \label{lem:pseudo_reduc}
   A function $g: P_{2,\mu} \to H$ is pseudomonotone if and only if $g+\lambda$ is pseudomonotone for any $\lambda \in \R$.
@@ -376,7 +376,6 @@ In order to establish existence and uniqueness of the Nash equilibrium we show t
   Using that $\int y d\mu = \int x d\mu = 1$, we arrive at  $\ip{g(x)}{x-y}$.
   Hence the pseudomonotonicity of $g$ and $g+\lambda$ are equivalent.
 \end{proof}
-We start by showing that there is a unique Nash equilibrium for the cases where the predator and consumer respectively have constant behavior, i.e. $\sigma_i = 1,~i\in \{c,p\}$.
 \begin{proposition}
   There is a unique mean-field Nash equilibrium in the Rosenzweig-MacArthur system where the consumers have adaptive behavior and predators have constant behavior $\sigma_p = 1$.
   Likewise, there is a unique Nash equilibrium in the Rosenzweig-MacArthur system where the predators have optimal behavior and the consumers have constant behavior $\sigma_c = 1$.
@@ -432,13 +431,13 @@ Having shown that each of the underlying mean-field games has a unique Nash equi
     \label{eq:h1_h2_rel}
     \frac{\epsilon \ip{\beta_p \sigma_c}{h_2} N_c}{(F_p + \ip{\sigma_c}{\sigma_p}N_c)^2} = c\ip{\beta \sigma_p}{h_2}N_p + \ip{\frac{\sigma_c}{K}}{h_1} + \frac{\ip{\beta_p \sigma_p}{h_1} N_p}{(F_p + \ip{\sigma_c}{\sigma_p}N_c)}
   \end{equation}
-  Introducing $\ket{x}$ as the functional defined from $x$, we calculate:
+  Introducing $\bra{x}$ as the functional defined from $x$, we calculate:
   \begin{equation}
     \label{eq:hess_mat}
     H(x) = (\nabla -dU)(x) =
     \begin{bmatrix}
-      \frac{N_c}{K} - \frac{F_p N_c N_p \ket{\beta_p \sigma_p} \ket{\beta_p \sigma_p}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^2} & \frac{F_p^2 N_p \ket{\beta_p \sigma_p}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^2} \\
-      \frac{\epsilon N_cF_p^2 (N_c \beta_p \ket{\beta_p \sigma_p} - \beta_p F_p)}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^3} & \frac{\epsilon N_c^2 F_p^2 \ket{\beta_p \sigma_c} \ket{\beta_p \sigma_c}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^3}+c N_p \beta
+      \frac{N_c}{K} - \frac{F_p N_c N_p \bra{\beta_p \sigma_p} \bra{\beta_p \sigma_p}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^2} & \frac{F_p^2 N_p \bra{\beta_p \sigma_p}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^2} \\
+      \frac{\epsilon N_cF_p^2 (N_c \bra{\beta_p \sigma_p} \beta_p - \bra{\beta_p \sigma_p} F_p)}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^3} & \frac{\epsilon N_c^2 F_p^2 \bra{\beta_p \sigma_c} \bra{\beta_p \sigma_c}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^3}+c N_p \beta
     \end{bmatrix}
   \end{equation}
   We need to show that $\ip{H(x)h}{h}>0$. We immediately see that the negative contribution from the lower-left corner is cancelled by the upper-right corner. Inserting the relationship \Cref{eq:h1_h2_rel} in the term from the lower right right corner in $\ip{H(x)h}{h}$ allows cancellation of the negative terms from the upper left corner in $\ip{H(x)h}{h}$. This shows the desired. %but we relegate the explicit calculations to \Cref{appendix:calculations_2
