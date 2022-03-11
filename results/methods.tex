@@ -20,8 +20,7 @@ The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to 
   \begin{split}
   \nabla_{\sigma_i}U_i((\sigma_j)_{j=1}^M) \mid_{\sigma_i = \overbar{\sigma}_i}  + \mu_i - \lambda  \cdot 1_H = 0 \\
   \ip{\sigma_i}{\mu_i} = 0 \\
-  \mu_i \in H_+ \\
-  \sigma_i \in H_+ \\
+  \mu_i \in H_+,~\sigma_i \in H_+ \\
   \int_X \sigma_i d\mu(x)- 1 = 0
 \end{split}
 \end{equation}
@@ -208,7 +207,7 @@ Though strictly pseudomonotone functions initially arise as gradients of strictl
 A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}
 
 
-\subsection{Restatement as a variational inequality}
+\subsection{The Nash equilibrium as a variational inequality}
 We have recast the problem of finding a Nash equilibrium to a complementarity problem, which allows for numerical resolution. To establish existence and uniqueness, we need to use the relationship between complementarity problems and variational inequalities. We will show that in case the payoff-functions $U_i $ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium.
 
 %Asking for convexity is too strong, but it turns out the weaker notion of strict pseudoconvexity is sufficient. See \Cref{sec:appendix} for further details.
