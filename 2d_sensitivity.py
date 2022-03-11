@@ -105,7 +105,7 @@ def giant_simulator(layers = 1, segments = 60, length = 1, car_cap = 6, steps = 
 
     ax1[0].plot(Mx.x, fitnesses[0:tot_points], c=tableau20[0], linestyle = 'dashed')
     ax1[0].set_xlabel('Location (x)')
-    ax1[0].set_ylabel('Concentration and pointwise value of $-dU_i,~i=c,p$')
+    ax1[0].set_ylabel('Fitness and concentration')
     ax1[0].text(1.05, 0.9, 'A', transform=ax[0].transAxes)
 
     ax1[1].plot(Mx.x, x_in[tot_points:2*tot_points], c=tableau20[6])
