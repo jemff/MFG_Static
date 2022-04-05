@@ -113,10 +113,16 @@
 \maketitle
 \newpage
 \begin{abstract}
-\keywords{game theory}
+  Explaining spatial distribution and population dynamics of animals are some of the key questions in ecology. These two have been coupled before, but there has been no general method for determining spatial distributions. In particular, there is no general method for working with spatial distributions based on instantanous behavior coupled with population dynamics. We propose modeling interacting populations with instantaneous habitat choice through mean-field games. By using the framework of variational inequalities, we are able to determine existence and uniqueness for habitat distributions of interacting populations, in both continuous and discrete habitats. With some additional restrictions, we are also able to show existence and uniqueness of fixed-points of the population dynamics along with spatial distributions. We illustrate our theoretical results by studying a Rosenzweig-MacArthur model where predators and consumers inhabit a continuous habitat. We show existence and uniqueness of an instantaneous Nash equilibria for this model, and the existence and uniqueness of a fixed point of the model.
+  The generality of our theoretical approach opens up for studying complex ecosystems, e.g. the impact of enrichment on spatial distributions in marine ecosystems.
+
+\keywords{game theory, population dynamics, habitat choice, population game}
 % \PACS{PACS code1 \and PACS code2 \and more}
 % \subclass{MSC code1 \and MSC code2 \and more}
 \end{abstract}
+
+%Game theory has emerged as an important tool to understand interacting populations in the last 50 years. Game theory has been applied to study population dynamics with optimal behavior in simple ecosystem models, but existing methods are generally not applicable to complex systems. In order to use game-theory for population dynamics in heterogeneous habitats, habitats are usually split into patches and game-theoretic methods are used to find optimal patch distributions at every instant. However, populations in the real world interact in continuous space, and the assumption of decisions based on perfect information is a large simplification. Here, we develop a method to study population dynamics for interacting populations, distributed optimally in continuous space. A continuous setting allows us to model bounded rationality, and its impact on population dynamics. This is made possible by our numerical advances in solving multiplayer games in continuous space. Our approach hinges on reformulating the instantaneous game, applying an advanced discretization method and modern optimization software to solve it. We apply the method to an idealized case involving the population dynamics and vertical distribution of forage fish preying on copepods. Incorporating continuous space and time, we can model the seasonal variation in the migration, separating the effects of light and population numbers. We arrive at  qualitative agreement with empirical findings. Including bounded rationality gives rise to spatial distributions corresponding to reality, while the population dynamics for bounded rationality and complete rationality are equivalent. Our approach is general, and can easily be used for complex ecosystems.
+
 
 \input{introduction.tex}
 \input{general_setting.tex}
