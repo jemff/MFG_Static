@@ -1,6 +1,6 @@
 \section{Numerical approach and results}
 \subsection{Numerical implementation}
-In order to find Nash equilibria and fix-points of the behaviorally modified Rosenzweig-MacArthur  system \Cref{sec:model_rm}, we use the formulation of \Cref{eq:comp_form}. We discretize space uniformly, using the trapezoidal rule to evaluate the integrals. By using the trapezoidal rule, we keep a banded sparsity pattern in the coupling of the locations. The equations \Cref{eq:dynamics} and the derivatives of the monomorphic payoffs \Cref{eq:mon_eq_forms} are formulated via. the symbolic language CasADi \citep{Andersson2019}, where we then solve the complementarity problem as a feasibility problem using IPOPT \citep{wachter2006implementation} using the HSL subroutines for linear algebra \citep{hsl2007collection}. We checked the numerics by also solving the problem with non-linear complementarity routine from the open-source package SICONOS \citep{acary2019introduction}.
+In order to find Nash equilibria and fix-points of the behaviorally modified Rosenzweig-MacArthur  system \Cref{sec:model_rm}, we use the formulation of \Cref{eq:comp_form}. We discretize space uniformly, using the trapezoidal rule to evaluate the integrals. By using the trapezoidal rule, we keep a banded sparsity pattern in the coupling of the locations. The equations \Cref{eq:dynamics} and the functions $-dU_c, -dU_p$ are formulated via. the symbolic language CasADi \citep{Andersson2019}, where we then solve the complementarity problem as a feasibility problem using IPOPT \citep{wachter2006implementation} using the HSL subroutines for linear algebra \citep{hsl2007collection}. We checked the numerics by also solving the problem with a non-linear complementarity routine from the open-source package SICONOS \citep{acary2019introduction}.
 
 The numerical approach for finding Nash equilibria and fixed points is extremely fast, and should scale to much larger problems. It allows for determination of fixed-points of the dynamics in less than 1 second with several hundred grid points. Simulating the population dynamics is, in contrast, a comparatively slow affair since we simulate the population dynamics using a forward Euler method.
 
@@ -20,16 +20,14 @@ The parameters for the model are: \\
 \begin{figure}[H]
   \label{fig:pp}
   \caption{Phase portrait of the Rosenzweig-MacArthur system without optimal behavior $(\sigma_c = 1, \sigma_p = 1)$, $(A)$ and with optimal behavior $(B)$ at carrying capacity of $K=40$ and a competition of $c=0$. The green lines show a system trajectory.}
-  \label{fig:dynamics}
   \includegraphics{plots/dynamics.pdf}
 \end{figure}
-The direction of the flow with optimal behavior (\Cref{fig:pp}(B)) is consistent with the usual Rosenzweig-MacArthur system (\Cref{fig:pp}(A)). The phase portrait reveals that the system dynamics have been stabilized. Looking at the sample trajectory, the system has been overdamped. The stable dynamics stand in contrast to the Rosenzweig-MacArthur model with constant behavior $(\sigma_p=\sigma_c=1)$ where the point of the Hopf bifurcation has been passed, leading to limit cycles.
+The direction of the flow with optimal behavior (\Cref{fig:pp}(B)) is consistent with the usual Rosenzweig-MacArthur system (\Cref{fig:pp}(A)). The phase portrait reveals that the system dynamics have been stabilized. Looking at the sample trajectory, the system has been overdamped. The stable dynamics stand in contrast to the Rosenzweig-MacArthur model with constant behavior $(\sigma_p=\sigma_c=1)$ where the point of the Hopf bifurcation has been passed \citep{rosenzweig1971paradox}, leading to limit cycles.
 
 
 \begin{figure}[H]
-  \label{fig:pp}
-  \caption{Transient strategies of consumers $(A)$ and predators $(B)$ at carrying capacity of $K=40$ and a competition of $c=0$ corresponding to the phase portrait \Cref{fig:dynamics}.}
   \label{fig:dynamic_strategies}
+  \caption{Transient strategies of consumers $(A)$ and predators $(B)$ at carrying capacity of $K=40$ and a competition of $c=0$ corresponding to the phase portrait \Cref{fig:pp}.}
   \includegraphics{plots/dynamic_strats.pdf}
 \end{figure}
 Both consumer and predator strategies change rapidly at the start of the time-interval, before stabilizing towards the equilibrium values. It appears that the consumers are more present in the most productive area when the predator population is lower, which is not that surprising.
@@ -49,14 +47,14 @@ Varying the intraspecific predator competition causes an increase in the populat
 
 
 \subsection{Spatial distributions}
-We start by investigating the spatial distribution of consumers and predators compared to their spatially varying fitness.
+We start by investigating the spatial distribution of consumers and predators compared to their spatially varying fitness ($-dU_c,~-dU_p$).
 \begin{figure}[H]
   \caption{Spatial distribution (full lines) and fitness (dashed lines) of consumers $(A)$  and predators $(B)$ at the equilibrium with carrying capacity $K = 3$.}
   \label{fig:snapshot}
   \includegraphics{plots/snapshot_c.pdf}
 \end{figure}
 %\Cref{fig:strat_car})
-Both consumers and predator distributions have a complex relationship to the fitness levels in the area with co-existence. In the area where there are only consumers, we recognize the emergence of the ideal free distribution. The consumers have a constant fitness level, yet varying concentrations.
+Both consumers and predator distributions have a constant fitness of zero in the area with coexistence, where the fitness of the predators changes when their concentration is zero. In this we recognize the emergence of the ideal free distribution.
 
 \begin{figure}[H]
   \caption{Spatial distribution of consumers $(A)$ and predators $(B)$ at the equilibrium with increasing carrying capacity $(K)$.}

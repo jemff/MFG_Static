@@ -10,7 +10,7 @@ def twod_predator_prey_dyn(beta_f = None,
     inte = np.ones(tot_points).reshape(1,tot_points)
 
     if par is None:
-        par = {'res_renew': 1, 'eff': 0.1, 'c_handle': 1, 'c_enc_freq': 1, 'c_met_loss': 0.001, 'p_handle': 0.01, 'p_enc_freq': np.sqrt(0.1), 'p_met_loss': 0.15, 'competition': 0.1, 'q': 3}
+        par = {'res_renew': 1, 'eff': 0.1, 'c_handle': 1, 'c_enc_freq': 1, 'c_met_loss': 0.001, 'p_handle': 0.01, 'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0, 'q': 3}
 
     if res_conc_f is None:
         res_conc = np.exp(-par['q']*Mx.x) #np.exp(-Mx.x**2)#np.exp(-Mx.x)+0.001
@@ -48,7 +48,7 @@ def twod_predator_prey_dyn(beta_f = None,
     pred_dyn = par['eff']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p))/(1+par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p))) - par['p_met_loss'] - (state_ss[1]**2)* par['competition']*inte @ (Mx.M @ ((sigma_p**2)*beta))
 
     df1 =(1-state_ss[0]*sigma/(res_conc*car_cap)) - state_ss[1]*sigma_p*beta/(1+inte @ (Mx.M @ (par['p_handle']*state_ss[0]*sigma*beta*sigma_p))) - lam[0]*np.ones(tot_points)
-    df2 = par['eff']*state_ss[0]*sigma*beta/(1+inte @ (Mx.M @ (par['p_handle']* state_ss[0]*sigma*beta*sigma_p)))**2 - lam[1]*np.ones(tot_points) - state[1]*par['competition']*sigma_p*beta
+    df2 = par['eff']*state_ss[0]*sigma*beta/(1+inte @ (Mx.M @ (par['p_handle']* state_ss[0]*sigma*beta*sigma_p)))**2 - state[1]*par['competition']*sigma_p*beta - lam[1]*np.ones(tot_points)
 
 
     g0 = ca.vertcat(cons_dyn, pred_dyn)
@@ -74,6 +74,7 @@ def twod_predator_prey_dyn(beta_f = None,
 
     mcp_function_ca = ca.Function('fun', [x], [ca.vertcat(df1, df2)])
     if calc_funcs is True:
+        print(x_in[-3:], par)
         return mcp_function_ca(x_in)
 
     lbg = np.zeros(vars + 2*tot_points)
@@ -138,7 +139,7 @@ def threed_predator_prey_dyn(resources = None, beta_f = None, res_conc_f = None,
 
     inte = np.ones(tot_points).reshape(1,tot_points)
     if par is None:
-        par = {'res_renew': 1, 'eff': 0.3, 'c_handle': 1, 'c_enc_freq': 1, 'c_met_loss': 0.001, 'p_handle': 0.01, 'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0.1}
+        par = {'res_renew': 1, 'eff': 0.3, 'c_handle': 1, 'c_enc_freq': 1, 'c_met_loss': 0.001, 'p_handle': 0.01, 'p_enc_freq': 0.1, 'p_met_loss': 0.15, 'competition': 0}
 
     #res_dyn = (par['res_renew']*(res_conc*car_cap - res_level) - state_ss[0]*inte @ (Mx.M @ (res_level*sigma))/(par['c_handle']*inte @ (Mx.M @ (res_level*sigma)) + par['c_enc_freq'])).T @ (par['res_renew']*(res_conc*car_cap - res_level) - state_ss[0]*inte @ (Mx.M @ (res_level*sigma))/(par['c_handle']*inte @ (Mx.M @ (res_level*sigma)) + par['c_enc_freq']))
     res_dyn_one = par['res_renew']*(res_conc*car_cap - res_level) - state_ss[0]*res_level*sigma/(par['c_handle']*inte @ (Mx.M @ (res_level*sigma)) + par['c_enc_freq'])

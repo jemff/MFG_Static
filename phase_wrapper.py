@@ -21,7 +21,7 @@ for i in range(len(tableau20)):
     tableau20[i] = (r / 255., g / 255., b / 255.)
 
 vectors = np.zeros((15, 15, 2))
-
+times = np.linspace(0, 30, 300)
 
 gridx, gridy, vectors[:,:,0], vectors[:,:,1], dyn_data_1 = pp_stat.stat_pp()
 fig, ax = plt.subplots(1, 2, figsize=(12/2.54, 6/2.54))
@@ -30,15 +30,30 @@ ax[0].plot(dyn_data_1.y[0,:], dyn_data_1.y[1,:], color=tableau20[4])
 gridx, gridy, vectors[:,:,0], vectors[:,:,1], dyn_data, hist_c, hist_p = pp_dyn.dyn_pp()
 q2 = ax[1].quiver(gridx, gridy, vectors[:,:,0], vectors[:,:,1], scale=50, headwidth=1, color=tableau20[14])
 ax[1].plot(dyn_data[:,0], dyn_data[:,1], color=tableau20[4])
+#ax[1].annotate('t', (dyn_data[5,0], dyn_data[5, 1]))
+ax[1].annotate('t=1', (dyn_data[10,0], dyn_data[10,1]))
+ax[1].annotate('t=2.5', (dyn_data[25,0], dyn_data[25,1]))
+ax[1].annotate('t=5', (dyn_data[50,0], dyn_data[50,1]))
+ax[1].annotate('t=10', (dyn_data[100,0], dyn_data[100,1]))
+ax[1].annotate('t=20', (dyn_data[200,0], dyn_data[200,1]))
+
 ax[0].set_xlabel("Consumer biomass ($N_c$)")
 ax[1].set_xlabel("Consumer biomass ($N_c$)")
-ax[0].set_ylabel("Predator biomass ($N_c$)")
+ax[0].set_ylabel("Predator biomass ($N_p$)")
 ax[0].text(1.05, 0.8, 'A', transform=ax[0].transAxes)
 ax[1].text(1.05, 0.8, 'B', transform=ax[1].transAxes)
 
 plt.savefig('results/plots/dynamics.pdf')
 plt.show()
+#
+#fig1, ax1 = plt.subplots(2, 1, figsize=(6/2.54, 12/2.54), sharex=True)
+#ax1[0].plot(times, dyn_data[:,0], color=tableau20[0])
+#ax1[1].plot(times, dyn_data[:,1], color=tableau20[6])
+#ax1[1].set_ylabel("Consumer biomass ($N_c$)")
+#ax1[0].set_ylabel("Predator biomass ($N_p$)")
+#ax1[1].set_xlabel("Time (t)")
+#plt.savefig('results/plots/explicit_dyn.pdf')
 
 heatmap_plotter([hist_c.T, hist_p.T], "dynamic_strats",
-                [0, 20, 1, 0], xlab="Time (t)", ylab="Refuge")
+                [0, 30, 1, 0], xlab="Time (t)", ylab="Refuge")
 plt.show()

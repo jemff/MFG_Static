@@ -39,7 +39,7 @@ def giant_simulator(layers = 1, segments = 60, length = 1, car_cap = 6, steps = 
         strategies_car[i, :, 1] = out['x0'][tot_points:2*tot_points][::-1]
         if i == int(steps/2):
             x_in = np.copy(np.array(out['x0']).flatten())
-        print(populations_car[i],car_caps[i])
+            car_cap_i = car_caps[i]
     qs = np.linspace(1, 6, steps)
     populations_ref = np.zeros((steps,2))
     min_pop = 0
@@ -99,7 +99,7 @@ def giant_simulator(layers = 1, segments = 60, length = 1, car_cap = 6, steps = 
 
     fig1, ax1 = plt.subplots(1, 2, sharex='col', sharey='row')
     fig1.set_size_inches((12 / 2.54, 6 / 2.54))
-    fitnesses = twod_predator_prey_dyn(Mx = Mx, x_in = x_in, calc_funcs = True, fixed_point=True)
+    fitnesses = twod_predator_prey_dyn(Mx = Mx, x_in = x_in, calc_funcs = True, fixed_point=True, car_cap = car_cap_i)
     ax1[0].plot(Mx.x, x_in[0:tot_points], c=tableau20[0])
     inte = np.ones(tot_points).reshape(1,tot_points)
 
@@ -110,6 +110,7 @@ def giant_simulator(layers = 1, segments = 60, length = 1, car_cap = 6, steps = 
 
     ax1[1].plot(Mx.x, x_in[tot_points:2*tot_points], c=tableau20[6])
     ax1[1].plot(Mx.x, fitnesses[tot_points:2*tot_points], c=tableau20[6], linestyle = 'dashed')
+    print(fitnesses[tot_points:2*tot_points])
     ax1[1].set_xlabel('Location (x)')
     ax1[1].text(1.05, 0.9, 'B', transform=ax[1].transAxes)
 

@@ -239,3 +239,5 @@ def heatmap_plotter_big(data, image_name, ext, xlab, ylab):
     ax.cax.toggle_label(True)
 
     plt.savefig("total_heatmap" + ".pdf", bbox_inches='tight')
+
+    return ax
