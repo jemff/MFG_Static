@@ -3,31 +3,35 @@
 We build the general setting piece-by-piece, from the environment to the foraging strategies. First we define the environment, then we introduce the mean-field setting, as it is necessary to handle the strategy of an entire population. With this in place, we can give an exact definition of a population game in our sense. Once we have laid the building blocks for our setting, we show that mean-field games generalize the ideal free distribution.
 
 
-We envision a setting with $M$ different types of unstructured populations of animals co-existing in an environment, each with biomass $N_i$. We only model behavior as patch choice, excluding e.g. mating behavior. The distribution of population $i$ in the environment is described by $\overbar{\sigma}_i$.  More rigorously, we assume that the environment is a probability space $(X,\mu)$. Modeling the environment as a probability space allows us to model habitats which are continuous, discrete and mixtures thereof in the same context. As an example, bats forage over a continuous area while the caves where they rest are discrete and disconnected \citep{collet2019algorithmic}. We model that the populations $N_i$, $i\in \{1,\dots,M\}$  are large compared to a single individual. This allows us to consider the population as continuous, consisting of infinitely many individuals. We assume that the population dynamics depend both on the distributions and the population sizes:
+We envision a setting with $M$ different unstructured populations of animals co-existing in an environment, each with biomass $N_i$. We only model behavior as patch choice, excluding e.g. mating behavior. The distribution of population $i$ in the environment is described by $\overbar{\sigma}_i$.  More rigorously, we assume that the environment is a probability space $(X,\mu)$. Modeling the environment as a probability space allows us to model habitats which are continuous, discrete and mixtures thereof in the same context. As an example, bats forage over a continuous area while the caves where they rest are discrete and disconnected \citep{collet2019algorithmic}. We model that the populations $N_i$, $i\in \{1,\dots,M\}$  are large compared to a single individual. This allows us to consider the population as continuous, consisting of infinitely many individuals. We assume that the population dynamics depend both on the distributions and the population sizes:
 \begin{equation}
   \label{eq:vk_dyn}
   \dot{N}_i = N_i f_i((N_j,\overbar{\sigma}_j)_{j=1}^M)
 \end{equation}
-That is, we consider population dynamics of the Lotka-Volterra type.
-
+That is, we consider population dynamics which can be described by a Kolmogorov model.
 
 % so $N_i$ are continuous%, and so is the model. )% This allows us to model the population as continuous.ny
 We suppose that the migration dynamics happen on a faster time-scale than the population dynamics, as is seen with e.g. vertical migrations in marine ecosystems \citep{iwasa1982vertical}. This slow-fast dynamic allows us to model the migrations as instantaneous, with each individual picking the optimal foraging ground at every instant \citep{kvrivan2013behavioral, cressman2006migration}.
 
 
-We assume that every animal has an area where it forages at every instant. For an animal of type $i$ this is described by a probability distribution $\sigma_i$ over the environment $X$. We require that the distribution $\sigma_i$ is absolutely continuous with respect to the measure $\mu$. In an abuse of notation, we will denote this density by $\sigma$. We denote the space of probability densities over $X$ with respect to $\mu$ by $P_{\mu}$. We suppress $X$ for notational brevity. By requiring absolute continuity with respect to the base measure we remove degenerate Nash equilibria e.g. Dirac-type distributions in a continuous setting, avoiding for example all gazelles stacked exactly at a single point in space. By working in this generality, we generalize both the continuous and discrete approach to habitat selection \citep{fretwell1969territorial, broom2013game, verticalmigration}.
+We assume that every animal has an area where it forages at every instant. For an animal of type $i$ this is described by a probability distribution $\sigma_i$ over the environment $X$. We require that the distribution $\sigma_i$ is absolutely continuous with respect to the measure $\mu$. In an abuse of notation, we will denote this density by $\sigma$. We denote the space of probability densities over $X$ with respect to $\mu$ by $P_{\mu}$. We suppress $X$ for notational brevity. By requiring absolute continuity with respect to the base measure we remove degenerate Nash equilibria e.g. Dirac-type distributions in a continuous setting, avoiding for example all gazelles stacked exactly at a single point in space. We hereby generalize both the continuous and discrete approach to habitat selection \citep{fretwell1969territorial, broom2013game, verticalmigration}.
 
 
 \subsection{Foraging strategies and mean-field}
-An animal actively chooses where it forages, and we model that an animal is always foraging. Hence the density $\sigma_i$ describing where it forages is a strategic choice for an animal. In order to inform this choice, we need to establish the playing field. An animal of type $i$ faces the foraging choices of all other inhabitants. Modeling the influence of the foraging choices necessitates the introduction of the mean-field-strategy, $\overbar{\sigma}_j$ for type $j$. The mean-field strategy $\overbar{\sigma}_j$ is the average strategy of all individuals of type $j$. As a consequence, we can describe the foraging presence from type $j$ at a point $x\in X$ by $N_j \overbar{\sigma}_j(x)$.
+In habitat choice games the essential choice an animal faces is where to forage, weighing risk and reward. Hence the density $\sigma_i$ describing where it forages is a strategic choice for an animal. As we assume instantaneous migrations and perfect information, an animal of type $i$ faces the foraging choices of all other inhabitants. Modeling the influence of the foraging choices necessitates the introduction of the mean-field-strategy, $\overbar{\sigma}_j$ for type $j$. The mean-field strategy $\overbar{\sigma}_j$ is the average strategy of all individuals of type $j$. As a consequence, we can describe the foraging presence from type $j$ at a point $x\in X$ by $N_j \overbar{\sigma}_j(x)$.
+
+The choice of optimal foraging strategy $\sigma_i^*$ for an animal of type $i$ is a trade-off based on the presence of competitors, predators and prey. When considering animal populations, finding the optimal behavior for all individuals simultaneously quickly becomes infeasible. For this reason, we need to simplify the problem. This is where mean-field games come into play. The fundamental idea behind a mean-field game is that in a sufficiently large population, the decision of a single individual has no discernible on the average behavior of the population. In this case we can decouple the behavior of an individual and the mean behavior of the population, and assume that an individual plays against the average behavior of the population. That is, an individual plays the field \citep{smith1982evolution}. The fundamental assumption in the mean-field game that we consider is that the populations consist of infinitely many individuals acting instantaneously and independently so the choice of a single individual does not change the mean-field strategy \citep{aumann1964markets}
 
 
-The choice of optimal foraging strategy $\sigma_i^*$ for an animal of type $i$ is a trade-off based on the presence of competitors, predators and prey. The mean density of competitors, predators and prey at a point $x$ is described by $N_j \overbar{\sigma}_j(x)$. We capture this trade-off in a payoff function $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$. The goal of a single animal of type $i$ is finding the optimal strategy $\sigma_i^*$ such that
+The mean density of competitors, predators and prey at a point $x$ is described by $N_j \overbar{\sigma}_j(x)$. We capture this trade-off for for each individual in a payoff function $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$. The payoff $U_i$ we have in mind is the instantanenous growth of an individual, i.e. individual fitness. This is given by the difference between the instantaneous per capita reproduction and mortality for an individual in \Cref{eq:vk_dyn}. When using the individual fitness as payoff, the Nash equilibria we find should be the same as simple ideal free distributions.
+%Using the per capita growth as payoff, the Nash equilibrium becomes an evolutionarily stable state \citep{cressman2010ideal}.
+
+Given that each type $j$ is distributed according to $\overbar{\sigma}_j$, the goal of a single animal of type $i$ is finding the optimal strategy $\sigma_i^*$ by playing the field at each instant such that
 \begin{equation}
   \label{eq:ind_opt}
   \sigma^*_i = \argmax_{\sigma_i \in P_{\mu}} U_i(\sigma_i, (N_j, \overbar{\sigma}_j)_{j=1}^M)
 \end{equation}
-The fundamental assumption in a mean-field game is that the populations consist of infinitely many individuals acting instantaneously and independently so the choice of a single individual does not change the mean-field strategy \citep{aumann1964markets}. At the Nash equilibrium of a mean-field game every individual of type $i$ follows the same strategy $\sigma_i^*$, \citep{lasry2007mean, aumann1964markets}. Heuristically, this is due to interchangeability as if any individual of type $i$ gains by deviating from $\sigma_i^*$, any one of them would also gain from making the same deviation, hence doing so. Therefore, if they all follow the optimal strategy, they follow the same strategy. This allows us to go from the individual-level optimization to the Nash equilibrium in \Cref{eq:ind_opt}. %Considering $\sigma^*_{j}$ as a function of $\overbar{\sigma}_j$ the Nash equilibrium $\overbar{\sigma}_j^N$ for the mean-field game is the solution to the equation:
+At the Nash equilibrium of a mean-field game every individual of type $i$ follows the same strategy $\sigma_i^*$, \citep{lasry2007mean, aumann1964markets}. Heuristically, this is due to interchangeability as if any individual of type $i$ gains by deviating from $\sigma_i^*$, any one of them would also gain from making the same deviation, hence doing so. Therefore, if they all follow the optimal strategy, they follow the same strategy. This allows us to go from the individual-level optimization to the Nash equilibrium in \Cref{eq:ind_opt}. %Considering $\sigma^*_{j}$ as a function of $\overbar{\sigma}_j$ the Nash equilibrium $\overbar{\sigma}_j^N$ for the mean-field game is the solution to the equation:
 %\begin{equation}
 %  \sigma^*_{j}(\overbar{\sigma}^N_j) = \overbar{\sigma}^N_j
 %\end{equation}
@@ -48,66 +52,82 @@ Hence the Nash equilibrium of a game with $M$ interacting populations is the sol
 This system of equations looks intractable, but in the next section we will see that in many cases it can actually be solved using the toolbox of variational inequalities. Introducing \Cref{eq:tot_nash_eq} allows us to define a population game exactly.
 %2) Polymorphic-Monomorphic equivalence
 \begin{definition}\label{def:pop_game}
-  A population game consists of $M$ unstructured populations with each population having a biomass of size $N_i$ with dynamics given by \Cref{eq:vk_dyn}. Each individual of type $i$ has a payoff function $U_i(\sigma_i,  (N_j \overbar{\sigma}_j)_{j=1}^M))$. Migrations are instantanenous, and at every instant the populations are distributed according to the Nash equilibrium \Cref{eq:tot_nash_eq}, $\overbar{\sigma}_i^N$.
-\end{definition}
+  A population game consists of $M$ unstructured populations with each population having a biomass of size $N_i$ with dynamics given by \Cref{eq:vk_dyn}. Each individual of type $i$ has a payoff function $U_i(\sigma_i,  (N_j \overbar{\sigma}_j)_{j=1}^M))$.  Migrations are instantanenous, and at every instant the populations are distributed according to the mean-field Nash equilibrium \Cref{eq:tot_nash_eq}, $\overbar{\sigma}_i^N$.
+\end{definition
+As noted, the example to keep in mind in \Cref{def:pop_game} is the example where the individual payoff $U_i$ functions are given by the fitness of an individual. The Nash equilibrium \Cref{eq:tot_nash_eq} in this case will correspond to the situation where all individuals of each type have the same fitness and do not gain from deviating, by \Cref{eq:tot_nash_eq}, i.e. the simple ideal free distribution \citep{fretwell1969territorial}. We repeat the caveat that this version of the ideal free distribution does not incorporate any stability criteria \citep{kvrivan2008ideal}. For this reason, we will generally refrain from using the terminology "the ideal free distribution" and instead always refer to \Cref{eq:tot_nash_eq} as the Nash equilibrium of a mean-field game. We will give a definition of the multi-species ideal free distribution once we have introduced the entire framework of variational inequalities and their coupling with Nash equilibria .
+
+Though we focus on population games with the individual fitness as payoff function, an appeal of the mean-field approach is that it allows general payoff functions. As an example, the impact of cooperation in a spatially extended game can be investigated by using a mean-field approach \citep{Mean-field interactions in evolutionary spatial games}.
+
+
 %Advantages of general approach:
 %1) Easily generalizes IFD
-\subsection{The ideal free distribution and mean-field games}
-Assuming monomorphic populations is the typical approach to population games with instantaneous migrations  \citep{kvrivan2013behavioral, vincent2005evolutionary}, but it is well-known that this does not generalize the ideal-free distribution and dramatically increases the pr. capita gain \citep{kvrivan2008ideal}. We show that mean-field games generalize the classical ideal free distribution, in the vein of \citep{cressman2010ideal}, specialized here to a linear density-dependence for clarity \cite{cressman2004ideal}. The proof, however, goes through for general functions of density dependence \citep{fretwell1969territorial}.
-
-
-%e show that the difference between assuming a game is monomorphic and having monomorphism emerge from a mean-field approach is substantial.  The difference has been studied qualitively \citep{kvrivan2008ideal,collet2019algorithmic}. %AndAbrams
 \begin{comment}
-\begin{definition}
-  In a monomorphic game the populations are assumed monomorphic. That is, for any individual of type $j$, we have $\sigma_j = \overbar{\sigma}_j$. Hence, an individual of type $i$ seeks to find $\sigma_i^*$ as:
-  \begin{equation}
-    \label{eq:ind_opt}
-    \sigma^*_i = \argmax_{\sigma_i \in P_{\mu}} U_i(\sigma_i, (N_j, (\sigma}_j)_{j=1}^M)
-  \end{equation}
+\subsection{The ideal free distribution and mean-field games}
+Assuming monomorphic populations is the typical approach to population games with instantaneous migrations  \citep{kvrivan2013behavioral, vincent2005evolutionary}, but it is well-known that this does not generalize the ideal-free distribution and dramatically increases the per capita gain \citep{kvrivan2008ideal}. We show that mean-field games generalize the classical ideal free distribution for single species, in the vein of \citep{cressman2010ideal}.
+\begin{definition}[The ideal free distribution]
+  Given a habitat $X$ with $M$ interacting species where an individual of type $i$ has a per capita-growth $U_i$. Assume each population is distributed according to $\overbar{\sigma}_i$. Further assume that the per capita growth is given by $\sigma$
 \end{definition}
-With the precise definition of a monomorphic game nailed down, we can show the claimed result:
-\end{comment}
-%In order to proceed, we recall the  (KKT) conditions:
-%\begin{theorem}
-%KKT CONDITIONS HERE
-%\end{theorem}
-Consider a population of size $N$ a discrete space $X$ with $L$ points. To emphasize the discrete nature, the strategy of an individual is denoted $p$ rather than $\sigma$ and the mean-field strategy then becomes $\overbar{p}$.
-
-The payoff function $U(p,N\overbar{p})$ for an individual playing strategy $p$ is an affine function. The function $U$ is specified by an $m\times m$ matrix $A$ encapsulating the density dependence and a vector $b$ giving the spot-wise payoff. Then $U(p,N\overbar{p}) = N\ip{p}{A \overbar{p}} + \ip{p}{b}$. Denote the Nash equilibria for the mean-field game by $p^N$.
+We start with a logistic population model where the density dependence is linear \cite{cressman2004ideal}. Afterwards, we show that mean-field games generalizing the ideal free distribution is a general phenomenon.
+Before we proceed, we need to recall a simple version of the Karush-Kuhn-Tucker (KKT) conditions that we need. For the full version, see e.g. \citet{deimling2010nonlinear}.
+\begin{theorem}
+  A minimum $x^*$ of a Gateaux differentiable function $f$ in $P_{2,\mu} \subset L^2(X)$ satisfies the necessary condition that here exists an element $\nu \in H^+$ and a scalar $\lambda \in \R$ such that:
+  \begin{equation}
+    f(x^*) + \nu &= 1_H \lambda \\
+    \ip{x^*}{\nu} &= 0
+  \end{equation}
+  The condition $\ip{x^*}{\nu} = 0$ is described as the complementary slackness conditions, and the requirements that $x^* \in P_{2,\mu}$, i.e. $x^* \geq 0$ and $\int x^* d\mu = 1$ are the primal conditions. The variable $\lambda$ is a Lagrange multiplier, and $\nu$ is typically referred to as a slack variable.
+\end{theorem}
+Consider a population of size $N$ and a discrete space $X$ with $L$ points, To emphasize the discrete nature, the strategy of an individual is denoted $p$ rather than $\sigma$ and the mean-field strategy then becomes $\overbar{p}$. We assume the population dynamics are governed by the logistic equation:
+\begin{equation}
+  \dot{N} = N\ip{\overbar{p}}{b} - N^2 \ip{\overbar{p}}{A\overbar{p}}
+\end{equation}
+where the $L\times L$ matrix $A$ encapsulates the density dependence the vector $b$ gives the spot-wise payoff. Hence the the first term $\overbar{p}{b}$ represents the growth from individuals foraging, and the second term $N^2 \ip{\overbar{p}}{A\overbar{p}}$ represents the density-dependent loss. The instantanous growth of an individual playing the strategy $p$ then becomes:
+\begin{equation}
+  \label{eq:mfg_simple}
+  U(p,\overbar{p}) = \ip{p}{b} - N \ip{p}{A\overbar{p}}
+\end{equation}
+By considering $U$ as a payoff function, we can consider the mean-field game at every instant where every individual seeks to optimize $U(p,\overbar{p})$. Denote the Nash equilibria of the mean-field game defined by \Cref{eq:mfg_simple} by $p^N$.
 \begin{proposition}
   \label{prop:doubleup}
-  The Nash equilibrium for the mean-field game $p^{N}$ is the ideal free distribution.
+  The Nash equilibrium $\overbar{p}^{N}$ for the game defined by \Cref{eq:mfg_simple} is the ideal free distribution.
 \end{proposition}
 \begin{proof}
 Consider the payoff in the mean-field situation $U(p,\overbar{p})$.
 \begin{align}
   U(p, \overbar{p}) = N \ip{p}{A\overbar{p}}
 \end{align}
-Using the KKT conditions and defining $e$ as the vector with $L$ ones, we can write up the requirements for an extremum $p^{N}$. The Lagrange multiplier $\lambda$ comes from the constraint that $p$ is a probability vector, and the complementarity slackness $\nu$ comes from the non-negativity of $p$.
+Using the KKT conditions and defining $1_{\R^L}$ as a vector with $L$ ones, we can write up the requirements for an extremum $p^{N}$. The Lagrange multiplier $\lambda$ comes from the constraint that $p$ is a probability vector, and the complementarity slackness $\nu$ comes from the non-negativity of $p$.
 \begin{equation}
   \begin{split}
-    N \cdot A\overbar{p} + b + \mu = \lambda e \\
-    \ip{p^{N}}{\nu} = 0 \\
-    \nu \geq 0,~p^{N} \geq 0 \\
-    \sum_{j=1}^L p^{N,j} = 1
+    N \cdot A\overbar{p} + b + \nu = \lambda e \\
+    \ip{p}{\nu} = 0 \\
+    \nu \geq 0,~p \geq 0 \\
+    \sum_{j=1}^L p^{j} = 1
   \end{split}
 \end{equation}
-As we are in the mean-field case, at the Nash equilibrium $p^N = \overbar{p}$ \Cref{eq:mfg_ne}.
-so we can insert $p^N=\overbar{p}$ in the KKT conditions, to get:
+As we are in the mean-field case, at the Nash equilibrium $p = \overbar{p} = \overbar{p}^N$ \Cref{eq:mfg_ne}.
+so we can insert $\overbar{p}^N$ in the KKT conditions, to get:
 \begin{equation}
   \begin{split}
-    N \cdot Ap^{N} + b + \nu =  \lambda_1 e \\
-    \ip{p^N}{\nu} = 0 \\
-    \nu \geq 0,~p^{N} \geq 0 \\
-    \sum_{j=1}^L p^{N,j} = 1
+    \label{eq:kkt_applied}
+    N \cdot A\overbar{p}^N + b + \nu =  \lambda e \\
+    \ip{\overbar{p}^N}{\nu} = 0 \\
+    \nu \geq 0,~\overbar{p}^N \geq 0 \\
+    \sum_{j=1}^L \overbar{p}^{N,j} = 1
   \end{split}
 \end{equation}
-The first equation ensures that $N\cdot Ap + b + \mu$ is constant. At the same time, $p=0$ whenever $\mu > 0$ due to the second equation. Hence $N\cdot Ap^{N} + b$ is constant, and equals $\lambda$. For any $j$ where $(N\cdot Ap)_j$ would be less than $\lambda$, the value of $p_j$ is zero.
+The first equation ensures that $N\cdot A\overbar{p}^N + b + \nu$ is constant. At the same time, $\overbar{p}^N=0$ whenever $\nu > 0$ due to the second equation. Hence $N\cdot A\overbar{p}^N + b$ is constant, and equals $\lambda$. For any $j$ where $(N\cdot A\overbar{p}^N)_j$ would be less than $\lambda$, the value of $\overbar{p}^N_j$ is zero.
 These are exactly the criteria for the ideal free distribution \citep{fretwell1969territorial}, illustrating the ideal free distribution as a special case of a mean-field game.
 \qed
 \end{proof}
 %That is, assuming a monomorphic population doubles the payoff at the Nash equilibrium.
-In \Cref{prop:doubleup} the ideal free distribution emerges as the mean-field equilibrium. The emergence of the ideal-free distribution is a compelling argument for the mean-field model for modeling population games.
+In \Cref{prop:doubleup} the ideal free distribution emerges as the mean-field equilibrium for a game with an affine payoff.
+\begin{proposition}
+  \label{prop:doubleup}
+  Given a game
+\end{proposition}
+The emergence of the ideal-free distribution is a compelling argument for the mean-field model for modeling population games. In \Cref{prop:doubleup} we only considered a bilinear density dependence to give a better intuition. The proof, however, goes through for general non-linear functions of density dependence \citep{fretwell1969territorial} as the crux of the proof is recognizing that the KKT conditions for the payoff function $U(\sigma,\overbar{\sigma})$ are exactly the criteria for the ideal free distribution when imposing $\sigma = \overbar{\sigma}$ on the extrema as in \Cref{eq:kkt_applied}. We will return to
+
 \begin{comment}
 \begin{example}
   If we go back to the model in \Cref{prop:doubleup} and denote the identity matrix on $\R^n$ by $I_n$. Assume that $A=-I_2$ $b=(2,1)$ then assuming a monomorphic population leads to a dramatic increase in fitness and a different distribution compared to the mean-field approach. Assuming a monomorphic population in \Cref{prop:doubleup}, the payoff function is affine-quadratic $U(p,N p) = N \ip{p}{Ap} + \ip{b}{p}$.

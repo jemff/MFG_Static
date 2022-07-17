@@ -92,8 +92,9 @@
 
 \titlerunning{Population games with instantaneous behavior}        % if too long for running head
 
-\author{Emil F. Fr{\o}lich
+\author{Emil F. Fr{\o}lich \and Uffe H. Thygesen
 }
+
 
 %\authorrunning{Short form of author list} % if too long for running head
 
@@ -102,9 +103,13 @@
               Department of Applied Mathematics and Computer Science - DTU Compute \\
               Building 303B, Matematiktorvet, Kgs. Lyngby \\
               Tel.: +45-26142497\\
-              \email{jaem@dtu.dk}           %  \\
-%             \emph{Present address:} of F. Author  %  if needed
-}
+              \email{jaem@dtu.dk}
+              \and
+              Uffe H. Thygesen \at
+                            Technical University of Denmark \\
+                            Department of Applied Mathematics and Computer Science - DTU Compute \\
+                            Building 303B, Matematiktorvet, Kgs. Lyngby
+              }
 
 \date{Received: date / Accepted: date}
 % The correct dates will be entered by the editor
@@ -113,7 +118,7 @@
 \maketitle
 \newpage
 \begin{abstract}
-  Explaining spatial distribution and population dynamics of animals are some of the key questions in ecology. These two have been coupled before, but there has been no general method for determining spatial distributions. In particular, there is no general method for working with spatial distributions based on instantanous behavior coupled with population dynamics. We propose modeling interacting populations with instantaneous habitat choice through mean-field games. By using the framework of variational inequalities, we are able to determine existence and uniqueness for habitat distributions of interacting populations, in both continuous and discrete habitats. With some additional restrictions, we are also able to show existence and uniqueness of fixed-points of the population dynamics along with spatial distributions. We illustrate our theoretical results by studying a Rosenzweig-MacArthur model where predators and consumers inhabit a continuous habitat. We show existence and uniqueness of an instantaneous Nash equilibria for this model, and the existence and uniqueness of a fixed point of the model.
+  Explaining spatial distribution and population dynamics of animals are some of the key questions in ecology. These two have been coupled before, but there is no general method for determining spatial distributions based on instantanous behavior coupled with population dynamics. We propose modeling interacting populations with instantaneous habitat choice through mean-field games. By using the framework of variational inequalities, we are able to determine existence and uniqueness for habitat distributions of interacting populations, in both continuous and discrete habitats. With some additional restrictions, we are also able to show existence and uniqueness of fixed-points of the population dynamics along with spatial distributions. We illustrate our theoretical results by studying a Rosenzweig-MacArthur model where predators and consumers inhabit a continuous habitat. This study is conducted both theoretically and numerically. Analyzing the emergent dynamics is possible as viewing the system from the vantage point of variational inequalities opens up for applying efficient numerical methods.
   The generality of our theoretical approach opens up for studying complex ecosystems, e.g. the impact of enrichment on spatial distributions in marine ecosystems.
 
 \keywords{game theory, population dynamics, habitat choice, population game}
@@ -156,7 +161,7 @@ The authors declare that they have no conflict of interest.
 \subsubsection*{Authors' contributions}
 E.F.F. designed the study. E.F.F. realized the model design E.F.F. coded the model and chose the numerical approach. E.F.F. analyzed the results along with U.H.T.. E.F.F. wrote the paper. All authors read and approved the final version.
 \subsubsection*{Data availability}
-All data can be generated using the files 2d_sensitivity.py and phase_wrapper.py at \url{https://github.com/jemff/MFG_Static}.
+All data can be generated using the files 2d\_sensitivity.py and phase\_wrapper.py at \url{https://github.com/jemff/MFG_Static}.
 % BibTeX users please use one of
 \bibliographystyle{spbasic}      % basic style, author-year citations
 %\bibliographystyle{spmpsci}      % mathematics and physical sciences

@@ -3,61 +3,36 @@ Calculating Nash equilibria, \Cref{eq:tot_nash_eq} is generally a hard problem. 
 
 %We develop the theory for monomorphic games, and finally introduce a method to analyze a mean-field game as a monomorphic game.
 
-As in \Cref{sec:general_setting}, our habitat is a probability space $(X,\mu)$. We have $M$ different animal types coexisting with payoff-functions $U_i$. The simplest example our framework needs to handle is that of a single type with population $N$ inhabiting $X$ with following a distribution with density $\sigma$. The pointwise encounter rate of an individual following the strategy $\sigma$ with the entire population also following the strategy $\sigma$ is $N\sigma(x)^2$. The expected total encounter for an individual with its conspecifics is then
+As in \Cref{sec:general_setting}, our habitat is a probability space $(X,\mu)$. We have $M$ different animal types coexisting with individual payoff-functions $U_i$. The simplest example our framework needs to handle is that of a single type with population $N$ inhabiting $X$ with following a distribution with density $\sigma$. The pointwise encounter rate of an individual following the strategy $\sigma$ with the entire population also following the strategy $\sigma$ is $N\sigma(x)^2$. The expected total encounter for an individual with its conspecifics is then
 \begin{equation}
   N\int_X \sigma^2 d\mu
 \end{equation}
-and this quantity must be finite. This shows that the appropriate setting for our work is the space $L^2(X)$.
+and this quantity must be finite. This motivates that the appropriate setting for our work is the space $L^2(X)$.
 \begin{definition}
   Define the real Hilbert space $H=L^2(X)$, where $X$ is a probability space. Define $H_+ \subset H$ as the a.e. positive functions in $H$.
 \end{definition}
 
 \subsection{From Karush-Kuhn-Tucker to complementarity}
 In order to find the Nash equilibrium at every instant in a population game, we need to solve \Cref{eq:tot_nash_eq}. We recall the setup of the $M$-player mean field game, now restricted to $H$. Assume we have $M$ different types of animals, with payoff functions $U_i$, and strategies $\sigma_i$, with corresponding mean-field strategies $\overbar{\sigma}_i$.
-The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to finding a system $\sigma_i^*$ satisfying the KKT conditions simultaneously for every $U_i$, \citep{deimling2010nonlinear}, with $\overbar{\sigma}=\sigma$ as in \Cref{eq:mfg_ne}. Denoting the identity operator on $H$ by $1_H$, the total criterion for a Nash equilibrium of a mean-field game \Cref{eq:tot_nash_eq} is:
+Before we proceed, we need to recall a simple version of the Karush-Kuhn-Tucker (KKT) conditions that we need. We denote the identity operator on $H$ by $1_H$. For the full version of the KKT conditions, see e.g. \citet{deimling2010nonlinear}.
+\begin{theorem}
+  A minimum $x^*$ of a Gateaux differentiable function $f$ in $P_{2,\mu} \subset L^2(X)$ satisfies the necessary condition that here exists an element $\nu \in H^+$ and a scalar $\lambda \in \R$ such that:
+  \begin{equation}
+    f(x^*) + \nu &= 1_H \lambda \\
+    \ip{x^*}{\nu} &= 0
+  \end{equation}
+  The condition $\ip{x^*}{\nu} = 0$ is described as the complementary slackness conditions, and the requirements that $x^* \in P_{2,\mu}$, i.e. $x^* \geq 0$ and $\int x^* d\mu = 1$ are the primal conditions. The variable $\lambda$ is a Lagrange multiplier, and $\nu$ is typically referred to as a slack variable.
+\end{theorem}
+The Nash equilibrium of the game specified by the family $(U_i)$ corresponds to finding a system $\sigma_i^*$ satisfying the KKT conditions simultaneously for every $U_i$, with $\overbar{\sigma}=\sigma$ as in \Cref{eq:mfg_ne}. The total criterion for a Nash equilibrium of a mean-field game \Cref{eq:tot_nash_eq} is:
 \begin{equation}
   \label{eq:KKT_total}
   \begin{split}
-  \nabla_{\sigma_i}U_i((\sigma_j)_{j=1}^M) \mid_{\sigma_i = \overbar{\sigma}_i}  + \nu_i - \lambda  \cdot 1_H = 0 \\
+  \nabla_{\sigma_i}U_i((\sigma_j)_{j=1}^M) \mid_{\sigma_i = \overbar{\sigma}_i}  + \nu_i - \lambda_i  \cdot 1_H = 0 \\
   \ip{\sigma_i}{\nu_i} = 0 \\
   \nu_i \in H_+,~\sigma_i \in H_+ \\
   \int_X \sigma_i d\mu(x)- 1 = 0
 \end{split}
 \end{equation}
-\begin{comment}
-\begin{equation}
-      \label{eq:KKT_total}
-  \begin{split}
-  \begin{pmatrix}
-    \nabla_{\sigma_1} U_1 \mid{\sigma_1 = \overbar{\sigma}_1} \\
-    \vdots \\
-    \nabla_{\sigma_N} U_N \mid{\sigma_N = \overbar{\sigma}_N}
-\end{pmatrix} + \begin{pmatrix}
-    \mu_1 \\
-    \vdots \\
-    \mu_N
-\end{pmatrix} + \begin{pmatrix}
-    \lambda_1 \cdot 1_k \\
-    \vdots \\
-    \lambda_N \cdot 1_k
-\end{pmatrix} = 0 \\
-\ip{
-\begin{pmatrix}
-  \mu_1 \\
-  \vdots \\
-  \mu_N
-\end{pmatrix}}{ \begin{pmatrix}
-  \sigma_1 \\
-  \vdots \\
-  \sigma_N
-\end{pmatrix}} = 0 \\
-\mu_i \in H_+ \\
-  \sigma_i \in H_+ \\
-  \int \sigma_i d\mu = 1
-    %\sigma \in P_{2,\mu}(X)
-  \end{split}
-\end{equation}
-\end{comment}
 Remark that the last two conditions are equivalent to $\sigma \in P_{\mu} \cap H$. This motivates the definition:
 \begin{definition}
   Assume we have a probability space $(X,\mu)$. Consider the space of square-integrable functions $H=L^2(X,\mu)$ and space $P_{\mu}$ of probability densities over $X$. Define the space $P_{2,\mu}=H \cap P_{\mu}$ consisting of square-integrable probability densities.
@@ -78,7 +53,7 @@ In \Cref{def:comp_prob} we recover the notion of a linear complementarity proble
 
 With \Cref{def:comp_prob} we can write \Cref{eq:KKT_total} as an equivalent family of complementarity problems. Introduce $K = H_+ \osum \R$, with $K^* = H_+ \osum \{0\}$ and define
 \begin{equation}
-  T(\sigma_i, \lambda) = (-\nabla_{\sigma_i} U_i - \lambda_i \cdot 1_H \mid{\sigma_i = \overbar{\sigma}_i})
+  T(\sigma_i, \lambda_i) = (-\nabla_{\sigma_i} U_i + \lambda_i \cdot 1_H \mid_{\sigma_i = \overbar{\sigma}_i})
 \end{equation}
 Then the equations in \Cref{eq:KKT_total} can be recast as finding $(\sigma_i,\lambda_i) \in K$ such that:
 \begin{equation}
@@ -91,48 +66,12 @@ Then the equations in \Cref{eq:KKT_total} can be recast as finding $(\sigma_i,\l
 Or, equivalently:
 \begin{equation}
   \begin{split}
-    \ip{\sigma_i}{-\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H} + \ip{\lambda_i}{0}= 0 \\
-    \pa{-\pa{\nabla_{\sigma_i} U_i \mid{\sigma_i = \overbar{\sigma}_i} - \lambda_i \cdot 1_H}, 0} \in K
+    \ip{\sigma_i}{-\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i} + \lambda_i \cdot 1_H} + \ip{\lambda_i}{0}= 0 \\
+    \pa{-\pa{\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i} + \lambda_i \cdot 1_H}, 0} \in K
   \end{split}
 \end{equation}
 There are dedicated tools available allowing for fast numerical resolution of complementarity problems in finite dimensions \citep{acary2019introduction, dirkse1995path}, which can be applied after suitable discretization of the problem. There is still the problem of establishing existence and uniqueness of the solution to this complementarity problem, which is generally hard, \citep{hadjisavvas2006handbook}.
 
-
-%If $K$ is a convex cone, the problems $VI(T,K)$ and $CP(T,K)$ have the same solutions, which can be seen by setting $y=2x$ and $y=0$ respectively.
-
-%To motivate the approach based on complementarity and variational inequalities,
-
-%To put the problem of finding the Nash equilibrium into the terms of a complementarity problem, we generalize the strategy of \Cref{prop:doubleup}.
-\begin{comment}
-\begin{equation}
-  \begin{split}
-  \nabla_{\sigma_i}U_i((\sigma_j)_{j=1}^M) \mid_{\sigma_i = \overbar{\sigma}_i}  + \mu_i - \lambda  \cdot 1_H = 0 \\
-  \ip{\sigma_i}{\mu_i} = 0 \\
-  \mu_i \in H_+ \\
-  \sigma_i \in H_+ \\
-  \int_X \sigma_i d\mu(x)- 1 = 0
-\end{split}
-\end{equation}
-\end{comment}
-%Thus the condition for the Nash equilibrium of the total population as in \Cref{eq:tot_nash_eq} is:
-\begin{comment}
-The family of complementarity problems in \Cref{eq:comp_form} can be gathered into a single complementarity problem. We define $dU = \begin{pmatrix} \nabla_{\sigma_1} U_1 \mid_{\sigma_1 = \overbar{\sigma}_1}\\
-    \vdots \\
-    \nabla_{\sigma_N} U_N \mid_{\sigma_N = \overbar{\sigma}_N} \end{pmatrix}$, $S=(\sigma_i)_{i=1}^M$, and $\Lambda = (\lambda_i)_{i=1}^M$. Then \Cref{eq:KKT_total} can be restated as
-\begin{equation}
-  \label{eq:complementarity_form}
-  \ip{dU(S)+\Lambda}{S} = 0 \\
-  \ip{S_i-1}{1}\Lambda = 0
-  -dU(S)-\Lambda \geq 0 \\
-  \ip{S_i-1}{1} \in \{0 \}
-  S\geq 0
-  \Lambda \in \R^M
-\end{equation}
-which is a complementarity problem with $K = (H_+ \osum \R)^M$, $K^* = (H_+ \osum \{0\})^M$ and
-\begin{equation}
-  T(S,\lambda)=\begin{pmatrix} dU(S) + \Lambda \\ (\ip{\sigma_i}{1} - 1)_{i=1}^M \end{pmatrix}
-\end{equation}
-\end{comment}
 \subsection{Results on variational inequalities}
 Before we can proceed with the main theme of the article, we recount some results on existence and uniqueness of variatinoal inequalities, which also show their general utility in optimization.
 We define a variational inequality:
@@ -147,16 +86,7 @@ The relationship between variational inequalities and complementarity problems i
   \label{prop:VI_CP_eq}
   Let $K\subset H$ be a convex cone, and $T: K \to H$. Then the variational inequality $VI(T,K)$ is equivalent to the complementarity problem $CP(T,K)$.
 \end{proposition}
-\begin{comment}
-\begin{proof}
-  Clearly, a solution $x^*$ to $CP(T,K)$ is also a solution to $VI(T,K)$. For the other direction, assume that we have a solution $x^*$ to VI(T,K). Then
-  \begin{equation}
-    \ip{y - x^*}{Tx^*} \geq 0 \forall y \in K
-  \end{equation}
-  Setting $y = 2x^*$, we arrive at $\ip{x^*}{T(x^*)} \geq 0$, and setting $y=0$ we arrive at $\ip{x^*}{Tx^*} \leq 0$. This shows the desired equivalence.
-\end{proof}
-\end{comment}
-The solutions of variational inequalities are not generally unique, but if we restrict ourselves to a sub-class of functions the solutions become unique.
+The solutions to a variational inequality are not generally unique, but with certain restrictions on $T$ the solutions become unique.
 \begin{definition}
   \label{def:strict_pm}
  The function $T: K \to H$ is strictly pseudomonotone if for every pair $x\neq y$ we have
@@ -202,10 +132,11 @@ Having given a criterion for uniqueness, the next question is whether a solution
 \end{enumerate}
 \begin{remark}
   \label{rem:weak_compact}
-  Boundedness of $K$, or more precisely weak compactness, also ensures that $VI(T,K)$ has a solution \citep[Theorem 12.1, P. 510]{hadjisavvas2006handbook}. This gives  existence of solutions to variational inequalities in the finite-dimensional case.
-
-  The criterion in \Cref{thm:existence} is stating that as long as there a direction where $A(v)$ becomes positive eventually, there exists a solution to the variational inequality. If not, a sequence of approximate solutions could converge to e.g. a Dirac delta function. Essentially, this is a criterion for well-posedness of Nash equilibria in a population game where an infinite concentration should not be advantageous due to density-dependent effects.
+  Boundedness of $K$, or more precisely weak compactness, also ensures that $VI(T,K)$ has a solution in $K$ \citep[Theorem 12.1, P. 510]{hadjisavvas2006handbook}. This also ensures existence of solutions to variational inequalities in the finite-dimensional case.
 \end{remark}
+Intuitively, the criterion in \Cref{thm:existence} states that as long as there a direction where $A(v)$ becomes positive eventually, there exists a solution to the variational inequality in $K$. Or, on a more formal level, what the criterion says is that instead of $K$ being weakly compact, it is sufficient that $\ip{A(v)}{v-u_0}$ changes sign on weakly compact set. In practice this criterion should always be satisfied in a population game, as a negative density dependence should eventually outweigh any gain from clumping as an infinite concentration should not be advantageous.
+
+
 Though strictly pseudomonotone functions initially arise as gradients of strictly pseudoconvex functions, they can be much more general. Checking whether a function is strictly pseudomonotone from the definitions can also be hard in practice, hence we state another characterization of strict pseudomonotonicity for differentiable functions.
   \begin{lemma}
   \label{lem:strict_pm}
@@ -220,12 +151,11 @@ A proof can be found in \citep[Proposition 2.8, p.96]{hadjisavvas2006handbook}
 \subsection{The Nash equilibrium as a variational inequality}
 We have recast the problem of finding a Nash equilibrium to a complementarity problem, which allows for numerical resolution. To establish existence and uniqueness, we need to use the relationship between complementarity problems and variational inequalities. We will show that in case the payoff-functions $U_i $ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium.
 
-%Asking for convexity is too strong, but it turns out the weaker notion of strict pseudoconvexity is sufficient. See \Cref{sec:appendix} for further details.
 We can now turn the problem finding a Nash equilibrium into a variational inequality. Consider the problem as stated in \Cref{eq:comp_form}. This is a complementarity problem over the convex cone $H_+ \osum \R$. Hence it is equivalent to a variational inequality over the same convex cone with $T$ as in \Cref{eq:comp_form}
 \begin{equation}
   \ip{T}{(\sigma_i' -\sigma_i,\lambda_i'-\lambda_i)} \geq 0, \quad \forall (\sigma_i', \lambda_i') \in K
 \end{equation}
-Since the second coordinate of $T$ is identically zero, this is the same as finding $(\sigma,\lambda)$ such that
+Since the second coordinate of $T$ is identically zero, this is the same as finding $(\sigma_i,\lambda_i)$ such that
 \begin{equation}
   \label{eq:simp_var_eq}
   \ip{-\nabla_i U_i \mid_{\sigma_i = \overbar{\sigma}_i} - \lambda_i}{\sigma_i' -\sigma_i} \geq 0 \quad \forall \sigma_i' \in K
@@ -248,84 +178,77 @@ the problem of determining the Nash equilibrium \Cref{eq:tot_nash_eq} is the var
   \ip{-dU(S)}{W-S} \geq 0 \quad \forall W\in P_{2,\mu}^M
 \end{equation}
 \end{definition}
-%i.e. solves a variational inequality. %Searching for a solution to a variational inequality is more tractable for theoretical considerations, while the complementarity formulation is preferable for solving the problem numerically.
 
-%In case the payoff-functions $U_i $ are sufficiently nice, the machinery of variational inequalities can be applied to show existence and uniqueness of the Nash equilibrium. Asking for convexity is too strong, but it turns out the weaker notion of strict pseudoconvexity is sufficient. See \Cref{sec:appendix} for further details.
 With \Cref{def:strict_pm} in hand, we can finally give sufficient criteria for existence and uniqueness of the Nash equilibrium of the game specified in \Cref{eq:tot_nash_eq}.
 \begin{theorem} \label{thm:nash_unique}
   Consider a game with $M$ players with payoff functions $U_i$ such that the total operator $-dU$ is strictly pseudomonotone. Assume the strategies $\sigma_i$ are in $P_{2,\mu}$. The game has a unique Nash equilibrium if $-dU$ as in \Cref{def:var_eq_nash} satisfies the criterion in part (2) of \Cref{thm:existence} or $H$ is finite dimensional.
 \end{theorem}
 \begin{proof}
-   If each $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ is strictly pseudomonotone, then so is $dU$ by bilinearity of the inner product. By \Cref{thm:uniqueness} any Nash equilibrium will be unqiue since $dU$ is strictly pseudomonotone. So if the solution exists, it is unique. By assumption \Cref{thm:existence} gives existence of a solution of $VI(dU,P_{2,\mu}^M)$ in case $H$ is infinite dimensional. If $H$ is finite-dimensional then $P_{2,\mu}^M$ is compact and there exists a solution \Cref{rem:weak_compact}. \qed
+    By \Cref{thm:uniqueness} any Nash equilibrium will be unqiue since $dU$ is strictly pseudomonotone. So if the solution exists, it is unique. By assumption \Cref{thm:existence} gives existence of a solution of $VI(dU,P_{2,\mu}^M)$ in case $H$ is infinite dimensional. If $H$ is finite-dimensional then $P_{2,\mu}^M$ is compact and there exists a solution \Cref{rem:weak_compact}. \qed
 \end{proof}
 
-With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of population games where $dU$ is strictly pseudomonotone.
-% e.g. in a population game with strictly pseudoconvex monomorphic equivalent payoff function and bounded dynamics.
+With \Cref{thm:nash_unique}, we can show that there exist unique fixed points of population games where $dU$ is strictly pseudomonotone and the vector fields specifying the population dynamics are sufficiently regular.
 \begin{theorem}
   \label{thm:pop_game_exists_unique}
   We have a population game as \Cref{def:pop_game} with $M$ populations of size $N_i$, payoff functions $U_i(\sigma_i, (N_j \overbar{\sigma}_j)_{j=1}^M)$ and dynamics given by $f_i((N_j \overbar{\sigma}_j)_{j=1}^M))$:
   \begin{equation}
     \dot{N_i} = N_i f_i
   \end{equation}
-  Assume that the that the set of stationary points of the population dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$ and convex, and that the stationary points are continuous in $(\sigma_i)_{i=1}^M$. Let $\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i}$ be strictly pseudomonotone and satisfy \Cref{thm:existence}. Then the population game has a fixed point.
-  If further the system $f_i$ defines a pseudomonotone operator, the fixed-point is unique.
-  %A sufficient conditions for uniqueness and stability of the fixed-point is that there exists an $M>0$ the total operator $-(N_if_i)_{i=1}^M \osum -MdU$ is strictly pseudomonotone for all $N \geq M$.
+  Assume that the that the set of stationary points of the population dynamics is uniformly bounded in $(\sigma_i)_{i=1}^M$, and that the stationary points can be described by a continuous function $\Phi:P_{2,\mu}^M \to \R_+^M$. Let $dU = -(\nabla_{\sigma_i} U_i \mid_{\sigma_i = \overbar{\sigma}_i})$ be strictly pseudomonotone and satisfy \Cref{thm:existence}. Then the population game has a fixed point.
+  If further the system $f_i$ defines a pseudomonotone operator $F:\R^M \to \R^M$ with $F=(f_1, \dots, f_M)$, the fixed-point is unique.
 \end{theorem}
 \begin{proof}
-  The game specified by the family $(U_i)_{i=1}^M$ has a unique Nash equilibrium for each $x\in \R^M$, given by a variational inequality problem over $P_{2,\mu}^M$ with operator $-dU$. The solution operator is a continuous mapping $G: \R_+^M \to P_{2,\mu}^M$, due to the existence and uniqueness of the solution \Cref{thm:nash_unique} \cite[Theorem 4.2]{barbagallo2009continuity}. By assumption, the fixed-point mapping $F_i$ for the population dynamics is continuous in $(\sigma_i)_{i=1}^M$.
+  The game specified by the family $(U_i)_{i=1}^M$ defines a variational inequality problem over $P_{2,\mu}^M$ with operator $-dU$. This variational inquality has a unique solution for each $x\in \R^M$, due to the existence and uniqueness of the solution \Cref{thm:nash_unique}. This solution defines a continuous a function from $\R^M$, denoted $G$, where $G: \R_+^M \to P_{2,\mu}^M$, \cite[Theorem 4.2]{barbagallo2009continuity}.
 
-  Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of $F\circ G: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded, $G$ has compact range, and $F\circ G$ has compact image. Therefore $F\circ G:\R_+^M \to \R_+^M$ has a fixed point $(x_1^*, \dots, x_m^*)$ by Schauder's fixed point theorem \citep[Theorem 3.2, p. 119]{granas2003elementary}. Likewise, the map $G\circ F:P_{2,\mu}^M \to P_{2,\mu}^M$ has a fixed point $(\sigma_1^*,\dots, \sigma_M^*)$, since it factorizes through a compact space. We can conclude that a fixed-point exists, hence a combined Nash and population equilibrium.
+  Finding a fixed point of the dynamical system along with a Nash equilibrium then corresponds to finding a fixed point of the mapping $\Phi \circ G: \R_+^M \to \R_+^M$. Since the set of stationary points is assumed bounded, $G$ has compact range, and $\Phi \circ G$ has compact image. Therefore $\Phi \circ G:\R_+^M \to \R_+^M$ has a fixed point $(x_1^*, \dots, x_m^*)$ by Schauder's fixed point theorem \citep[Theorem 3.2, p. 119]{granas2003elementary}.
 
-  To show uniqueness, we need to shift perspectives. We are searching for zeros of the system $f_i$, ie. solutions of the variational inequality $VI((f_i)_{i=1}^M, \R_+^M)$ constrained by the fact that the system of $\sigma_i$ constitute a Nash equilibrium, ie. they need to solve the variational inequality $VI(-dU,P_{2,\mu}^M)$. This is an example of a so-called bi-level variational inequality, and due to the pseudomonotonicity and strict pseudomonotonicity the solution is unique \citep{chen2014bilevel}.
+  We can conclude that a fixed-point exists, hence a combined Nash and population equilibrium.
 
-  \begin{comment}so is $-MdU$ for any $M$. Define the projection $\Pi$ from $H$ to $P_{2,\mu}$. Then the dynamical system
-  \begin{equation}
-    \dot{\sigma}_i = \Pi(-dU_i((\sigma)_{i=1}^M)))
-  \end{equation}
-  converges asymptotically to the Nash equilibrium \citep{}. The population dynamical system with instantanous Nash equilibrium is then equivalent to the system:
-  \begin{equation}
-    \label{eq:instant_nash_DE}
-    \dot{N_i} = N_i f_i
-    \lim_{\epsilon \to 0}\epsilon\dot{\sigma}_i = \Pi(-dU_i((\sigma)_{i=1}^M)))
-  \end{equation}
-  Since the first set of equations stays in the positive orthant where can introduce the projection operator $\Pi_R$, the system can be rewritten as
-  \begin{equation}
-    \dot{N_i} = \Pi_R(-(-N_i f_i))
-    \epsilon\dot{\sigma}_i = \Pi(-dU_i((\sigma)_{i=1}^M)))
-  \end{equation}
-  This system converges asymptotically if the operator
-  \begin{equation}
-    \label{eq:de_sys}
-    (-N_i f_i)_{i=1}^M \osum (\frac{1}{\epsilon}-dU)
-  \end{equation}
-  is strictly pseudomonotone. If there exists an $N$ such that \Cref{eq:de_sys} is strictly pseudomonotone, hence asymptotically stable, for all $\frac{1}{\epsilon}>N$, then \Cref{eq:instant_nash_DE} is also asymptotically stable.
+  To show uniqueness, we need to shift perspectives. We are searching for zeros of the system $f_i$, ie. solutions of the variational inequality $VI(F, \R_+^M)$ constrained by the fact that the system of $\sigma_i$ constitute a Nash equilibrium, ie. they need to solve the variational inequality $VI(-dU,P_{2,\mu}^M)$. This is an example of a so-called bi-level variational inequality. As we have already established existence, the strict pseudomonotonicity of $-dU$ and pseudomonotonicity of $F$ give us uniqueness of the solution by \citep[Corollary 1]{muu2015existence}. We remark that this corollary a-priori requires strong pseudomonotonicity, however the strong pseudomonotonicity is only necessary for uniqueness as we have established existence already.
+  This shows the desired.
+  %See also https://link.springer.com/article/10.1007/s40306-017-0226-z, Generalized Monotone Bifunctions
+  %and Equilibrium Problems, and
 
 \end{comment}
     \qed
 
 \end{proof}
+\subsection{The ideal free distribution}
+Having introduced the framework of variational inequalities allows us to connect with the ideal free distribution. As noted in the introduction, the ideal free distribution is clasically defined as emerging from playing the field in single-species habitat selection games \citep{fretwell1969territorial}. As such, the ideal free distribution is informally characterized by no individual gaining anything from moving from their spot in a habitat selection game .This definition, while perfectly suitable for single-species games is insufficient for the multi-species case, as some stability requirement should also be introduced so a small deviation from the ideal free distribution will not change the overall distribution and such that best-response dynamics converge to the ideal free distribution \citep{kvrivan2008ideal}. The ideal free distribution can also be expanded to incorporate population dynamics \citep{cressman2010ideal}, but we refrain from going in this direction here as it would bring us too far afield. As in \Cref{sec:general_setting} we consider $M$ populations with mean-field strategies $(\overbar{\sigma}_i)_{i=1}^M$, individual strategies $(\sigma_i)_{i=1}^M$ and individual payoff functions $U_i$.
+
+
+We generalize the definition of \citep{kvrivan2008ideal} and go with a rather restrictive definition of the multi-species ideal free distribution which ensures stability. It is typically posed as a result that the ideal free distribution is an evolutionarily stable state (ESS), but we take it as a part of the definition. First, we need to define what we mean by evolutionary stability. We introduce the notion of global evolutionary stability for a single species. For simplicity, we do not take weak evolutionary stable states into account but concern ourselves with the strict case.
+\begin{definition}
+  A state $\omega$ can invade a state $\overbar{\sigma}$ if $\ip{\omega - \overbar{\sigma}}{-dU(\overbar{\sigma})} > 0$. A state $\omega$ is an evolutionarily stable state if it can invade any other state.
+  \begin{equation}
+    \ip{\omega- \overbar{\sigma}}{-dU( \overbar{\sigma})} > 0 \quad \forall  \overbar{\sigma} \in P_{2,\mu} \setminus \{\omega \}
+  \end{equation}
+  A state $\omega$ is globally evolutionarily stable if it can strictly invade any other set of strategies.
+\end{definition}
+This allows us to introduce a Cressman M-species ESS, which is equivalent to the ideal free distribution defined in terms of best responses, \citet[Section 3.3]{kvrivan2008ideal}. Hence we can define the notion of an $M$-species ideal free distribution simultaneously.
+\begin{definition}
+  A Nash equilibrium $(\overbar{\sigma}^N_i)_{i=1}^M$ of an $M$-species population game is an $M$-species ESS if each state $\overbar{\sigma}^N_i$ is globally evolutionarily stable. If the payoff-functions $U_i$ are given by individual growth rates, the Nash equilibrium $(\overbar{\sigma}^N_i)_{i=1}^M$ constitutes an $M$-species ideal free distribution.
+\end{definition}
+This allows us to state the result which motivates that strict pseudomonotonicity is the correct notion to look for in population games, apart from the uniqueness properties.
+\begin{theorem}
+  If $-dU$ and each component $-dU_i$ are strictly pseudomonotone, the Nash equilibrium $(\overbar{\sigma}_i^N)_{i=1}^M$ in a population game is unique and an ideal free distribution.
+\end{theorem}
+\begin{proof}
+  The uniqueness of the Nash equilibrium follows from the strict pseudomonotonicity of $-dU_i$. As we assume each $-dU_i$ is strictly pseudomonotone and that $\overbar{\sigma}^N_i$ is the Nash equilibrium for the game defined by $U_i(\sigma,\overbar{\sigma})$, by definition of pseudomonotonicity any strategy $\omega$ different from $\overbar{\sigma}^N_i$ satisfies the inequality:
+  \begin{equation}
+    \ip{\omega-\overbar{\sigma}_i}{-dU_i(\overbar{sigma_i})} > 0
+  \end{equation}
+  which is exactly the criterion for evolutionary stability of $\overbar{\sigma}_i$.
+\end{proof}
+
+
 %and demonstrated how to handle mean-field games as monomorphic games,
-Having established the general results for population games based on habitat choice with instantaneous migrations, we are ready to apply the theory to a Rosenzweig-MacArthur system with fast adaptive behavior.
+Having established the general results for population games based on habitat choice with instantaneous migrations and introduced the connection to the ideal free distribution, we are ready to apply the theory to a Rosenzweig-MacArthur system with fast adaptive behavior.
 \section{Revisiting the Rosenzweig-MacArthur model}
 \label{sec:model_rm}
 %Having established the general framework, we can proceed to defining the concrete model of interest.
-We consider a predator-prey system modeled as a Rosenzweig-MacArthur system where individual consumer and predator seeks to maximize its growth at every instant, in the vein of \citep{kvrivan2009evolutionary}. We assume that the predators are specialized so that their hunting success is maximal in the most productive zone of the habitat.
-We assume that predators $(N_p)$ and consumers $(N_c)$ inhabit the interval $[0,1]$, with $P_{2,\mu}$ as square-integrable probability densities on $[0,1]$. The mean strategies of the predator and consumer populations are $\overbar{\sigma}_c$, and $\overbar{\sigma}_p$ respectively. We assume a consumer population with a Type I functional response foraging in an environment with a heterogeneous carrying capacity. We model this as a carrying capacity $K_0 + K \phi$ where $K_0$ is the minimal carrying capacity, $K$ is the varying capacity and $\phi$ is a probability density function. In the model, we set  $\phi = \frac{\exp(-3 x)}{\int_0^1 \exp(-3 x) dx}$.
-
-We assume that the maximal potential growth for a consumer from a location depends both on the carrying capacity and how many consumers are already occupying the spot. We assume that the growth rate is homogeneous throughout the environment, but that the carrying capacity varies. With this in mind, the pr. capita consumer growth term $G_c$ is
-\begin{equation}
-  G_c(N_c, \overbar{\sigma}_c) = \ip{\overbar{\sigma}_c}{1-N_c \frac{\overbar{\sigma}_c}{K\phi + K_0}}
-\end{equation}
-
-The clearance rate of the predator is $\beta_p = \beta_{l} + \beta_0$ where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate. The clearance rate describes the change in encounter rate from an increase in consumer or predator concentration. Concretely, we set $\beta_p(x) = \frac{1}{2}5 \frac{\exp(-(3 x)^2)}{\int_0^1 \exp(-(3 x)^2) dx} + \beta_0$. The chosen function models a predator specialized in hunting in the most productive zones, but with non-zero hunting success everywhere. We assume the maximal predator consumption rate is $F_p$, and the predators have a conversion efficiency of $\epsilon$. Consumption events are assumed local, so the expected encounter rate between predators and prey is $N_c N_p \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. We assume that predators have a Type II functional response, and their consumption is limited by prey-capture and digestion rather than handling, which causes a non-linearity in the functional response as a function of the strategy \citep{Kioerboe2018}. This gives a pr. capita predator growth rate $G_p$:
-\begin{equation}
-  G_p(N_p, \overbar{\sigma}_p, N_c, \overbar{\sigma}_c )= \epsilon\frac{F_p \ip{\beta_p N_c\overbar{\sigma}_c}{\overbar{\sigma}_p} }{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}
-\end{equation}
-This allows us to define the pr. capita consumer mortality $M_c = \frac{N_p}{\epsilon N_c}G_p$. Predator losses stems both from a metabolic loss $\mu_p$ and mortaility from intraspecific predator competition, which we assume leads to a Type I loss for predators as there is no satiation. We assume that predators are more competitive in the area where they are best specialized for hunting. Introducing a competition parameter $c$, the pr. capita predator mortality $M_p$ is:
-\begin{equation}
-  M_p(N_p, \overbar{\sigma}_p) =  c \ip{\overbar{\sigma}_p}{N_p\beta_p \overbar{\sigma}_p}  - \mu_p
-\end{equation}
-Defining the pr. capita dynamics $f_c = G_c - M_c$ and $f_p = G_p - M_p$, we can write the dynamical system as:
+We consider a predator-prey system modeled as a Rosenzweig-MacArthur system where each individual consumer and predator seeks to maximize its growth at every instant, in the vein of \citep{kvrivan2009evolutionary}. We represent consumer, respectively predator, per capita growth by $G_c$ and $G_p$. Likewise, we represent the per capita mortality by $M_c$ and $M_p$. We denote the growth and mortality rates of an individual by the superscript $^{ind}$.
+Defining the pr. capita dynamics $f_c = G_c - M_c$ and $f_p = G_p - M_p$, we can write the dynamical system for the population dynamics as:
 \begin{equation}
   \label{eq:dynamics}
   \begin{split}
@@ -333,34 +256,60 @@ Defining the pr. capita dynamics $f_c = G_c - M_c$ and $f_p = G_p - M_p$, we can
     \dot{N_p} &= N_p f_p
   \end{split}
 \end{equation}
-The population dynamics in \cref{eq:dynamics} are a modified Rosenzweig-MacArthur system, where behavior of both consumer and predator populations has been incorporated.
+The payoff functions for an individual consumer and predator are given by the individual growth rates $U_c,U_p$, and they are are:
+\begin{equation}
+  \begin{split}
+    U_c(\sigma_c, N_c \overbar{\sigma}_c, N_p\overbar{\sigma}_p) &=  G_c^{ind} - M_c^{ind} \\
+    U_p(\sigma_p, N_p \overbar{\sigma}_c, \overbar{\sigma}_p) &= G_p^{ind} - M_p^{ind}
+  \end{split}
+\end{equation}
+We consider a system with zooplankton as consumers $(N_c)$ and forage fish as predators $(N_p)$ in the water column, modeled as the interval $[0,1]$. The choice of strategy is the depth at which to forage. Both forage fish and zooplankton have large populations, so it is reasonable to model this system as a mean-field game. We denote the mean strategies of the predator and consumer populations by $\overbar{\sigma}_c$, and $\overbar{\sigma}_p$. The productive zone of the water column, i.e. where zoo-plankton can find food, is near the top where sunlight allows phytoplankton to grow. Forage fish are visual predators, so their predation success is greatest near the top of the water column. We model an arctic summer where there is constant sunlight which allows us to to ignore the influence of the day-night cycle. Both zooplankton and foraging fish populations in the arctic are mainly driven by the summer \citep{astthorsson2003seasonal, mueter2016ecology}.
+
+As zooplankton are olfactory foragers, we model that their growth rate $\beta_c$ is constant throughout the water column but the carrying capacity varies. We assume the zooplankton are not limited either by maximal consumption or handling \citep{kiorboe2011zooplankton}, which coupled with the varying capacity leads to a logistic model for their growth. Summarizing, we assume that the maximal potential growth for a consumer from a location depends both on the absolute carrying capacity and how many consumers are already occupying the spot.
+We model the carrying capacity as $K_0 + K \phi$ where $K_0$ is the minimal carrying capacity, $K$ is the varying capacity and $\phi$ is a probability density function. The per capita growth rate of a consumer becomes:
+\begin{equation}
+  G_c(N_c, \overbar{\sigma}_c) = \beta_c\ip{\overbar{\sigma}_c}{1-N_c \frac{\overbar{\sigma}_c}{K\phi + K_0}}
+\end{equation}
+
+The mortality of the consumers is directly related to the growth of the predators, so we define the growth of the predators and then come back to the mortality of the consumers. Predator-prey interactions are fundamentally governed by the clearance or catch rate $\beta_p$ which describes the change in encounter rate from an increase in consumer or predator concentration. The encounter rate incorporates the light-dependent nature of forage fish, while incorporating that that there is still a minimal chance of catching prey without light. Concretly, we define:
+\begin{equation*}
+  \beta_p = \beta_{l} + \beta_0
+\end{equation*}
+where $\beta_l$ varies locally and $\beta_0$ is the minimal clearance rate. We define the maximal consumption rate for a predator $F_p$ as the reciprocal of the handling time of a predator $H_p$:
+\begin{equation}
+  F_p = \frac{1}{H_p}
+\end{equation}
+The choice of maximal consumption rate as a parameter rather than handling time reflects that marine animals are rarely limited by handling \citep{schadegg2017satiation}.
+We assume the maximal predator consumption rate is $H_p$, and the predators have a conversion efficiency of $\epsilon$. Consumption events are assumed local, so the expected encounter rate between predators and prey is $N_c N_p \ip{\beta_p \overbar{\sigma}_p}{\overbar{\sigma}_c}$. We assume that predators have a Type II functional response, and their consumption is limited by prey-capture and digestion rather than handling, which causes a non-linearity in the functional response as a function of the strategy \citep{Kioerboe2018}. This gives a pr. capita predator growth rate $G_p$:
+\begin{equation}
+  G_p(N_p, \overbar{\sigma}_p, N_c, \overbar{\sigma}_c )= \epsilon\frac{F_p\ip{\beta_p N_c\overbar{\sigma}_c}{\overbar{\sigma}_p} }{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}
+\end{equation}
+Having defined the growth rate of the predators allows us to define the per capita consumer mortality $M_c = \frac{N_p}{\epsilon N_c}G_p$. Predator losses stems both from a metabolic loss $\mu_p$ and mortality from intraspecific predator competition, which we assume leads to a quadratic loss for predators as there is no satiation. We assume that predators are more competitive in the area where they are best specialized for hunting. Introducing a competition parameter $c$, the pr. capita predator mortality $M_p$ is:
+\begin{equation}
+  M_p(N_p, \overbar{\sigma}_p) =  c \ip{\overbar{\sigma}_p}{N_p\beta_p \overbar{\sigma}_p}  - \mu_p
+\end{equation}
+Hence the population dynamics in \cref{eq:dynamics} are a modified Rosenzweig-MacArthur system, where behavior of both consumer and predator populations has been incorporated. Having considered the population dynamics, we now proceed to the individual level.
 \subsection{The instantaneous game}
-As in \Cref{sec:general_setting} we model predator and consumer movement as instantaneous. We assume that each predator and consumer seeks to maximize its growth at every instant. Denote the strategies of a focal consumer and predator by $\sigma_c$ and $\sigma_p$ respectively.  The growth of the focal individual depends on the mean-field strategies of both predators and consumers, and can be arrived at by modifying the expressions for $G_c,M_c$ and $G_p, M_p$ carefully.
-The growth $G_c^{ind}$ of an individual consumer is
+Following the exposition in \Cref{sec:general_setting} we model predator and consumer movement as instantaneous. We assume that each predator and consumer seeks to maximize their instantanous growth at every instant. As we have switched to focusing on the individuals, we have to distinguish between the strategy of an individual and the mean-field strategy of the population. Denote the strategies of a focal consumer and predator by $\sigma_c$ and $\sigma_p$ respectively.  The growth of the focal individual depends on the mean-field strategies of both predators and consumers, and can be arrived at by analysing the expressions for $G_c,M_c$ and $G_p, M_p$ carefully, noting which terms depend upon individual choice and which are dependent on the mean-field strategy.
+
+
+The growth $G_c^{ind}$ of an individual consumer depends on the choices of the consumer, while the available food,depends on the spatial distribution of the entire population. Hence the growth of an individual consumer is:
 \begin{equation}
-  G_c^{ind} = \ip{\sigma_c}{1-N_c \frac{\overbar{\sigma}_c}{K\phi + K_0}}
+  G_c^{ind} = \beta_c\ip{\sigma_c}{1-N_c \frac{\overbar{\sigma}_c}{K\phi + K_0}}
 \end{equation}
-as the initial growth term depends on the choices of the consumer, while the available food depends on the distribution of the population. The loss from predation for an individual is more complex, since the encounter with a predator depends on the strategy of the focal consumer, while the satiation of the predator depends on how many total consumers it encounters, hence the population mean. The individual mortality $M_c^{ind}$ is
+The loss from predation $(M_c)$ for an individual consumer is more complex. The risk of encountering a predator depends on the strategy of the focal consumer and the overall predator distribution, while the satiation of the predator depends on how many total consumers it encounters, hence the mean of the population behavior. Therefore the individual mortality of a consumer $M_c^{ind}$ becomes
 \begin{equation}
-  M_c^{ind} =  \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} N_p}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p} N_c}
+  M_c^{ind} =  \frac{F_p \ip{\beta_p \sigma_c}{\overbar{\sigma}_p} N_p}{F_p + N_c\ip{\beta_p \overbar{\sigma}_c}{\overbar{\sigma}_p}}
 \end{equation}
-Going to a focal predator, the growth $G_p^{ind}$ of an individual predator has the same expression as the pr. capita growth, since the satiation has no dependence on the overall predator population.
+Going to a focal predator, the growth $G_p^{ind}$ of an individual predator has the same expression as the pr. capita growth, since the satiation of an individual predator has does not depend on the behavior of the other predators.
 \begin{equation}
   G_p^{ind} = \epsilon \frac{F_p \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}{F_p + \ip{\beta_p \overbar{\sigma}_c}{\sigma_p} N_c}
 \end{equation}
-The individual predator mortality $M_p^{ind}$ depends on both the choice of the individual and the distribution of the entire predator population.
+The individual predator mortality $M_p^{ind}$ depends on both the strategy of the individual predator and the distribution of the entire predator population.
 \begin{equation}
-  M_p^{ind} =  c \ip{\sigma_p}{N_p\beta_p \overbar{\sigma}_p}  - \mu_p
+  M_p^{ind} =  c \ip{\sigma_p}{N_p\beta_p \overbar{\sigma}_p}  + \mu_p
 \end{equation}
-The instantaneous growth rates $U_c,U_p$ for an individual consumer and predator are:
-\begin{align}
-  U_c(\sigma_c, N_c \overbar{\sigma}_c, N_p\overbar{\sigma}_p) &=  G_c^{ind} - M_c^{ind} \\
-  U_p(\sigma_p, N_p \overbar{\sigma}_c, \overbar{\sigma}_p) &= G_p^{ind} - M_p^{ind}
-\end{align}
-\begin{comment}
-We convert both mean-field payoffs into a monomorphic equivalent form as in \cref{def:correspondence}
 
-\end{comment}
 \subsection{Existence and uniqueness of Nash and population equilibria}
 In order to establish existence and uniqueness of the Nash equilibrium we show that the variational inequality defined by $-dU$ is strictly pseudomonotone and admits a solution. We start by showing that there is a unique Nash equilibrium for the cases where the predator and consumer respectively have constant behavior, i.e. $\sigma_i = 1,~i\in \{c,p\}$. First we need a small lemma to simplify the calculations.
 \begin{lemma}
@@ -373,39 +322,57 @@ In order to establish existence and uniqueness of the Nash equilibrium we show t
   Hence the pseudomonotonicity of $g$ and $g+\lambda$ are equivalent.
 \end{proof}
 \begin{proposition}
+  \label{prop:sing_spec_un_nash}
   For every pair of non-zero abundances $N_c,N_p$ we have:
   There is a unique mean-field Nash equilibrium in the Rosenzweig-MacArthur system where the consumers have adaptive behavior and predators have constant behavior $\sigma_p = 1$.
   Likewise, there is a unique Nash equilibrium in the Rosenzweig-MacArthur system where the predators have optimal behavior and the consumers have constant behavior $\sigma_c = 1$.
 \end{proposition}
 \begin{proof}
-  To show the uniqueness of the Nash equilibrium when the consumers have optimal behavior, consider $dU_c = \nabla_{\sigma_c} U_c \mid_{\sigma_c = \overbar{\sigma_c}}$.  By \Cref{lem:pseudo_reduc} it suffices to show that $f = -dU_c + 1$ is strictly pseudomonotone.
-  For \Cref{lem:strict_pm} assume $\ip{f((\sigma_c))}{h} = 0$, then
+  To show the uniqueness of the Nash equilibrium when the consumers have optimal behavior, consider $dU_c = \nabla_{\sigma_c} U_c \mid_{\sigma_c = \overbar{\sigma_c}}$.  By \Cref{lem:pseudo_reduc} it suffices to show that $f = -dU_c + 1$ is strictly pseudomonotone. To de-clutter the calculations we set $\beta_c = 1$ in the following calculations, but the necessary changes for an arbitrary value are straightforward.
+  For \Cref{lem:strict_pm} assume $\ip{f((\overbar{\sigma_c}))}{h} = 0$, then
   \begin{equation}
     \begin{split}
-      \ip{f(x)}{h} = \ip{\sigma_c \frac{N_c}{K\phi + K_0} }{h} + \frac{N_p F_p \ip{\beta_p }{h}}{F_p + \ip{\beta_p}{\sigma_c}} - \ip{1}{h} + \ip{1}{h}
+      \ip{f(x)}{h} = 0 \\
+      \ip{\sigma_c \frac{N_c}{K\phi + K_0} }{h} + \frac{N_p F_p \ip{\beta_p}{h}}{F_p + N_c\ip{\beta_p}{\overbar{\sigma_c}}} - \ip{1}{h} + \ip{1}{h} = 0
     \end{split}
   \end{equation}
-  Since $K\phi + K_0$ and $\beta_p$ are everywhere positive, $\ip{\beta_p}{h} = 0$ and $\ip{\sigma_c \frac{N_c}{K\phi + K_0}}{h} = 0$. Then consider $H((\sigma_c,h)= \ip{(\nabla f)((\sigma_c,\sigma_p))h}{h}$, where $\ip{f(x)}{h} = 0$. We calculate $\nabla f$:
+  Hence
+  \begin{equation}
+    \label{eq:useful_eq}
+    \ip{\sigma_c \frac{N_c}{K\phi + K_0} }{h} = - \frac{N_p F_p \ip{\beta_p}{h}}{F_p + N_c\ip{\beta_p}{\overbar{\sigma_c}}}
+  \end{equation}
+  Introducing $\bra{x}$ as the functional defined from $x$, consider $H((\overbar{\sigma_c},h)= \ip{(\nabla f)((\overbar{\sigma_c},\sigma_p))h}{h}$, where $\ip{f(\overbar{\sigma_c})}{h} = 0$. We calculate $\nabla f$:
     \begin{equation}
-      \nabla f = \begin{pmatrix} \frac{N_c}{K \phi + K_0} - \frac{F_p^2\beta_p}{(F_p + \ip{\beta_p \sigma_p}{\sigma_c})^2} \\
+      \nabla f = \begin{pmatrix} \frac{N_c}{K \phi + K_0} - \frac{F_p N_c \bra{\beta_p} \bra{\beta_p}}{(F_p + N_c\ip{\beta_p}{\overbar{\sigma_c}})^2}
     \end{pmatrix}
     \end{equation}
-    Since $\ip{\sigma_p}{h}=0$ and $\frac{N_c}{K\phi + K_0}$ is everywhere positive, we conclude $H(x,u)>0$. Therefore $f$ is strictly pseudomonotone by \Cref{lem:strict_pm}.
-
-    The situation for the predators is even simpler, since $-dU_p$ is strictly monotone, hence strictly pseudomonotone, so the Nash equilibrium is unique.
+  So
+  \begin{equation}
+    \label{eq:H_eq}
+    H(\overbar{\sigma_c},h) = \ip{\frac{N_c}{K \phi + K_0}h}{h} - \ip{\frac{F_p N_c N_p\ip{\beta_p}{h}\beta_p}{(F_p + N_c\ip{\beta_p}{\overbar{\sigma_c}})^2}h}{h}
+  \end{equation}
+  Inserting \Cref{eq:useful_eq} in \Cref{eq:H_eq}, we arrive at
+  \begin{equation}
+    H(\overbar{\sigma_c},h) = \ip{\frac{N_c}{K \phi + K_0}h}{h} + \frac{N_c}{N_p F_p}\pa{\ip{\overbar{\sigma_c} \frac{N_c}{K\phi + K_0}}{h}}^2
+  \end{equation}
+  As $\frac{N_c}{K \phi + K_0}$ is strictly positive, we conclude that $H(\overbar{\sigma_c},h)>0$. Therefore $f$ is strictly pseudomonotone by \Cref{lem:strict_pm}. The situation for the predators is even simpler, since $-dU_p$ is strictly monotone, hence strictly pseudomonotone, so the Nash equilibrium is unique.
     The existence of the Nash equilibria follows from the proof of existence in \Cref{prop:exist_unique_nash}.
 \end{proof}
+\begin{remark}
+  \label{rem:rem_ifd}
+  In \Cref{prop:sing_spec_un_nash} we considered the single-species game where the constant behavior was a uniform distribution. The proofs for constant behavior different from the uniform distribution are the same, but are heavier in notation.
+\end{remark}
 Having shown that each of the underlying mean-field games has a unique Nash equilibrium, we can consider the total game.
 \begin{proposition}
   \label{prop:exist_unique_nash}
-  The game defined by $U_c$ and $U_p$ has a unique Nash equilibrium for every non-zero pair $N_c,N_p$.
+  The game defined by $U_c$ and $U_p$ has a unique Nash equilibrium for every non-zero pair $N_c,N_p$. Further, this Nash equilibrium constitutes an ideal free distribution.
 \end{proposition}
 \begin{proof}
-  We need to show that the variational inequality defined by the function
+  By \Cref{rem:rem_ifd} and \Cref{sing_spec_un_nash}, any Nash equilibrium of this game is an ideal free distribution as both single-species game are strictly pseudomonotone. Again, to simplify the notational load in the calculations we set $\beta_c = 1$, but the changes to accomodate an arbitrary value are straight-forward. To show existence of a Nash equilibrium, we need to show that the variational inequality defined by the function
   \begin{equation}
     \label{eq:var_ineq}
     dU = \begin{pmatrix}-\nabla_{\sigma_c} U_c \mid_{\sigma_c = \overbar{\sigma_c}} \\ -\nabla_{\sigma_p} U_p \mid_{\sigma_p = \overbar{\sigma}_p}\end{pmatrix}
-  \end{equation} satisfies the criteria of \Cref{thm:existence} and is strictly pseudomonotone.
+  \end{equation} satisfies the criteria of \Cref{thm:existence} and is strictly pseudomonotone. Remark that for the remainder of this proof we will write $\sigma_c$ in place of $\overbar{\sigma_c}$ and $\sigma_p$ in place of $\overbar{\sigma_p}$ to reduce notational clutter.
   To show that there exists a solution, start by noting that for all $S\in H^2$, $S\mapsto -dU(S)$ is Lipschitz continuous, hence continuous on finite-dimensional subspaces, fulfilling the first criterion of \Cref{thm:existence}. For the second criterion, consider
   \begin{equation}
     \label{eq:du}
@@ -425,15 +392,15 @@ Having shown that each of the underlying mean-field games has a unique Nash equi
   Re-arranging gives:
   \begin{equation}
     \label{eq:h1_h2_rel}
-    \frac{\epsilon \ip{\beta_p \sigma_c}{h_2} N_c}{(F_p + \ip{\sigma_c}{\sigma_p}N_c)^2} = c\ip{\beta \sigma_p}{h_2}N_p + \ip{\frac{\sigma_c}{K}}{h_1} + \frac{\ip{\beta_p \sigma_p}{h_1} N_p}{(F_p + \ip{\sigma_c}{\sigma_p}N_c)}
+    \frac{\epsilon F_p N_c \ip{\beta_p \sigma_c}{h_2}}{(F_p + N_c\ip{\beta_p \sigma_c}{\sigma_p})^2} = c\ip{\beta \sigma_p}{h_2}N_p + \ip{\frac{\sigma_c}{K_0 + K \phi}}{h_1} + \frac{F_p N_p \ip{\beta_p \sigma_p}{h_1}}{(F_p + N_c\ip{\beta_p \sigma_c}{\sigma_p})}
   \end{equation}
   Introducing $\bra{x}$ as the functional defined from $x$, we calculate:
   \begin{equation}
     \label{eq:hess_mat}
     H(x) = (\nabla -dU)(x) =
     \begin{bmatrix}
-      \frac{N_c}{K} - \frac{F_p N_c N_p \bra{\beta_p \sigma_p} \bra{\beta_p \sigma_p}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^2} & \frac{F_p^2 N_p \bra{\beta_p \sigma_p}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^2} \\
-      \frac{\epsilon N_cF_p^2 (N_c \bra{\beta_p \sigma_p} \beta_p - \bra{\beta_p \sigma_p} F_p)}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^3} & \frac{\epsilon N_c^2 F_p^2 \bra{\beta_p \sigma_c} \bra{\beta_p \sigma_c}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^3}+c N_p \beta
+      \frac{N_c}{K} - \frac{F_p N_c N_p \bra{\beta_p \sigma_p} \bra{\beta_p \sigma_p}}{(F_p + N_c \ip{\sigma_c}{\beta_p \sigma_p})^2} & \frac{F_p^2 N_p \bra{\beta_p \sigma_p}}{(F_p + N_c \ip{\beta_p\sigma_c}{\sigma_p})^2} \\
+      \frac{\epsilon N_cF_p^2 (N_c \bra{\beta_p \sigma_p} \beta_p - \bra{\beta_p \sigma_p} F_p)}{(F_p + N_c \ip{\beta_p \sigma_c}{\sigma_p})^3} & \frac{\epsilon N_c^2 F_p^2 \bra{\beta_p \sigma_c} \bra{\beta_p \sigma_c}}{(F_p + N_c \ip{\beta_p \sigma_c}{\sigma_p})^3}+c N_p \beta_p
     \end{bmatrix}
   \end{equation}
   We need to show that $\ip{H(x)h}{h}>0$. We immediately see that the negative contribution from the lower-left corner is cancelled by the upper-right corner. Inserting the relationship \Cref{eq:h1_h2_rel} in the term from the lower right right corner in $\ip{H(x)h}{h}$ allows cancellation of the negative terms from the upper left corner in $\ip{H(x)h}{h}$. This shows the desired. %but we relegate the explicit calculations to \Cref{appendix:calculations_2
@@ -448,8 +415,11 @@ As we are interested in the fixed-points of the population dynamics \Cref{eq:dyn
   The population game \Cref{eq:dynamics} has a unique co-existence fixed point.
 \end{theorem}
 \begin{proof}
-The stationary-point mapping of the behaviorally modified Rosenzweig-MacArthur system is clearly continuous as a function of $\sigma_c,\sigma_p$. Due to the metabolic terms and logistic terms the set of fixed-points of is uniformly bounded in $\sigma_c, \sigma_p$, and non-empty for sufficiently large $K$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. The operator $(-f_c, -f_p)$ can be shown to be pseudomonotone in an entirely analogous fashion as $(-dU_c, -dU_p)$, and we omit the calculations. Therefore, by \Cref{thm:pop_game_exists_unique} any coexistence equilibrium for the population game is unique and this will exist for $K$ sufficiently large.
+The stationary-point mapping of the behaviorally modified Rosenzweig-MacArthur system is clearly continuous as a function of $\sigma_c,\sigma_p$. Due to the metabolic terms and logistic terms the set of fixed-points of is uniformly bounded in $\overbar{\sigma_c}, \overbar{\sigma_p}$, and non-empty for sufficiently large $K$. By \Cref{prop:exist_unique_nash} the Nash equilibrium exists and is unique for every $N_c, N_p$. The operator $(-f_c, -f_p)$ can be shown to be pseudomonotone in an entirely analogous fashion as $(-dU_c, -dU_p)$, and we omit the calculations. Therefore, by \Cref{thm:pop_game_exists_unique} any coexistence equilibrium for the population game is unique and this will exist for $K$ sufficiently large.
 \begin{comment}
+
+
+
 For the stability, remark that the fixed point is the only place where the Nash equilibrium leads to zero pr. capita growth rates $(f_c, f_p)$, and that the pr. capita growth rates are dominated by the monomorphic equivalent payoff-functions $U_c^{mon}, U_p^{mon}$. As we maximize the payoff-functions at every point $(N_c,N_p)$, a decrease in the maximal value of the payoff-function will also lead to a decrease in the growth rate.
 Increasing $N_c$ and keeping $N_p^*$ fixed will lead to the maximal value of $U_c$ strictly decreasing, while the maximal value of $U_p$ will strictly increase, hence the value at the Nash equilibrium will weakly increase. Hence, as long as the population $N_p^*$ is less than $\frac{1}{\beta_0 + \exp{-3^2}}$
 
@@ -463,3 +433,40 @@ Hence the equilibrium is unique as desired.
 % for parameters when coexistence is possible.
 \qed
 \end{proof}
+\subsection{Parameters}
+We parametrize the model according to Kleibers' law \citep{yodzis1992body}, hence that clearance rates, metabolic loss and the maximal consumption rate all scale with the mass to the power of $0.75$. We decompose the depth-dependent predator clearance rate into a constant and a depth-dependent function $D(x)$. Denoting the consumer mass by $m_c$ and the predator mass by $m_p$, the parameters of the model are given by:
+\begin{equation}
+  \begin{split}
+    F_p = \alpha m_p^{0.75} \\
+    \beta_l(x) = b m_p^{0.75} D(x) \\
+    \beta_c = b m_c^{0.75} \\
+    \mu_p = \gamma m_p^{0.75} \\
+  \end{split}
+\end{equation}
+We model light decay $I(x)$ throughout the water column as $I(x)=\exp(-kx)$, hence the depth-dependent carrying capacity as following the light-curve:
+\begin{equation}
+  \phi(x) = \exp(-kx)
+\end{equation}
+And the depth-dependent predator clearance rate as being specialized in hunting near the top of the water-column:
+\begin{equation}
+  D(x) = \exp(-k/m \cdot x^2)
+\end{equation}
+%The clerance modes of plankton and fish are radically different, with plankton clearing a much larger volume proportionally each day \citep{kiorboe2011zooplankton}.
+The scaling parameters for the model are taken from [Table 2]{kha_2019}, except for the zooplankton mass which is from \citep{kiorboe2011zooplankton}. The
+\begin{tabular}{l l l}
+  Name & Value & Meaning & Source \\
+   $m_c$ & 0.01 g & Consumer mass \\
+   $m_p$ & 10 g & Predator mass \\
+   $\alpha$ & 1.25 $g$ $^{1/4}$/month  & Scaling of consumption rate\\
+   $b$ & $27.5$ $g^{1/4}$ $m^3$/month & Scaling of clearance rate \\
+   $\gamma$ & 0.2 & Ratio between max growth and respiration \\
+   $K_0$ & $10^{-4}$ g $m^3\cdot$month & Minimal carrying capacity\
+   $\beta_{p,0}$ & $10^{-4}$ $m^3$/month & Minimal predator clearance rate \\
+   $\mu_p$ & 0.35 $g/(m^3 \cdot$ month) & Predator metabolic rate \\
+   $F_p$ & 7 $g/(m^3 \cdot $ month) & Predator maximum growth rate \\
+   $\epsilon$ & 0.1 & Trophic efficiency \\
+   $\phi$(x) & \exp(-x^2/) & Resource distribution \\
+   $D(x)$ & \frac{2\exp(-kx)}{1+\exp(-kx)} \\
+   $k$ & 0.05 m$^{-1}$ & Light attenuation \\
+   $\kappa$ & \frac{1}{10} m$^{2}$ & Resource spread
+\end{tabular}

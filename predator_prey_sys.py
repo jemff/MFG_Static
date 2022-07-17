@@ -1,5 +1,7 @@
 import numpy as np
 import casadi as ca
+from scipy.special import lambertw
+
 
 def twod_predator_prey_dyn(beta_f = None,
                            res_conc_f = None, minimal_pops = 10**(-5), fixed_point = False,
@@ -17,13 +19,13 @@ def twod_predator_prey_dyn(beta_f = None,
         res_conc = 1/(inte @ (Mx.M @ res_conc))*res_conc + 0.0001
     else:
         res_conc = res_conc_f(Mx.x)
-
+        res_conc = 1/(inte @ (Mx.M @ res_conc))*res_conc + 0.0001
     if beta_f is None:
         beta = np.exp(-(par['q']*Mx.x)**2) #+0.001 2*np.exp(-Mx.x)/(1+np.exp(-Mx.x))#np.exp(-Mx.x**2)#+0.001
-        beta = 0.5*1 / (inte @ (Mx.M @ beta)) * beta +0.0001
+        beta = 1 / (inte @ (Mx.M @ beta)) * beta + 0.0001
     else:
         beta = beta_f(Mx.x)
-
+        beta = 1 / (inte @ (Mx.M @ beta)) * beta + 0.0001
 
     lam = ca.MX.sym('lam', 2)
 
@@ -44,11 +46,16 @@ def twod_predator_prey_dyn(beta_f = None,
 
 
 
-    cons_dyn = inte @ (Mx.M @ (sigma*(1-state_ss[0]*sigma/(res_conc*car_cap)))) - inte @ (Mx.M @ (state_ss[1]*sigma*beta*sigma_p))/(1+par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p)))
-    pred_dyn = par['eff']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p))/(1+par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p))) - par['p_met_loss'] - (state_ss[1]**2)* par['competition']*inte @ (Mx.M @ ((sigma_p**2)*beta))
+    #cons_dyn = inte @ (Mx.M @ (sigma*(1-state_ss[0]*sigma/(res_conc*car_cap)))) - inte @ (Mx.M @ (state_ss[1]*sigma*beta*sigma_p))/(1+par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p)))
+    #pred_dyn = par['eff']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p))/(1+par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p))) - par['p_met_loss'] - (state_ss[1]**2)* par['competition']*inte @ (Mx.M @ ((sigma_p**2)*beta))
 
-    df1 =(1-state_ss[0]*sigma/(res_conc*car_cap)) - state_ss[1]*sigma_p*beta/(1+inte @ (Mx.M @ (par['p_handle']*state_ss[0]*sigma*beta*sigma_p))) - lam[0]*np.ones(tot_points)
-    df2 = par['eff']*state_ss[0]*sigma*beta/(1+inte @ (Mx.M @ (par['p_handle']* state_ss[0]*sigma*beta*sigma_p)))**2 - state[1]*par['competition']*sigma_p*beta - lam[1]*np.ones(tot_points)
+    #df1 =(1-state_ss[0]*sigma/(res_conc*car_cap)) - state_ss[1]*sigma_p*beta/(1+inte @ (Mx.M @ (par['p_handle']*state_ss[0]*sigma*beta*sigma_p))) - lam[0]*np.ones(tot_points)
+    #df2 = par['eff']*state_ss[0]*sigma*beta/(1+inte @ (Mx.M @ (par['p_handle']* state_ss[0]*sigma*beta*sigma_p)))**2 - state[1]*par['competition']*sigma_p*beta - lam[1]*np.ones(tot_points)
+    cons_dyn = inte @ (Mx.M @ (par['c_enc_freq']*sigma*(1-state_ss[0]*sigma/(res_conc*car_cap)))) - inte @ (Mx.M @ ( par['p_enc_freq']*state_ss[1]*sigma*beta*sigma_p))/(1+ par['p_enc_freq']*par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p)))
+    pred_dyn = par['eff']*inte @ (Mx.M @ (par['p_enc_freq']*state_ss[0]*sigma*beta*sigma_p))/(1+par['p_enc_freq']*par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p))) - par['p_met_loss'] - par['p_enc_freq']*(state_ss[1])* par['competition']*inte @ (Mx.M @ ((sigma_p**2)*beta))
+
+    df1 = par['c_enc_freq']*(1-state_ss[0]*sigma/(res_conc*car_cap)) - state_ss[1]*sigma_p*beta/(1+inte @ (Mx.M @ (par['p_handle']*state_ss[0]*sigma*beta*sigma_p))) - lam[0]*np.ones(tot_points)
+    df2 = par['eff']*state_ss[0]*par['p_enc_freq']*sigma*beta/(1+par['p_enc_freq']*inte @ (Mx.M @ (par['p_handle']* state_ss[0]*sigma*beta*sigma_p)))**2 - state[1]*par['competition']*sigma_p*par['p_enc_freq']*beta - lam[1]*np.ones(tot_points)
 
 
     g0 = ca.vertcat(cons_dyn, pred_dyn)
@@ -58,10 +65,10 @@ def twod_predator_prey_dyn(beta_f = None,
     g4 = ca.vertcat(-df1, -df2)
 
     if fixed_point is True:
-        g = ca.vertcat(g0, g1, g2, g3, g4) #g1,
+        g = ca.vertcat(g0, g1, g2, g3, g4)
 
     if fixed_point is False:
-        g = ca.vertcat(g1, g2, g3, g4) #
+        g = ca.vertcat(g1, g2, g3, g4)
 
 
     f = 0
@@ -82,14 +89,14 @@ def twod_predator_prey_dyn(beta_f = None,
     if warmstart_info is None:
         s_opts = {'ipopt': {'print_level' : 3, 'linear_solver':'ma57',  'acceptable_iter': 5} }
         init = np.ones(x.size()[0]) / np.max(Mx.x)
-        init[-4:] = 1
+        #init[-4:] = 1
 
     else:
         s_opts = {'ipopt': {'print_level': 3, 'linear_solver': 'ma57',
                             'acceptable_iter': 5,'hessian_approximation':'limited-memory',
-                            'warm_start_init_point': 'yes', 'warm_start_bound_push': 1e-9,
-                            'warm_start_bound_frac': 1e-9, 'warm_start_slack_bound_frac': 1e-9,
-                            'warm_start_slack_bound_push': 1e-9, 'warm_start_mult_bound_push': 1e-9}} #
+                            'warm_start_init_point': 'yes', 'warm_start_bound_push': 1e-3,
+                            'warm_start_bound_frac': 1e-3, 'warm_start_slack_bound_frac': 1e-3,
+                            'warm_start_slack_bound_push': 1e-3, 'warm_start_mult_bound_push': 1e-3}} #
 
     prob = {'x': x, 'f': f, 'g': g}
     lbx = ca.vertcat(*[np.zeros(x.size()[0] - 2), -ca.inf, -ca.inf])
@@ -199,9 +206,10 @@ def threed_predator_prey_dyn(resources = None, beta_f = None, res_conc_f = None,
     else:
         s_opts = {'ipopt': {'print_level': 3, 'linear_solver': 'ma57',
                             'acceptable_iter': 15, 'hessian_approximation':'limited-memory',
-                            'warm_start_init_point': 'yes', 'warm_start_bound_push': 1e-9,
-                            'warm_start_bound_frac': 1e-9, 'warm_start_slack_bound_frac': 1e-9,
-                            'warm_start_slack_bound_push': 1e-9, 'warm_start_mult_bound_push': 1e-9}}
+                            'warm_start_init_point': 'yes', 'warm_start_bound_push': 1e-3,
+                            'warm_start_bound_frac': 1e-3, 'warm_start_slack_bound_frac': 1e-3,
+                            'warm_start_slack_bound_push': 1e-3, 'warm_start_mult_bound_push': 1e-3,
+                            'limited_memory_max_history': 10, 'limited_memory_initialization':'scalar2'}}
 
     prob = {'x': x, 'f': f, 'g': g}
     lbx = ca.vertcat(*[np.zeros(x.size()[0] - 2), -ca.inf, -ca.inf])
@@ -222,42 +230,48 @@ def threed_predator_prey_dyn(resources = None, beta_f = None, res_conc_f = None,
         return ret_dict
 
 def dynamics(y, par = None, car_cap = None, Mx = None, inte = None, sigma_p = None, sigma=None): #Reimplement this as DAE in CasADi...
+#    beta = np.exp(-(par['q'] * Mx.x) ** 2)  # +0.001 2*np.exp(-Mx.x)/(1+np.exp(-Mx.x))#np.exp(-Mx.x**2)#+0.001
+#    beta = 0.5 * 1 / (inte @ (Mx.M @ beta)) * beta + 0.0001
+
+#    res_conc = np.exp(-par['q'] * Mx.x)  # np.exp(-Mx.x**2)#np.exp(-Mx.x)+0.001
+#    res_conc = 1 / (inte @ (Mx.M @ res_conc)) * res_conc + 0.0001
+
+    #D = lambda x: np.real(2 * lambertw(10 / 2 * np.sqrt(np.exp(-20 * x) / (10 ** (4) * (10 ** (1) + np.exp(-20 * x))))) / 10)
+    #beta_f = lambda x: D(x)/D(0)
+    #beta = beta_f(Mx.x)
+    #beta = 1 / (inte @ (Mx.M @ beta)) * beta + 0.0001
+
+    #res_conc_f = lambda x: 2/(1+np.exp(5*(x-0.2)))
+    #res_conc = res_conc_f(Mx.x)
+    #res_conc = 1 / (inte @ (Mx.M @ res_conc)) * res_conc + 0.0001
     beta = np.exp(-(par['q'] * Mx.x) ** 2)  # +0.001 2*np.exp(-Mx.x)/(1+np.exp(-Mx.x))#np.exp(-Mx.x**2)#+0.001
     beta = 0.5 * 1 / (inte @ (Mx.M @ beta)) * beta + 0.0001
 
     res_conc = np.exp(-par['q'] * Mx.x)  # np.exp(-Mx.x**2)#np.exp(-Mx.x)+0.001
     res_conc = 1 / (inte @ (Mx.M @ res_conc)) * res_conc + 0.0001
 
-    cons_dyn = inte @ (Mx.M @ (sigma * y[0] / par['c_enc_freq'] * (
-            1 - y[0] * sigma / (par['c_enc_freq'] * res_conc * car_cap)))) - inte @ (
-                       Mx.M @ (y[0] * y[1] * sigma * beta * sigma_p)) / (
-                       par['p_enc_freq'] + par['p_handle'] * inte @ (
-                       Mx.M @ (y[0] * sigma * beta * sigma_p))) - par['c_met_loss'] * y[0]
-    pred_dyn = par['eff'] * inte @ (Mx.M @ (y[0] * y[1] * sigma * beta * sigma_p)) / (
-            par['p_enc_freq'] + par['p_handle'] * inte @ (Mx.M @ (y[0] * sigma * beta * sigma_p))) - par[
-                   'p_met_loss'] * y[1] - par['competition'] * inte @ (Mx.M @ (sigma_p ** 2 * beta)) * \
-               y[1]
+    state_ss = y
 
-    return np.array([cons_dyn[0], pred_dyn[0]])
+    cons_dyn = inte @ (Mx.M @ (par['c_enc_freq']*sigma*(1-state_ss[0]*sigma/(res_conc*car_cap)))) - inte @ (Mx.M @ ( par['p_enc_freq']*state_ss[1]*sigma*beta*sigma_p))/(1+ par['p_enc_freq']*par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p)))
+    pred_dyn = par['eff']*inte @ (Mx.M @ (par['p_enc_freq']*state_ss[0]*sigma*beta*sigma_p))/(1+par['p_enc_freq']*par['p_handle']*inte @ (Mx.M @ (state_ss[0]*sigma*beta*sigma_p))) - par['p_met_loss'] - par['p_enc_freq']*(state_ss[1])* par['competition']*inte @ (Mx.M @ ((sigma_p**2)*beta))
+
+    return np.array([y[0]*cons_dyn[0], y[1]*pred_dyn[0]])
 
 def dynamics_static(t, y, par = None, car_cap = 2, Mx = None, inte = None): #Reimplement this as DAE in CasADi...
+
     beta = np.exp(-(par['q'] * Mx.x) ** 2)  # +0.001 2*np.exp(-Mx.x)/(1+np.exp(-Mx.x))#np.exp(-Mx.x**2)#+0.001
     beta = 0.5 * 1 / (inte @ (Mx.M @ beta)) * beta + 0.0001
 
     res_conc = np.exp(-par['q'] * Mx.x)  # np.exp(-Mx.x**2)#np.exp(-Mx.x)+0.001
     res_conc = 1 / (inte @ (Mx.M @ res_conc)) * res_conc + 0.0001
-
     tot_points = Mx.x.size
 
     sigma = np.ones(tot_points)
     sigma_p = np.ones(tot_points)
-    cons_dyn = inte @ (Mx.M @ (sigma * y[0] / par['c_enc_freq'] * (
-            1 - y[0] * sigma / (par['c_enc_freq'] * res_conc * car_cap)))) - inte @ (
-                       Mx.M @ (y[0] * y[1] * sigma * beta * sigma_p)) / (
-                       par['p_enc_freq'] + par['p_handle'] * inte @ (
-                       Mx.M @ (y[0] * sigma * beta * sigma_p))) - par['c_met_loss'] * y[0]
-    pred_dyn = par['eff'] * inte @ (Mx.M @ (y[0] * y[1] * sigma * beta * sigma_p)) / (
-            par['p_enc_freq'] + par['p_handle'] * inte @ (Mx.M @ (y[0] * sigma * beta * sigma_p))) - par[
-                   'p_met_loss'] * y[1] - par['competition'] * inte @ (Mx.M @ (sigma_p ** 2 * beta)) * \
-               y[1]**2
+    cons_dyn = par['c_enc_freq'] * inte @ (Mx.M @ (sigma * y[0] * (1 - y[0] * sigma / (res_conc * car_cap)))) \
+               - par['p_enc_freq'] * inte @ (Mx.M @ (y[0] * y[1] * sigma * beta * sigma_p)) / (1 + par['p_enc_freq'] *par['p_handle'] * inte @ (Mx.M @ (y[0] * sigma * beta * sigma_p)))
+    pred_dyn = par['eff'] * par['p_enc_freq'] * inte @ (Mx.M @ (y[0] * y[1] * sigma * beta * sigma_p)) / (
+            1 + par['p_handle'] * par['p_enc_freq'] * inte @ (Mx.M @ (y[0] * sigma * beta * sigma_p))) \
+               - par['p_met_loss'] * y[1] - par['competition'] * par['p_enc_freq']* inte @ (Mx.M @ (sigma_p ** 2 * beta)) * y[1]**2
+
     return np.array([cons_dyn[0], pred_dyn[0]])

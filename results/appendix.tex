@@ -46,32 +46,38 @@ Proving strict pseudomonotonicity in itself can be hard, but thankfully the noti
 We complete the omitted calculations from the main text. Initially,
 \begin{equation}
   \label{eq:calc_app}
-  \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)} = \ip{\frac{\sigma_c}{K_0 + K\phi} - 1}{\sigma_c
-  - 1} + \ip{\frac{F_p\beta_p\sigma_p}{F_p + \ip{\sigma_p}{\sigma_c}}}{\sigma_c-1}
-  - \ip{\frac{F_p^2\beta_p\sigma_c}{(F_p + \ip{\sigma_p}{\sigma_c})^2}}{\sigma_p - 1} + \ip{c \beta_p \sigma_p}{\sigma_p -1}
+  \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)} = \ip{\frac{N_c\sigma_c}{K_0 + K\phi} - 1}{\sigma_c
+  - 1} + \ip{\frac{F_p N_p\beta_p\sigma_p}{F_p + N_c\ip{\beta_p\sigma_p}{\sigma_c}}}{\sigma_c-1}
+  - \ip{\frac{\epsilon F_p^2N_c\beta_p\sigma_c}{(F_p + N_c\ip{\beta_p\sigma_p}{\sigma_c})^2}}{\sigma_p - 1} + \ip{N_p c \beta_p \sigma_p}{\sigma_p -1}
 \end{equation}
 Using that $\ip{1}{\sigma} = 1$, we can write out \Cref{eq:calc_app} and gather the positive and negative terms
 \begin{equation}
+  \label{eq:tot_min_du}
   \begin{split}
   \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)} = \\
-  \ip{\frac{\sigma_c}{K_0 + K\phi}}{\sigma_c} + \ip{c \beta_p \sigma_p}{\sigma_p} \\ + \ip{\frac{F_p\beta_p\sigma_p}{F_p + \ip{\sigma_p}{\sigma_c}}}{\sigma_c} - \ip{\frac{F_p^2\beta_p\sigma_c}{(F_p + \ip{\sigma_p}{\sigma_c})^2}}{\sigma_p} \\
-  - \norm{c\beta_p \sigma_p}_1 - \norm{\frac{\sigma_c}{K_0 + K\phi}}_1 - \norm{\frac{F_p\beta_p\sigma_p}{F_p + \ip{\sigma_p}{\sigma_c}}}_1 \\
-   - \norm{\frac{F_p^2\beta_p\sigma_c}{(F_p + \ip{\sigma_p}{\sigma_c})^2}}_1
+  \ip{\frac{N_c\sigma_c}{K_0 + K\phi}}{\sigma_c} + \ip{N_p c \beta_p \sigma_p}{\sigma_p} \\ + \ip{\frac{F_p N_p \beta_p\sigma_p}{F_p + N_c\ip{\beta_p\sigma_p}{\sigma_c}}}{\sigma_c} - \ip{\frac{\epsilon F_p^2 N_c\beta_p\sigma_c}{(F_p + N_c\ip{\beta_p\sigma_p}{\sigma_c})^2}}{\sigma_p} \\
+  - \norm{N_p c\beta_p \sigma_p}_1 - \norm{\frac{N_c \sigma_c}{K_0 + K\phi}}_1 - \norm{\frac{N_p F_p\beta_p\sigma_p}{F_p + N_c \ip{\beta_p\sigma_p}{\sigma_c}}}_1 \\
+   - \norm{\frac{\epsilon F_p^2 N_c\beta_p\sigma_c}{(F_p + N_c\ip{\beta_p\sigma_p}{\sigma_c})^2}}_1
 \end{split}
 \end{equation}
-Remark that
+To handle \Cref{eq:tot_min_du}, we consider the individual terms. We start by considering the terms:
 \begin{equation}
-  \ip{\frac{F_p\beta_p\sigma_p}{F_p + \ip{\sigma_p}{\sigma_c}}}{\sigma_c} \geq \ip{\frac{F_p^2\beta_p\sigma_c}{(F_p + \ip{\sigma_p}{\sigma_c})^2}}{\sigma_p}
+  \label{eq:unf_bnd}
+  \begin{split}
+  \ip{\frac{F_p N_p\beta_p\sigma_p}{F_p + N_c\ip{\beta_p\sigma_p}{\sigma_c}}}{\sigma_c}, \\
+   \ip{\frac{\epsilon F_p^2 N_c \beta_p\sigma_c}{(F_p + N_c\ip{\beta_p\sigma_p}{\sigma_c})^2}}{\sigma_p}
+  \end{split}
 \end{equation}
-Defining $C_1 = \frac{1}{K_0 + K \ess \sup \phi}$ and $C_2 = c \ess \inf \beta_p$ we have:
+We see both terms in \Cref{eq:unf_bnd} are uniformly bounded in $(\sigma_c,\sigma_p)$ over $P_{2,\mu}^2$, hence so is their difference $W_0(\sigma_c,\sigma_p)$.
+Defining $C_1 = \frac{1}{K_0 + K \ess \sup \phi}$ and $C_2 = c \ess \inf \beta_p$ we can rewrite \Cref{eq:tot_min_du} as:
 \begin{equation}
   \begin{split}
   \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)} \geq C_1 \norm{\sigma_c}^2_2 + C_2 \norm{\sigma_p}_2^2 \\
-  - \norm{c\beta_p \sigma_p}_1 - \norm{\frac{\sigma_c}{K_0 + K\phi}}_1 - \norm{\frac{F_p\beta_p\sigma_p}{F_p + \ip{\sigma_p}{\sigma_c}}}_1 \\
-   - \norm{\frac{F_p^2\beta_p\sigma_c}{(F_p + \ip{\sigma_p}{\sigma_c})^2}}_1
+  - \norm{c\beta_p \sigma_p}_1 - \norm{\frac{\sigma_c}{K_0 + K\phi}}_1 - \norm{\frac{F_pN_p\beta_p\sigma_p}{F_p + N_c\ip{\beta_p\sigma_p}{\sigma_c}}}_1 \\
+   - \norm{\frac{F_p^2 N_c\beta_p\sigma_c}{(F_p + \ip{\beta_p\sigma_p}{\sigma_c})^2}}_1 + W_0(\sigma_c,\sigma_p)
   \end{split}
 \end{equation}
-Since $\norm{\sigma_i}_1=1, i \in \{c,p\}$, all terms involving $\norm{\cdot}_1$ are uniformly bounded, and can be gathered in a single uniformly bounded function $W$. Hence we end with:
+Since $\norm{\sigma_i}_1=1, i \in \{c,p\}$, all terms involving $\norm{\cdot}_1$ in \Cref{eq:tot_min_du} are uniformly bounded, and can be gathered with $W_0$ in a single uniformly bounded function $W$. Hence we end with:
 \begin{equation}
     \ip{-dU(\sigma_c,\sigma_p)}{(\sigma_c-1, \sigma_p-1)} \geq C_1 \norm{\sigma_c}_2^2 + C_2 \norm{\sigma_p}_2^2 - W(\sigma_c,\sigma_p)
 \end{equation}

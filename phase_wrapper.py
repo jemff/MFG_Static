@@ -30,12 +30,15 @@ ax[0].plot(dyn_data_1.y[0,:], dyn_data_1.y[1,:], color=tableau20[4])
 gridx, gridy, vectors[:,:,0], vectors[:,:,1], dyn_data, hist_c, hist_p = pp_dyn.dyn_pp()
 q2 = ax[1].quiver(gridx, gridy, vectors[:,:,0], vectors[:,:,1], scale=50, headwidth=1, color=tableau20[14])
 ax[1].plot(dyn_data[:,0], dyn_data[:,1], color=tableau20[4])
-#ax[1].annotate('t', (dyn_data[5,0], dyn_data[5, 1]))
-ax[1].annotate('t=1', (dyn_data[10,0], dyn_data[10,1]))
-ax[1].annotate('t=2.5', (dyn_data[25,0], dyn_data[25,1]))
-ax[1].annotate('t=5', (dyn_data[50,0], dyn_data[50,1]))
-ax[1].annotate('t=10', (dyn_data[100,0], dyn_data[100,1]))
-ax[1].annotate('t=20', (dyn_data[200,0], dyn_data[200,1]))
+ax[1].annotate('t=1', (dyn_data[9,0], dyn_data[10-1,1]))
+ax[1].annotate('t=5', (dyn_data[49,0], dyn_data[50-1,1]))
+ax[1].annotate('t=10', (dyn_data[99,0], dyn_data[100-1,1]))
+ax[1].annotate('t=20', (dyn_data[200-1,0], dyn_data[200-1,1]))
+ax[1].annotate('t=50', (dyn_data[500-1,0], dyn_data[500-1,1]))
+#ax[1].annotate('t=200', (dyn_data[2000-1,0], dyn_data[2000-1,1]))
+
+
+#ax[1].annotate('t=0.50', (dyn_data[499,0], dyn_data[499,1]))
 
 ax[0].set_xlabel("Consumer biomass ($N_c$)")
 ax[1].set_xlabel("Consumer biomass ($N_c$)")
@@ -55,5 +58,5 @@ plt.show()
 #plt.savefig('results/plots/explicit_dyn.pdf')
 
 heatmap_plotter([hist_c.T, hist_p.T], "dynamic_strats",
-                [0, 30, 1, 0], xlab="Time (t)", ylab="Refuge")
+                [0, 200, 100, 0], xlab="Time in months (t)", ylab="Depth in m")
 plt.show()
